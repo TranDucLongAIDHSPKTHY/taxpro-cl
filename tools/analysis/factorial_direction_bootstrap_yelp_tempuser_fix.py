@@ -2,7 +2,7 @@
 Yelp2018, pointed at the temperature_user=0.15 corrected V0-V3 checkpoints
 (A2-V{0-3}-tempuser0.15) instead of the original A2-V0..V3 runs.
 
-Background: a cross-check against the GVHD review (2026-09-12, item A1)
+Background: a cross-check
 found that the original Yelp2018 A2-V0..V3 factorial checkpoints were
 trained with temperature_user=0.2 (the base-config default), not 0.15
 (Yelp2018's tuned main-configuration value, Table 6) -- confirmed via

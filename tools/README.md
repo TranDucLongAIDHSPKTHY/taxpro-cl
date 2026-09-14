@@ -133,15 +133,15 @@ python -m tools.experiments.run_taxpro --dataset yelp2018 --seeds 42 0 1 --confi
 # V3 is intentionally NOT run here: it reuses the "TaxPro-CL main results"
 # run below bit-for-bit (same configuration), so run that once and point
 # the bootstrap script at it instead of training a fourth variant.
-python -m tools.experiments.run_taxpro --dataset musical-instruments --seeds 42 0 1 --config-id gvhd-taxctrl-V0 --temperature 0.15 --gamma-cold 5.0 --augmentation-direction random --use-adaptive-epsilon false
-python -m tools.experiments.run_taxpro --dataset musical-instruments --seeds 42 0 1 --config-id gvhd-taxctrl-V1 --temperature 0.15 --gamma-cold 5.0 --augmentation-direction taxonomy --use-adaptive-epsilon false
-python -m tools.experiments.run_taxpro --dataset musical-instruments --seeds 42 0 1 --config-id gvhd-taxctrl-V2 --temperature 0.15 --gamma-cold 5.0 --augmentation-direction random --use-adaptive-epsilon true
+python -m tools.experiments.run_taxpro --dataset musical-instruments --seeds 42 0 1 --config-id taxctrl-V0 --temperature 0.15 --gamma-cold 5.0 --augmentation-direction random --use-adaptive-epsilon false
+python -m tools.experiments.run_taxpro --dataset musical-instruments --seeds 42 0 1 --config-id taxctrl-V1 --temperature 0.15 --gamma-cold 5.0 --augmentation-direction taxonomy --use-adaptive-epsilon false
+python -m tools.experiments.run_taxpro --dataset musical-instruments --seeds 42 0 1 --config-id taxctrl-V2 --temperature 0.15 --gamma-cold 5.0 --augmentation-direction random --use-adaptive-epsilon true
 python -m tools.experiments.run_taxpro --dataset musical-instruments --seeds 42 0 1 --config-id taxpro-cl-FINAL-no_merge-temp0.15-gammacold5.0 --temperature 0.15 --gamma-cold 5.0 --augmentation-direction taxonomy --use-adaptive-epsilon true
 
 # Arts-Crafts-and-Sewing (fixed factor: temperature=0.125). Same V3 reuse note as above.
-python -m tools.experiments.run_taxpro --dataset arts-crafts-and-sewing --seeds 42 0 1 --config-id gvhd-taxctrl-V0 --temperature 0.125 --augmentation-direction random --use-adaptive-epsilon false
-python -m tools.experiments.run_taxpro --dataset arts-crafts-and-sewing --seeds 42 0 1 --config-id gvhd-taxctrl-V1 --temperature 0.125 --augmentation-direction taxonomy --use-adaptive-epsilon false
-python -m tools.experiments.run_taxpro --dataset arts-crafts-and-sewing --seeds 42 0 1 --config-id gvhd-taxctrl-V2 --temperature 0.125 --augmentation-direction random --use-adaptive-epsilon true
+python -m tools.experiments.run_taxpro --dataset arts-crafts-and-sewing --seeds 42 0 1 --config-id taxctrl-V0 --temperature 0.125 --augmentation-direction random --use-adaptive-epsilon false
+python -m tools.experiments.run_taxpro --dataset arts-crafts-and-sewing --seeds 42 0 1 --config-id taxctrl-V1 --temperature 0.125 --augmentation-direction taxonomy --use-adaptive-epsilon false
+python -m tools.experiments.run_taxpro --dataset arts-crafts-and-sewing --seeds 42 0 1 --config-id taxctrl-V2 --temperature 0.125 --augmentation-direction random --use-adaptive-epsilon true
 python -m tools.experiments.run_taxpro --dataset arts-crafts-and-sewing --seeds 42 0 1 --config-id taxpro-cl-FINAL-no_merge-temp0.125-gammacold1.5-sameleaf0 --temperature 0.125 --augmentation-direction taxonomy --use-adaptive-epsilon true
 ```
 
@@ -181,8 +181,8 @@ above with `--warm-start-epochs 0` added, Amazon-Book only, both directions.
 | `tools.analysis.rescue_vs_variants_bootstrap` | Bootstrap CI, a rescue/ablation variant vs. an A2 factorial variant (Amazon-Book) |
 | `tools.analysis.leaf_variants_bootstrap` | Bootstrap CI, prototype-construction variants (`leaf_uniform`/`leave_one_out`) vs. V3, Amazon-Book (ESM Table S17) |
 | `tools.analysis.warmstart_removal_bootstrap` | Bootstrap CI, `warm_start_epochs=0` vs. main config, both direction controls, Amazon-Book (ESM Table S23) |
-| `tools.analysis.build_results_manifest` | GVHD-A1 audit trail: `results/results_manifest.csv` (run-level provenance: config/split/taxonomy/checkpoint SHA256) and `results/metrics_seed.csv` (per-seed absolute metrics), from `run_manifest.json`/`final_test_group_metrics.json` only -- no invented values |
-| `tools.analysis.build_claim_evidence` | GVHD-A6 audit trail: `results/claim_evidence.csv`, mapping every major quantitative claim in the manuscript to its dataset/configuration/metric/target table/source script |
+| `tools.analysis.build_results_manifest` | Audit trail: `results/results_manifest.csv` (run-level provenance: config/split/taxonomy/checkpoint SHA256) and `results/metrics_seed.csv` (per-seed absolute metrics), from `run_manifest.json`/`final_test_group_metrics.json` only -- no invented values |
+| `tools.analysis.build_claim_evidence` | Audit trail: `results/claim_evidence.csv`, mapping every major quantitative claim in the manuscript to its dataset/configuration/metric/target table/source script |
 
 ```powershell
 python -m tools.analysis.compile_runs

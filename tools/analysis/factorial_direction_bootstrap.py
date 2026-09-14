@@ -1,6 +1,6 @@
 """Per-user bootstrap CI for the V0-V3 direction-by-magnitude factorial
-(GVHD review B-round, manuscript Section 5.4 "Direction-by-magnitude
-factorial ablation (RQ5)", Table 11).
+(manuscript Section 5.4 "Direction-by-magnitude factorial ablation (RQ5)",
+Table 11).
 
 V0/V1/V2/V3 hold every hyperparameter fixed within a dataset except
 perturbation direction (random vs. taxonomy) and epsilon-adaptivity
@@ -25,7 +25,7 @@ internal variant pairs instead of TaxPro-CL vs. a baseline:
     V3-V1: epsilon-adaptivity's effect at taxonomy direction
 
 Requires the V0/V1/V2 runs to already exist (produced by the A2 factorial
-commands in KE_HOACH_RUNS.md / the paper's Section 5.4 methodology); V3
+commands documented in the paper's Section 5.4 methodology); V3
 reuses each dataset's main-configuration checkpoint (same one
 checkpoint_selection.select_checkpoint("TaxPro-CL", dataset) resolves to
 for Yelp2018/Musical-Instruments/Arts-Crafts-and-Sewing, and the A2-V3
@@ -138,7 +138,7 @@ def pool_diffs_across_seeds(pooled_by_user):
     exactly one bootstrap-eligible observation per unique user regardless
     of how many seeds contributed to it.
 
-    GVHD review 2026-09-12, Appendix 1 worked example: user 1 has
+    Worked example: user 1 has
     per-seed diffs [1, 1, 1], user 2 has [-1, -1, -1]. Pooling naively by
     appending every (user, seed) pair into one flat list -- the bug this
     function fixes -- would treat that as 6 independent observations,
@@ -179,8 +179,8 @@ def main(argv=None):
         # (see below). Appending directly into a flat pooled list inside the
         # seed loop -- the previous approach -- pseudo-replicates each user
         # up to 3x (once per seed) and understates bootstrap uncertainty
-        # (GVHD review 2026-09-12, item A2: confirmed via the exact 3x
-        # #Users multiplier in the published tables).
+        # (confirmed via the exact 3x #Users multiplier in the published
+        # tables).
         pooled_by_user = {
             "V1_vs_V0": {g: {} for g in GROUPS},
             "V3_vs_V2": {g: {} for g in GROUPS},

@@ -27,7 +27,7 @@ class PrototypeBank(nn.Module):
         self.register_buffer("initialized", torch.tensor(False, dtype=torch.bool))
         self.register_buffer("init_epoch", torch.tensor(-1, dtype=torch.long))
         # Only used by ema_update_snapshot (prototype_weighting=leaf_uniform,
-        # 2026-09-09 addition, GVHD A3 "unique-item EMA" variant): tracks which
+        # the "unique-item EMA" sensitivity-check variant): tracks which
         # epoch the snapshot was last taken so the (expensive, full-catalog)
         # recompute happens once per epoch, not once per batch. persistent=False
         # so it is NOT part of state_dict -- otherwise every checkpoint saved
@@ -142,8 +142,8 @@ class PrototypeBank(nn.Module):
         valid_train_mask,
         epoch,
     ):
-        """prototype_weighting=leaf_uniform (2026-09-09, GVHD A3 "unique-item
-        EMA" variant): unlike ema_update above (which pulls p_l toward
+        """prototype_weighting=leaf_uniform (the "unique-item EMA" sensitivity-
+        check variant): unlike ema_update above (which pulls p_l toward
         whichever items happened to be positive in *this* batch -- an item
         that appears as positive in more batches over an epoch gets more
         pulls, i.e. an interaction-frequency-weighted centroid, exactly the
@@ -325,9 +325,6 @@ def degree_epsilon_scale(item_degree, gamma_cold=1.5, gamma_warm=0.5,
     (near_cold_max, long_tail_max] -> 1.0 (neutral anchor bucket); degree >
     long_tail_max -> gamma_warm (dampen).
 
-    Merged in from the former utility.utility_function.taxonomy_contrastive_v2
-    (2026-08-22, project consolidation -- pure code relocation, no behavior
-    change) so every taxonomy-CL primitive lives in one module.
     """
     if gamma_cold < 1.0:
         raise ValueError("gamma_cold must be >= 1.0")
@@ -363,8 +360,7 @@ def create_item_views_adaptive(
 ):
     """Independent-epsilon, shared-direction views with degree-adaptive
     magnitude. Reduces exactly to create_item_views when gamma_cold ==
-    gamma_warm == 1.0. Merged in from taxonomy_contrastive_v2 (see
-    degree_epsilon_scale docstring above)."""
+    gamma_warm == 1.0 (see degree_epsilon_scale docstring above)."""
     if float(epsilon_max) < 0.0:
         raise ValueError("epsilon_max must be non-negative")
     if float(delta) <= 0.0:
@@ -421,8 +417,7 @@ def leaf_aware_info_nce(view_a, view_b, leaf_ids, temperature=0.2,
                          same_leaf_weight=0.05, symmetric=False):
     """InfoNCE with same-leaf items reweighted as soft positives instead of
     hard negatives. Degenerates exactly to item_level_info_nce's loss value
-    when same_leaf_weight == 0. Merged in from taxonomy_contrastive_v2 (see
-    degree_epsilon_scale docstring above)."""
+    when same_leaf_weight == 0."""
     if view_a.shape != view_b.shape or view_a.ndim != 2:
         raise ValueError("InfoNCE views must be equal-shaped matrices")
     if view_a.shape[0] != leaf_ids.numel():

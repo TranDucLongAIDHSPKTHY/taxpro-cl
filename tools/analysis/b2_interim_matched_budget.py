@@ -1,4 +1,4 @@
-"""B2/Limitation-5 interim re-analysis (JIIS V58 review): for the datasets
+"""Limitation-5 interim re-analysis: for the datasets
 where the ongoing A7 comparable-budget grid (tau in {0.05,0.10,0.15,0.20} x
 epsilon in {0.05,0.10,0.20}, SimGCL, 3 seeds) has already finished as of
 this check, select the validation-best (tau, epsilon) cell per dataset and
@@ -9,8 +9,7 @@ This does NOT resolve Limitation 5 -- the A7 grid was still running (on
 Amazon-Book's SimGCL cells, and had not yet started XSimGCL or NCL) at the
 time this script was run; see results/a7_full_grid_progress.log for the
 live status. This script only extracts what is already complete and
-usable without retraining anything itself, exactly as instructed: use
-existing evidence before proposing new experiments.
+usable, without retraining anything itself.
 
 Model selection matches the paper's own rule everywhere else: for each
 (tau, epsilon) cell, the checkpoint is chosen by best validation Recall@20

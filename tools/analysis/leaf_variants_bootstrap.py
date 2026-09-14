@@ -1,12 +1,10 @@
-"""Bootstrap CI for gvhd-A3-leafuniform and gvhd-A3-leaveoneout vs A2-V3
-(main config), Amazon-Book. Each user's diff is averaged across the 3 seed
-pairs it appears in BEFORE bootstrapping (fixed 2026-09-12 per GVHD review
-item A2 -- the previous version pseudo-replicated each user up to 3x by
-appending per-seed diffs directly into the pooled list inside the seed
-loop), same corrected methodology as
-tools/analysis/rescue_vs_variants_bootstrap.py and
-tools/analysis/seed_matched_bootstrap.py. Promoted from a session scratchpad
-script into the permanent tree for reproducibility (GVHD review item B8).
+"""Bootstrap CI for the leaf-uniform and leave-one-out prototype-construction
+variants vs A2-V3 (main config), Amazon-Book. Each user's diff is averaged
+across the 3 seed pairs it appears in BEFORE bootstrapping (the previous
+version pseudo-replicated each user up to 3x by appending per-seed diffs
+directly into the pooled list inside the seed loop), same corrected
+methodology as tools/analysis/rescue_vs_variants_bootstrap.py and
+tools/analysis/seed_matched_bootstrap.py.
 """
 from __future__ import annotations
 import json, logging, sys
@@ -26,8 +24,8 @@ from tests.Recommendation_system.inference import compute_batch_order_and_rank
 def load_model(run_dir, device):
     """Same as tests.Recommendation_system.inference.load_model, but strips
     prototype_bank.last_snapshot_epoch from the checkpoint before loading:
-    this buffer was persistent=True when the gvhd-A3-* checkpoints were
-    saved (09/09/2026) and is persistent=False in the current model code
+    this buffer was persistent=True when these variant checkpoints were
+    saved and is persistent=False in the current model code
     (a tracking-only buffer, not used by get_rating_for_test/inference) --
     a known, already-diagnosed benign mismatch, not a real architecture
     difference. The stricter _load_state_dict_tolerant used by the shared

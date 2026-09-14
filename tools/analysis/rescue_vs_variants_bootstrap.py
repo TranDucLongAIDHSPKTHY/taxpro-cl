@@ -1,16 +1,15 @@
-"""Rigorous check for gvhd-A3-rescue vs A2-V0 / A2-V3 (GVHD user requested
-this after seeing all-positive-but-small group-level deltas): per-user
+"""Rigorous check for the rescue variant vs A2-V0 / A2-V3 (prompted by
+seeing all-positive-but-small group-level deltas): per-user
 Recall@20 bootstrap CI, same methodology as
 tools/analysis/seed_matched_bootstrap.py (the paper's own primary
 significance evidence for Table 8/RQ1), applied to seed-matched checkpoint
 pairs (42-42, 0-0, 1-1) instead of TaxPro-CL-vs-baseline. Each user's diff
 is averaged across the 3 seed pairs it appears in BEFORE bootstrapping, so
-each user contributes exactly one value to the resampled population (fixed
-2026-09-12 per GVHD review item A2: the previous version appended each
-user's per-seed diff directly into the pooled list inside the seed loop,
-pseudo-replicating every user up to 3x and understating the interval width
--- confirmed via the exact 3x #Users multiplier in the previously published
-tables).
+each user contributes exactly one value to the resampled population (the
+previous version appended each user's per-seed diff directly into the
+pooled list inside the seed loop, pseudo-replicating every user up to 3x
+and understating the interval width -- confirmed via the exact 3x #Users
+multiplier in the previously published tables).
 """
 
 from __future__ import annotations

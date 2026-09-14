@@ -1,8 +1,7 @@
-"""A4 fix (JIIS V58 review): append LightGCN/SGL-ED/XSimGCL/NCL per-seed
-Recall@10/20, NDCG@10/20 rows (near_cold, long_tail, overall, warm) to
-results/metrics_seed.csv, so the file's Data-availability declaration
-("the runs underlying Table 7 (deltas)") actually covers Table 7's A1
-(LightGCN) block, not only its A2 (SimGCL) block.
+"""Appends LightGCN/SGL-ED/XSimGCL/NCL per-seed Recall@10/20, NDCG@10/20 rows
+(near_cold, long_tail, overall, warm) to results/metrics_seed.csv, so the
+file's Data-availability declaration ("the runs underlying Table 7 (deltas)")
+covers all of Table 7's method blocks, not only the SimGCL block.
 
 Pure export/re-analysis: no retraining, no re-inference. Sources:
 - results/week6/mid_tail_degree6_10.json for near_cold/long_tail

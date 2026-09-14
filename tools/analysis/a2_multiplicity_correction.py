@@ -1,6 +1,5 @@
-"""A2 re-analysis (JIIS V58 review, issue A2): Holm-Bonferroni-corrected
-version of Main Paper Table 11 (the 8-cell TaxPro-CL vs. SimGCL bootstrap
-that anchors the Abstract's headline claim).
+"""Holm-Bonferroni-corrected re-analysis of Main Paper Table 11 (the 8-cell
+TaxPro-CL vs. SimGCL bootstrap that anchors the Abstract's headline claim).
 
 Reuses the exact same checkpoints, evaluation protocol, and per-user diff
 computation as tools/analysis/seed_matched_bootstrap.py (which produced

@@ -1,4 +1,4 @@
-"""Main results table (GVHD review B1, manuscript Section 5.1, Tables 7-10):
+"""Main results table (manuscript Section 5.1, Tables 7-10):
 Recall@20 mean+-std over 3 seeds, all six methods x four datasets x five
 evaluation groups (Near-Cold, Mid-Tail, Long-Tail, Overall, Warm).
 

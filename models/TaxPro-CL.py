@@ -149,11 +149,10 @@ class TaxProCLImproved(nn.Module):
         self.prototype_init_scope = str(config.get("prototype_init_scope", "all_valid"))
         self.mixture_alpha = float(config.get("mixture_alpha", 0.5))
         self.symmetric_info_nce = _as_bool(config["symmetric_info_nce"])
-        # 2026-09-09 addition (GVHD A3 "unique-item EMA"/"leave-one-out"
-        # variants, plus the "rescue Contribution 1" asymmetric-view
-        # experiment): three independent flags, each defaulting to the prior
-        # behavior, so every earlier run's config stays byte-for-byte
-        # reproducible when none of them are set.
+        # Three sensitivity-check flags for the prototype-construction ablation
+        # ("unique-item EMA"/"leave-one-out" variants, plus an asymmetric-view
+        # variant), each defaulting to the prior behavior, so every earlier
+        # run's config stays byte-for-byte reproducible when none are set.
         self.prototype_weighting = str(config.get("prototype_weighting", "interaction"))
         self.prototype_leave_one_out = _as_bool(config.get("prototype_leave_one_out", False))
         self.asymmetric_view_direction = _as_bool(config.get("asymmetric_view_direction", False))
@@ -282,7 +281,7 @@ class TaxProCLImproved(nn.Module):
 
         if self.prototype_mode not in ("leaf", "mixture", "parent"):
             raise ValueError(
-                "AL-TaxCL currently supports prototype_mode=leaf, mixture, or parent only"
+                "TaxPro-CL currently supports prototype_mode=leaf, mixture, or parent only"
             )
 
         self.use_adaptive_epsilon = _as_bool(config.get("use_adaptive_epsilon", True))
@@ -467,8 +466,8 @@ class TaxProCLImproved(nn.Module):
         if self.asymmetric_view_direction and view_id == 1:
             effective_direction = "random"
         if effective_direction == "random":
-            # A2 control (GVHD review, 2026-09-06): a genuine isotropic
-            # random direction, independent of taxonomy/prototype -- reuses
+            # A2 control: a genuine isotropic random direction, independent
+            # of taxonomy/prototype -- reuses
             # the exact SimGCL-identical recipe already used for
             # isotropic_blend (sign(e) * normalize(noise), fresh per layer
             # per view) instead of the prototype-relative direction below.
@@ -516,7 +515,7 @@ class TaxProCLImproved(nn.Module):
             else:
                 target_prototype = self.prototype_bank.prototypes[safe_leaf]
                 if self.prototype_leave_one_out:
-                    # GVHD A3 "leave-one-out" variant (2026-09-09): p_l is a
+                    # A3 "leave-one-out" variant: p_l is a
                     # mean over N_l valid items in the leaf (support, fixed at
                     # init -- see PrototypeBank.initialize); an item with a
                     # small leaf can dominate its own prototype (A3 measured
@@ -577,24 +576,20 @@ class TaxProCLImproved(nn.Module):
                 # neighboring leaf's item from the sort-order fallback.
                 valid_mask = valid_mask & (self.leaf_peer_group_size >= 2)
         if self.isotropic_blend > 0.0:
-            # v10 addition (2026-08-18): GVHD's own Concern-1 mitigation
-            # ("them mot thanh phan nhieu dang huong nho neu view qua giong
-            # nhau", P0_03 doc). Blends a small SimGCL-identical isotropic
-            # component (same sign(e)*normalize(noise) recipe as
-            # _perturb_users/SimGCL.py, drawn fresh per layer per view call)
-            # into the *unit direction*, not added on top of it -- so the
-            # existing epsilon budget (adaptive-epsilon, per-layer division,
-            # etc.) is untouched and only the direction's composition
-            # changes. Only meaningfully needed for direction_source=
-            # "prototype" (the fixed-target case that produces near-colinear
-            # views -- P0_03's own worked example measures cos~=0.925
-            # between the two views for exactly this mechanism); left
-            # general/orthogonal rather than special-cased so it composes
-            # with "peer" too if ever wanted. Explicitly NOT "100%
-            # taxonomy-derived" on the item side once isotropic_blend>0 --
-            # a deliberate, disclosed departure from that standing
-            # constraint, done only because GVHD's own reference doc
-            # suggested it, and gated behind isotropic_blend defaulting to
+            # Mitigation for the two views becoming too close to collinear:
+            # blends a small SimGCL-identical isotropic component (same
+            # sign(e)*normalize(noise) recipe as _perturb_users/SimGCL.py,
+            # drawn fresh per layer per view call) into the *unit direction*,
+            # not added on top of it -- so the existing epsilon budget
+            # (adaptive-epsilon, per-layer division, etc.) is untouched and
+            # only the direction's composition changes. Only meaningfully
+            # needed for direction_source="prototype" (the fixed-target case
+            # that produces near-colinear views, cos~=0.925 between the two
+            # views with this mechanism); left general/orthogonal rather than
+            # special-cased so it composes with "peer" too if ever wanted.
+            # Explicitly NOT "100% taxonomy-derived" on the item side once
+            # isotropic_blend>0 -- a deliberate, disclosed departure from that
+            # standing constraint, gated behind isotropic_blend defaulting to
             # 0.0 so every prior run's config stays byte-for-byte
             # reproducible.
             noise = torch.rand_like(items)
@@ -713,14 +708,14 @@ class TaxProCLImproved(nn.Module):
                         (displacement_a.norm(dim=1), displacement_b.norm(dim=1))
                     )
                     identical_views = torch.all(view_a == view_b, dim=1)
-                    # Empirical stand-in for P0_03's "cos(view A, view B)"
-                    # Concern-1 diagnostic: with per-layer perturbation there
+                    # Empirical stand-in for a "cos(view A, view B)"
+                    # diagnostic: with per-layer perturbation there
                     # is no longer one direction vector to compare, so this
                     # compares the two views' NET displacement from the
-                    # clean embedding instead. High mean here (~doc's 0.925
-                    # example) means the two views are near-colinear -- the
-                    # weak-positive-pull failure mode GVHD's doc flags;
-                    # isotropic_blend>0 (v10) is meant to push this down.
+                    # clean embedding instead. High mean here (~0.925 in the
+                    # near-colinear case) means the two views are near-
+                    # colinear -- a weak-positive-pull failure mode;
+                    # isotropic_blend>0 is meant to push this down.
                     nonzero_displacement = (
                         (displacement_a.norm(dim=1) > self.delta)
                         & (displacement_b.norm(dim=1) > self.delta)
@@ -829,15 +824,15 @@ class TaxProCLImproved(nn.Module):
         metadata.update({
             "model": "TaxPro-CL",
             "improvement": (
-                "AL-TaxCL-v10-isotropic-blend"
+                "TaxPro-CL-isotropic-blend"
                 if self.isotropic_blend > 0.0
-                else "AL-TaxCL-v9-user-ssl"
+                else "TaxPro-CL-user-ssl"
                 if self.use_user_ssl
-                else "AL-TaxCL-v5-simgcl-backbone-peer-direction"
+                else "TaxPro-CL-simgcl-backbone-peer-direction"
                 if self.direction_source == "peer"
-                else "AL-TaxCL-v5-simgcl-backbone-mixture"
+                else "TaxPro-CL-simgcl-backbone-mixture"
                 if self.prototype_mode == "mixture"
-                else "AL-TaxCL-v3-simgcl-backbone"
+                else "TaxPro-CL-simgcl-backbone"
             ),
             "perturbation_structure": "per_layer_taxonomy_direction",
             "direction_source": self.direction_source,

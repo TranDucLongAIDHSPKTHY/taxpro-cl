@@ -1,6 +1,6 @@
 # Re-run the V0-V3 factorial on Yelp2018 with temperature_user=0.15 (matching the
-# main-configuration value in Table 6), fixing the confound found during the
-# GVHD cross-check: the original A2-V0..V3 Yelp2018 runs used temperature_user's
+# main-configuration value in Table 6), fixing a confound found during a
+# cross-check: the original A2-V0..V3 Yelp2018 runs used temperature_user's
 # base-config default (0.2) instead of Yelp2018's tuned value (0.15), so "V3" did
 # not exactly match the TaxPro-CL-main checkpoint used everywhere else in the paper.
 # Output goes to a NEW directory (A2-V{0-3}-tempuser0.15) so the original

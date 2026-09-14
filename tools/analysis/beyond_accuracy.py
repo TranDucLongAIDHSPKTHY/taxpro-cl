@@ -1,7 +1,7 @@
-"""Beyond-accuracy diagnostics for the six-method comparison (GVHD review, B6).
+"""Beyond-accuracy diagnostics for the six-method comparison.
 
 TaxPro-CL trades lower Overall/Warm Recall@20 for higher Near-Cold/Long-Tail
-(Section 5.1 of the V56 manuscript). This computes three metrics that let a
+(Section 5.1 of the manuscript). This computes three metrics that let a
 reader judge whether that trade buys anything, from the SAME completed
 checkpoints already used for the main results table -- no retraining:
 

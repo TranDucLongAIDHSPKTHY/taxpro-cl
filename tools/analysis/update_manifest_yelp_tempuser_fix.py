@@ -7,7 +7,7 @@ import hashlib
 import json
 from pathlib import Path
 
-ROOT = Path(r"L:\TaxPro-CL_v3 - Tester")
+ROOT = Path(__file__).resolve().parents[2]
 MANIFEST = ROOT / "results" / "results_manifest.csv"
 
 FIELDS = ["run_id", "model", "dataset", "variant", "seed", "status", "run_dir", "git_commit",

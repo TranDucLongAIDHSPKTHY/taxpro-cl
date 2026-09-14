@@ -8,7 +8,7 @@ log/*
 results/*
 !results/.gitkeep
 
-# Audit-trail deliverables (GVHD review items A1/A6): small, hand-curated
+# Audit-trail deliverables: small, hand-curated
 # CSVs mapping runs/claims to evidence -- kept despite the results/* rule
 # above, unlike the large per-run result dumps that rule is meant to exclude.
 !results/results_manifest.csv

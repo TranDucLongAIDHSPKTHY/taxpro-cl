@@ -8,15 +8,18 @@ original figure was (values independently verified to match the published
 Table S16/S20 to the last digit before this regeneration).
 """
 import json
+from pathlib import Path
+
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-ROOT_RESULTS = r"L:\TaxPro-CL_v3 - Tester\results"
+ROOT = Path(__file__).resolve().parents[2]
+ROOT_RESULTS = ROOT / "results"
 
-with open(ROOT_RESULTS + r"\factorial_direction_bootstrap_full_FIXED.json") as f:
+with open(ROOT_RESULTS / "factorial_direction_bootstrap_full_FIXED.json") as f:
     base = json.load(f)
-with open(ROOT_RESULTS + r"\factorial_direction_bootstrap_yelp_tempuser_fix.json") as f:
+with open(ROOT_RESULTS / "factorial_direction_bootstrap_yelp_tempuser_fix.json") as f:
     yelp_fixed = json.load(f)["yelp2018"]
 
 # Patch in the corrected Yelp2018 cells (direction unaffected in headline sign,
@@ -81,7 +84,7 @@ legend_elems = [
 fig.legend(handles=legend_elems, loc="lower center", ncol=2, frameon=False, bbox_to_anchor=(0.5, -0.02))
 plt.tight_layout(rect=[0, 0.03, 1, 1])
 
-out_path = r"L:\TaxPro-CL_v3 - Tester\Document\paper_P0\V59\Fig3.pdf"
+out_path = ROOT_RESULTS / "Fig3.pdf"
 plt.savefig(out_path, bbox_inches="tight")
 print("Saved", out_path)
 

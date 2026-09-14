@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-"""GVHD A1: build results_manifest.csv and metrics_seed.csv from actual run
+"""Builds results_manifest.csv and metrics_seed.csv from actual run
 manifests and metrics files -- no invented values, everything read directly
 from each run's own run_manifest.json / final_test_group_metrics.json.
 
-Scope: the runs directly relevant to A1's concern (V3-factorial vs. main-
-table checkpoint provenance) -- TaxPro-CL main config, SimGCL main config,
+Scope: the runs directly relevant to establishing V3-factorial vs. main-
+table checkpoint provenance -- TaxPro-CL main config, SimGCL main config,
 and the V0-V3 factorial variants, all four datasets, 3 seeds each.
 """
 import csv

@@ -1,10 +1,10 @@
-"""Seed-matched rank-level audit (GVHD review of manuscript V56, B7).
+"""Seed-matched rank-level audit.
 
 The existing rank-level audit (tests/Recommendation_system/rank_comparison.py,
 manuscript Tables 7-8) pairs each baseline's auto-selected ("best validation")
 checkpoint against TaxPro-CL's auto-selected checkpoint independently -- for
-Yelp2018 these can land on different training seeds (the exact gap GVHD's
-review flags). This instead pairs the SAME seed's checkpoint on both sides
+Yelp2018 these can land on different training seeds. This instead pairs the
+SAME seed's checkpoint on both sides
 (42-42, 0-0, 1-1 -- the same three seeds already used for the main results
 table) and averages the per-group summary statistic across all three pairs.
 

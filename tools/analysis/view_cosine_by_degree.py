@@ -1,4 +1,4 @@
-"""GVHD A4 review item: mean cosine similarity between a model's two
+"""Mean cosine similarity between a model's two
 contrastive views (item side), split by train-degree group, for TaxPro-CL
 and for SimGCL side-by-side. Runs on an already-completed checkpoint -- no
 retraining -- calling each model's own aggregate(perturbed=True) twice,

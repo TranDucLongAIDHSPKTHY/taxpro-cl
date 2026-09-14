@@ -1,5 +1,5 @@
-"""A1 re-analysis (JIIS V58 review, issue A1): Near-Cold/Long-Tail bootstrap
-restricted to items that are sparse under BOTH the train-time degree
+"""Near-Cold/Long-Tail bootstrap restricted to items that are sparse under BOTH
+the train-time degree
 definition (used everywhere else in the paper) AND the pre-split pool
 degree definition (train+validation for Protocol A; train+validation+test
 for Protocol B) -- i.e. "intrinsically" sparse items, excluding the

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""GVHD A6: claim_evidence.csv -- maps every major quantitative claim in
+"""Builds claim_evidence.csv -- maps every major quantitative claim in
 main.tex/ESM_1.tex to its location, dataset, configuration, metric, group,
 target table, and evidence source (run_id pattern into results_manifest.csv/
 metrics_seed.csv where applicable, or the specific analysis script/results

@@ -13,8 +13,8 @@ Every candidate item is also labelled with its train-degree item group
 preprocessed/evaluation_protocol/split_seed_42/<dataset>/item_degrees_train
 .json -- as the project's own final_test_group_metrics.json), because
 TaxPro-CL's whole point is improving near_cold/long_tail ranking, not
-Overall (see project memory project_taxprocl_v15_breakthrough.md). near_cold
-is a subset of long_tail by the project's own definition, so an item can be
+Overall. near_cold is a subset of long_tail by this project's own
+definition, so an item can be
 True for both -- these are independent flags, not a single exclusive label.
 """
 

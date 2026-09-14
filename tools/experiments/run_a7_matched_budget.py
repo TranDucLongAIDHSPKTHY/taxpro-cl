@@ -1,15 +1,14 @@
-"""A7 (GVHD Muc A, comparable-budget baseline tuning) orchestrator.
+"""A7 comparable-budget baseline tuning orchestrator.
 
-GVHD's A7 concern: only TaxPro-CL is tuned per dataset (Table 7); SimGCL,
-XSimGCL, and NCL are evaluated at each model's own published default. This
-script gives the three SSL-CF baselines a tuning budget comparable to what
-TaxPro-CL itself received: the identical 3-point temperature grid used for
-TaxPro-CL's own A4 sensitivity check (Online Resource 1, Table S4),
-{0.05, 0.10, 0.20}, swept for every (model, dataset) pair, 3 seeds each
-(42, 0, 1) -- decided explicitly with the user on 2026-09-12 rather than
-guessing at the original ad hoc search that produced the now-superseded
-NCL/Amazon-Book temp=0.03/0.08 runs (left on disk, no longer part of the
-reported grid).
+Only TaxPro-CL is tuned per dataset in the main comparison (Table 7);
+SimGCL, XSimGCL, and NCL are evaluated at each model's own published
+default. This script gives the three SSL-CF baselines a tuning budget
+comparable to what TaxPro-CL itself received: the identical 3-point
+temperature grid used for TaxPro-CL's own A4 sensitivity check (Online
+Resource 1, Table S4), {0.05, 0.10, 0.20}, swept for every (model, dataset)
+pair, 3 seeds each (42, 0, 1) -- this formal grid supersedes an earlier ad
+hoc search that produced the now-superseded NCL/Amazon-Book temp=0.03/0.08
+runs (left on disk, no longer part of the reported grid).
 
 Two cells of the grid coincide with runs already on disk and used
 elsewhere in the paper (no retraining, no duplicate compute):

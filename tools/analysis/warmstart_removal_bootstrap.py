@@ -4,7 +4,7 @@ paper Section 5.4, RQ5 factorial): does removing warm_start_epochs entirely
 taxonomy-direction (V3) controls, Amazon-Book, 3 seeds?
 
 Previously only reported as a raw % point-estimate change (+18.90% random,
-+21.38% taxonomy) with no per-user CI (GVHD review 2026-09-12, item A6).
++21.38% taxonomy) with no per-user CI.
 Each user's diff is averaged across the 3 seed pairs it appears in BEFORE
 bootstrapping, matching tools/analysis/seed_matched_bootstrap.py's
 methodology (and the A2 fix applied to the other factorial-adjacent

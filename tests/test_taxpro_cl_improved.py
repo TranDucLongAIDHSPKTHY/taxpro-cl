@@ -148,7 +148,7 @@ class TaxProCLImprovedModelTests(unittest.TestCase):
         self.assertTrue(torch.isfinite(displacement).all())
         self.assertTrue(bool((displacement <= 2.0 * model.epsilon_max).all()))
 
-    def test_warm_start_then_joint_phase_stays_finite_with_full_al_taxcl(self):
+    def test_warm_start_then_joint_phase_stays_finite_with_full_taxpro_cl(self):
         with patched_improved_dependencies():
             model = TaxProCLImproved(
                 improved_config(), ToyDataset(), torch.device("cpu")
@@ -282,11 +282,10 @@ class TaxProCLImprovedPeerDirectionTests(unittest.TestCase):
                 )
 
     def test_peer_direction_combined_with_mixture_prototype_mode(self):
-        # v7 combines direction_source=peer (leaf-level target) with
-        # prototype_mode=mixture (blends in the parent prototype direction)
-        # -- untested combination before this, so verify it runs end-to-end
-        # without shape/device errors and still produces two differing,
-        # finite views.
+        # direction_source=peer (leaf-level target) combined with
+        # prototype_mode=mixture (blends in the parent prototype direction):
+        # verify this combination runs end-to-end without shape/device
+        # errors and still produces two differing, finite views.
         with patched_improved_dependencies_mixture():
             model = TaxProCLImproved(
                 improved_config(

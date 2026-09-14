@@ -1,5 +1,5 @@
 """Interaction-effect bootstrap for the V0-V3 direction-by-epsilon-adaptivity
-factorial (GVHD review 2026-09-12, item A5, point 3): computes, per dataset
+factorial: computes, per dataset
 and group, the interaction term (V3-V2)-(V1-V0) from the SAME per-user,
 per-seed data used for the two conditional (marginal) effects -- not two
 independently-resampled bootstraps -- so the interaction's uncertainty
@@ -7,7 +7,7 @@ correctly reflects the shared dependency between the two conditional
 effects (both are computed from the same four checkpoints and the same
 users).
 
-Terminology, per GVHD's suggestion: V1-V0 and V3-V2 are "direction's
+Terminology: V1-V0 and V3-V2 are "direction's
 conditional effect" (at fixed epsilon and at adaptive epsilon,
 respectively); V2-V0 and V3-V1 are "epsilon-adaptivity's conditional
 effect" (at random direction and at taxonomy direction, respectively);
@@ -117,8 +117,9 @@ def main():
 
         # per-user per-seed: interaction[user] = (v3-v2) - (v1-v0), computed
         # from the SAME seed's four checkpoints for that user (preserves
-        # the shared dependency GVHD's A5 point 3 asked for), appended once
-        # per seed the user appears in, then averaged per user across seeds
+        # the shared dependency between the two conditional effects),
+        # appended once per seed the user appears in, then averaged per user
+        # across seeds
         # exactly like every other bootstrap in this paper.
         pooled_by_user = {g: {} for g in GROUPS}
         cond_direction_fixed = {g: {} for g in GROUPS}   # V1-V0

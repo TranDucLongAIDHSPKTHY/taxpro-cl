@@ -9,8 +9,8 @@ from tools.analysis.factorial_direction_bootstrap import (
 
 
 class PoolDiffsAcrossSeedsTests(unittest.TestCase):
-    def test_gvhd_two_user_three_seed_worked_example(self):
-        """GVHD review 2026-09-12, Appendix 1: user 1 has per-seed diffs
+    def test_two_user_three_seed_worked_example(self):
+        """Worked example: user 1 has per-seed diffs
         [1, 1, 1], user 2 has [-1, -1, -1]. After pooling, there must be
         exactly two units: +1 and -1 -- not six. Sampling per (user, seed)
         row instead of per user changes the sampling unit and is the exact
@@ -40,9 +40,9 @@ class PoolDiffsAcrossSeedsTests(unittest.TestCase):
 
     def test_bootstrap_sample_size_matches_unique_users_not_user_seed_rows(self):
         """End-to-end: n_users reported by bootstrap() must equal the
-        number of unique users, matching GVHD's own reconciliation numbers
-        (e.g. Amazon-Book/Near-Cold = 13,238, not the 3x-inflated 39,714
-        that a per-(user, seed)-row sampling bug previously produced).
+        number of unique users (e.g. Amazon-Book/Near-Cold = 13,238, not the
+        3x-inflated 39,714 that a per-(user, seed)-row sampling bug
+        previously produced).
         """
         pooled_by_user = {"user_{}".format(i): [1.0, 1.0, 1.0] for i in range(13238)}
         diffs = pool_diffs_across_seeds(pooled_by_user)

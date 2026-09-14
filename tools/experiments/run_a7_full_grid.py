@@ -1,23 +1,20 @@
-"""A7 full-grid orchestrator (GVHD spec, confirmed with user 2026-09-12).
+"""A7 full-grid orchestrator: comparable-budget baseline tuning grid.
 
-Supersedes run_a7_matched_budget.py (1D temperature-only design; stopped
-after producing 1 valid cell once the actual GVHD spec was clarified -- see
-KE_HOACH_RUNS.md for the full story).
+Supersedes run_a7_matched_budget.py (an earlier 1D temperature-only design
+that produced 1 valid cell before the full grid scope below was settled on).
 
-GVHD's A7 requirement, as given directly by the user's advisor: tune
-SimGCL and XSimGCL on the full temperature x epsilon grid
+A7's requirement: tune SimGCL and XSimGCL on the full temperature x epsilon
+grid
   tau in {0.05, 0.10, 0.15, 0.20}, epsilon in {0.05, 0.10, 0.20}
-(12 combinations each), all 4 datasets, 3 seeds (42, 0, 1) -- full
-4-dataset scope confirmed with the user 2026-09-12.
+(12 combinations each), all 4 datasets, 3 seeds (42, 0, 1).
 
 NCL is architecturally different (cluster-based, no perturbation-direction/
 magnitude concept), so its comparable-budget axis is temperature x k
 (number of clusters) instead of temperature x epsilon:
   tau in {0.05, 0.10, 0.15, 0.20}, k in {1000, 2000, 3000}
-Amazon-Book only (confirmed with user 2026-09-12, matches where NCL's prior
-ad hoc exploration already lives; that ad hoc exploration used temperature
-values 0.03/0.08 outside this grid and is left as informal context, not
-part of this formal grid).
+Amazon-Book only, matching where NCL's prior ad hoc exploration already
+lives; that ad hoc exploration used temperature values 0.03/0.08 outside
+this grid and is left as informal context, not part of this formal grid.
 
 Reuse (no retraining): each model's own already-completed default-
 hyperparameter run from the main A1/A2 comparison table covers exactly one
