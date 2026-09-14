@@ -1,4 +1,4 @@
-"""Rigorous check for the rescue variant vs A2-V0 / A2-V3 (prompted by
+"""Rigorous check for the rescue variant vs TaxPro-CL-main (prompted by
 seeing all-positive-but-small group-level deltas): per-user
 Recall@20 bootstrap CI, same methodology as
 tools/analysis/seed_matched_bootstrap.py (the paper's own primary
@@ -10,6 +10,15 @@ previous version appended each user's per-seed diff directly into the
 pooled list inside the seed loop, pseudo-replicating every user up to 3x
 and understating the interval width -- confirmed via the exact 3x #Users
 multiplier in the previously published tables).
+
+The reference model was previously A2-V0 and A2-V3, both of which run
+under taxonomy_policy=no_merge while rescue (like TaxPro-CL-main) runs
+under merge_t10 -- a taxonomy-policy mismatch that confounded both
+comparisons. This version drops the vs-V0 comparison (no merge_t10 V0
+checkpoint exists, and retraining one was judged not worth the cost) and
+compares only against the real TaxPro-CL-main checkpoint (same merge_t10
+policy, identical to A2-V3 in every other hyperparameter), which is a
+controlled comparison.
 """
 
 from __future__ import annotations
@@ -30,6 +39,7 @@ from config_path.config_path import evaluation_protocol_dir
 from utility.utility_train.group_evaluator import load_targets
 from tests.Recommendation_system.inference import load_model, compute_batch_order_and_rank
 
+MAIN_DIR = "log/p0/taxprocl/amazon-book/taxpro-cl-v15-prototype-leaf-lambda0.5-same_leaf_weight0-user_ssl-warmstart20-noblend-temp0.1-DONE-overall-2.30pct-BEST-overall-nearcold-longtail-positive"
 DATASET = "amazon-book"
 SEEDS = ["42", "0", "1"]
 GROUPS = ["near_cold", "long_tail", "overall", "warm"]
@@ -83,53 +93,36 @@ def main():
     protocol_dir = evaluation_protocol_dir(DATASET)
     targets_by_group = load_targets(protocol_dir, "test")
 
-    per_user_v0 = {g: {} for g in GROUPS}
-    per_user_v3 = {g: {} for g in GROUPS}
+    per_user_main = {g: {} for g in GROUPS}
 
     for seed in SEEDS:
         print(f"=== seed {seed} ===")
         rescue_dir = ROOT / "log/p0/taxprocl/amazon-book/gvhd-A3-rescue" / f"seed{seed}"
-        v0_dir = ROOT / "log/p0/taxprocl/amazon-book/A2-V0" / f"seed{seed}"
-        v3_dir = ROOT / "log/p0/taxprocl/amazon-book/A2-V3" / f"seed{seed}"
+        main_dir = ROOT / MAIN_DIR / f"seed{seed}"
 
         rescue_model, rescue_ds, _c, _n = load_model(rescue_dir, device)
         pu_rescue = per_user_recall(rescue_model, rescue_ds, device, targets_by_group)
         del rescue_model
 
-        v0_model, v0_ds, _c, _n = load_model(v0_dir, device)
-        pu_v0 = per_user_recall(v0_model, v0_ds, device, targets_by_group)
-        del v0_model
-
-        v3_model, v3_ds, _c, _n = load_model(v3_dir, device)
-        pu_v3 = per_user_recall(v3_model, v3_ds, device, targets_by_group)
-        del v3_model
+        main_model, main_ds, _c, _n = load_model(main_dir, device)
+        pu_main = per_user_recall(main_model, main_ds, device, targets_by_group)
+        del main_model
 
         for g in GROUPS:
-            common_v0 = set(pu_rescue[g]) & set(pu_v0[g])
-            for u in common_v0:
-                per_user_v0[g].setdefault(u, []).append(pu_rescue[g][u] - pu_v0[g][u])
-            common_v3 = set(pu_rescue[g]) & set(pu_v3[g])
-            for u in common_v3:
-                per_user_v3[g].setdefault(u, []).append(pu_rescue[g][u] - pu_v3[g][u])
+            common_main = set(pu_rescue[g]) & set(pu_main[g])
+            for u in common_main:
+                per_user_main[g].setdefault(u, []).append(pu_rescue[g][u] - pu_main[g][u])
 
     # Average each user's diff across the seed pairs they appear in -- one
     # value per unique user -- before bootstrapping.
-    pooled_diffs_v0 = {g: [float(np.mean(vals)) for vals in per_user_v0[g].values()] for g in GROUPS}
-    pooled_diffs_v3 = {g: [float(np.mean(vals)) for vals in per_user_v3[g].values()] for g in GROUPS}
+    pooled_diffs_main = {g: [float(np.mean(vals)) for vals in per_user_main[g].values()] for g in GROUPS}
 
     rng = np.random.default_rng(42)
-    results = {"vs_V0": {}, "vs_V3": {}}
-    print("\n=== Pooled bootstrap (3 seed-pairs pooled), rescue vs V0 ===")
+    results = {"vs_main": {}}
+    print("\n=== Pooled bootstrap (3 seed-pairs pooled), rescue vs TaxPro-CL-main ===")
     for g in GROUPS:
-        stat = bootstrap(pooled_diffs_v0[g], N_BOOT, rng)
-        results["vs_V0"][g] = stat
-        print(f"{g}: n={stat['n_users']} mean_diff={stat['mean_diff']:+.6f} "
-              f"95% CI=[{stat['ci95_lo']:+.6f}, {stat['ci95_hi']:+.6f}] excludes_zero={stat['excludes_zero']}")
-
-    print("\n=== Pooled bootstrap (3 seed-pairs pooled), rescue vs V3 ===")
-    for g in GROUPS:
-        stat = bootstrap(pooled_diffs_v3[g], N_BOOT, rng)
-        results["vs_V3"][g] = stat
+        stat = bootstrap(pooled_diffs_main[g], N_BOOT, rng)
+        results["vs_main"][g] = stat
         print(f"{g}: n={stat['n_users']} mean_diff={stat['mean_diff']:+.6f} "
               f"95% CI=[{stat['ci95_lo']:+.6f}, {stat['ci95_hi']:+.6f}] excludes_zero={stat['excludes_zero']}")
 

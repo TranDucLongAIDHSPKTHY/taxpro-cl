@@ -1,10 +1,17 @@
 """Bootstrap CI for the leaf-uniform and leave-one-out prototype-construction
-variants vs A2-V3 (main config), Amazon-Book. Each user's diff is averaged
+variants vs TaxPro-CL-main, Amazon-Book. Each user's diff is averaged
 across the 3 seed pairs it appears in BEFORE bootstrapping (the previous
 version pseudo-replicated each user up to 3x by appending per-seed diffs
 directly into the pooled list inside the seed loop), same corrected
 methodology as tools/analysis/rescue_vs_variants_bootstrap.py and
 tools/analysis/seed_matched_bootstrap.py.
+
+The reference model was previously A2-V3, which was later discovered to
+run under taxonomy_policy=no_merge while leaf_uniform/leave_one_out (like
+TaxPro-CL-main) run under merge_t10 -- a taxonomy-policy mismatch that
+confounded the comparison. This version compares against the real
+TaxPro-CL-main checkpoint instead (same merge_t10 policy, and identical
+to A2-V3 in every other hyperparameter), which is a controlled comparison.
 """
 from __future__ import annotations
 import json, logging, sys
@@ -69,7 +76,7 @@ VARIANTS = {
     "leaf_uniform": "log/p0/taxprocl/amazon-book/gvhd-A3-leafuniform",
     "leave_one_out": "log/p0/taxprocl/amazon-book/gvhd-A3-leaveoneout",
 }
-V3_DIR = "log/p0/taxprocl/amazon-book/A2-V3"
+MAIN_DIR = "log/p0/taxprocl/amazon-book/taxpro-cl-v15-prototype-leaf-lambda0.5-same_leaf_weight0-user_ssl-warmstart20-noblend-temp0.1-DONE-overall-2.30pct-BEST-overall-nearcold-longtail-positive"
 
 
 def per_user_recall(model, dataset, device, targets_by_group):
@@ -120,17 +127,17 @@ def main():
             mv, dsv, _c, _n = load_model(ROOT / variant_dir / f"seed{seed}", device)
             pu_v = per_user_recall(mv, dsv, device, targets_by_group)
             del mv
-            m3, ds3, _c, _n = load_model(ROOT / V3_DIR / f"seed{seed}", device)
-            pu_3 = per_user_recall(m3, ds3, device, targets_by_group)
-            del m3
+            mm, dsm, _c, _n = load_model(ROOT / MAIN_DIR / f"seed{seed}", device)
+            pu_m = per_user_recall(mm, dsm, device, targets_by_group)
+            del mm
             for g in GROUPS:
-                for u in set(pu_v[g]) & set(pu_3[g]):
-                    per_user[g].setdefault(u, []).append(pu_v[g][u] - pu_3[g][u])
+                for u in set(pu_v[g]) & set(pu_m[g]):
+                    per_user[g].setdefault(u, []).append(pu_v[g][u] - pu_m[g][u])
         # Average each user's diff across the seed pairs they appear in.
         pooled = {g: [float(np.mean(vals)) for vals in per_user[g].values()] for g in GROUPS}
         rng = np.random.default_rng(42)
         variant_results = {}
-        print(f"-- {variant_name} vs V3 --")
+        print(f"-- {variant_name} vs TaxPro-CL-main --")
         for g in GROUPS:
             stat = bootstrap(pooled[g], N_BOOT, rng)
             variant_results[g] = stat
