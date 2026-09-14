@@ -37,7 +37,7 @@ This implementation provides:
   full-catalog test evaluation (test data is never used to pick a taxonomy
   policy, hyperparameter, epoch, or checkpoint).
 - Experiment runners for policy screening, main multi-seed runs, and the
-  A3-A5 ablation matrix.
+  A1-A7 ablation and sensitivity checks.
 
 ## Installation
 
@@ -59,8 +59,11 @@ python -m pytest --collect-only -q
 
 ## Scope
 
-This repository implements the six-model main comparison plus the A1-A6
-ablation matrix reported in the paper. This repository does **not** implement
+This repository implements the six-model main comparison plus the A1-A7
+ablation and sensitivity checks reported in the paper (A7, the supplementary
+comparable-budget SimGCL grid, was still running for part of the paper's
+scope at submission -- see `tools/experiments/run_a7_full_grid.py`). This
+repository does **not** implement
 sibling loss, gating, or multi-level prototype memory; the taxonomy-guided
 direction and degree-adaptive magnitude described in the paper's Method
 section are the full extent of the mechanism evaluated here.
@@ -175,12 +178,19 @@ python main.py --model TaxPro-CL --dataset arts-crafts-and-sewing ^
 (`^` is the PowerShell/cmd line-continuation character; on a single line, drop
 the `^` and join the arguments with spaces.)
 
-### Ablations A3-A5 (Amazon-Book only)
+### Ablations A3-A7
 
 A3 sweeps `epsilon_max` (0.20 is the main-result value above, already
 covered); A4 sweeps `temperature` (0.10 is the main-result value, already
 covered); A5 compares the default leaf-level taxonomy prototype against a
-parent-level one.
+parent-level one. A3-A5 run on Amazon-Book only. A6 (same-leaf soft-positive
+weight, Arts-Crafts-and-Sewing) is listed above under TaxPro-CL main results,
+since it is a one-flag variant of that dataset's main command. A7
+(comparable-budget SimGCL/XSimGCL/NCL grid, all four datasets, supplementary
+to the paper's default-hyperparameter scope) is a long-running orchestrator,
+not a single reproducible command; see
+`tools/experiments/run_a7_full_grid.py` and
+`tools/experiments/run_a7_matched_budget.py`.
 
 ```powershell
 # A3: epsilon_max sensitivity (0.01-0.20 plus the 0.40/0.80 extension, completed
@@ -260,12 +270,24 @@ TaxPro-CL/
 
 ## Reproducibility Artifacts
 
-The data-preparation pipeline produces the artifacts required by training:
+Shipped with this repository (no training required to inspect them):
+
+- `results/results_manifest.csv`: run-level provenance for every reported
+  checkpoint (dataset, variant, seed, config/split/checkpoint hashes,
+  selection metric, which table each run backs).
+- `results/metrics_seed.csv`: per-seed absolute Recall/NDCG by group for
+  every reported run.
+- `results/claim_evidence.csv`: a claim-by-claim map from the manuscript's
+  quantitative statements to their source dataset, configuration, metric,
+  and script/run.
+
+Local checkpoints and dataset artifacts (not shipped -- `.gitignore`d, since
+they are large and regenerable) once training/data-preparation are run:
 
 - `preprocessed/evaluation_protocol/`: group masks, targets, and protocol
   manifests.
 - `metadata/taxonomy_variants/`: taxonomy assignments, masks, statistics, and
-  policy manifests.
+  policy manifests (this one *is* shipped; see Repository Structure above).
 - `log/p0/baseline/<model>/<dataset>/<config_id>/seed<seed>/`: canonical
   baseline artifacts.
 - `log/p0/taxprocl/<dataset>/<config_id>/seed<seed>/`: canonical TaxProCL
