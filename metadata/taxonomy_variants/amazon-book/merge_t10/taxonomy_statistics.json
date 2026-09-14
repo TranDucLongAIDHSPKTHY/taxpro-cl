@@ -1,0 +1,37 @@
+{
+  "catalog_items": 91599,
+  "coverage_percent": 97.624428,
+  "dataset": "amazon-book",
+  "final_leaf_count": 374,
+  "final_leaf_train_support_distribution": {
+    "count": 374,
+    "max": 10365,
+    "mean": 230.743316,
+    "median": 40.0,
+    "min": 1
+  },
+  "invalid_items": 2176,
+  "metadata_missing_items": 0,
+  "original_leaf_count": 1091,
+  "policy": {
+    "invalid_policy": "retain in BPR/evaluation; exclude from prototype/EMA/taxonomy CL",
+    "kind": "amazon_hierarchical_train_support",
+    "no_merge": false,
+    "promotion": "nearest non-root ancestor with aggregated train support >= threshold",
+    "rare_definition": "original leaf support < 10",
+    "root_only_books_prototype": false,
+    "validation_or_test_used": false
+  },
+  "promoted_items": 1952,
+  "reassigned_items": 0,
+  "retained_items": 87471,
+  "status_counts": {
+    "invalid_no_supported_ancestor": 155,
+    "invalid_root_only": 2021,
+    "promoted": 1952,
+    "retained": 87471
+  },
+  "threshold": 10,
+  "train_observed_items": 88416,
+  "variant": "merge_t10"
+}

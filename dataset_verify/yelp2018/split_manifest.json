@@ -1,0 +1,66 @@
+{
+  "algorithm": "taxprocl-iterative-kcore-per-user-shuffle-v2",
+  "assertions": {
+    "test_preserved_byte_for_byte": true,
+    "train_test_disjoint": true,
+    "train_validation_disjoint": true,
+    "train_validation_equals_five_core": true,
+    "validation_test_disjoint": true
+  },
+  "counts": {
+    "five_core": 1235307,
+    "raw_train": 1237259,
+    "test": 324147,
+    "train": 1126670,
+    "validation": 108637
+  },
+  "dataset": "yelp2018",
+  "five_core": {
+    "interactions": 1235307,
+    "items": 37381,
+    "iterations": [
+      {
+        "input_interactions": 1237259,
+        "iteration": 1,
+        "output_interactions": 1235307,
+        "removed_interactions": 1952
+      },
+      {
+        "input_interactions": 1235307,
+        "iteration": 2,
+        "output_interactions": 1235307,
+        "removed_interactions": 0
+      }
+    ],
+    "minimum_degree": 5,
+    "minimum_item_degree": 5,
+    "minimum_user_degree": 14,
+    "users": 31668
+  },
+  "minimum_degree": 5,
+  "output_hashes": {
+    "test": "9cd9b37926cd1447a06625ffa7914527573fb097c10cb0bbdb1d1b8ded3742fe",
+    "train": "0ab254dd0bec5914efc4a4a6d7f6bb318d234b5f9c64b0aa9449925d0ba81bf8",
+    "validation": "a0950d1880a909c41424b903945bcd1cf32b23181e076be92428a2a241b81c41"
+  },
+  "schema_version": 1,
+  "source_hashes": {
+    "test": "9cd9b37926cd1447a06625ffa7914527573fb097c10cb0bbdb1d1b8ded3742fe",
+    "train": "1e9568725a9e833d0ac3bae01c94cd95367f73b3bb6104fd26b5f65ea5054093"
+  },
+  "split_policy": {
+    "degree_10_plus_validation_count": "floor(0.1 * N)",
+    "degree_2_to_9_validation_count": 1,
+    "item_order_before_shuffle": "ascending_item_id",
+    "shuffle": "one_python_random_rng_per_dataset",
+    "singleton_validation_count": 0,
+    "supported_split_seeds": [
+      42,
+      123,
+      2026
+    ],
+    "user_order": "ascending_user_id"
+  },
+  "split_seed": 42,
+  "validation_ratio": 0.1
+}

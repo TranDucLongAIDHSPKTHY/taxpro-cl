@@ -1,0 +1,34 @@
+{
+  "creation_command": "python -m tools.protocol.build --build",
+  "dataset": "yelp2018",
+  "output_hashes": {
+    "item_to_leaf.json": "055ce437cedabd731fe28552ce219ebef4a9b77592858baaa7a4fc6ac8607908",
+    "item_to_leaf_id.npy": "31014ad25a925aba04f8ddf436385cdce0a4f834d812b91ef981d7fe87243abc",
+    "leaf_id_to_name.json": "9359015affec845eea69750b488c14402546b0f146e2fb644c1612517412dc85",
+    "mapping_provenance.jsonl": "f618a71d900a6e695d57905eb484d94b7a1b10d02463f77faff52393fcc6ee37",
+    "taxonomy_statistics.json": "351ee9b2585ea59dfe7f12c62c0189ef4134a4cca6e43e79ddb1b5cf9b072314",
+    "valid_taxonomy_mask.npy": "c81c02108e90da825a61cf1962bc8eb1abdb058dba1a3fb03fc626f679621bf8"
+  },
+  "policy": {
+    "invalid_policy": "retain in BPR/evaluation; exclude from prototype/EMA/taxonomy CL",
+    "kind": "yelp_flat_multilabel_train_support",
+    "no_merge": false,
+    "rare_definition": "primary category support < 10",
+    "reassignment": "same-business category with smallest train support >= threshold; category-name tie-break",
+    "shared_other_or_unknown_prototype": false,
+    "validation_or_test_used": false
+  },
+  "protocol_version": "taxprocl-p0-week3-v1",
+  "source_hashes": {
+    "mapping": "08fe27ba786c7f59bdfa3b0303f4baa49b08d2f3a6eb7af36dfa47db0136ce1e",
+    "merged_metadata": "d588710d7effe34c4370b6e5226c8a027ba4aebcb3fc47f7ed5bd7e994e79ff3",
+    "train": "0ab254dd0bec5914efc4a4a6d7f6bb318d234b5f9c64b0aa9449925d0ba81bf8"
+  },
+  "source_paths": {
+    "mapping": "metadata/item2category_yelp.json",
+    "merged_metadata": "metadata/merged_metadata_yelp.json",
+    "train": "dataset_verify/yelp2018/train.txt"
+  },
+  "threshold": 10,
+  "variant": "merge_t10"
+}

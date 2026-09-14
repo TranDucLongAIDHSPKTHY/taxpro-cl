@@ -1,0 +1,37 @@
+{
+  "catalog_items": 10620,
+  "coverage_percent": 98.502825,
+  "dataset": "musical-instruments",
+  "final_leaf_count": 481,
+  "final_leaf_train_support_distribution": {
+    "count": 477,
+    "max": 351,
+    "mean": 20.519916,
+    "median": 10,
+    "min": 1
+  },
+  "invalid_items": 159,
+  "metadata_missing_items": 0,
+  "original_leaf_count": 874,
+  "policy": {
+    "invalid_policy": "retain in BPR/evaluation; exclude from prototype/EMA/taxonomy CL",
+    "kind": "amazon_hierarchical_train_support",
+    "no_merge": false,
+    "promotion": "nearest non-root ancestor with aggregated train support >= threshold",
+    "rare_definition": "original leaf support < 5",
+    "root_only_musical_instruments_prototype": false,
+    "validation_or_test_used": false
+  },
+  "promoted_items": 938,
+  "reassigned_items": 0,
+  "retained_items": 9523,
+  "status_counts": {
+    "invalid_no_supported_ancestor": 44,
+    "invalid_root_only": 115,
+    "promoted": 938,
+    "retained": 9523
+  },
+  "threshold": 5,
+  "train_observed_items": 9927,
+  "variant": "merge_t5"
+}

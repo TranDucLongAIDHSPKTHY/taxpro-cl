@@ -1,0 +1,2 @@
+# Optional dependency for running NCL without FAISS-GPU.
+faiss-cpu==1.8.0.post1

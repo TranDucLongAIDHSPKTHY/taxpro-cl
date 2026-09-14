@@ -1,0 +1,50 @@
+{
+  "creation_command": "python -m tools.protocol.build --build",
+  "dataset": "musical-instruments",
+  "group_definitions": {
+    "long_tail": {
+      "maximum": 10,
+      "minimum": 1
+    },
+    "near_cold": {
+      "maximum": 5,
+      "minimum": 1
+    },
+    "strict_cold": {
+      "audit_only": true,
+      "maximum": 0,
+      "minimum": 0
+    },
+    "warm": {
+      "maximum": null,
+      "minimum": 11
+    }
+  },
+  "output_hashes": {
+    "group_masks.npz": "a6e491a9ace08ea719533a80d7f51381c9d8cce924b004e58bbc04d3c4527ac5",
+    "group_statistics.json": "224829322cf05697bb6fa604e2f64c0576444f306aa4da61785a1b5b3e15905d",
+    "item_degrees_train.json": "790a8df9ec7b4d2f61f06051de637015cff7cab5d0b2c19d10aecba20df6afc6",
+    "test_targets_by_group.json": "b95764439097c6844b4e812e433673e996c05a43cbd777c1ecac410f9998b00b",
+    "validation_targets_by_group.json": "c8b0e8106b4c7702560a932410d4e277eaa302e33990a60a665726b60590f0dc"
+  },
+  "protocol_version": "taxprocl-p0-week3-v1",
+  "ranking_protocol": {
+    "candidate_catalog": "full catalog",
+    "denominator": "users with >=1 relevant positive in the slice",
+    "group_slice": "filter relevant positives only",
+    "test_excludes": "train + validation positives",
+    "test_role": "evaluation-only",
+    "validation_excludes": "train positives"
+  },
+  "source_hashes": {
+    "test": "40ef9b4a7f9c537ed7c525f4c5a54835f6a798db73b1e73681dabea54dc1c720",
+    "train": "c1f899d2efe76bf8c03e2927ab5b19ef2cd95a28d2708f8cefa7c06b5c9c0747",
+    "validation": "99bab18a08c4f083a98addb3d6e6a689613dc4233e8a37e76dcbb3d779207686"
+  },
+  "source_paths": {
+    "test": "dataset_verify/musical-instruments/test.txt",
+    "train": "dataset_verify/musical-instruments/train.txt",
+    "validation": "dataset_verify/musical-instruments/validation.txt"
+  },
+  "split_seed": 42
+}

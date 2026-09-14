@@ -1,0 +1,88 @@
+{
+  "assertions": {
+    "near_cold_subset_long_tail": true,
+    "strict_cold_outside_p0_groups": true,
+    "warm_disjoint_long_tail": true
+  },
+  "catalog_items": 22931,
+  "groups": {
+    "long_tail": {
+      "definition": {
+        "maximum": 10,
+        "minimum": 1
+      },
+      "item_count": 14352,
+      "percent_of_catalog": 62.587763,
+      "percent_of_train_observed": 68.21617,
+      "test": {
+        "eligible_users": 17815,
+        "positive_interactions": 22560,
+        "relevant_items": 11261
+      },
+      "validation": {
+        "eligible_users": 10595,
+        "positive_interactions": 11614,
+        "relevant_items": 7902
+      }
+    },
+    "near_cold": {
+      "definition": {
+        "maximum": 5,
+        "minimum": 1
+      },
+      "item_count": 8005,
+      "percent_of_catalog": 34.909075,
+      "percent_of_train_observed": 38.048386,
+      "test": {
+        "eligible_users": 9765,
+        "positive_interactions": 11286,
+        "relevant_items": 6233
+      },
+      "validation": {
+        "eligible_users": 5515,
+        "positive_interactions": 5840,
+        "relevant_items": 4249
+      }
+    },
+    "strict_cold": {
+      "definition": {
+        "audit_only": true,
+        "maximum": 0,
+        "minimum": 0
+      },
+      "item_count": 1892,
+      "percent_of_catalog": 8.250839,
+      "percent_of_train_observed": 8.992823,
+      "test": {
+        "eligible_users": 40,
+        "positive_interactions": 40,
+        "relevant_items": 11
+      },
+      "validation": {
+        "eligible_users": 16,
+        "positive_interactions": 16,
+        "relevant_items": 9
+      }
+    },
+    "warm": {
+      "definition": {
+        "maximum": null,
+        "minimum": 11
+      },
+      "item_count": 6687,
+      "percent_of_catalog": 29.161397,
+      "percent_of_train_observed": 31.78383,
+      "test": {
+        "eligible_users": 35000,
+        "positive_interactions": 51071,
+        "relevant_items": 6516
+      },
+      "validation": {
+        "eligible_users": 22932,
+        "positive_interactions": 26376,
+        "relevant_items": 5957
+      }
+    }
+  },
+  "train_observed_items": 21039
+}

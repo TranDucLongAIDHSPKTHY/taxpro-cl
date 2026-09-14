@@ -1,0 +1,50 @@
+{
+  "creation_command": "python -m tools.protocol.build --build",
+  "dataset": "amazon-book",
+  "group_definitions": {
+    "long_tail": {
+      "maximum": 10,
+      "minimum": 1
+    },
+    "near_cold": {
+      "maximum": 5,
+      "minimum": 1
+    },
+    "strict_cold": {
+      "audit_only": true,
+      "maximum": 0,
+      "minimum": 0
+    },
+    "warm": {
+      "maximum": null,
+      "minimum": 11
+    }
+  },
+  "output_hashes": {
+    "group_masks.npz": "e9a67fc42ac2b6c01a76f9b9f99c429a813d2e931754b504a72cdf84336a7212",
+    "group_statistics.json": "d01c7614d0b8ea055cf47e7b7f2b198b54706286eb9837cf69eca089c041e422",
+    "item_degrees_train.json": "23590c22a9d1d55e04b7e949e46cdaa6939621c9964ded2f28a85474fb450624",
+    "test_targets_by_group.json": "c28d66fec585cc9f2bec2c4fe468f215cb954ba55729439c7fbf204b7c7ec722",
+    "validation_targets_by_group.json": "a5971054263c92ce460130395f936f3f2f0fadb04407e2a0cd4f3c76ae215e30"
+  },
+  "protocol_version": "taxprocl-p0-week3-v1",
+  "ranking_protocol": {
+    "candidate_catalog": "full catalog",
+    "denominator": "users with >=1 relevant positive in the slice",
+    "group_slice": "filter relevant positives only",
+    "test_excludes": "train + validation positives",
+    "test_role": "evaluation-only",
+    "validation_excludes": "train positives"
+  },
+  "source_hashes": {
+    "test": "6250754994dd953b91b48dccdd77a73f318e0634b4757c2abfcc9d33a54ab0f5",
+    "train": "644a62e3afb91bb6780efc1d50853361ca3cf5627993e2737580a83a0793cf06",
+    "validation": "3b29ba64d32db26ba4376391b5cbf43a42311c0da08c9cba0cb7baddb0351899"
+  },
+  "source_paths": {
+    "test": "dataset_verify/amazon-book/test.txt",
+    "train": "dataset_verify/amazon-book/train.txt",
+    "validation": "dataset_verify/amazon-book/validation.txt"
+  },
+  "split_seed": 42
+}

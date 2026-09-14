@@ -1,0 +1,38 @@
+{
+  "catalog_items": 22931,
+  "coverage_percent": 96.973529,
+  "dataset": "arts-crafts-and-sewing",
+  "final_leaf_count": 580,
+  "final_leaf_train_support_distribution": {
+    "count": 578,
+    "max": 945,
+    "mean": 35.346021,
+    "median": 18.0,
+    "min": 1
+  },
+  "invalid_items": 694,
+  "metadata_missing_items": 17,
+  "original_leaf_count": 1886,
+  "policy": {
+    "invalid_policy": "retain in BPR/evaluation; exclude from prototype/EMA/taxonomy CL",
+    "kind": "amazon_hierarchical_train_support",
+    "no_merge": false,
+    "promotion": "nearest non-root ancestor with aggregated train support >= threshold",
+    "rare_definition": "original leaf support < 10",
+    "root_only_arts_crafts_and_sewing_prototype": false,
+    "validation_or_test_used": false
+  },
+  "promoted_items": 3851,
+  "reassigned_items": 0,
+  "retained_items": 18386,
+  "status_counts": {
+    "invalid_no_supported_ancestor": 119,
+    "invalid_root_only": 558,
+    "metadata_missing": 17,
+    "promoted": 3851,
+    "retained": 18386
+  },
+  "threshold": 10,
+  "train_observed_items": 21039,
+  "variant": "merge_t10"
+}

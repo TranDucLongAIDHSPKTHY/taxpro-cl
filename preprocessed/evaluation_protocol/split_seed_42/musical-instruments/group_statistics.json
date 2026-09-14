@@ -1,0 +1,88 @@
+{
+  "assertions": {
+    "near_cold_subset_long_tail": true,
+    "strict_cold_outside_p0_groups": true,
+    "warm_disjoint_long_tail": true
+  },
+  "catalog_items": 10620,
+  "groups": {
+    "long_tail": {
+      "definition": {
+        "maximum": 10,
+        "minimum": 1
+      },
+      "item_count": 6792,
+      "percent_of_catalog": 63.954802,
+      "percent_of_train_observed": 68.419462,
+      "test": {
+        "eligible_users": 8816,
+        "positive_interactions": 10680,
+        "relevant_items": 5316
+      },
+      "validation": {
+        "eligible_users": 5156,
+        "positive_interactions": 5491,
+        "relevant_items": 3737
+      }
+    },
+    "near_cold": {
+      "definition": {
+        "maximum": 5,
+        "minimum": 1
+      },
+      "item_count": 3769,
+      "percent_of_catalog": 35.489642,
+      "percent_of_train_observed": 37.96716,
+      "test": {
+        "eligible_users": 4728,
+        "positive_interactions": 5306,
+        "relevant_items": 2942
+      },
+      "validation": {
+        "eligible_users": 2695,
+        "positive_interactions": 2777,
+        "relevant_items": 2026
+      }
+    },
+    "strict_cold": {
+      "definition": {
+        "audit_only": true,
+        "maximum": 0,
+        "minimum": 0
+      },
+      "item_count": 693,
+      "percent_of_catalog": 6.525424,
+      "percent_of_train_observed": 6.980961,
+      "test": {
+        "eligible_users": 11,
+        "positive_interactions": 11,
+        "relevant_items": 3
+      },
+      "validation": {
+        "eligible_users": 5,
+        "positive_interactions": 5,
+        "relevant_items": 2
+      }
+    },
+    "warm": {
+      "definition": {
+        "maximum": null,
+        "minimum": 11
+      },
+      "item_count": 3135,
+      "percent_of_catalog": 29.519774,
+      "percent_of_train_observed": 31.580538,
+      "test": {
+        "eligible_users": 19545,
+        "positive_interactions": 27710,
+        "relevant_items": 3040
+      },
+      "validation": {
+        "eligible_users": 12697,
+        "positive_interactions": 14384,
+        "relevant_items": 2745
+      }
+    }
+  },
+  "train_observed_items": 9927
+}

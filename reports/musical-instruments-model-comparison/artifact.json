@@ -1,0 +1,147 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "So sánh baseline và TaxPro-CL trên Musical Instruments",
+    "description": "Recall@20, NDCG@20 và chênh lệch phần trăm trên bốn nhóm người dùng, seed 42.",
+    "generatedAt": "2026-08-27T00:00:00+07:00",
+    "sources": [
+      {
+        "id": "musical_metrics",
+        "label": "Final test metrics — Musical Instruments, seed 42",
+        "query": {
+          "engine": "local-json",
+          "language": "powershell",
+          "description": "Đọc test_metrics.groupwise từ năm final_test_metrics.json và tính (TaxPro-CL - baseline) / baseline × 100%.",
+          "filters": [
+            "dataset = musical-instruments",
+            "seed = 42",
+            "target_split = test",
+            "candidate_catalog = full",
+            "TaxPro-CL policy = no_merge, selected by validation Recall@20"
+          ],
+          "metric_definitions": [
+            "Recall@20 là tỷ lệ positive test xuất hiện trong top 20.",
+            "NDCG@20 là chất lượng thứ hạng top 20 có chiết khấu theo vị trí.",
+            "Delta (%) = (TaxPro-CL / baseline - 1) × 100; số dương nghĩa là TaxPro-CL tốt hơn."
+          ],
+          "tables_used": [
+            "log/p0/baseline/LightGCN/musical-instruments/lightgcn-83fd41817da1/seed42/final_test_metrics.json",
+            "log/p0/baseline/SimGCL/musical-instruments/simgcl-bb2de4fab275/seed42/final_test_metrics.json",
+            "log/p0/baseline/SGL/musical-instruments/sgl-fa3d1bef0b54/seed42/final_test_metrics.json",
+            "log/p0/baseline/NCL/musical-instruments/ncl-a8e18596b653/seed42/final_test_metrics.json",
+            "log/p0/taxprocl/musical-instruments/taxpro-cl-no_merge-f11e67a1fccb/seed42/final_test_metrics.json"
+          ]
+        }
+      }
+    ],
+    "tables": [
+      {
+        "id": "absolute_metrics",
+        "title": "Recall@20 / NDCG@20 theo nhóm",
+        "subtitle": "Năm mô hình, cùng seed 42 và cùng giao thức full-catalog test.",
+        "showDescription": true,
+        "dataset": "absolute_metrics",
+        "defaultSort": {"field": "group_order", "direction": "asc"},
+        "density": "spacious",
+        "layout": "full",
+        "sourceId": "musical_metrics",
+        "columns": [
+          {"field": "group", "label": "Nhóm", "type": "text"},
+          {"field": "model", "label": "Mô hình", "type": "text"},
+          {"field": "recall20", "label": "Recall@20", "format": "number"},
+          {"field": "ndcg20", "label": "NDCG@20", "format": "number"}
+        ]
+      },
+      {
+        "id": "delta_metrics",
+        "title": "Chênh lệch của TaxPro-CL so với từng baseline",
+        "subtitle": "Số dương: TaxPro-CL tốt hơn; số âm: TaxPro-CL thấp hơn baseline.",
+        "showDescription": true,
+        "dataset": "delta_metrics",
+        "defaultSort": {"field": "group_order", "direction": "asc"},
+        "density": "spacious",
+        "layout": "full",
+        "sourceId": "musical_metrics",
+        "columns": [
+          {"field": "group", "label": "Nhóm", "type": "text"},
+          {"field": "baseline", "label": "Baseline", "type": "text"},
+          {"field": "delta_recall_pct", "label": "Δ Recall@20 (%)", "format": "number", "movement": true},
+          {"field": "delta_ndcg_pct", "label": "Δ NDCG@20 (%)", "format": "number", "movement": true}
+        ]
+      }
+    ],
+    "blocks": [
+      {"id": "title", "type": "markdown", "body": "# So sánh baseline và TaxPro-CL trên Musical Instruments", "layout": "full"},
+      {"id": "summary", "type": "markdown", "body": "## Tóm tắt kỹ thuật\n\nTaxPro-CL không đứng đầu Overall: Recall@20 thấp hơn cả bốn baseline, còn NDCG@20 chỉ cao hơn LightGCN (+5,68%) và NCL (+3,71%). Lợi thế rõ nhất nằm ở dữ liệu thưa: so với LightGCN, TaxPro-CL tăng Recall@20/NDCG@20 lần lượt +32,12%/+42,31% ở Near-cold và +28,66%/+32,49% ở Long-tail. SimGCL vẫn mạnh hơn TaxPro-CL trên cả bốn nhóm. Đây là kết quả mô tả của một seed, chưa đủ để kết luận ý nghĩa thống kê.", "layout": "full", "sourceId": "musical_metrics"},
+      {"id": "absolute_heading", "type": "markdown", "body": "## SGL dẫn đầu về NDCG, còn NCL dẫn đầu Recall Overall\n\nBảng dưới cho biết giá trị tuyệt đối. TaxPro-CL đạt Recall@20/NDCG@20 Overall = 0,175347/0,126582. NCL có Recall@20 Overall cao nhất (0,188436), trong khi SGL có NDCG@20 Overall cao nhất (0,135537).", "layout": "full", "sourceId": "musical_metrics"},
+      {"id": "absolute_table_block", "type": "table", "tableId": "absolute_metrics", "layout": "full"},
+      {"id": "delta_heading", "type": "markdown", "body": "## TaxPro-CL cải thiện nhóm thưa nhưng chưa vượt SimGCL\n\nChênh lệch được tính theo TaxPro-CL so với từng baseline. TaxPro-CL vượt LightGCN và NCL mạnh ở Near-cold/Long-tail, gần ngang SGL ở hai nhóm này, nhưng thấp hơn SimGCL. Ở Warm — nhóm có quy mô lớn — TaxPro-CL thua cả bốn baseline về Recall@20; điều này kéo Recall Overall xuống.", "layout": "full", "sourceId": "musical_metrics"},
+      {"id": "delta_table_block", "type": "table", "tableId": "delta_metrics", "layout": "full"},
+      {"id": "scope", "type": "markdown", "body": "## Phạm vi, dữ liệu và cách tính\n\nTất cả kết quả dùng dataset Musical Instruments, seed 42, test split và full-catalog ranking. Các nhóm được định nghĩa từ item degree trong train: Near-cold 1–5, Long-tail 1–10 và Warm >10; Near-cold là tập con của Long-tail. TaxPro-CL dùng policy `no_merge`, là policy có validation Recall@20 cao nhất trong bốn policy đã chạy trên dataset này. Công thức: Δ% = (TaxPro-CL / baseline − 1) × 100.", "layout": "full", "sourceId": "musical_metrics"},
+      {"id": "limitations", "type": "markdown", "body": "## Giới hạn và độ tin cậy\n\nChỉ có một run hoàn tất cho mỗi mô hình (seed 42), nên không có mean ± std, kiểm định ghép cặp hoặc khoảng tin cậy. Không nên dùng bảng này để tuyên bố mô hình vượt trội tổng quát. Phần trăm rất lớn so với NCL ở Near-cold/Long-tail xuất phát từ mẫu số NCL rất nhỏ và cần được đọc cùng giá trị tuyệt đối.", "layout": "full"},
+      {"id": "next_steps", "type": "markdown", "body": "## Bước tiếp theo\n\n- Chạy tối thiểu seed 0, 1 và 42 cho cả năm mô hình.\n- Báo cáo mean ± sample std và paired test theo seed.\n- Giữ đồng thời bảng Overall và groupwise để tránh che khuất đánh đổi giữa Warm và nhóm thưa.\n- Kiểm tra vì sao NCL có Recall Overall cao nhưng rất thấp ở Near-cold/Long-tail.", "layout": "full"},
+      {"id": "questions", "type": "markdown", "body": "## Câu hỏi cần kiểm chứng thêm\n\nTaxPro-CL có giữ được lợi thế Near-cold/Long-tail qua nhiều seed không? Khoảng cách với SimGCL có đến từ taxonomy policy, hyperparameter hay chính cơ chế perturbation?", "layout": "full"}
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-08-27T00:00:00+07:00",
+    "status": "ready",
+    "datasets": {
+      "absolute_metrics": [
+        {"group_order": 1, "group": "Overall", "model": "LightGCN", "recall20": 0.185546, "ndcg20": 0.119780},
+        {"group_order": 1, "group": "Overall", "model": "SimGCL", "recall20": 0.176974, "ndcg20": 0.132553},
+        {"group_order": 1, "group": "Overall", "model": "SGL", "recall20": 0.184316, "ndcg20": 0.135537},
+        {"group_order": 1, "group": "Overall", "model": "NCL", "recall20": 0.188436, "ndcg20": 0.122059},
+        {"group_order": 1, "group": "Overall", "model": "TaxPro-CL", "recall20": 0.175347, "ndcg20": 0.126582},
+        {"group_order": 2, "group": "Near-cold", "model": "LightGCN", "recall20": 0.005816, "ndcg20": 0.002000},
+        {"group_order": 2, "group": "Near-cold", "model": "SimGCL", "recall20": 0.009817, "ndcg20": 0.003925},
+        {"group_order": 2, "group": "Near-cold", "model": "SGL", "recall20": 0.007773, "ndcg20": 0.003084},
+        {"group_order": 2, "group": "Near-cold", "model": "NCL", "recall20": 0.000846, "ndcg20": 0.000238},
+        {"group_order": 2, "group": "Near-cold", "model": "TaxPro-CL", "recall20": 0.007685, "ndcg20": 0.002846},
+        {"group_order": 3, "group": "Long-tail", "model": "LightGCN", "recall20": 0.012241, "ndcg20": 0.004605},
+        {"group_order": 3, "group": "Long-tail", "model": "SimGCL", "recall20": 0.016224, "ndcg20": 0.006422},
+        {"group_order": 3, "group": "Long-tail", "model": "SGL", "recall20": 0.014933, "ndcg20": 0.005993},
+        {"group_order": 3, "group": "Long-tail", "model": "NCL", "recall20": 0.004480, "ndcg20": 0.001557},
+        {"group_order": 3, "group": "Long-tail", "model": "TaxPro-CL", "recall20": 0.015749, "ndcg20": 0.006101},
+        {"group_order": 4, "group": "Warm", "model": "LightGCN", "recall20": 0.244427, "ndcg20": 0.155995},
+        {"group_order": 4, "group": "Warm", "model": "SimGCL", "recall20": 0.231667, "ndcg20": 0.172762},
+        {"group_order": 4, "group": "Warm", "model": "SGL", "recall20": 0.243119, "ndcg20": 0.177061},
+        {"group_order": 4, "group": "Warm", "model": "NCL", "recall20": 0.252020, "ndcg20": 0.160720},
+        {"group_order": 4, "group": "Warm", "model": "TaxPro-CL", "recall20": 0.229349, "ndcg20": 0.164541}
+      ],
+      "delta_metrics": [
+        {"group_order": 1, "group": "Overall", "baseline": "LightGCN", "delta_recall_pct": -5.50, "delta_ndcg_pct": 5.68},
+        {"group_order": 1, "group": "Overall", "baseline": "SimGCL", "delta_recall_pct": -0.92, "delta_ndcg_pct": -4.50},
+        {"group_order": 1, "group": "Overall", "baseline": "SGL", "delta_recall_pct": -4.87, "delta_ndcg_pct": -6.61},
+        {"group_order": 1, "group": "Overall", "baseline": "NCL", "delta_recall_pct": -6.95, "delta_ndcg_pct": 3.71},
+        {"group_order": 2, "group": "Near-cold", "baseline": "LightGCN", "delta_recall_pct": 32.12, "delta_ndcg_pct": 42.31},
+        {"group_order": 2, "group": "Near-cold", "baseline": "SimGCL", "delta_recall_pct": -21.72, "delta_ndcg_pct": -27.49},
+        {"group_order": 2, "group": "Near-cold", "baseline": "SGL", "delta_recall_pct": -1.13, "delta_ndcg_pct": -7.72},
+        {"group_order": 2, "group": "Near-cold", "baseline": "NCL", "delta_recall_pct": 808.33, "delta_ndcg_pct": 1095.50},
+        {"group_order": 3, "group": "Long-tail", "baseline": "LightGCN", "delta_recall_pct": 28.66, "delta_ndcg_pct": 32.49},
+        {"group_order": 3, "group": "Long-tail", "baseline": "SimGCL", "delta_recall_pct": -2.93, "delta_ndcg_pct": -4.99},
+        {"group_order": 3, "group": "Long-tail", "baseline": "SGL", "delta_recall_pct": 5.46, "delta_ndcg_pct": 1.80},
+        {"group_order": 3, "group": "Long-tail", "baseline": "NCL", "delta_recall_pct": 251.50, "delta_ndcg_pct": 291.93},
+        {"group_order": 4, "group": "Warm", "baseline": "LightGCN", "delta_recall_pct": -6.17, "delta_ndcg_pct": 5.48},
+        {"group_order": 4, "group": "Warm", "baseline": "SimGCL", "delta_recall_pct": -1.00, "delta_ndcg_pct": -4.76},
+        {"group_order": 4, "group": "Warm", "baseline": "SGL", "delta_recall_pct": -5.66, "delta_ndcg_pct": -7.07},
+        {"group_order": 4, "group": "Warm", "baseline": "NCL", "delta_recall_pct": -9.00, "delta_ndcg_pct": 2.38}
+      ]
+    }
+  },
+  "sources": [
+    {
+      "id": "musical_metrics",
+      "label": "Final test metrics — Musical Instruments, seed 42",
+      "query": {
+        "engine": "local-json",
+        "language": "powershell",
+        "description": "Đọc test_metrics.groupwise từ năm final_test_metrics.json và tính chênh lệch phần trăm.",
+        "tables_used": ["final_test_metrics.json (5 model runs, Musical Instruments, seed 42)"]
+      }
+    }
+  ]
+}

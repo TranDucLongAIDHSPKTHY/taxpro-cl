@@ -1,0 +1,35 @@
+{
+  "catalog_items": 38048,
+  "coverage_percent": 96.509672,
+  "dataset": "yelp2018",
+  "final_leaf_count": 741,
+  "final_leaf_train_support_distribution": {
+    "count": 739,
+    "max": 6641,
+    "mean": 49.097429,
+    "median": 5,
+    "min": 1
+  },
+  "invalid_items": 1328,
+  "metadata_missing_items": 1328,
+  "original_leaf_count": 741,
+  "policy": {
+    "invalid_policy": "retain in BPR/evaluation; exclude from prototype/EMA/taxonomy CL",
+    "kind": "yelp_flat_multilabel_train_support",
+    "no_merge": true,
+    "rare_definition": null,
+    "reassignment": "same-business category with smallest train support >= threshold; category-name tie-break",
+    "shared_other_or_unknown_prototype": false,
+    "validation_or_test_used": false
+  },
+  "promoted_items": 0,
+  "reassigned_items": 0,
+  "retained_items": 36720,
+  "status_counts": {
+    "metadata_missing": 1328,
+    "retained": 36720
+  },
+  "threshold": null,
+  "train_observed_items": 37381,
+  "variant": "no_merge"
+}

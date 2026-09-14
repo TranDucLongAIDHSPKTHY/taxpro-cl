@@ -1,0 +1,149 @@
+{
+  "algorithm": "taxprocl-musical-instruments-per-user-shuffle-70-10-20-v1",
+  "assertions": {
+    "partition_covers_five_core": true,
+    "train_test_disjoint": true,
+    "train_validation_disjoint": true,
+    "validation_test_disjoint": true
+  },
+  "counts": {
+    "distinct_review_pairs": 219156,
+    "dropped_reverifying_five_core": 12915,
+    "five_core_pairs": 206241,
+    "items": 10620,
+    "test": 38401,
+    "train": 147960,
+    "users": 27530,
+    "validation": 19880
+  },
+  "dataset": "musical-instruments",
+  "five_core_verification": {
+    "interactions": 206241,
+    "items": 9930,
+    "iterations": [
+      {
+        "input_interactions": 219156,
+        "iteration": 1,
+        "output_interactions": 209848,
+        "removed_interactions": 9308
+      },
+      {
+        "input_interactions": 209848,
+        "iteration": 2,
+        "output_interactions": 208088,
+        "removed_interactions": 1760
+      },
+      {
+        "input_interactions": 208088,
+        "iteration": 3,
+        "output_interactions": 206969,
+        "removed_interactions": 1119
+      },
+      {
+        "input_interactions": 206969,
+        "iteration": 4,
+        "output_interactions": 206649,
+        "removed_interactions": 320
+      },
+      {
+        "input_interactions": 206649,
+        "iteration": 5,
+        "output_interactions": 206441,
+        "removed_interactions": 208
+      },
+      {
+        "input_interactions": 206441,
+        "iteration": 6,
+        "output_interactions": 206361,
+        "removed_interactions": 80
+      },
+      {
+        "input_interactions": 206361,
+        "iteration": 7,
+        "output_interactions": 206313,
+        "removed_interactions": 48
+      },
+      {
+        "input_interactions": 206313,
+        "iteration": 8,
+        "output_interactions": 206301,
+        "removed_interactions": 12
+      },
+      {
+        "input_interactions": 206301,
+        "iteration": 9,
+        "output_interactions": 206289,
+        "removed_interactions": 12
+      },
+      {
+        "input_interactions": 206289,
+        "iteration": 10,
+        "output_interactions": 206269,
+        "removed_interactions": 20
+      },
+      {
+        "input_interactions": 206269,
+        "iteration": 11,
+        "output_interactions": 206257,
+        "removed_interactions": 12
+      },
+      {
+        "input_interactions": 206257,
+        "iteration": 12,
+        "output_interactions": 206249,
+        "removed_interactions": 8
+      },
+      {
+        "input_interactions": 206249,
+        "iteration": 13,
+        "output_interactions": 206245,
+        "removed_interactions": 4
+      },
+      {
+        "input_interactions": 206245,
+        "iteration": 14,
+        "output_interactions": 206241,
+        "removed_interactions": 4
+      },
+      {
+        "input_interactions": 206241,
+        "iteration": 15,
+        "output_interactions": 206241,
+        "removed_interactions": 0
+      }
+    ],
+    "minimum_degree": 5,
+    "minimum_item_degree": 5,
+    "minimum_user_degree": 5,
+    "users": 24780
+  },
+  "id_maps": {
+    "item_list_sha256": "24ee65a5b56b2c499f1ba21f429f694217ec8344333d9d464747c9229969dbf6",
+    "user_list_sha256": "6dc13dfeb02400148bc208519617d58ac2398258c7bfe3ac8cf83e0fc45ace75"
+  },
+  "minimum_degree": 5,
+  "output_hashes": {
+    "raw_test": "40ef9b4a7f9c537ed7c525f4c5a54835f6a798db73b1e73681dabea54dc1c720",
+    "raw_train": "2b7700fb71afdf51dbd84b02f8d4b7a7d766cc87330ec6db6a40d70ac06da38e",
+    "test": "40ef9b4a7f9c537ed7c525f4c5a54835f6a798db73b1e73681dabea54dc1c720",
+    "train": "c1f899d2efe76bf8c03e2927ab5b19ef2cd95a28d2708f8cefa7c06b5c9c0747",
+    "validation": "99bab18a08c4f083a98addb3d6e6a689613dc4233e8a37e76dcbb3d779207686"
+  },
+  "ratios": {
+    "test": 0.2,
+    "train": 0.7,
+    "validation": 0.1
+  },
+  "schema_version": 1,
+  "source": {
+    "reviews_file": "raw_downloads\\Musical_Instruments_5.json",
+    "reviews_file_sha256": "731a9a6ee3342562d13ddd0e0dce4390eea1632b375863579b4358f3a8175441"
+  },
+  "split_policy": {
+    "count_rounding": "round(ratio * degree) for train/validation, test takes the exact remainder",
+    "item_order_before_shuffle": "ascending_item_id",
+    "shuffle": "one_python_random_rng_per_dataset",
+    "user_order": "ascending_user_id"
+  },
+  "split_seed": 42
+}

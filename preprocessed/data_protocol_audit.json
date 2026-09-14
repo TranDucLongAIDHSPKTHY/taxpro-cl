@@ -1,0 +1,552 @@
+{
+  "checkpoint_inventory": [],
+  "datasets": [
+    {
+      "assertions": {
+        "mapping_ids_valid": true,
+        "model_train_validation_disjoint": true,
+        "near_cold_subset_long_tail": true,
+        "raw_test_equals_verify_test": true,
+        "split_format_valid": true,
+        "strict_cold_outside_p0_groups": true,
+        "train_plus_validation_equals_reconstructed_five_core": true,
+        "warm_disjoint_long_tail": true,
+        "zero_split_leakage": true
+      },
+      "catalog_items": 91599,
+      "dataset": "amazon-book",
+      "evaluation_manifest_sha256": "ca1faa2483cf1419bc7a05747487d7ac19eb27e381dbaf3183c7410de1e20417",
+      "five_core": {
+        "interactions": 2372615,
+        "items": 88416,
+        "iterations": [
+          {
+            "input_interactions": 2380730,
+            "iteration": 1,
+            "output_interactions": 2372617,
+            "removed_interactions": 8113
+          },
+          {
+            "input_interactions": 2372617,
+            "iteration": 2,
+            "output_interactions": 2372615,
+            "removed_interactions": 2
+          },
+          {
+            "input_interactions": 2372615,
+            "iteration": 3,
+            "output_interactions": 2372615,
+            "removed_interactions": 0
+          }
+        ],
+        "minimum_degree": 5,
+        "minimum_item_degree": 5,
+        "minimum_user_degree": 7,
+        "users": 52642
+      },
+      "groups": {
+        "assertions": {
+          "near_cold_subset_long_tail": true,
+          "strict_cold_outside_p0_groups": true,
+          "warm_disjoint_long_tail": true
+        },
+        "catalog_items": 91599,
+        "groups": {
+          "long_tail": {
+            "definition": {
+              "maximum": 10,
+              "minimum": 1
+            },
+            "item_count": 27336,
+            "percent_of_catalog": 29.843121,
+            "percent_of_train_observed": 30.917481,
+            "test": {
+              "eligible_users": 36609,
+              "positive_interactions": 112142,
+              "relevant_items": 24260
+            },
+            "validation": {
+              "eligible_users": 16210,
+              "positive_interactions": 27365,
+              "relevant_items": 17402
+            }
+          },
+          "near_cold": {
+            "definition": {
+              "maximum": 5,
+              "minimum": 1
+            },
+            "item_count": 2363,
+            "percent_of_catalog": 2.579722,
+            "percent_of_train_observed": 2.672593,
+            "test": {
+              "eligible_users": 13238,
+              "positive_interactions": 21296,
+              "relevant_items": 2363
+            },
+            "validation": {
+              "eligible_users": 2349,
+              "positive_interactions": 2643,
+              "relevant_items": 1638
+            }
+          },
+          "strict_cold": {
+            "definition": {
+              "audit_only": true,
+              "maximum": 0,
+              "minimum": 0
+            },
+            "item_count": 3183,
+            "percent_of_catalog": 3.474929,
+            "percent_of_train_observed": 3.600027,
+            "test": {
+              "eligible_users": 18196,
+              "positive_interactions": 48726,
+              "relevant_items": 3183
+            },
+            "validation": {
+              "eligible_users": 0,
+              "positive_interactions": 0,
+              "relevant_items": 0
+            }
+          },
+          "warm": {
+            "definition": {
+              "maximum": null,
+              "minimum": 11
+            },
+            "item_count": 61080,
+            "percent_of_catalog": 66.681951,
+            "percent_of_train_observed": 69.082519,
+            "test": {
+              "eligible_users": 52123,
+              "positive_interactions": 442510,
+              "relevant_items": 55186
+            },
+            "validation": {
+              "eligible_users": 50378,
+              "positive_interactions": 185282,
+              "relevant_items": 50656
+            }
+          }
+        },
+        "train_observed_items": 88416
+      },
+      "raw_train": {
+        "blank_lines": 0,
+        "duplicate_interactions": 0,
+        "duplicate_items_within_line": 0,
+        "duplicate_user_lines": 0,
+        "empty_user_lines": 0,
+        "interactions": 2380730,
+        "items_with_interactions": 91599,
+        "malformed_count": 0,
+        "malformed_examples": [],
+        "max_item_id": 91598,
+        "max_user_id": 52642,
+        "path": "dataset/amazon-book/train.txt",
+        "sha256": "529066026085919381acd4ce19f69e9eafa4af3fef1a10119ea5551cc2ef8530",
+        "users_with_interactions": 52643,
+        "users_with_records": 52643
+      },
+      "split_overlap_interactions": {
+        "train_test": 0,
+        "train_validation": 0,
+        "validation_test": 0
+      },
+      "splits": {
+        "test": {
+          "blank_lines": 0,
+          "duplicate_interactions": 0,
+          "duplicate_items_within_line": 0,
+          "duplicate_user_lines": 0,
+          "empty_user_lines": 4,
+          "interactions": 603378,
+          "items_with_interactions": 82629,
+          "malformed_count": 0,
+          "malformed_examples": [],
+          "max_item_id": 91598,
+          "max_user_id": 52642,
+          "path": "dataset_verify/amazon-book/test.txt",
+          "sha256": "6250754994dd953b91b48dccdd77a73f318e0634b4757c2abfcc9d33a54ab0f5",
+          "users_with_interactions": 52639,
+          "users_with_records": 52643
+        },
+        "train": {
+          "blank_lines": 0,
+          "duplicate_interactions": 0,
+          "duplicate_items_within_line": 0,
+          "duplicate_user_lines": 0,
+          "empty_user_lines": 0,
+          "interactions": 2159968,
+          "items_with_interactions": 88416,
+          "malformed_count": 0,
+          "malformed_examples": [],
+          "max_item_id": 91502,
+          "max_user_id": 52642,
+          "path": "dataset_verify/amazon-book/train.txt",
+          "sha256": "644a62e3afb91bb6780efc1d50853361ca3cf5627993e2737580a83a0793cf06",
+          "users_with_interactions": 52642,
+          "users_with_records": 52642
+        },
+        "validation": {
+          "blank_lines": 0,
+          "duplicate_interactions": 0,
+          "duplicate_items_within_line": 0,
+          "duplicate_user_lines": 0,
+          "empty_user_lines": 0,
+          "interactions": 212647,
+          "items_with_interactions": 68058,
+          "malformed_count": 0,
+          "malformed_examples": [],
+          "max_item_id": 91477,
+          "max_user_id": 52642,
+          "path": "dataset_verify/amazon-book/validation.txt",
+          "sha256": "3b29ba64d32db26ba4376391b5cbf43a42311c0da08c9cba0cb7baddb0351899",
+          "users_with_interactions": 52642,
+          "users_with_records": 52642
+        }
+      },
+      "taxonomy_coverage": {
+        "catalog_items": 91599,
+        "coverage_percent": 100.0,
+        "invalid_or_out_of_range_ids": 0,
+        "items_with_valid_taxonomy": 91599,
+        "mapping_records": 91599,
+        "merged_metadata_items_with_taxonomy": 91599,
+        "merged_metadata_taxonomy_coverage_percent": 100.0,
+        "metadata_source_missing_items": 0,
+        "missing_or_empty_taxonomy_items": 0,
+        "source_path": "metadata/item2category_amazon.json",
+        "source_sha256": "2b66a8561f50b5062a17551c9d13109028bf5cf1f3ff5e1aecdaf743834e26d6",
+        "valid_item_ids": 91599
+      }
+    },
+    {
+      "assertions": {
+        "mapping_ids_valid": true,
+        "model_train_validation_disjoint": true,
+        "near_cold_subset_long_tail": true,
+        "raw_test_equals_verify_test": true,
+        "split_format_valid": true,
+        "strict_cold_outside_p0_groups": true,
+        "train_plus_validation_equals_reconstructed_five_core": true,
+        "warm_disjoint_long_tail": true,
+        "zero_split_leakage": true
+      },
+      "catalog_items": 38048,
+      "dataset": "yelp2018",
+      "evaluation_manifest_sha256": "674b88c2ff56b5c3ce3a13aa08971cbf1c16ffff5b683616207009f90cb81f5a",
+      "five_core": {
+        "interactions": 1235307,
+        "items": 37381,
+        "iterations": [
+          {
+            "input_interactions": 1237259,
+            "iteration": 1,
+            "output_interactions": 1235307,
+            "removed_interactions": 1952
+          },
+          {
+            "input_interactions": 1235307,
+            "iteration": 2,
+            "output_interactions": 1235307,
+            "removed_interactions": 0
+          }
+        ],
+        "minimum_degree": 5,
+        "minimum_item_degree": 5,
+        "minimum_user_degree": 14,
+        "users": 31668
+      },
+      "groups": {
+        "assertions": {
+          "near_cold_subset_long_tail": true,
+          "strict_cold_outside_p0_groups": true,
+          "warm_disjoint_long_tail": true
+        },
+        "catalog_items": 38048,
+        "groups": {
+          "long_tail": {
+            "definition": {
+              "maximum": 10,
+              "minimum": 1
+            },
+            "item_count": 10659,
+            "percent_of_catalog": 28.014613,
+            "percent_of_train_observed": 28.514486,
+            "test": {
+              "eligible_users": 18907,
+              "positive_interactions": 41369,
+              "relevant_items": 9911
+            },
+            "validation": {
+              "eligible_users": 7489,
+              "positive_interactions": 10274,
+              "relevant_items": 6678
+            }
+          },
+          "near_cold": {
+            "definition": {
+              "maximum": 5,
+              "minimum": 1
+            },
+            "item_count": 976,
+            "percent_of_catalog": 2.565181,
+            "percent_of_train_observed": 2.610952,
+            "test": {
+              "eligible_users": 5217,
+              "positive_interactions": 6528,
+              "relevant_items": 976
+            },
+            "validation": {
+              "eligible_users": 1074,
+              "positive_interactions": 1119,
+              "relevant_items": 680
+            }
+          },
+          "strict_cold": {
+            "definition": {
+              "audit_only": true,
+              "maximum": 0,
+              "minimum": 0
+            },
+            "item_count": 667,
+            "percent_of_catalog": 1.753049,
+            "percent_of_train_observed": 1.784329,
+            "test": {
+              "eligible_users": 5333,
+              "positive_interactions": 7318,
+              "relevant_items": 667
+            },
+            "validation": {
+              "eligible_users": 0,
+              "positive_interactions": 0,
+              "relevant_items": 0
+            }
+          },
+          "warm": {
+            "definition": {
+              "maximum": null,
+              "minimum": 11
+            },
+            "item_count": 26722,
+            "percent_of_catalog": 70.232338,
+            "percent_of_train_observed": 71.485514,
+            "test": {
+              "eligible_users": 31661,
+              "positive_interactions": 275460,
+              "relevant_items": 25495
+            },
+            "validation": {
+              "eligible_users": 30702,
+              "positive_interactions": 98363,
+              "relevant_items": 22630
+            }
+          }
+        },
+        "train_observed_items": 37381
+      },
+      "raw_train": {
+        "blank_lines": 0,
+        "duplicate_interactions": 0,
+        "duplicate_items_within_line": 0,
+        "duplicate_user_lines": 0,
+        "empty_user_lines": 0,
+        "interactions": 1237259,
+        "items_with_interactions": 38048,
+        "malformed_count": 0,
+        "malformed_examples": [],
+        "max_item_id": 38047,
+        "max_user_id": 31667,
+        "path": "dataset/yelp2018/train.txt",
+        "sha256": "1e9568725a9e833d0ac3bae01c94cd95367f73b3bb6104fd26b5f65ea5054093",
+        "users_with_interactions": 31668,
+        "users_with_records": 31668
+      },
+      "split_overlap_interactions": {
+        "train_test": 0,
+        "train_validation": 0,
+        "validation_test": 0
+      },
+      "splits": {
+        "test": {
+          "blank_lines": 0,
+          "duplicate_interactions": 0,
+          "duplicate_items_within_line": 0,
+          "duplicate_user_lines": 0,
+          "empty_user_lines": 0,
+          "interactions": 324147,
+          "items_with_interactions": 36073,
+          "malformed_count": 0,
+          "malformed_examples": [],
+          "max_item_id": 38047,
+          "max_user_id": 31667,
+          "path": "dataset_verify/yelp2018/test.txt",
+          "sha256": "9cd9b37926cd1447a06625ffa7914527573fb097c10cb0bbdb1d1b8ded3742fe",
+          "users_with_interactions": 31668,
+          "users_with_records": 31668
+        },
+        "train": {
+          "blank_lines": 0,
+          "duplicate_interactions": 0,
+          "duplicate_items_within_line": 0,
+          "duplicate_user_lines": 0,
+          "empty_user_lines": 0,
+          "interactions": 1126670,
+          "items_with_interactions": 37381,
+          "malformed_count": 0,
+          "malformed_examples": [],
+          "max_item_id": 38003,
+          "max_user_id": 31667,
+          "path": "dataset_verify/yelp2018/train.txt",
+          "sha256": "0ab254dd0bec5914efc4a4a6d7f6bb318d234b5f9c64b0aa9449925d0ba81bf8",
+          "users_with_interactions": 31668,
+          "users_with_records": 31668
+        },
+        "validation": {
+          "blank_lines": 0,
+          "duplicate_interactions": 0,
+          "duplicate_items_within_line": 0,
+          "duplicate_user_lines": 0,
+          "empty_user_lines": 0,
+          "interactions": 108637,
+          "items_with_interactions": 29308,
+          "malformed_count": 0,
+          "malformed_examples": [],
+          "max_item_id": 38003,
+          "max_user_id": 31667,
+          "path": "dataset_verify/yelp2018/validation.txt",
+          "sha256": "a0950d1880a909c41424b903945bcd1cf32b23181e076be92428a2a241b81c41",
+          "users_with_interactions": 31668,
+          "users_with_records": 31668
+        }
+      },
+      "taxonomy_coverage": {
+        "catalog_items": 38048,
+        "coverage_percent": 96.509672,
+        "invalid_or_out_of_range_ids": 0,
+        "items_with_valid_taxonomy": 36720,
+        "mapping_records": 38048,
+        "merged_metadata_items_with_taxonomy": 36720,
+        "merged_metadata_taxonomy_coverage_percent": 96.509672,
+        "metadata_source_missing_items": 1328,
+        "missing_or_empty_taxonomy_items": 1328,
+        "source_path": "metadata/item2category_yelp.json",
+        "source_sha256": "08fe27ba786c7f59bdfa3b0303f4baa49b08d2f3a6eb7af36dfa47db0136ce1e",
+        "valid_item_ids": 38048
+      }
+    }
+  ],
+  "environment": {
+    "declared_training_environment": {
+      "cuda": "12.1",
+      "python": "3.8.18",
+      "pytorch": "2.1.0",
+      "source": "README.md"
+    },
+    "git": {
+      "command": "git --version",
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "git version 2.55.0.windows.3"
+    },
+    "nvcc": {
+      "command": "nvcc --version",
+      "error": "[WinError 2] The system cannot find the file specified"
+    },
+    "nvidia_smi": {
+      "command": "nvidia-smi --query-gpu=name,driver_version,memory.total --format=csv,noheader",
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "NVIDIA GeForce RTX 4060 Ti, 610.88, 16380 MiB"
+    },
+    "os": {
+      "machine": "AMD64",
+      "platform": "Windows-10-10.0.19045-SP0",
+      "processor": "Intel64 Family 6 Model 151 Stepping 5, GenuineIntel"
+    },
+    "packages_in_runtime": {
+      "numpy": "1.26.4",
+      "scipy": "1.11.4",
+      "torch": "2.1.0+cu121"
+    },
+    "python_runtime_used_for_week3": {
+      "executable": "C:\\Users\\Admin\\AppData\\Local\\Programs\\Python\\Python310\\python.exe",
+      "implementation": "CPython",
+      "version": "3.10.0"
+    },
+    "training_readiness": "BLOCKED in this shell: embeddable standard-library runtime can run protocol tests, but PyTorch/CUDA runtime is not available"
+  },
+  "gate_g1": {
+    "failures": [],
+    "status": "PASS"
+  },
+  "protocol": {
+    "data_split_seed": 42,
+    "future_training_seeds": [
+      42,
+      0,
+      1
+    ],
+    "group_source": "model train only",
+    "groups": {
+      "long_tail": {
+        "maximum": 10,
+        "minimum": 1
+      },
+      "near_cold": {
+        "maximum": 5,
+        "minimum": 1
+      },
+      "strict_cold": {
+        "audit_only": true,
+        "maximum": 0,
+        "minimum": 0
+      },
+      "warm": {
+        "maximum": null,
+        "minimum": 11
+      }
+    },
+    "test_role": "evaluation-only"
+  },
+  "protocol_version": "taxprocl-p0-week3-v1",
+  "repository": {
+    "branch": {
+      "command": "git branch --show-current",
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "main"
+    },
+    "head": {
+      "command": "git rev-parse HEAD",
+      "return_code": 0,
+      "stderr": "",
+      "stdout": "9ec5e0280718bb06154d7fc2a54c5b9a2c12412c"
+    },
+    "worktree": "dirty; initial inventory preserved in Week-3 report"
+  },
+  "repository_root": ".",
+  "schema_version": 1,
+  "test_hashes_after": {
+    "amazon-book": {
+      "raw": "6250754994dd953b91b48dccdd77a73f318e0634b4757c2abfcc9d33a54ab0f5",
+      "verify": "6250754994dd953b91b48dccdd77a73f318e0634b4757c2abfcc9d33a54ab0f5"
+    },
+    "yelp2018": {
+      "raw": "9cd9b37926cd1447a06625ffa7914527573fb097c10cb0bbdb1d1b8ded3742fe",
+      "verify": "9cd9b37926cd1447a06625ffa7914527573fb097c10cb0bbdb1d1b8ded3742fe"
+    }
+  },
+  "test_hashes_before": {
+    "amazon-book": {
+      "raw": "6250754994dd953b91b48dccdd77a73f318e0634b4757c2abfcc9d33a54ab0f5",
+      "verify": "6250754994dd953b91b48dccdd77a73f318e0634b4757c2abfcc9d33a54ab0f5"
+    },
+    "yelp2018": {
+      "raw": "9cd9b37926cd1447a06625ffa7914527573fb097c10cb0bbdb1d1b8ded3742fe",
+      "verify": "9cd9b37926cd1447a06625ffa7914527573fb097c10cb0bbdb1d1b8ded3742fe"
+    }
+  }
+}

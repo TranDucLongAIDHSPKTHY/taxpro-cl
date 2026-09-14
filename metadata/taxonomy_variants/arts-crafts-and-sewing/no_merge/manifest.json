@@ -1,0 +1,34 @@
+{
+  "creation_command": "python -m tools.protocol.build --build",
+  "dataset": "arts-crafts-and-sewing",
+  "output_hashes": {
+    "item_to_leaf.json": "185270de2e3d75bd96df1f3550eff942f8496a17e84cb827b95a87162e12a1bf",
+    "item_to_leaf_id.npy": "6a42a6aa97869e79c941e73b7ea06c9c5f0eb441ca67a9159b86000c4983ed6e",
+    "leaf_id_to_name.json": "d816f549c51e903cf8106f9ba3a9f409a476c0a0327b00992fc98d89f9ab5cc8",
+    "mapping_provenance.jsonl": "812ce0caf80cdffa38733e36898bf70c0b1a6eebb819adf1c370b8717ac4d021",
+    "taxonomy_statistics.json": "dba581e7baad45d23420b682e7140d0aff5ecd92041dada3b141d599e80d5be1",
+    "valid_taxonomy_mask.npy": "9179e8e0d7fd49a61daae1cc3c0b9e6e9254e0f64b2c7e34ef6758136ae85029"
+  },
+  "policy": {
+    "invalid_policy": "retain in BPR/evaluation; exclude from prototype/EMA/taxonomy CL",
+    "kind": "amazon_hierarchical_train_support",
+    "no_merge": true,
+    "promotion": "nearest non-root ancestor with aggregated train support >= threshold",
+    "rare_definition": null,
+    "root_only_arts_crafts_and_sewing_prototype": false,
+    "validation_or_test_used": false
+  },
+  "protocol_version": "taxprocl-p0-week3-v1",
+  "source_hashes": {
+    "mapping": "2b272aa35125ec4f4a03ec78c9880e9b3cf26c8a40259a088c3a0361f7d1c1f2",
+    "merged_metadata": "5632759fdfc4e621ab598d56254f568df5438ebc6737fc1d9ee2e07ac4114d95",
+    "train": "3f756d2abf4688854d99a163541a9e6bcb2e1004b3354a7e85bc03e2ef4a9d11"
+  },
+  "source_paths": {
+    "mapping": "metadata/item2category_arts_crafts_and_sewing.json",
+    "merged_metadata": "metadata/merged_metadata_arts_crafts_and_sewing.json",
+    "train": "dataset_verify/arts-crafts-and-sewing/train.txt"
+  },
+  "threshold": null,
+  "variant": "no_merge"
+}

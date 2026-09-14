@@ -1,0 +1,34 @@
+{
+  "creation_command": "python -m tools.protocol.build --build",
+  "dataset": "musical-instruments",
+  "output_hashes": {
+    "item_to_leaf.json": "f9ea65dfd3776fbb9cccbb5ec8ed5470b227c31f17464776b1018d6901faceec",
+    "item_to_leaf_id.npy": "218fd6c8cbaac4710343f5bd4b551009d80697dff1b4b4f78cc132bc8f28f4be",
+    "leaf_id_to_name.json": "9ce0a9fc26a0fe4fbecbd9090c6dfad3a9fc8bbe05a6416bcf817c297d6c8857",
+    "mapping_provenance.jsonl": "5556b7cbd40944bc60f9f5d304ddcfd7cc9ad0c6cf2e48bbebe1126625733e46",
+    "taxonomy_statistics.json": "04766b4885c90d3722db289fc72eff7954d13a03c8fa17d14a91fbdfcfc8bc00",
+    "valid_taxonomy_mask.npy": "5d3a32d5d7b52e11186fd79eee0d0d325c2c7fc2737bad16899e32335b8b8643"
+  },
+  "policy": {
+    "invalid_policy": "retain in BPR/evaluation; exclude from prototype/EMA/taxonomy CL",
+    "kind": "amazon_hierarchical_train_support",
+    "no_merge": true,
+    "promotion": "nearest non-root ancestor with aggregated train support >= threshold",
+    "rare_definition": null,
+    "root_only_musical_instruments_prototype": false,
+    "validation_or_test_used": false
+  },
+  "protocol_version": "taxprocl-p0-week3-v1",
+  "source_hashes": {
+    "mapping": "dfc182db5fbe8041722469bf9886684f76e025bbebf33a36ea8f61d5502fbf35",
+    "merged_metadata": "741cd86e68c54fadd01c9d62df79afd8f0cc92d595abcdc71df59481d059dd2b",
+    "train": "c1f899d2efe76bf8c03e2927ab5b19ef2cd95a28d2708f8cefa7c06b5c9c0747"
+  },
+  "source_paths": {
+    "mapping": "metadata/item2category_musical_instruments.json",
+    "merged_metadata": "metadata/merged_metadata_musical_instruments.json",
+    "train": "dataset_verify/musical-instruments/train.txt"
+  },
+  "threshold": null,
+  "variant": "no_merge"
+}

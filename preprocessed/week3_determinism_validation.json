@@ -1,0 +1,9 @@
+{
+  "builder_return_code": 0,
+  "builder_stderr": "",
+  "builder_stdout": "Auditing amazon-book...\nAuditing yelp2018...\nGate G1: PASS",
+  "compared_files": 140,
+  "mismatches": {},
+  "status": "PASS",
+  "test_hashes_invariant": true
+}

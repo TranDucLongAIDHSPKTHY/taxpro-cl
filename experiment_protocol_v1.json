@@ -1,0 +1,430 @@
+{
+  "data_split_seed": 42,
+  "dataset_hashes": {
+    "amazon-book": {
+      "test": "6250754994dd953b91b48dccdd77a73f318e0634b4757c2abfcc9d33a54ab0f5",
+      "train": "644a62e3afb91bb6780efc1d50853361ca3cf5627993e2737580a83a0793cf06",
+      "validation": "3b29ba64d32db26ba4376391b5cbf43a42311c0da08c9cba0cb7baddb0351899"
+    },
+    "yelp2018": {
+      "test": "9cd9b37926cd1447a06625ffa7914527573fb097c10cb0bbdb1d1b8ded3742fe",
+      "train": "0ab254dd0bec5914efc4a4a6d7f6bb318d234b5f9c64b0aa9449925d0ba81bf8",
+      "validation": "a0950d1880a909c41424b903945bcd1cf32b23181e076be92428a2a241b81c41"
+    }
+  },
+  "evaluation": {
+    "eligible_user_denominator": "users with at least one target positive in group",
+    "full_candidate_catalog": true,
+    "group_ground_truth_filter_only": true,
+    "overall_is_default": true,
+    "test_exclusions": [
+      "train positives",
+      "validation positives"
+    ],
+    "validation_exclusions": [
+      "train positives"
+    ]
+  },
+  "future_run_plan": {
+    "full_if_budget": "4 policies x 2 datasets x seeds {42,0,1} = 24 runs",
+    "limited_compute": "run 8 screening runs; retain no_merge and best validation policy; add seeds 0 and 1; label screening vs final",
+    "week_5": "TaxProCL smoke/integration training with no_merge and one threshold variant after stability infrastructure is ready",
+    "week_6_screening": "4 policies x 2 datasets x seed 42 = 8 runs"
+  },
+  "future_training_seeds": [
+    42,
+    0,
+    1
+  ],
+  "group_definitions": {
+    "long_tail": {
+      "maximum": 10,
+      "minimum": 1
+    },
+    "near_cold": {
+      "maximum": 5,
+      "minimum": 1
+    },
+    "strict_cold": {
+      "audit_only": true,
+      "maximum": 0,
+      "minimum": 0
+    },
+    "warm": {
+      "maximum": null,
+      "minimum": 11
+    }
+  },
+  "metrics": [
+    "Precision@10_Overall",
+    "Precision@20_Overall",
+    "Recall@10_Overall",
+    "Recall@20_Overall",
+    "NDCG@10_Overall",
+    "NDCG@20_Overall",
+    "Precision@10_NearCold",
+    "Precision@20_NearCold",
+    "Recall@10_NearCold",
+    "Recall@20_NearCold",
+    "NDCG@10_NearCold",
+    "NDCG@20_NearCold",
+    "Precision@10_LongTail",
+    "Precision@20_LongTail",
+    "Recall@10_LongTail",
+    "Recall@20_LongTail",
+    "NDCG@10_LongTail",
+    "NDCG@20_LongTail",
+    "Precision@10_Warm",
+    "Precision@20_Warm",
+    "Recall@10_Warm",
+    "Recall@20_Warm",
+    "NDCG@10_Warm",
+    "NDCG@20_Warm"
+  ],
+  "protocol_version": "taxprocl-p0-week3-v1",
+  "scope": "Protocol/split preparation only; no full baseline or TaxPro-CL training",
+  "taxonomy_configurations": [
+    {
+      "dataset": "amazon-book",
+      "policy": "no_merge"
+    },
+    {
+      "dataset": "amazon-book",
+      "policy": "merge_t5"
+    },
+    {
+      "dataset": "amazon-book",
+      "policy": "merge_t10"
+    },
+    {
+      "dataset": "amazon-book",
+      "policy": "merge_t15"
+    },
+    {
+      "dataset": "yelp2018",
+      "policy": "no_merge"
+    },
+    {
+      "dataset": "yelp2018",
+      "policy": "merge_t5"
+    },
+    {
+      "dataset": "yelp2018",
+      "policy": "merge_t10"
+    },
+    {
+      "dataset": "yelp2018",
+      "policy": "merge_t15"
+    }
+  ],
+  "taxonomy_summary": {
+    "amazon-book": {
+      "merge_t10": {
+        "catalog_items": 91599,
+        "coverage_percent": 97.624428,
+        "dataset": "amazon-book",
+        "final_leaf_count": 374,
+        "final_leaf_train_support_distribution": {
+          "count": 374,
+          "max": 10365,
+          "mean": 230.743316,
+          "median": 40.0,
+          "min": 1
+        },
+        "invalid_items": 2176,
+        "metadata_missing_items": 0,
+        "original_leaf_count": 1091,
+        "policy": {
+          "invalid_policy": "retain in BPR/evaluation; exclude from prototype/EMA/taxonomy CL",
+          "kind": "amazon_hierarchical_train_support",
+          "no_merge": false,
+          "promotion": "nearest non-root ancestor with aggregated train support >= threshold",
+          "rare_definition": "original leaf support < 10",
+          "root_only_books_prototype": false,
+          "validation_or_test_used": false
+        },
+        "promoted_items": 1952,
+        "reassigned_items": 0,
+        "retained_items": 87471,
+        "status_counts": {
+          "invalid_no_supported_ancestor": 155,
+          "invalid_root_only": 2021,
+          "promoted": 1952,
+          "retained": 87471
+        },
+        "threshold": 10,
+        "train_observed_items": 88416,
+        "variant": "merge_t10"
+      },
+      "merge_t15": {
+        "catalog_items": 91599,
+        "coverage_percent": 97.573118,
+        "dataset": "amazon-book",
+        "final_leaf_count": 318,
+        "final_leaf_train_support_distribution": {
+          "count": 318,
+          "max": 10365,
+          "mean": 271.22956,
+          "median": 53.0,
+          "min": 1
+        },
+        "invalid_items": 2223,
+        "metadata_missing_items": 0,
+        "original_leaf_count": 1091,
+        "policy": {
+          "invalid_policy": "retain in BPR/evaluation; exclude from prototype/EMA/taxonomy CL",
+          "kind": "amazon_hierarchical_train_support",
+          "no_merge": false,
+          "promotion": "nearest non-root ancestor with aggregated train support >= threshold",
+          "rare_definition": "original leaf support < 15",
+          "root_only_books_prototype": false,
+          "validation_or_test_used": false
+        },
+        "promoted_items": 2613,
+        "reassigned_items": 0,
+        "retained_items": 86763,
+        "status_counts": {
+          "invalid_no_supported_ancestor": 202,
+          "invalid_root_only": 2021,
+          "promoted": 2613,
+          "retained": 86763
+        },
+        "threshold": 15,
+        "train_observed_items": 88416,
+        "variant": "merge_t15"
+      },
+      "merge_t5": {
+        "catalog_items": 91599,
+        "coverage_percent": 97.697573,
+        "dataset": "amazon-book",
+        "final_leaf_count": 512,
+        "final_leaf_train_support_distribution": {
+          "count": 512,
+          "max": 10349,
+          "mean": 168.679688,
+          "median": 19.0,
+          "min": 1
+        },
+        "invalid_items": 2109,
+        "metadata_missing_items": 0,
+        "original_leaf_count": 1091,
+        "policy": {
+          "invalid_policy": "retain in BPR/evaluation; exclude from prototype/EMA/taxonomy CL",
+          "kind": "amazon_hierarchical_train_support",
+          "no_merge": false,
+          "promotion": "nearest non-root ancestor with aggregated train support >= threshold",
+          "rare_definition": "original leaf support < 5",
+          "root_only_books_prototype": false,
+          "validation_or_test_used": false
+        },
+        "promoted_items": 1062,
+        "reassigned_items": 0,
+        "retained_items": 88428,
+        "status_counts": {
+          "invalid_no_supported_ancestor": 88,
+          "invalid_root_only": 2021,
+          "promoted": 1062,
+          "retained": 88428
+        },
+        "threshold": 5,
+        "train_observed_items": 88416,
+        "variant": "merge_t5"
+      },
+      "no_merge": {
+        "catalog_items": 91599,
+        "coverage_percent": 97.793644,
+        "dataset": "amazon-book",
+        "final_leaf_count": 1090,
+        "final_leaf_train_support_distribution": {
+          "count": 1071,
+          "max": 10349,
+          "mean": 80.720822,
+          "median": 3,
+          "min": 1
+        },
+        "invalid_items": 2021,
+        "metadata_missing_items": 0,
+        "original_leaf_count": 1091,
+        "policy": {
+          "invalid_policy": "retain in BPR/evaluation; exclude from prototype/EMA/taxonomy CL",
+          "kind": "amazon_hierarchical_train_support",
+          "no_merge": true,
+          "promotion": "nearest non-root ancestor with aggregated train support >= threshold",
+          "rare_definition": null,
+          "root_only_books_prototype": false,
+          "validation_or_test_used": false
+        },
+        "promoted_items": 0,
+        "reassigned_items": 0,
+        "retained_items": 89578,
+        "status_counts": {
+          "invalid_root_only": 2021,
+          "retained": 89578
+        },
+        "threshold": null,
+        "train_observed_items": 88416,
+        "variant": "no_merge"
+      }
+    },
+    "yelp2018": {
+      "merge_t10": {
+        "catalog_items": 38048,
+        "coverage_percent": 96.509672,
+        "dataset": "yelp2018",
+        "final_leaf_count": 539,
+        "final_leaf_train_support_distribution": {
+          "count": 538,
+          "max": 6643,
+          "mean": 67.44052,
+          "median": 12.5,
+          "min": 1
+        },
+        "invalid_items": 1328,
+        "metadata_missing_items": 1328,
+        "original_leaf_count": 741,
+        "policy": {
+          "invalid_policy": "retain in BPR/evaluation; exclude from prototype/EMA/taxonomy CL",
+          "kind": "yelp_flat_multilabel_train_support",
+          "no_merge": false,
+          "rare_definition": "primary category support < 10",
+          "reassignment": "same-business category with smallest train support >= threshold; category-name tie-break",
+          "shared_other_or_unknown_prototype": false,
+          "validation_or_test_used": false
+        },
+        "promoted_items": 0,
+        "reassigned_items": 291,
+        "retained_items": 36429,
+        "status_counts": {
+          "metadata_missing": 1328,
+          "reassigned": 291,
+          "retained": 36429
+        },
+        "threshold": 10,
+        "train_observed_items": 37381,
+        "variant": "merge_t10"
+      },
+      "merge_t15": {
+        "catalog_items": 38048,
+        "coverage_percent": 96.480761,
+        "dataset": "yelp2018",
+        "final_leaf_count": 466,
+        "final_leaf_train_support_distribution": {
+          "count": 466,
+          "max": 6647,
+          "mean": 77.83691,
+          "median": 16.0,
+          "min": 1
+        },
+        "invalid_items": 1339,
+        "metadata_missing_items": 1328,
+        "original_leaf_count": 741,
+        "policy": {
+          "invalid_policy": "retain in BPR/evaluation; exclude from prototype/EMA/taxonomy CL",
+          "kind": "yelp_flat_multilabel_train_support",
+          "no_merge": false,
+          "rare_definition": "primary category support < 15",
+          "reassignment": "same-business category with smallest train support >= threshold; category-name tie-break",
+          "shared_other_or_unknown_prototype": false,
+          "validation_or_test_used": false
+        },
+        "promoted_items": 0,
+        "reassigned_items": 479,
+        "retained_items": 36230,
+        "status_counts": {
+          "invalid_no_supported_business_category": 11,
+          "metadata_missing": 1328,
+          "reassigned": 479,
+          "retained": 36230
+        },
+        "threshold": 15,
+        "train_observed_items": 37381,
+        "variant": "merge_t15"
+      },
+      "merge_t5": {
+        "catalog_items": 38048,
+        "coverage_percent": 96.509672,
+        "dataset": "yelp2018",
+        "final_leaf_count": 642,
+        "final_leaf_train_support_distribution": {
+          "count": 640,
+          "max": 6641,
+          "mean": 56.692188,
+          "median": 8.0,
+          "min": 1
+        },
+        "invalid_items": 1328,
+        "metadata_missing_items": 1328,
+        "original_leaf_count": 741,
+        "policy": {
+          "invalid_policy": "retain in BPR/evaluation; exclude from prototype/EMA/taxonomy CL",
+          "kind": "yelp_flat_multilabel_train_support",
+          "no_merge": false,
+          "rare_definition": "primary category support < 5",
+          "reassignment": "same-business category with smallest train support >= threshold; category-name tie-break",
+          "shared_other_or_unknown_prototype": false,
+          "validation_or_test_used": false
+        },
+        "promoted_items": 0,
+        "reassigned_items": 119,
+        "retained_items": 36601,
+        "status_counts": {
+          "metadata_missing": 1328,
+          "reassigned": 119,
+          "retained": 36601
+        },
+        "threshold": 5,
+        "train_observed_items": 37381,
+        "variant": "merge_t5"
+      },
+      "no_merge": {
+        "catalog_items": 38048,
+        "coverage_percent": 96.509672,
+        "dataset": "yelp2018",
+        "final_leaf_count": 741,
+        "final_leaf_train_support_distribution": {
+          "count": 739,
+          "max": 6641,
+          "mean": 49.097429,
+          "median": 5,
+          "min": 1
+        },
+        "invalid_items": 1328,
+        "metadata_missing_items": 1328,
+        "original_leaf_count": 741,
+        "policy": {
+          "invalid_policy": "retain in BPR/evaluation; exclude from prototype/EMA/taxonomy CL",
+          "kind": "yelp_flat_multilabel_train_support",
+          "no_merge": true,
+          "rare_definition": null,
+          "reassignment": "same-business category with smallest train support >= threshold; category-name tie-break",
+          "shared_other_or_unknown_prototype": false,
+          "validation_or_test_used": false
+        },
+        "promoted_items": 0,
+        "reassigned_items": 0,
+        "retained_items": 36720,
+        "status_counts": {
+          "metadata_missing": 1328,
+          "retained": 36720
+        },
+        "threshold": null,
+        "train_observed_items": 37381,
+        "variant": "no_merge"
+      }
+    }
+  },
+  "threshold_selection": {
+    "best_checkpoint_metric": "validation Recall@20 Overall",
+    "control": "no_merge",
+    "group_metrics_role": "analysis and guardrail only",
+    "least_intervention_order": [
+      "no_merge",
+      "merge_t5",
+      "merge_t10",
+      "merge_t15"
+    ],
+    "near_tie_tolerance_absolute_recall_at_20": 0.0005,
+    "primary_metric": "validation Recall@20 Overall",
+    "test_used": false
+  }
+}

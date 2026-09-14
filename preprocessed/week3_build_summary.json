@@ -1,0 +1,23 @@
+{
+  "evaluation_protocol_manifests": {
+    "amazon-book": "ca1faa2483cf1419bc7a05747487d7ac19eb27e381dbaf3183c7410de1e20417",
+    "yelp2018": "674b88c2ff56b5c3ce3a13aa08971cbf1c16ffff5b683616207009f90cb81f5a"
+  },
+  "experiment_protocol_sha256": "d636fca9e9e9beb921eb0bb49af44657cacacec0ace553e0e3af2b6f8e2ab085",
+  "gate_g1": "PASS",
+  "metric_count": 24,
+  "taxonomy_variant_manifests": {
+    "amazon-book": {
+      "merge_t10": "4ce25eb44bf912d88483b6de68bbeb62f3fb8b2a3a77f525a084f452b21e4b5f",
+      "merge_t15": "c521457cda1563552ecf19b40cbe15922e4e191ea1ac583af2435db958775b6a",
+      "merge_t5": "8b9dd122154ee9fb7d6b18b14b3fbacc0ed8d3ad5d90a18bf0fae44c5654dd11",
+      "no_merge": "8d9708a8dcce1d19e483e46d2e636e2443779397e7ebe192c9448f2c9cb28a3f"
+    },
+    "yelp2018": {
+      "merge_t10": "d3f1c0fe5d303c1c02f41c7b4c653d215c59a42b95b80926c1da60343761206d",
+      "merge_t15": "1a4f4899241eedbb928d2b1a3793359222cb9b7f4939a738988d8c9a8e7b1d28",
+      "merge_t5": "a3c8e30cc10178278f81c2d72b5e4d71153e82d57936cb8382fc7c925cc2b813",
+      "no_merge": "0fb6e8efcf33ab13b5b1caa7d03063e10c1bd0b37b3b568c6e7759133fe93d3b"
+    }
+  }
+}

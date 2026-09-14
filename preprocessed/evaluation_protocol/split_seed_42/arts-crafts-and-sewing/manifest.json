@@ -1,0 +1,50 @@
+{
+  "creation_command": "python -m tools.protocol.build --build",
+  "dataset": "arts-crafts-and-sewing",
+  "group_definitions": {
+    "long_tail": {
+      "maximum": 10,
+      "minimum": 1
+    },
+    "near_cold": {
+      "maximum": 5,
+      "minimum": 1
+    },
+    "strict_cold": {
+      "audit_only": true,
+      "maximum": 0,
+      "minimum": 0
+    },
+    "warm": {
+      "maximum": null,
+      "minimum": 11
+    }
+  },
+  "output_hashes": {
+    "group_masks.npz": "ffbc6359401f0c4c8e0053760da6668bb61393396eb0b0f1010d020c94c0eca7",
+    "group_statistics.json": "195185f369400450112e5e9ef35137423d6da5e91a95c3809ce0663198b75165",
+    "item_degrees_train.json": "1593ddecf782acc23ab37633368572563803480122b0841ff8104794ef98242e",
+    "test_targets_by_group.json": "cef01dfdb615ac9574fd4b362349ce0dedc1ff5021e9729e5ce8176fd0c38515",
+    "validation_targets_by_group.json": "f25316b207987eedb90db7b55b9865a87bc46130e30116bc905d59b0386121b7"
+  },
+  "protocol_version": "taxprocl-p0-week3-v1",
+  "ranking_protocol": {
+    "candidate_catalog": "full catalog",
+    "denominator": "users with >=1 relevant positive in the slice",
+    "group_slice": "filter relevant positives only",
+    "test_excludes": "train + validation positives",
+    "test_role": "evaluation-only",
+    "validation_excludes": "train positives"
+  },
+  "source_hashes": {
+    "test": "bb0984471d2186fb62c2f79a339420f2cadd1e99d4b3477bddfbf4156689dfff",
+    "train": "3f756d2abf4688854d99a163541a9e6bcb2e1004b3354a7e85bc03e2ef4a9d11",
+    "validation": "88cccde67633b5cb6f8f4ef35c12c9704c8c4fb84e6aba96c5f8bb142c4fa3e3"
+  },
+  "source_paths": {
+    "test": "dataset_verify/arts-crafts-and-sewing/test.txt",
+    "train": "dataset_verify/arts-crafts-and-sewing/train.txt",
+    "validation": "dataset_verify/arts-crafts-and-sewing/validation.txt"
+  },
+  "split_seed": 42
+}

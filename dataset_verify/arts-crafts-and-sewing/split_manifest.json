@@ -1,0 +1,119 @@
+{
+  "algorithm": "taxprocl-arts-crafts-and-sewing-per-user-shuffle-70-10-20-v1",
+  "assertions": {
+    "partition_covers_five_core": true,
+    "train_test_disjoint": true,
+    "train_validation_disjoint": true,
+    "validation_test_disjoint": true
+  },
+  "counts": {
+    "distinct_review_pairs": 440318,
+    "dropped_reverifying_five_core": 47383,
+    "five_core_pairs": 392935,
+    "items": 22931,
+    "test": 73671,
+    "train": 281258,
+    "users": 56210,
+    "validation": 38006
+  },
+  "dataset": "arts-crafts-and-sewing",
+  "five_core_verification": {
+    "interactions": 392935,
+    "items": 21050,
+    "iterations": [
+      {
+        "input_interactions": 440318,
+        "iteration": 1,
+        "output_interactions": 403128,
+        "removed_interactions": 37190
+      },
+      {
+        "input_interactions": 403128,
+        "iteration": 2,
+        "output_interactions": 398195,
+        "removed_interactions": 4933
+      },
+      {
+        "input_interactions": 398195,
+        "iteration": 3,
+        "output_interactions": 394763,
+        "removed_interactions": 3432
+      },
+      {
+        "input_interactions": 394763,
+        "iteration": 4,
+        "output_interactions": 393824,
+        "removed_interactions": 939
+      },
+      {
+        "input_interactions": 393824,
+        "iteration": 5,
+        "output_interactions": 393265,
+        "removed_interactions": 559
+      },
+      {
+        "input_interactions": 393265,
+        "iteration": 6,
+        "output_interactions": 393107,
+        "removed_interactions": 158
+      },
+      {
+        "input_interactions": 393107,
+        "iteration": 7,
+        "output_interactions": 392979,
+        "removed_interactions": 128
+      },
+      {
+        "input_interactions": 392979,
+        "iteration": 8,
+        "output_interactions": 392947,
+        "removed_interactions": 32
+      },
+      {
+        "input_interactions": 392947,
+        "iteration": 9,
+        "output_interactions": 392935,
+        "removed_interactions": 12
+      },
+      {
+        "input_interactions": 392935,
+        "iteration": 10,
+        "output_interactions": 392935,
+        "removed_interactions": 0
+      }
+    ],
+    "minimum_degree": 5,
+    "minimum_item_degree": 5,
+    "minimum_user_degree": 5,
+    "users": 45346
+  },
+  "id_maps": {
+    "item_list_sha256": "e782d0398b2a14cf661ccf5318f2e250a723ad791457e07fb433697195bdc054",
+    "user_list_sha256": "8f0e705922fbced900ab0e603b2129cd933c187fe5a5ba4352555962ef83c011"
+  },
+  "minimum_degree": 5,
+  "output_hashes": {
+    "raw_test": "bb0984471d2186fb62c2f79a339420f2cadd1e99d4b3477bddfbf4156689dfff",
+    "raw_train": "fa945773cb4c18c0586e7026ed62c2b92728e895baa39e8bde5b0f1beb825da1",
+    "test": "bb0984471d2186fb62c2f79a339420f2cadd1e99d4b3477bddfbf4156689dfff",
+    "train": "3f756d2abf4688854d99a163541a9e6bcb2e1004b3354a7e85bc03e2ef4a9d11",
+    "validation": "88cccde67633b5cb6f8f4ef35c12c9704c8c4fb84e6aba96c5f8bb142c4fa3e3"
+  },
+  "ratios": {
+    "test": 0.2,
+    "train": 0.7,
+    "validation": 0.1
+  },
+  "schema_version": 1,
+  "source": {
+    "reviews_file": "C:\\Users\\Admin\\AppData\\Local\\Temp\\claude\\l--TaxPro-CL-v3---Tester\\1718e1b7-f080-4052-8ddf-5506139da911\\scratchpad\\Arts_Crafts_and_Sewing_5.json",
+    "reviews_file_sha256": "357fa59616ed58daee47952ba73779b2adc0ce45187dfd79b964eef274498593"
+  },
+  "split_policy": {
+    "count_rounding": "round(ratio * degree) for train/validation, test takes the exact remainder",
+    "item_order_before_shuffle": "ascending_item_id",
+    "shuffle": "one_python_random_rng_per_dataset",
+    "user_order": "ascending_user_id"
+  },
+  "split_seed": 42
+}

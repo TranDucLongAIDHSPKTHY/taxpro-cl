@@ -1,0 +1,50 @@
+{
+  "creation_command": "python -m tools.protocol.build --build",
+  "dataset": "yelp2018",
+  "group_definitions": {
+    "long_tail": {
+      "maximum": 10,
+      "minimum": 1
+    },
+    "near_cold": {
+      "maximum": 5,
+      "minimum": 1
+    },
+    "strict_cold": {
+      "audit_only": true,
+      "maximum": 0,
+      "minimum": 0
+    },
+    "warm": {
+      "maximum": null,
+      "minimum": 11
+    }
+  },
+  "output_hashes": {
+    "group_masks.npz": "05b7e2f79991ec4297027fad97d8f8623279f6818762b80ac34c4b186091a650",
+    "group_statistics.json": "7d8da1820ec6a4f1fbad9ada91095090d66b07d528d3a10c8c1d99f0480ef997",
+    "item_degrees_train.json": "f339b1b12b0e61dec4dc6a65a9afff4b1d8573bd75d82364e92d1bcfd3aa7cf4",
+    "test_targets_by_group.json": "eff9b0332ede5c03896d429ba52aaba3636e489a73b8ff5d0217334291ce7eda",
+    "validation_targets_by_group.json": "b95e10481c6126e9930cc7e2216274b1f158fad9ecfd0eb39a6b8daa75c2edb5"
+  },
+  "protocol_version": "taxprocl-p0-week3-v1",
+  "ranking_protocol": {
+    "candidate_catalog": "full catalog",
+    "denominator": "users with >=1 relevant positive in the slice",
+    "group_slice": "filter relevant positives only",
+    "test_excludes": "train + validation positives",
+    "test_role": "evaluation-only",
+    "validation_excludes": "train positives"
+  },
+  "source_hashes": {
+    "test": "9cd9b37926cd1447a06625ffa7914527573fb097c10cb0bbdb1d1b8ded3742fe",
+    "train": "0ab254dd0bec5914efc4a4a6d7f6bb318d234b5f9c64b0aa9449925d0ba81bf8",
+    "validation": "a0950d1880a909c41424b903945bcd1cf32b23181e076be92428a2a241b81c41"
+  },
+  "source_paths": {
+    "test": "dataset_verify/yelp2018/test.txt",
+    "train": "dataset_verify/yelp2018/train.txt",
+    "validation": "dataset_verify/yelp2018/validation.txt"
+  },
+  "split_seed": 42
+}

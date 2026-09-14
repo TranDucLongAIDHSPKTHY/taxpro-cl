@@ -1,0 +1,34 @@
+{
+  "creation_command": "python -m tools.protocol.build --build",
+  "dataset": "amazon-book",
+  "output_hashes": {
+    "item_to_leaf.json": "78a946664866bfc9acb00ecbc71b15177ed46b515b765cd16b07e642c2a713b2",
+    "item_to_leaf_id.npy": "48eaa46688f9b424dd4c60560ffcc6291c245059a890499acb3a081180223248",
+    "leaf_id_to_name.json": "389789a80b92264a53ca6ac4680292c93b0826e2654dba9a07bd363413ecc0b2",
+    "mapping_provenance.jsonl": "ff05da3fbb1d825ce2e3c307ae29ed69b44c62c6a25323e2c91ab76f0927c325",
+    "taxonomy_statistics.json": "ab350de683e0a0d068c2644676f61a286b6a25f34e201007c4c85c8eb1e6c9ad",
+    "valid_taxonomy_mask.npy": "971931946ef13963df871ceba9ec20251aff1f1be2b64e0674272e74d7118165"
+  },
+  "policy": {
+    "invalid_policy": "retain in BPR/evaluation; exclude from prototype/EMA/taxonomy CL",
+    "kind": "amazon_hierarchical_train_support",
+    "no_merge": false,
+    "promotion": "nearest non-root ancestor with aggregated train support >= threshold",
+    "rare_definition": "original leaf support < 10",
+    "root_only_books_prototype": false,
+    "validation_or_test_used": false
+  },
+  "protocol_version": "taxprocl-p0-week3-v1",
+  "source_hashes": {
+    "mapping": "2b66a8561f50b5062a17551c9d13109028bf5cf1f3ff5e1aecdaf743834e26d6",
+    "merged_metadata": "76a1543060ecc3488f406915b331163aee1bd22d1712643f8cd3eb53e6b26c73",
+    "train": "644a62e3afb91bb6780efc1d50853361ca3cf5627993e2737580a83a0793cf06"
+  },
+  "source_paths": {
+    "mapping": "metadata/item2category_amazon.json",
+    "merged_metadata": "metadata/merged_metadata_amazon.json",
+    "train": "dataset_verify/amazon-book/train.txt"
+  },
+  "threshold": 10,
+  "variant": "merge_t10"
+}

@@ -1,0 +1,39 @@
+{
+  "checks": {
+    "batch_test_integration_exists": true,
+    "determinism_mismatch_count_0": true,
+    "determinism_pass": true,
+    "evaluation_manifests_count_4": true,
+    "gate_g1_pass": true,
+    "generic_evaluator_exists": true,
+    "metric_count_24": true,
+    "taxonomy_manifests_count_16": true,
+    "test_hashes_invariant": true,
+    "unit_protocol_tests_pass": true,
+    "zero_split_leakage": true
+  },
+  "gate_g1": "PASS",
+  "gate_g1_5": "PASS",
+  "optional_checkpoint_smoke": {
+    "reason": "No checkpoint could be validated with torch.load because the Week-3 shell has no PyTorch runtime.",
+    "required": false,
+    "status": "NOT_RUN"
+  },
+  "scope": "No Week-4 baseline training and no TaxProCL full training.",
+  "unit_test_return_code": 0,
+  "unit_test_scope": [
+    "tests.test_data_splits",
+    "tests.test_dataset_integrity",
+    "tests.test_group_evaluator",
+    "tests.test_runner_result_contract",
+    "tests.test_taxpro_runner",
+    "tests.test_tools_layout",
+    "tests.test_ablation_compiler"
+  ],
+  "unit_test_summary": [
+    "----------------------------------------------------------------------",
+    "Ran 18 tests in 0.120s",
+    "",
+    "OK (skipped=1)"
+  ]
+}

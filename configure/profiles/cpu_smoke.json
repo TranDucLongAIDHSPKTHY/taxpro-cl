@@ -1,0 +1,6 @@
+{
+  "device": "cpu",
+  "purpose": "development and smoke validation",
+  "single_seed": 42,
+  "paper_result_eligible": false
+}
