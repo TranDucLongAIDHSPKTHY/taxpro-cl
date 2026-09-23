@@ -1,5 +1,6 @@
 """Portable path contract for the standalone TaxPro-CL experiment codebase."""
 
+import os
 from pathlib import Path
 
 
@@ -10,7 +11,10 @@ DATASET_VERIFY_DIR = PROJECT_ROOT / "dataset_verify"
 PREPROCESSED_DIR = PROJECT_ROOT / "preprocessed"
 METADATA_DIR = PROJECT_ROOT / "metadata"
 TAXONOMY_VARIANT_DIR = METADATA_DIR / "taxonomy_variants"
-MODEL_OUTPUT_DIR = PROJECT_ROOT / "log"
+# Training/evaluation outputs go to <repo>/log unless TAXPRO_OUTPUT_ROOT points
+# elsewhere. Reproduction runs should use a fresh, empty root so that the
+# analysis stage only sees the run families the documented commands create.
+MODEL_OUTPUT_DIR = Path(os.environ.get("TAXPRO_OUTPUT_ROOT") or (PROJECT_ROOT / "log")).resolve()
 P0_OUTPUT_DIR = MODEL_OUTPUT_DIR / "p0"
 P0_BASELINE_OUTPUT_DIR = P0_OUTPUT_DIR / "baseline"
 P0_TAXPROCL_OUTPUT_DIR = P0_OUTPUT_DIR / "taxprocl"
@@ -39,6 +43,7 @@ DOWNLOAD_TEMPORARY_SUFFIX = ".part"
 AMAZON_DATASET_NAME = "amazon-book"
 MUSICAL_INSTRUMENTS_DATASET_NAME = "musical-instruments"
 ARTS_CRAFTS_AND_SEWING_DATASET_NAME = "arts-crafts-and-sewing"
+CDS_AND_VINYL_DATASET_NAME = "cds-and-vinyl"
 YELP_DATASET_NAME = "yelp2018"
 README_FILE_NAME = "README.md"
 ITEM_LIST_FILE_NAME = "item_list.txt"
@@ -64,6 +69,7 @@ AMAZON_CATEGORY_NAMES = {
     AMAZON_DATASET_NAME: "Books",
     MUSICAL_INSTRUMENTS_DATASET_NAME: "Musical_Instruments",
     ARTS_CRAFTS_AND_SEWING_DATASET_NAME: "Arts_Crafts_and_Sewing",
+    CDS_AND_VINYL_DATASET_NAME: "CDs_and_Vinyl",
 }
 _AMAZON_METADATA_URL_TEMPLATES = {
     "2014": "https://mcauleylab.ucsd.edu/public_datasets/data/amazon/categoryFiles/meta_{}.json.gz",
@@ -286,4 +292,10 @@ def adjacency_cache_file(dataset_directory, cache_kind, alpha=None, beta=None, s
 
 
 def relative_to_project(path):
-    return Path(path).resolve().relative_to(PROJECT_ROOT.resolve()).as_posix()
+    """Project-relative POSIX path; an absolute path for locations outside the
+    repository (e.g. an isolated TAXPRO_OUTPUT_ROOT)."""
+    resolved = Path(path).resolve()
+    try:
+        return resolved.relative_to(PROJECT_ROOT.resolve()).as_posix()
+    except ValueError:
+        return resolved.as_posix()

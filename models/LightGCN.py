@@ -1,5 +1,6 @@
 """
 PyTorch Implementation of LightGCN
+Adapted from ID-GRec (https://github.com/BlueGhostYi/ID-GRec).
 LightGCN: Simplifying and Powering Graph Convolution Network for Recommendation  He et al. SIGIR'20
 """
 

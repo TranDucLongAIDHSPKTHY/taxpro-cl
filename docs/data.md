@@ -1,8 +1,9 @@
 # Data And Metadata
 
 `dataset_verify/` contains the locked model-ready splits. Training and
-evaluation use these files and the artifacts under `preprocessed/`; they do not
-read reports from the sibling research workspace.
+evaluation use these files and the artifacts under `preprocessed/`. Both, and
+`metadata/taxonomy_variants/`, are verified by SHA256, so `.gitattributes` stores
+them byte for byte (no line-ending conversion) on every platform.
 
 `python -m tools.data.build_splits` reconstructs these inputs from raw
 `dataset/<dataset>/train.txt` and `test.txt`. It repeatedly removes users and

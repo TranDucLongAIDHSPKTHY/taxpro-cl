@@ -30,6 +30,24 @@ K_VALUES = [10, 20]
 # checkpoints (see checkpoint_selection.select_checkpoint).
 DEFAULT_SEED_PREFERENCE = 42
 
+# Run-family directories whose name starts with one of these prefixes hold
+# exploratory / budget-matching sweeps (the A7 comparable-budget grid, which is
+# reported as supplementary context only). They are never candidates for the
+# canonical checkpoint that represents a (model, dataset) pair in the paper's
+# tables, so re-running the sweeps inside the same output tree cannot change a
+# published number (see checkpoint_selection.find_candidate_runs).
+EXPLORATORY_FAMILY_PREFIXES = ("A7-",)
+
+# Pin the run FAMILY (the directory holding seed0/seed1/seed42) when a baseline
+# has more than one non-exploratory family. The seed inside the family is still
+# chosen by checkpoint_selection (highest validation Overall Recall@20).
+#   SimGCL / musical-instruments: simgcl-bb2de4fab275 is an earlier run with the
+#   framework's 50-epoch default cap (training_epochs=50), superseded by the
+#   200-epoch family used for every reported SimGCL number.
+CHECKPOINT_FAMILY_OVERRIDES = {
+    ("SimGCL", "musical-instruments"): P0_BASELINE_OUTPUT_DIR / "SimGCL" / "musical-instruments" / "simgcl-f263d2bff497",
+}
+
 # Explicit escape hatch: {(model_name, dataset_name): Path(run_dir)}.
 # Overrides auto-selection entirely for that pair. Needed whenever the
 # reported "best" run is not the one with the highest plain Overall

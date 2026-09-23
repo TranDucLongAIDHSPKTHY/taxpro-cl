@@ -37,9 +37,9 @@ in the main reported configuration):
   design); `warm_start_epochs` gates both perturbed passes behind an
   initial BPR-only phase.
 
-`configure/TaxProCL.txt` and `models/TaxProCL.py` (the SimGCL baseline)
-are never edited by this file; they remain the independent baseline used
-for comparison throughout the paper.
+`models/SimGCL.py` and `configure/SimGCL.txt` are not touched by this file;
+SimGCL remains the independent baseline used for comparison throughout the
+paper.
 """
 
 from __future__ import annotations
@@ -117,17 +117,11 @@ class TaxProCLImproved(nn.Module):
     noise, item side. User-side contrastive loss (SimGCL's original
     isotropic-noise InfoNCE, unchanged) is a separately config-gated branch
     (use_user_ssl) -- ON in every reported main-config result in the paper
-    (Sec 3.4/4.4), not "item-only"; this docstring previously predated that
-    config default and was stale (fixed 2026-09-05).
+    (Sec 3.4/4.4), not "item-only".
 
-    Self-contained since 2026-08-21: previously subclassed the frozen
-    baseline `models.TaxProCL.TaxProCL` for its `__init__`/
-    `initialize_prototypes`/`get_rating_for_test`/`checkpoint_metadata`
-    base logic. That baseline file was removed from the project (kept
-    only as a historical reference in git history), so this class now
-    inlines exactly the same base construction/methods directly -- pure
-    code relocation, no behavior change (verified byte-identical against
-    the prior inherited version via the existing test suite)."""
+    Self-contained: the base construction, `initialize_prototypes`,
+    `get_rating_for_test` and `checkpoint_metadata` logic live in this class
+    (git history keeps the earlier base class it was inlined from)."""
 
     def __init__(self, config, dataset, device):
         super().__init__()
@@ -229,9 +223,7 @@ class TaxProCLImproved(nn.Module):
         # all-False and gets rebuilt from scratch during warm_start -- must
         # NOT be part of state_dict(), otherwise every checkpoint saved after
         # this buffer was added would require it, breaking load_state_dict()
-        # for any older checkpoint trained before this buffer existed (caught
-        # 2026-09-03 via the reproducibility check re-loading a pre-A6 v15
-        # checkpoint into the edited model).
+        # for any older checkpoint trained before this buffer existed.
         self.register_buffer(
             "warm_observed_mask",
             torch.zeros(dataset.num_items, dtype=torch.bool),
@@ -327,12 +319,11 @@ class TaxProCLImproved(nn.Module):
         if self.ssl_lambda_user < 0.0:
             raise ValueError("ssl_lambda_user must be non-negative")
 
-        # v15 addition (2026-08-19): decoupled from the item-side `temperature`
-        # so item-side sharpening (validated below) doesn't silently drag the
-        # user-side SSL loss away from SimGCL's own tuned value. Defaults to
-        # 0.2 (SimGCL's own temperature, same as the historical shared
-        # default) so every prior run's config stays byte-for-byte
-        # reproducible even though `temperature` itself now changes at v15.
+        # Decoupled from the item-side `temperature` so item-side sharpening
+        # (validated below) does not silently drag the user-side SSL loss away
+        # from SimGCL's own tuned value. Defaults to 0.2 (SimGCL's own
+        # temperature), which keeps configurations that predate this option
+        # reproducible.
         self.temperature_user = float(config.get("temperature_user", 0.2))
         if self.temperature_user <= 0.0:
             raise ValueError("temperature_user must be positive")
@@ -396,7 +387,7 @@ class TaxProCLImproved(nn.Module):
         initialization and evaluation -- exactly like the locked baseline's
         single aggregate() was used for everything.
 
-        view_id (2026-09-09 addition, asymmetric_view_direction): identifies
+        view_id (used with asymmetric_view_direction): identifies
         which of the two perturbed passes this call is (0 or 1) so
         _perturb_items can force view 1's direction to random/isotropic when
         asymmetric_view_direction=True. None/unused when that flag is off."""
@@ -422,7 +413,7 @@ class TaxProCLImproved(nn.Module):
         )
 
     def _perturb_users(self, all_embedding):
-        """v9 addition (2026-08-18): SimGCL-identical isotropic noise
+        """SimGCL-identical isotropic noise
         (`sign(e) * normalize(noise) * epsilon`, undivided per layer, exactly
         matching models/SimGCL.py) applied only to the user slice. Users
         carry no taxonomy attribute, so no taxonomy-derived direction exists
@@ -448,7 +439,7 @@ class TaxProCLImproved(nn.Module):
         as the single-shot v1/v2 design (mitigates the over-smoothing risk
         the source PDF itself flags for repeated same-direction pushes).
 
-        view_id + asymmetric_view_direction (2026-09-09 addition): with
+        view_id + asymmetric_view_direction: with
         augmentation_direction="taxonomy" (the main configuration), both
         perturbed passes previously received the SAME deterministic
         direction (Eq. 1), differing only in the scalar epsilon -- near-
@@ -482,7 +473,7 @@ class TaxProCLImproved(nn.Module):
         else:
             safe_leaf = self.item_to_leaf_id.clamp_min(0).long()
             if self.direction_source == "peer":
-                # v5: stochastic same-leaf peer target instead of the fixed EMA
+                # peer variant: stochastic same-leaf peer target instead of the fixed EMA
                 # prototype -- independently resampled at every (layer, view)
                 # call, so the two views get genuinely different directions, not
                 # just different magnitudes along one shared axis. Still 100%

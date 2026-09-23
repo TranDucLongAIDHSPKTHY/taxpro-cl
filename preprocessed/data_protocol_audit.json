@@ -1,5 +1,4 @@
 {
-  "checkpoint_inventory": [],
   "datasets": [
     {
       "assertions": {
@@ -438,46 +437,6 @@
       }
     }
   ],
-  "environment": {
-    "declared_training_environment": {
-      "cuda": "12.1",
-      "python": "3.8.18",
-      "pytorch": "2.1.0",
-      "source": "README.md"
-    },
-    "git": {
-      "command": "git --version",
-      "return_code": 0,
-      "stderr": "",
-      "stdout": "git version 2.55.0.windows.3"
-    },
-    "nvcc": {
-      "command": "nvcc --version",
-      "error": "[WinError 2] The system cannot find the file specified"
-    },
-    "nvidia_smi": {
-      "command": "nvidia-smi --query-gpu=name,driver_version,memory.total --format=csv,noheader",
-      "return_code": 0,
-      "stderr": "",
-      "stdout": "NVIDIA GeForce RTX 4060 Ti, 610.88, 16380 MiB"
-    },
-    "os": {
-      "machine": "AMD64",
-      "platform": "Windows-10-10.0.19045-SP0",
-      "processor": "Intel64 Family 6 Model 151 Stepping 5, GenuineIntel"
-    },
-    "packages_in_runtime": {
-      "numpy": "1.26.4",
-      "scipy": "1.11.4",
-      "torch": "2.1.0+cu121"
-    },
-    "python_runtime_used_for_week3": {
-      "executable": "C:\\Users\\Admin\\AppData\\Local\\Programs\\Python\\Python310\\python.exe",
-      "implementation": "CPython",
-      "version": "3.10.0"
-    },
-    "training_readiness": "BLOCKED in this shell: embeddable standard-library runtime can run protocol tests, but PyTorch/CUDA runtime is not available"
-  },
   "gate_g1": {
     "failures": [],
     "status": "PASS"
@@ -512,21 +471,6 @@
     "test_role": "evaluation-only"
   },
   "protocol_version": "taxprocl-p0-week3-v1",
-  "repository": {
-    "branch": {
-      "command": "git branch --show-current",
-      "return_code": 0,
-      "stderr": "",
-      "stdout": "main"
-    },
-    "head": {
-      "command": "git rev-parse HEAD",
-      "return_code": 0,
-      "stderr": "",
-      "stdout": "9ec5e0280718bb06154d7fc2a54c5b9a2c12412c"
-    },
-    "worktree": "dirty; initial inventory preserved in Week-3 report"
-  },
   "repository_root": ".",
   "schema_version": 1,
   "test_hashes_after": {

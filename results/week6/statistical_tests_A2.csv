@@ -1,0 +1,9 @@
+reference_config,candidate_config,dataset,group,metric,k,n_pairs,mean_paired_delta,rank_biserial_sign,wilcoxon_statistic,p_value,p_holm,significant_0_05
+SimGCL,TaxPro-CL,arts-crafts-and-sewing,long_tail,recall,20,3,0.0031732450873624024,1.0,0.0,0.25,1.0,False
+SimGCL,TaxPro-CL,arts-crafts-and-sewing,near_cold,recall,20,3,0.0009387267451783579,1.0,0.0,0.25,1.0,False
+SimGCL,TaxPro-CL,arts-crafts-and-sewing,overall,recall,20,3,-0.0025546697900032853,-1.0,0.0,0.25,1.0,False
+SimGCL,TaxPro-CL,arts-crafts-and-sewing,warm,recall,20,3,-0.0056354575235401105,-1.0,0.0,0.25,1.0,False
+SimGCL,TaxPro-CL,musical-instruments,long_tail,recall,20,3,0.0016225009362486695,1.0,0.0,0.25,1.0,False
+SimGCL,TaxPro-CL,musical-instruments,near_cold,recall,20,3,4.112615153224232e-05,0.0,3.0,1.0,1.0,False
+SimGCL,TaxPro-CL,musical-instruments,overall,recall,20,3,-0.004998436798038501,-1.0,0.0,0.25,1.0,False
+SimGCL,TaxPro-CL,musical-instruments,warm,recall,20,3,-0.007788082433300508,-1.0,0.0,0.25,1.0,False

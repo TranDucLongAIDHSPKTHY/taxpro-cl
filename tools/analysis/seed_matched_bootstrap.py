@@ -161,8 +161,7 @@ def _git_commit():
 
 def _build_metadata(args):
     """Self-describing run record so Table 12 can be audited from the JSON
-    alone, without reverse-engineering seed_index against metric files
-    (a reproducibility gap an external review flagged 2026-09-05)."""
+    alone, without reverse-engineering seed_index against metric files."""
     import datetime
 
     pairs = []

@@ -1,0 +1,50 @@
+[
+  {
+    "n": 4728,
+    "mean_diff_recall20": 4.112615153224304e-05,
+    "ci95_lo": -0.001286661026508742,
+    "ci95_hi": 0.0013982891520962586,
+    "excludes_zero_uncorrected": false,
+    "p_two_sided_bootstrap": 0.96206,
+    "dataset": "musical-instruments",
+    "group": "near_cold",
+    "holm_significant": false,
+    "holm_threshold": 0.05
+  },
+  {
+    "n": 8816,
+    "mean_diff_recall20": 0.0016225009362486676,
+    "ci95_lo": 0.00038629259931437796,
+    "ci95_hi": 0.0028842760637225245,
+    "excludes_zero_uncorrected": true,
+    "p_two_sided_bootstrap": 0.00956,
+    "dataset": "musical-instruments",
+    "group": "long_tail",
+    "holm_significant": true,
+    "holm_threshold": 0.0125
+  },
+  {
+    "n": 5217,
+    "mean_diff_recall20": 0.00018103209592571295,
+    "ci95_lo": -3.194684045747876e-05,
+    "ci95_hi": 0.00044725576640470253,
+    "excludes_zero_uncorrected": false,
+    "p_two_sided_bootstrap": 0.1248,
+    "dataset": "yelp2018",
+    "group": "near_cold",
+    "holm_significant": false,
+    "holm_threshold": 0.025
+  },
+  {
+    "n": 18907,
+    "mean_diff_recall20": 0.0005340506164483917,
+    "ci95_lo": 0.0001189514244411762,
+    "ci95_hi": 0.0009606679552091026,
+    "excludes_zero_uncorrected": true,
+    "p_two_sided_bootstrap": 0.01104,
+    "dataset": "yelp2018",
+    "group": "long_tail",
+    "holm_significant": true,
+    "holm_threshold": 0.016666666666666666
+  }
+]

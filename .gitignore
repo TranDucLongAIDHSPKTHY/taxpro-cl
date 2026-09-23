@@ -14,6 +14,15 @@ results/*
 !results/results_manifest.csv
 !results/metrics_seed.csv
 !results/claim_evidence.csv
+# Small analysis outputs (bootstrap CIs, NDCG companions, figure) that
+# claim_evidence.csv and the paper's Online Resource 1 cite as sources.
+!results/*.json
+!results/*.tex
+!results/Fig3.pdf
+!results/week6/
+# ... except superseded outputs that no table cites.
+results/q9_ab_main_vs_v3_nomerge.json
+results/a2_factorial_bootstrap_all.json
 prototypes/*
 !prototypes/.gitkeep
 figures/*
@@ -31,14 +40,11 @@ tests/Recommendation_system/result/
 # TaxPro-CL (item-to-leaf assignments), and not re-derivable without the raw
 # metadata below -- so it travels with a clone instead of needing a manual copy.
 /dataset/
+/dataset_raw/
 /metadata/*
 !/metadata/taxonomy_variants/
 
-# Local working documentation.
-/HUONG_DAN.md
-/CODEX_RUNBOOK_TAXPROCL_P0.md
-/CHANGELOG.md
-/KE_HOACH_RUNS.md
-/Document/P0_DESIGN_PROTOCOL.html
-/Document
+# Virtual environments created following the README.
+.venv/
+venv/
 

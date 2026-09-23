@@ -97,7 +97,7 @@ def main():
 
     for seed in SEEDS:
         print(f"=== seed {seed} ===")
-        rescue_dir = ROOT / "log/p0/taxprocl/amazon-book/gvhd-A3-rescue" / f"seed{seed}"
+        rescue_dir = ROOT / "log/p0/taxprocl/amazon-book/proto-rescue" / f"seed{seed}"
         main_dir = ROOT / MAIN_DIR / f"seed{seed}"
 
         rescue_model, rescue_ds, _c, _n = load_model(rescue_dir, device)

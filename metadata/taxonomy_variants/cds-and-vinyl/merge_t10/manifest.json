@@ -1,0 +1,34 @@
+{
+  "creation_command": "python -m tools.protocol.build --build",
+  "dataset": "cds-and-vinyl",
+  "output_hashes": {
+    "item_to_leaf.json": "ebac2a33ed1ea5550f537bf0294bf6bfd2b645afb73bd830be3a9d610751b464",
+    "item_to_leaf_id.npy": "72723fabace1a6ab4f4f36f4bc10143ed7fab3ff0965ba0bf99e3d2a0b7a16c3",
+    "leaf_id_to_name.json": "ae3b83007c7ae35e9fe3ac24ca0af6872a5c9896e5bfa6f415b7ddf8d519e41e",
+    "mapping_provenance.jsonl": "92a6ee16076f664745c8534a203ed8462b40694ba8b99914ff852b1d2c69a69c",
+    "taxonomy_statistics.json": "d7b293dd1b50b182fccd843afce0d8b96468e5ee06903280a30dee0fdaa8e9e8",
+    "valid_taxonomy_mask.npy": "6f12c34d13a7ead88d9a4eb3473e3f292fdbc69167cd08ed95e4bcd4e8532d99"
+  },
+  "policy": {
+    "invalid_policy": "retain in BPR/evaluation; exclude from prototype/EMA/taxonomy CL",
+    "kind": "amazon_hierarchical_train_support",
+    "no_merge": false,
+    "promotion": "nearest non-root ancestor with aggregated train support >= threshold",
+    "rare_definition": "original leaf support < 10",
+    "root_only_cds_and_vinyl_prototype": false,
+    "validation_or_test_used": false
+  },
+  "protocol_version": "taxprocl-p0-week3-v1",
+  "source_hashes": {
+    "mapping": "98984d7f70de954b06c012755b23bb43bd887fc88adbf8db93e19f44a2ded153",
+    "merged_metadata": "a70b37af5917cc937678583ec72c16bdfb5ab36581a1b20f961483bca09bfbff",
+    "train": "caf16ea3324aee3ef920b53b1c89505caebf5c020c2dec12cd9b127c75f8bc26"
+  },
+  "source_paths": {
+    "mapping": "metadata/item2category_cds_and_vinyl.json",
+    "merged_metadata": "metadata/merged_metadata_cds_and_vinyl.json",
+    "train": "dataset_verify/cds-and-vinyl/train.txt"
+  },
+  "threshold": 10,
+  "variant": "merge_t10"
+}

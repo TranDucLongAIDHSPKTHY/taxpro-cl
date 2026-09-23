@@ -1,0 +1,80 @@
+{
+  "leaf_uniform": [
+    {
+      "n_users": 52639,
+      "mean_topk_overlap": 0.9908774862743208,
+      "frac_identical_set": 0.820703280837402,
+      "frac_identical_order_given_identical_set": 0.22497164417490337,
+      "frac_identical_order_overall": 0.18463496646972777,
+      "seed": 0
+    },
+    {
+      "n_users": 52639,
+      "mean_topk_overlap": 0.9900976462317584,
+      "frac_identical_set": 0.806740249624803,
+      "frac_identical_order_given_identical_set": 0.20385720340978666,
+      "frac_identical_order_overall": 0.1644598111666255,
+      "seed": 1
+    },
+    {
+      "n_users": 52639,
+      "mean_topk_overlap": 0.9906932122569561,
+      "frac_identical_set": 0.8175307281673284,
+      "frac_identical_order_given_identical_set": 0.22124366779755542,
+      "frac_identical_order_overall": 0.18087349683694598,
+      "seed": 42
+    }
+  ],
+  "leave_one_out": [
+    {
+      "n_users": 52639,
+      "mean_topk_overlap": 0.9999857520089664,
+      "frac_identical_set": 0.9997150401793348,
+      "frac_identical_order_given_identical_set": 0.9982707509881423,
+      "frac_identical_order_overall": 0.9979862839339653,
+      "seed": 0
+    },
+    {
+      "n_users": 52639,
+      "mean_topk_overlap": 0.999987651741104,
+      "frac_identical_set": 0.9997530348220901,
+      "frac_identical_order_given_identical_set": 0.9980997985786494,
+      "frac_identical_order_overall": 0.9978533026843215,
+      "seed": 1
+    },
+    {
+      "n_users": 52639,
+      "mean_topk_overlap": 0.9999924010714487,
+      "frac_identical_set": 0.9998480214289786,
+      "frac_identical_order_given_identical_set": 0.9978339761737379,
+      "frac_identical_order_overall": 0.9976823267919224,
+      "seed": 42
+    }
+  ],
+  "rescue": [
+    {
+      "n_users": 52639,
+      "mean_topk_overlap": 0.9889407093598466,
+      "frac_identical_set": 0.7840574478998461,
+      "frac_identical_order_given_identical_set": 0.1654874975770498,
+      "frac_identical_order_overall": 0.12975170500959365,
+      "seed": 0
+    },
+    {
+      "n_users": 52639,
+      "mean_topk_overlap": 0.9883897870398913,
+      "frac_identical_set": 0.7749577309599347,
+      "frac_identical_order_given_identical_set": 0.15463437354448067,
+      "frac_identical_order_overall": 0.1198351032504417,
+      "seed": 1
+    },
+    {
+      "n_users": 52639,
+      "mean_topk_overlap": 0.988882767529648,
+      "frac_identical_set": 0.7841144398639792,
+      "frac_identical_order_given_identical_set": 0.16901271956390065,
+      "frac_identical_order_overall": 0.13252531393073577,
+      "seed": 42
+    }
+  ]
+}

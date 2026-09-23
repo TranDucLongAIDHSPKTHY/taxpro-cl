@@ -13,10 +13,8 @@ import hashlib
 import json
 import math
 import os
-import platform
 import shutil
 import struct
-import subprocess
 import sys
 import tempfile
 import zipfile
@@ -116,25 +114,6 @@ def write_text(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(value, encoding="utf-8", newline="\n")
 
-
-def run_capture(command):
-    try:
-        completed = subprocess.run(
-            command,
-            cwd=ROOT,
-            capture_output=True,
-            text=True,
-            timeout=20,
-            check=False,
-        )
-        return {
-            "command": " ".join(command),
-            "return_code": completed.returncode,
-            "stdout": completed.stdout.strip(),
-            "stderr": completed.stderr.strip(),
-        }
-    except (OSError, subprocess.TimeoutExpired) as error:
-        return {"command": " ".join(command), "error": str(error)}
 
 
 def parse_split(path, catalog_items):
@@ -885,67 +864,6 @@ def build_experiment_protocol(audit, taxonomy_tables):
     return protocol
 
 
-def environment_inventory():
-    python_runtime = {
-        "version": platform.python_version(),
-        "executable": sys.executable,
-        "implementation": platform.python_implementation(),
-    }
-    packages = {}
-    for name in ("numpy", "torch", "scipy"):
-        try:
-            module = __import__(name)
-            packages[name] = getattr(module, "__version__", "unknown")
-        except ImportError:
-            packages[name] = None
-    return {
-        "os": {
-            "platform": platform.platform(),
-            "machine": platform.machine(),
-            "processor": platform.processor(),
-        },
-        "python_runtime_used_for_week3": python_runtime,
-        "packages_in_runtime": packages,
-        "nvidia_smi": run_capture(
-            [
-                "nvidia-smi",
-                "--query-gpu=name,driver_version,memory.total",
-                "--format=csv,noheader",
-            ]
-        ),
-        "nvcc": run_capture(["nvcc", "--version"]),
-        "git": run_capture(["git", "--version"]),
-        "declared_training_environment": {
-            "source": "README.md",
-            "python": "3.8.18",
-            "pytorch": "2.1.0",
-            "cuda": "12.1",
-        },
-        "training_readiness": (
-            "BLOCKED in this shell: embeddable standard-library runtime can run "
-            "protocol tests, but PyTorch/CUDA runtime is not available"
-        ),
-    }
-
-
-def checkpoint_inventory():
-    rows = []
-    for model in ("LightGCN", "SGL", "SimGCL", "NCL"):
-        for dataset in ("amazon-book", "yelp2018"):
-            model_dir = ROOT / "log" / model / dataset
-            for checkpoint in sorted(model_dir.glob("seed*/best_validation_model.pt")):
-                rows.append(
-                    {
-                        "model": model,
-                        "dataset": dataset,
-                        "path": relative(checkpoint),
-                        "bytes": checkpoint.stat().st_size,
-                        "sha256": sha256_file(checkpoint),
-                        "load_validated": False,
-                        "reason": "PyTorch runtime unavailable in the Week-3 audit shell",
-                    }
-                )
-    return rows
 
 
 def build_audit():
@@ -1115,11 +1033,6 @@ def build_audit():
         "schema_version": 1,
         "protocol_version": PROTOCOL_VERSION,
         "repository_root": ".",  # relative by design; do not bake in an absolute local path
-        "repository": {
-            "branch": run_capture(["git", "branch", "--show-current"]),
-            "head": run_capture(["git", "rev-parse", "HEAD"]),
-            "worktree": "dirty; initial inventory preserved in Week-3 report",
-        },
         "protocol": {
             "data_split_seed": SPLIT_SEED,
             "future_training_seeds": [42, 0, 1],
@@ -1130,8 +1043,6 @@ def build_audit():
         "datasets": audit_datasets,
         "test_hashes_before": test_before,
         "test_hashes_after": test_after,
-        "environment": environment_inventory(),
-        "checkpoint_inventory": checkpoint_inventory(),
         "gate_g1": {
             "status": "PASS" if not failures else "FAIL",
             "failures": failures,
@@ -1226,15 +1137,6 @@ def build_audit_markdown(audit):
             )
         )
     lines += [
-        "",
-        "## Environment",
-        "",
-        "- Runtime audit: Python {} (embeddable, standard library).".format(
-            audit["environment"]["python_runtime_used_for_week3"]["version"]
-        ),
-        "- Training readiness: {}.".format(
-            audit["environment"]["training_readiness"]
-        ),
         "",
         "## Gate G1",
         "",

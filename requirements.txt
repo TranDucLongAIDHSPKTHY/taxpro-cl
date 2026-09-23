@@ -3,4 +3,6 @@ scipy==1.11.4
 torch==2.1.0
 tqdm==4.66.5
 pytest==8.3.5
+# Only for the figure scripts tools/analysis/regenerate_fig3_*.py:
+matplotlib==3.10.9
 # NCL full training additionally requires a CUDA-compatible FAISS-GPU build.

@@ -2,6 +2,6 @@
   "device": "cuda",
   "gpu_id": 0,
   "hardware_target": "NVIDIA RTX 4060 Ti 16GB",
-  "training_seeds": [42, 0, 1, 2, 3, 4],
+  "training_seeds": [42, 0, 1],
   "paper_result_eligible": true
 }

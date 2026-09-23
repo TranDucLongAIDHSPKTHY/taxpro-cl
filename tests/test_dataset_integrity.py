@@ -16,9 +16,13 @@ def sha256_file(path):
     return digest.hexdigest()
 
 
+DATASETS = ("amazon-book", "yelp2018", "musical-instruments", "arts-crafts-and-sewing")
+TAXONOMY_POLICIES = ("no_merge", "merge_t5", "merge_t10", "merge_t15")
+
+
 class DatasetIntegrityTests(unittest.TestCase):
     def test_dataset_and_evaluation_hashes_match_local_manifests(self):
-        for dataset in ("amazon-book", "yelp2018"):
+        for dataset in DATASETS:
             directory = (
                 ROOT
                 / "preprocessed"
@@ -39,6 +43,22 @@ class DatasetIntegrityTests(unittest.TestCase):
                 manifest["output_hashes"]["group_masks.npz"],
             )
 
+    def test_taxonomy_variant_outputs_match_their_manifests(self):
+        checked = 0
+        for dataset in DATASETS:
+            for policy in TAXONOMY_POLICIES:
+                directory = ROOT / "metadata" / "taxonomy_variants" / dataset / policy
+                manifest_path = directory / "manifest.json"
+                if not manifest_path.is_file():
+                    self.skipTest("Taxonomy variants have not been rebuilt")
+                manifest = json.loads(manifest_path.read_text())
+                for name, expected in manifest["output_hashes"].items():
+                    self.assertEqual(
+                        sha256_file(directory / name), expected, msg=str(directory / name)
+                    )
+                checked += 1
+        self.assertEqual(checked, len(DATASETS) * len(TAXONOMY_POLICIES))
+
     def test_tracked_tree_has_no_nested_git_or_runtime_cache(self):
         tracked = subprocess.check_output(
             ["git", "ls-files", "-z"], cwd=str(ROOT)
@@ -51,22 +71,3 @@ class DatasetIntegrityTests(unittest.TestCase):
             or Path(path).suffix == ".pyc"
         ]
         self.assertEqual(forbidden, [])
-
-    def test_migration_manifest_validates_all_copied_data(self):
-        manifest_path = ROOT / "manifests" / "migration_manifest.json"
-        if not manifest_path.is_file():
-            self.skipTest("Migration manifest has not been rebuilt")
-        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-        migrated_data = [
-            entry
-            for entry in manifest["entries"]
-            if entry["destination_path"].startswith(
-                ("dataset_verify/", "preprocessed/", "metadata/taxonomy_variants/")
-            )
-        ]
-        self.assertGreater(len(migrated_data), 0)
-        for entry in migrated_data:
-            self.assertEqual(entry["copied_or_generated"], "copied")
-            self.assertEqual(
-                sha256_file(ROOT / entry["destination_path"]), entry["sha256"]
-            )

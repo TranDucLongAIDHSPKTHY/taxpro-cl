@@ -44,11 +44,6 @@ Near-cold (1-5) is a subset of Long-tail (1-10); Warm (>10) is disjoint from Lon
 | amazon-book | 91,599 | 0 | 100.0000% |
 | yelp2018 | 36,720 | 1,328 | 96.5097% |
 
-## Environment
-
-- Runtime audit: Python 3.10.0 (embeddable, standard library).
-- Training readiness: BLOCKED in this shell: embeddable standard-library runtime can run protocol tests, but PyTorch/CUDA runtime is not available.
-
 ## Gate G1
 
 **PASS**

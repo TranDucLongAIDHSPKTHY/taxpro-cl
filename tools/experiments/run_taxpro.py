@@ -54,7 +54,11 @@ def parse_args(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dataset", required=True, choices=DATASETS)
     parser.add_argument("--seeds", nargs="+", type=int, default=[42])
-    parser.add_argument("--taxonomy-policy", choices=POLICIES, default="no_merge")
+    parser.add_argument(
+        "--taxonomy-policy", choices=POLICIES, default=None,
+        help="Default: the policy selected for the dataset in the paper "
+             "(Table 3): merge_t10 for amazon-book, no_merge otherwise.",
+    )
     parser.add_argument(
         "--taxonomy-granularity", choices=("leaf", "parent"), default="leaf"
     )
@@ -103,7 +107,7 @@ def parse_args(argv=None):
              "configure/TaxPro-CL.txt; Musical-Instruments' main config and "
              "V0-V3 factorial both use 5.0, see tools/README.md).",
     )
-    parser.add_argument("--ssl-lambda", type=float, default=0.1)
+    parser.add_argument("--ssl-lambda", type=float, default=0.5)  # matches configure/TaxPro-CL.txt
     parser.add_argument("--mu", type=float, default=0.9)
     parser.add_argument("--embedding-size", type=int, default=64)
     parser.add_argument("--dataset-path", default="./dataset_verify/")
@@ -114,7 +118,17 @@ def parse_args(argv=None):
     return parser.parse_args(argv)
 
 
+PAPER_TAXONOMY_POLICY = {
+    "amazon-book": "merge_t10",
+    "yelp2018": "no_merge",
+    "musical-instruments": "no_merge",
+    "arts-crafts-and-sewing": "no_merge",
+}
+
+
 def effective_configuration(args):
+    if args.taxonomy_policy is None:
+        args.taxonomy_policy = PAPER_TAXONOMY_POLICY[args.dataset]
     epochs = (
         args.epochs
         if args.epochs is not None
@@ -125,7 +139,7 @@ def effective_configuration(args):
         if args.warm_start_epochs is not None
         # 20 matches every reported TaxPro-CL run (all datasets, all V0-V3
         # factorial cells); the sole exception is the warm-start-removal
-        # companion check (ESM Table S23), which explicitly passes 0.
+        # companion check (ESM Table S20), which explicitly passes 0.
         else (1 if args.smoke else 20)
     )
     if warm >= epochs:

@@ -1,0 +1,98 @@
+[
+  {
+    "n": 13238,
+    "mean_diff_recall20": 0.0010911349482130566,
+    "ci95_lo": 0.0004448473250407077,
+    "ci95_hi": 0.0017730942908462171,
+    "excludes_zero_uncorrected": true,
+    "p_two_sided_bootstrap": 0.00068,
+    "dataset": "amazon-book",
+    "group": "near_cold",
+    "holm_significant": true,
+    "holm_threshold": 0.008333333333333333
+  },
+  {
+    "n": 36609,
+    "mean_diff_recall20": 0.0008304484017216575,
+    "ci95_lo": 0.0005354041485300692,
+    "ci95_hi": 0.0011320998568669907,
+    "excludes_zero_uncorrected": true,
+    "p_two_sided_bootstrap": 9.99990000099999e-06,
+    "dataset": "amazon-book",
+    "group": "long_tail",
+    "holm_significant": true,
+    "holm_threshold": 0.00625
+  },
+  {
+    "n": 5217,
+    "mean_diff_recall20": 0.00018103209592571295,
+    "ci95_lo": -4.259578727663834e-05,
+    "ci95_hi": 0.00044725576640470253,
+    "excludes_zero_uncorrected": false,
+    "p_two_sided_bootstrap": 0.12168,
+    "dataset": "yelp2018",
+    "group": "near_cold",
+    "holm_significant": false,
+    "holm_threshold": 0.016666666666666666
+  },
+  {
+    "n": 18907,
+    "mean_diff_recall20": 0.0005340506164483917,
+    "ci95_lo": 0.00011713113474365916,
+    "ci95_hi": 0.0009624124594770387,
+    "excludes_zero_uncorrected": true,
+    "p_two_sided_bootstrap": 0.01148,
+    "dataset": "yelp2018",
+    "group": "long_tail",
+    "holm_significant": true,
+    "holm_threshold": 0.0125
+  },
+  {
+    "n": 4728,
+    "mean_diff_recall20": 4.112615153224304e-05,
+    "ci95_lo": -0.001280785862004136,
+    "ci95_hi": 0.0013865388230870463,
+    "excludes_zero_uncorrected": false,
+    "p_two_sided_bootstrap": 0.95878,
+    "dataset": "musical-instruments",
+    "group": "near_cold",
+    "holm_significant": false,
+    "holm_threshold": 0.05
+  },
+  {
+    "n": 8816,
+    "mean_diff_recall20": 0.0016225009362486676,
+    "ci95_lo": 0.00037981087776913544,
+    "ci95_hi": 0.0028826556333362142,
+    "excludes_zero_uncorrected": true,
+    "p_two_sided_bootstrap": 0.0099,
+    "dataset": "musical-instruments",
+    "group": "long_tail",
+    "holm_significant": true,
+    "holm_threshold": 0.01
+  },
+  {
+    "n": 9765,
+    "mean_diff_recall20": 0.0006371963361210673,
+    "ci95_lo": -0.0003470444330659384,
+    "ci95_hi": 0.0016441941173123966,
+    "excludes_zero_uncorrected": false,
+    "p_two_sided_bootstrap": 0.20656,
+    "dataset": "arts-crafts-and-sewing",
+    "group": "near_cold",
+    "holm_significant": false,
+    "holm_threshold": 0.025
+  },
+  {
+    "n": 17815,
+    "mean_diff_recall20": 0.002014733221581383,
+    "ci95_lo": 0.001040166577635003,
+    "ci95_hi": 0.0029997163676647254,
+    "excludes_zero_uncorrected": true,
+    "p_two_sided_bootstrap": 4e-05,
+    "dataset": "arts-crafts-and-sewing",
+    "group": "long_tail",
+    "holm_significant": true,
+    "holm_threshold": 0.0071428571428571435
+  }
+]

@@ -1,0 +1,115 @@
+{
+  "metadata": {
+    "dataset": "arts-crafts-and-sewing",
+    "baseline_name": "SimGCL",
+    "k": 20,
+    "n_boot": 2000,
+    "rng_seed": 42,
+    "batch_size": 256,
+    "device": "cuda",
+    "seed_pairs": [
+      {
+        "seed": 42,
+        "taxpro_run_dir": "log/p0/taxprocl/arts-crafts-and-sewing/taxpro-cl-v2-no_merge/seed42",
+        "baseline_run_dir": "log/p0/baseline/SimGCL/arts-crafts-and-sewing/simgcl-c8b32441f415/seed42",
+        "taxpro_checkpoint_sha256": "c491872468ff04dd04728f41490699e193b75d6caae758ca2dd1d0a7c7291bd0",
+        "baseline_checkpoint_sha256": "b171a277b9f6cc9ee24c7286a4190ee76d68d54851f3f2ade0e5dfbd90797087"
+      },
+      {
+        "seed": 0,
+        "taxpro_run_dir": "log/p0/taxprocl/arts-crafts-and-sewing/taxpro-cl-v2-no_merge/seed0",
+        "baseline_run_dir": "log/p0/baseline/SimGCL/arts-crafts-and-sewing/simgcl-c8b32441f415/seed0",
+        "taxpro_checkpoint_sha256": "b6e4419a2c9f68094b02eefb9a327e104fbd7ebc4054100b4117d2ef24845219",
+        "baseline_checkpoint_sha256": "22bf5a594ea303dc7e627055bffe34f65bbfd5a44d7e72c92319583912c1ce8a"
+      },
+      {
+        "seed": 1,
+        "taxpro_run_dir": "log/p0/taxprocl/arts-crafts-and-sewing/taxpro-cl-v2-no_merge/seed1",
+        "baseline_run_dir": "log/p0/baseline/SimGCL/arts-crafts-and-sewing/simgcl-c8b32441f415/seed1",
+        "taxpro_checkpoint_sha256": "873d107887aac8fc7e29c84fc1548468df2a8cabcf7d34dda042dd2b7eec3f09",
+        "baseline_checkpoint_sha256": "7a54f7a40df6dd10d96be0c4d1b3320b6d9e9ff97884004943576f9443a18890"
+      }
+    ],
+    "git_commit": "9ec5e0280718bb06154d7fc2a54c5b9a2c12412c",
+    "generated_at_utc": "2026-09-05T00:23:23.831592+00:00",
+    "script": "tools/analysis/seed_matched_bootstrap.py"
+  },
+  "per_seed": [
+    {
+      "seed_index": 0,
+      "seed": 42,
+      "group": "near_cold",
+      "n": 9765,
+      "mean_diff_recall20": -0.0004437617340843146,
+      "ci95_lo": -0.0019457245263696877,
+      "ci95_hi": 0.0010411332991978155,
+      "excludes_zero": false
+    },
+    {
+      "seed_index": 1,
+      "seed": 0,
+      "group": "near_cold",
+      "n": 9765,
+      "mean_diff_recall20": 0.0024236217784604883,
+      "ci95_lo": 0.0010582010582010583,
+      "ci95_hi": 0.003942652329749104,
+      "excludes_zero": true
+    },
+    {
+      "seed_index": 2,
+      "seed": 1,
+      "group": "near_cold",
+      "n": 9765,
+      "mean_diff_recall20": -6.827103601297153e-05,
+      "ci95_lo": -0.0015702338282983447,
+      "ci95_hi": 0.0014336917562724014,
+      "excludes_zero": false
+    },
+    {
+      "seed_index": 0,
+      "seed": 42,
+      "group": "long_tail",
+      "n": 17815,
+      "mean_diff_recall20": 0.0011913449073145958,
+      "ci95_lo": -0.00018804378332865564,
+      "ci95_hi": 0.0025552303436109213,
+      "excludes_zero": false
+    },
+    {
+      "seed_index": 1,
+      "seed": 0,
+      "group": "long_tail",
+      "n": 17815,
+      "mean_diff_recall20": 0.0030921661990985596,
+      "ci95_lo": 0.0016477999189197618,
+      "ci95_hi": 0.004459105306705643,
+      "excludes_zero": true
+    },
+    {
+      "seed_index": 2,
+      "seed": 1,
+      "group": "long_tail",
+      "n": 17815,
+      "mean_diff_recall20": 0.0017606885583309946,
+      "ci95_lo": 0.0003236972588642529,
+      "ci95_hi": 0.0031855178220600616,
+      "excludes_zero": true
+    }
+  ],
+  "pooled_seed_averaged": {
+    "near_cold": {
+      "n": 9765,
+      "mean_diff_recall20": 0.0006371963361210673,
+      "ci95_lo": -0.00034704443306593854,
+      "ci95_hi": 0.0016271263583091536,
+      "excludes_zero": false
+    },
+    "long_tail": {
+      "n": 17815,
+      "mean_diff_recall20": 0.002014733221581383,
+      "ci95_lo": 0.0010256137143591535,
+      "ci95_hi": 0.0029624364679093833,
+      "excludes_zero": true
+    }
+  }
+}

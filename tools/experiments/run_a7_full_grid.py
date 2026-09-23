@@ -1,8 +1,5 @@
 """A7 full-grid orchestrator: comparable-budget baseline tuning grid.
 
-Supersedes run_a7_matched_budget.py (an earlier 1D temperature-only design
-that produced 1 valid cell before the full grid scope below was settled on).
-
 A7's requirement: tune SimGCL and XSimGCL on the full temperature x epsilon
 grid
   tau in {0.05, 0.10, 0.15, 0.20}, epsilon in {0.05, 0.10, 0.20}

@@ -1,6 +1,11 @@
-"""PyTorch implementation of ID-based graph recommender systems."""
+"""PyTorch implementation of ID-based graph recommender systems.
 
-__author__ = "Yi Zhang"
+Adapted from ID-GRec (https://github.com/BlueGhostYi/ID-GRec, Yi Zhang et al.);
+extended for the TaxPro-CL experiments (see README.md, Acknowledgements And
+Upstream Code).
+"""
+
+__author__ = "Yi Zhang"  # upstream ID-GRec author
 
 import importlib
 import hashlib

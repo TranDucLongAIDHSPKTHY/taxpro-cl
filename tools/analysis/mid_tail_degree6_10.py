@@ -82,7 +82,7 @@ DISPLAY_NAMES = {
     "TaxPro-CL": "TaxPro-CL",
 }
 
-SEEDS = [0, 1, 2, 3, 4, 42]
+SEEDS = [0, 1, 42]
 KS = (10, 20)
 
 # Cross-check tolerance on Recall/NDCG/Precision@K for the *existing* groups.

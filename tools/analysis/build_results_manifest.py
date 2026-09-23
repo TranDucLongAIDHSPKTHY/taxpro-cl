@@ -41,15 +41,15 @@ RUNS = [
     ("V2", "yelp2018", "TaxPro-CL", "log/p0/taxprocl/yelp2018/A2-V2"),
     ("V3", "yelp2018", "TaxPro-CL", "log/p0/taxprocl/yelp2018/A2-V3"),
 
-    ("V0", "musical-instruments", "TaxPro-CL", "log/p0/taxprocl/musical-instruments/gvhd-taxctrl-V0"),
-    ("V1", "musical-instruments", "TaxPro-CL", "log/p0/taxprocl/musical-instruments/gvhd-taxctrl-V1"),
-    ("V2", "musical-instruments", "TaxPro-CL", "log/p0/taxprocl/musical-instruments/gvhd-taxctrl-V2"),
+    ("V0", "musical-instruments", "TaxPro-CL", "log/p0/taxprocl/musical-instruments/A2-V0"),
+    ("V1", "musical-instruments", "TaxPro-CL", "log/p0/taxprocl/musical-instruments/A2-V1"),
+    ("V2", "musical-instruments", "TaxPro-CL", "log/p0/taxprocl/musical-instruments/A2-V2"),
     ("V3", "musical-instruments", "TaxPro-CL",
      "log/p0/taxprocl/musical-instruments/taxpro-cl-FINAL-no_merge-temp0.15-gammacold5.0"),
 
-    ("V0", "arts-crafts-and-sewing", "TaxPro-CL", "log/p0/taxprocl/arts-crafts-and-sewing/gvhd-taxctrl-V0"),
-    ("V1", "arts-crafts-and-sewing", "TaxPro-CL", "log/p0/taxprocl/arts-crafts-and-sewing/gvhd-taxctrl-V1"),
-    ("V2", "arts-crafts-and-sewing", "TaxPro-CL", "log/p0/taxprocl/arts-crafts-and-sewing/gvhd-taxctrl-V2"),
+    ("V0", "arts-crafts-and-sewing", "TaxPro-CL", "log/p0/taxprocl/arts-crafts-and-sewing/A2-V0"),
+    ("V1", "arts-crafts-and-sewing", "TaxPro-CL", "log/p0/taxprocl/arts-crafts-and-sewing/A2-V1"),
+    ("V2", "arts-crafts-and-sewing", "TaxPro-CL", "log/p0/taxprocl/arts-crafts-and-sewing/A2-V2"),
     ("V3", "arts-crafts-and-sewing", "TaxPro-CL",
      "log/p0/taxprocl/arts-crafts-and-sewing/taxpro-cl-FINAL-no_merge-temp0.125-gammacold1.5-sameleaf0"),
 ]
@@ -190,7 +190,7 @@ def main():
         elif row["variant"] == "SimGCL-main":
             tables = ["Table S1", "Table 7 (deltas)", "Table 11 (bootstrap)"]
         elif row["variant"] in ("V0", "V1", "V2", "V3"):
-            tables = ["Table 6 (factorial %)", "Table S16", "Table S20", "Table S22"]
+            tables = ["Table 8", "Table 9", "Figure 2", "Online Resource 1 Tables S13/S13b/S17/S17b/S19/S27"]
         row["used_in_tables"] = "; ".join(tables)
         if row["variant"] == "V3":
             is_same = row["checkpoint_sha256_best_validation_model"] in main_ckpt_hash_by_dataset.get(row["dataset"], set())

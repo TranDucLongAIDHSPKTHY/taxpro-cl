@@ -1,0 +1,5559 @@
+{
+  "_metadata": {
+    "batch_size": 256,
+    "checkpoint_dirs": {
+      "amazon-book|LightGCN": {
+        "0": "log/p0/baseline/LightGCN/amazon-book/paper-v1/seed0",
+        "1": "log/p0/baseline/LightGCN/amazon-book/paper-v1/seed1",
+        "42": "log/p0/baseline/LightGCN/amazon-book/paper-v1/seed42"
+      },
+      "amazon-book|SGL-ED": {
+        "0": "log/p0/baseline/SGL/amazon-book/paper-v1/seed0",
+        "1": "log/p0/baseline/SGL/amazon-book/paper-v1/seed1",
+        "42": "log/p0/baseline/SGL/amazon-book/paper-v1/seed42"
+      },
+      "amazon-book|SimGCL": {
+        "0": "log/p0/baseline/SimGCL/amazon-book/simgcl-69bb0902f42f/seed0",
+        "1": "log/p0/baseline/SimGCL/amazon-book/simgcl-69bb0902f42f/seed1",
+        "42": "log/p0/baseline/SimGCL/amazon-book/simgcl-69bb0902f42f/seed42"
+      },
+      "amazon-book|TaxPro-CL": {
+        "0": "log/p0/taxprocl/amazon-book/taxpro-cl-v15-prototype-leaf-lambda0.5-same_leaf_weight0-user_ssl-warmstart20-noblend-temp0.1-DONE-overall-2.30pct-BEST-overall-nearcold-longtail-positive/seed0",
+        "1": "log/p0/taxprocl/amazon-book/taxpro-cl-v15-prototype-leaf-lambda0.5-same_leaf_weight0-user_ssl-warmstart20-noblend-temp0.1-DONE-overall-2.30pct-BEST-overall-nearcold-longtail-positive/seed1",
+        "42": "log/p0/taxprocl/amazon-book/taxpro-cl-v15-prototype-leaf-lambda0.5-same_leaf_weight0-user_ssl-warmstart20-noblend-temp0.1-DONE-overall-2.30pct-BEST-overall-nearcold-longtail-positive/seed42"
+      },
+      "amazon-book|XSimGCL": {
+        "0": "log/p0/baseline/XSimGCL/amazon-book/xsimgcl-7c3a56b5abcd/seed0",
+        "1": "log/p0/baseline/XSimGCL/amazon-book/xsimgcl-7c3a56b5abcd/seed1",
+        "42": "log/p0/baseline/XSimGCL/amazon-book/xsimgcl-7c3a56b5abcd/seed42"
+      },
+      "arts-crafts-and-sewing|LightGCN": {
+        "0": "log/p0/baseline/LightGCN/arts-crafts-and-sewing/lightgcn-43de3b4b3ff5/seed0",
+        "1": "log/p0/baseline/LightGCN/arts-crafts-and-sewing/lightgcn-43de3b4b3ff5/seed1",
+        "42": "log/p0/baseline/LightGCN/arts-crafts-and-sewing/lightgcn-43de3b4b3ff5/seed42"
+      },
+      "arts-crafts-and-sewing|NCL": {
+        "0": "log/p0/baseline/NCL/arts-crafts-and-sewing/ncl-0f7e1a630c06/seed0",
+        "1": "log/p0/baseline/NCL/arts-crafts-and-sewing/ncl-0f7e1a630c06/seed1",
+        "42": "log/p0/baseline/NCL/arts-crafts-and-sewing/ncl-0f7e1a630c06/seed42"
+      },
+      "arts-crafts-and-sewing|SGL-ED": {
+        "0": "log/p0/baseline/SGL/arts-crafts-and-sewing/sgl-9cd8e529a74c/seed0",
+        "1": "log/p0/baseline/SGL/arts-crafts-and-sewing/sgl-9cd8e529a74c/seed1",
+        "42": "log/p0/baseline/SGL/arts-crafts-and-sewing/sgl-9cd8e529a74c/seed42"
+      },
+      "arts-crafts-and-sewing|SimGCL": {
+        "0": "log/p0/baseline/SimGCL/arts-crafts-and-sewing/simgcl-c8b32441f415/seed0",
+        "1": "log/p0/baseline/SimGCL/arts-crafts-and-sewing/simgcl-c8b32441f415/seed1",
+        "42": "log/p0/baseline/SimGCL/arts-crafts-and-sewing/simgcl-c8b32441f415/seed42"
+      },
+      "arts-crafts-and-sewing|TaxPro-CL": {
+        "0": "log/p0/taxprocl/arts-crafts-and-sewing/taxpro-cl-FINAL-no_merge-temp0.125-gammacold1.5-sameleaf0/seed0",
+        "1": "log/p0/taxprocl/arts-crafts-and-sewing/taxpro-cl-FINAL-no_merge-temp0.125-gammacold1.5-sameleaf0/seed1",
+        "42": "log/p0/taxprocl/arts-crafts-and-sewing/taxpro-cl-FINAL-no_merge-temp0.125-gammacold1.5-sameleaf0/seed42"
+      },
+      "arts-crafts-and-sewing|XSimGCL": {
+        "0": "log/p0/baseline/XSimGCL/arts-crafts-and-sewing/xsimgcl-fd0112231ebb/seed0",
+        "1": "log/p0/baseline/XSimGCL/arts-crafts-and-sewing/xsimgcl-fd0112231ebb/seed1",
+        "42": "log/p0/baseline/XSimGCL/arts-crafts-and-sewing/xsimgcl-fd0112231ebb/seed42"
+      },
+      "musical-instruments|LightGCN": {
+        "0": "log/p0/baseline/LightGCN/musical-instruments/lightgcn-83fd41817da1/seed0",
+        "1": "log/p0/baseline/LightGCN/musical-instruments/lightgcn-83fd41817da1/seed1",
+        "42": "log/p0/baseline/LightGCN/musical-instruments/lightgcn-83fd41817da1/seed42"
+      },
+      "musical-instruments|NCL": {
+        "0": "log/p0/baseline/NCL/musical-instruments/ncl-a8e18596b653/seed0",
+        "1": "log/p0/baseline/NCL/musical-instruments/ncl-a8e18596b653/seed1",
+        "42": "log/p0/baseline/NCL/musical-instruments/ncl-a8e18596b653/seed42"
+      },
+      "musical-instruments|SGL-ED": {
+        "0": "log/p0/baseline/SGL/musical-instruments/sgl-31c2ca981366/seed0",
+        "1": "log/p0/baseline/SGL/musical-instruments/sgl-31c2ca981366/seed1",
+        "42": "log/p0/baseline/SGL/musical-instruments/sgl-31c2ca981366/seed42"
+      },
+      "musical-instruments|SimGCL": {
+        "0": "log/p0/baseline/SimGCL/musical-instruments/simgcl-f263d2bff497/seed0",
+        "1": "log/p0/baseline/SimGCL/musical-instruments/simgcl-f263d2bff497/seed1",
+        "42": "log/p0/baseline/SimGCL/musical-instruments/simgcl-f263d2bff497/seed42"
+      },
+      "musical-instruments|TaxPro-CL": {
+        "0": "log/p0/taxprocl/musical-instruments/taxpro-cl-FINAL-no_merge-temp0.15-gammacold5.0/seed0",
+        "1": "log/p0/taxprocl/musical-instruments/taxpro-cl-FINAL-no_merge-temp0.15-gammacold5.0/seed1",
+        "42": "log/p0/taxprocl/musical-instruments/taxpro-cl-FINAL-no_merge-temp0.15-gammacold5.0/seed42"
+      },
+      "musical-instruments|XSimGCL": {
+        "0": "log/p0/baseline/XSimGCL/musical-instruments/xsimgcl-d60a996d56f1/seed0",
+        "1": "log/p0/baseline/XSimGCL/musical-instruments/xsimgcl-d60a996d56f1/seed1",
+        "42": "log/p0/baseline/XSimGCL/musical-instruments/xsimgcl-d60a996d56f1/seed42"
+      },
+      "yelp2018|LightGCN": {
+        "0": "log/p0/baseline/LightGCN/yelp2018/paper-v1/seed0",
+        "1": "log/p0/baseline/LightGCN/yelp2018/paper-v1/seed1",
+        "42": "log/p0/baseline/LightGCN/yelp2018/paper-v1/seed42"
+      },
+      "yelp2018|NCL": {
+        "0": "log/p0/baseline/NCL/yelp2018/paper-v1/seed0",
+        "1": "log/p0/baseline/NCL/yelp2018/paper-v1/seed1",
+        "42": "log/p0/baseline/NCL/yelp2018/paper-v1/seed42"
+      },
+      "yelp2018|SGL-ED": {
+        "0": "log/p0/baseline/SGL/yelp2018/sgl-f1d0905794ff/seed0",
+        "1": "log/p0/baseline/SGL/yelp2018/sgl-f1d0905794ff/seed1",
+        "42": "log/p0/baseline/SGL/yelp2018/sgl-f1d0905794ff/seed42"
+      },
+      "yelp2018|SimGCL": {
+        "0": "log/p0/baseline/SimGCL/yelp2018/simgcl-20c63ca8d16c/seed0",
+        "1": "log/p0/baseline/SimGCL/yelp2018/simgcl-20c63ca8d16c/seed1",
+        "42": "log/p0/baseline/SimGCL/yelp2018/simgcl-20c63ca8d16c/seed42"
+      },
+      "yelp2018|TaxPro-CL": {
+        "0": "log/p0/taxprocl/yelp2018/taxpro-cl-FINAL-no_merge-temp0.125-tempuser0.15-gammacold1.5/seed0",
+        "1": "log/p0/taxprocl/yelp2018/taxpro-cl-FINAL-no_merge-temp0.125-tempuser0.15-gammacold1.5/seed1",
+        "42": "log/p0/taxprocl/yelp2018/taxpro-cl-FINAL-no_merge-temp0.125-tempuser0.15-gammacold1.5/seed42"
+      },
+      "yelp2018|XSimGCL": {
+        "0": "log/p0/baseline/XSimGCL/yelp2018/xsimgcl-daf2ce02a033/seed0",
+        "1": "log/p0/baseline/XSimGCL/yelp2018/xsimgcl-daf2ce02a033/seed1",
+        "42": "log/p0/baseline/XSimGCL/yelp2018/xsimgcl-daf2ce02a033/seed42"
+      },
+      "amazon-book|NCL": {
+        "0": "log/p0/baseline/NCL/amazon-book/seed0",
+        "1": "log/p0/baseline/NCL/amazon-book/seed1",
+        "42": "log/p0/baseline/NCL/amazon-book/seed42"
+      }
+    },
+    "cross_check": {
+      "checkpoints_checked": 12,
+      "description": "near_cold/long_tail recomputed from the same regenerated rankings, diffed against each run's own final_test_group_metrics.json",
+      "max_abs_diff_observed": 0.0,
+      "per_checkpoint": {
+        "arts-crafts-and-sewing|TaxPro-CL|seed0": {
+          "file": "log/p0/taxprocl/arts-crafts-and-sewing/taxpro-cl-FINAL-no_merge-temp0.125-gammacold1.5-sameleaf0/seed0/final_test_group_metrics.json",
+          "max_abs_diff": 0.0,
+          "metrics": {
+            "long_tail_ndcg_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.006072754868978761,
+              "saved": 0.006072754868978761
+            },
+            "long_tail_ndcg_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.008754769009561528,
+              "saved": 0.008754769009561528
+            },
+            "long_tail_precision_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0014650575357844564,
+              "saved": 0.0014650575357844564
+            },
+            "long_tail_precision_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0013415660959865388,
+              "saved": 0.0013415660959865388
+            },
+            "long_tail_recall_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.012255589858733278,
+              "saved": 0.012255589858733278
+            },
+            "long_tail_recall_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.022604971976288277,
+              "saved": 0.022604971976288277
+            },
+            "near_cold_ndcg_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.002328755760984606,
+              "saved": 0.002328755760984606
+            },
+            "near_cold_ndcg_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0040404067151341115,
+              "saved": 0.0040404067151341115
+            },
+            "near_cold_precision_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0006041986687147973,
+              "saved": 0.0006041986687147973
+            },
+            "near_cold_precision_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0006605222734254978,
+              "saved": 0.0006605222734254978
+            },
+            "near_cold_recall_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.005120327700972862,
+              "saved": 0.005120327700972862
+            },
+            "near_cold_recall_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.011981566820276499,
+              "saved": 0.011981566820276499
+            }
+          },
+          "status": "pass",
+          "worst_metric": null
+        },
+        "arts-crafts-and-sewing|TaxPro-CL|seed1": {
+          "file": "log/p0/taxprocl/arts-crafts-and-sewing/taxpro-cl-FINAL-no_merge-temp0.125-gammacold1.5-sameleaf0/seed1/final_test_group_metrics.json",
+          "max_abs_diff": 0.0,
+          "metrics": {
+            "long_tail_ndcg_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.005676360473265571,
+              "saved": 0.005676360473265571
+            },
+            "long_tail_ndcg_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.008381297216188197,
+              "saved": 0.008381297216188197
+            },
+            "long_tail_precision_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0014089250631490362,
+              "saved": 0.0014089250631490362
+            },
+            "long_tail_precision_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0013219197305641417,
+              "saved": 0.0013219197305641417
+            },
+            "long_tail_recall_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0117023731562042,
+              "saved": 0.0117023731562042
+            },
+            "long_tail_recall_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.022058346586833814,
+              "saved": 0.022058346586833814
+            },
+            "near_cold_ndcg_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.002133037713667066,
+              "saved": 0.002133037713667066
+            },
+            "near_cold_ndcg_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.003832048744114398,
+              "saved": 0.003832048744114398
+            },
+            "near_cold_precision_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0005427547363031231,
+              "saved": 0.0005427547363031231
+            },
+            "near_cold_precision_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0006298003072196609,
+              "saved": 0.0006298003072196609
+            },
+            "near_cold_recall_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.004608294930875576,
+              "saved": 0.004608294930875576
+            },
+            "near_cold_recall_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.011256187062638675,
+              "saved": 0.011256187062638675
+            }
+          },
+          "status": "pass",
+          "worst_metric": null
+        },
+        "arts-crafts-and-sewing|TaxPro-CL|seed42": {
+          "file": "log/p0/taxprocl/arts-crafts-and-sewing/taxpro-cl-FINAL-no_merge-temp0.125-gammacold1.5-sameleaf0/seed42/final_test_group_metrics.json",
+          "max_abs_diff": 0.0,
+          "metrics": {
+            "long_tail_ndcg_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0059828184912206804,
+              "saved": 0.0059828184912206804
+            },
+            "long_tail_ndcg_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.008379979515881196,
+              "saved": 0.008379979515881196
+            },
+            "long_tail_precision_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0014987370193657082,
+              "saved": 0.0014987370193657082
+            },
+            "long_tail_precision_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0012938534942464315,
+              "saved": 0.0012938534942464315
+            },
+            "long_tail_recall_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.012464839242835314,
+              "saved": 0.012464839242835314
+            },
+            "long_tail_recall_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.021672435837465302,
+              "saved": 0.021672435837465302
+            },
+            "near_cold_ndcg_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.002246479289200374,
+              "saved": 0.002246479289200374
+            },
+            "near_cold_ndcg_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.003644097969473898,
+              "saved": 0.003644097969473898
+            },
+            "near_cold_precision_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0006041986687147973,
+              "saved": 0.0006041986687147973
+            },
+            "near_cold_precision_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0005888376856118781,
+              "saved": 0.0005888376856118781
+            },
+            "near_cold_recall_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.005120327700972862,
+              "saved": 0.005120327700972862
+            },
+            "near_cold_recall_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.01063321385902031,
+              "saved": 0.01063321385902031
+            }
+          },
+          "status": "pass",
+          "worst_metric": null
+        },
+        "musical-instruments|TaxPro-CL|seed0": {
+          "file": "log/p0/taxprocl/musical-instruments/taxpro-cl-FINAL-no_merge-temp0.15-gammacold5.0/seed0/final_test_group_metrics.json",
+          "max_abs_diff": 0.0,
+          "metrics": {
+            "long_tail_ndcg_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.004841194162375122,
+              "saved": 0.004841194162375122
+            },
+            "long_tail_ndcg_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.006752439658219714,
+              "saved": 0.006752439658219714
+            },
+            "long_tail_precision_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0010662431941923754,
+              "saved": 0.0010662431941923754
+            },
+            "long_tail_precision_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0009641560798548081,
+              "saved": 0.0009641560798548081
+            },
+            "long_tail_recall_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.009487619911848587,
+              "saved": 0.009487619911848587
+            },
+            "long_tail_recall_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.016826549131449313,
+              "saved": 0.016826549131449313
+            },
+            "near_cold_ndcg_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0024396718717488775,
+              "saved": 0.0024396718717488775
+            },
+            "near_cold_ndcg_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0033465786213828586,
+              "saved": 0.0033465786213828586
+            },
+            "near_cold_precision_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0005076142131979697,
+              "saved": 0.0005076142131979697
+            },
+            "near_cold_precision_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0004547377326565145,
+              "saved": 0.0004547377326565145
+            },
+            "near_cold_recall_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.004864636209813875,
+              "saved": 0.004864636209813875
+            },
+            "near_cold_recall_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.008372109419063732,
+              "saved": 0.008372109419063732
+            }
+          },
+          "status": "pass",
+          "worst_metric": null
+        },
+        "musical-instruments|TaxPro-CL|seed1": {
+          "file": "log/p0/taxprocl/musical-instruments/taxpro-cl-FINAL-no_merge-temp0.15-gammacold5.0/seed1/final_test_group_metrics.json",
+          "max_abs_diff": 0.0,
+          "metrics": {
+            "long_tail_ndcg_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.004665225633768654,
+              "saved": 0.004665225633768654
+            },
+            "long_tail_ndcg_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.006496121688824836,
+              "saved": 0.006496121688824836
+            },
+            "long_tail_precision_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0010549001814882013,
+              "saved": 0.0010549001814882013
+            },
+            "long_tail_precision_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0009471415607985465,
+              "saved": 0.0009471415607985465
+            },
+            "long_tail_recall_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.009157592256503326,
+              "saved": 0.009157592256503326
+            },
+            "long_tail_recall_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.016096815314147434,
+              "saved": 0.016096815314147434
+            },
+            "near_cold_ndcg_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.002075377160490132,
+              "saved": 0.002075377160490132
+            },
+            "near_cold_ndcg_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.003295274263636433,
+              "saved": 0.003295274263636433
+            },
+            "near_cold_precision_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.00044416243654822347,
+              "saved": 0.00044416243654822347
+            },
+            "near_cold_precision_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.00046531302876480545,
+              "saved": 0.00046531302876480545
+            },
+            "near_cold_recall_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0039304850535815,
+              "saved": 0.0039304850535815
+            },
+            "near_cold_recall_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.008689368302312464,
+              "saved": 0.008689368302312464
+            }
+          },
+          "status": "pass",
+          "worst_metric": null
+        },
+        "musical-instruments|TaxPro-CL|seed42": {
+          "file": "log/p0/taxprocl/musical-instruments/taxpro-cl-FINAL-no_merge-temp0.15-gammacold5.0/seed42/final_test_group_metrics.json",
+          "max_abs_diff": 0.0,
+          "metrics": {
+            "long_tail_ndcg_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.004719487819412802,
+              "saved": 0.004719487819412802
+            },
+            "long_tail_ndcg_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.006524218408900416,
+              "saved": 0.006524218408900416
+            },
+            "long_tail_precision_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.00107758620689655,
+              "saved": 0.00107758620689655
+            },
+            "long_tail_precision_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0009471415607985465,
+              "saved": 0.0009471415607985465
+            },
+            "long_tail_recall_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.009799552761213378,
+              "saved": 0.009799552761213378
+            },
+            "long_tail_recall_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.016637498919713074,
+              "saved": 0.016637498919713074
+            },
+            "near_cold_ndcg_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0019852669671344336,
+              "saved": 0.0019852669671344336
+            },
+            "near_cold_ndcg_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0030741288605772776,
+              "saved": 0.0030741288605772776
+            },
+            "near_cold_precision_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0004230118443316414,
+              "saved": 0.0004230118443316414
+            },
+            "near_cold_precision_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.00043358714043993245,
+              "saved": 0.00043358714043993245
+            },
+            "near_cold_recall_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0040891144952058655,
+              "saved": 0.0040891144952058655
+            },
+            "near_cold_recall_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.008319232938522278,
+              "saved": 0.008319232938522278
+            }
+          },
+          "status": "pass",
+          "worst_metric": null
+        },
+        "yelp2018|TaxPro-CL|seed0": {
+          "file": "log/p0/taxprocl/yelp2018/taxpro-cl-FINAL-no_merge-temp0.125-tempuser0.15-gammacold1.5/seed0/final_test_group_metrics.json",
+          "max_abs_diff": 0.0,
+          "metrics": {
+            "long_tail_ndcg_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.00041726543201855445,
+              "saved": 0.00041726543201855445
+            },
+            "long_tail_ndcg_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.001185041080700808,
+              "saved": 0.001185041080700808
+            },
+            "long_tail_precision_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.00021685090178240871,
+              "saved": 0.00021685090178240871
+            },
+            "long_tail_precision_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0003808113397154484,
+              "saved": 0.0003808113397154484
+            },
+            "long_tail_recall_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0008547736014065008,
+              "saved": 0.0008547736014065008
+            },
+            "long_tail_recall_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.003360482222575006,
+              "saved": 0.003360482222575006
+            },
+            "near_cold_ndcg_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0,
+              "saved": 0.0
+            },
+            "near_cold_ndcg_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 7.365265784607562e-05,
+              "saved": 7.365265784607562e-05
+            },
+            "near_cold_precision_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0,
+              "saved": 0.0
+            },
+            "near_cold_precision_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 1.9168104274487255e-05,
+              "saved": 1.9168104274487255e-05
+            },
+            "near_cold_recall_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0,
+              "saved": 0.0
+            },
+            "near_cold_recall_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0002875215641173088,
+              "saved": 0.0002875215641173088
+            }
+          },
+          "status": "pass",
+          "worst_metric": null
+        },
+        "yelp2018|TaxPro-CL|seed1": {
+          "file": "log/p0/taxprocl/yelp2018/taxpro-cl-FINAL-no_merge-temp0.125-tempuser0.15-gammacold1.5/seed1/final_test_group_metrics.json",
+          "max_abs_diff": 0.0,
+          "metrics": {
+            "long_tail_ndcg_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.00043070185667961773,
+              "saved": 0.00043070185667961773
+            },
+            "long_tail_ndcg_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.001203300513746532,
+              "saved": 0.001203300513746532
+            },
+            "long_tail_precision_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0002380070873221558,
+              "saved": 0.0002380070873221558
+            },
+            "long_tail_precision_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0003966784788702588,
+              "saved": 0.0003966784788702588
+            },
+            "long_tail_recall_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.000894441449293527,
+              "saved": 0.000894441449293527
+            },
+            "long_tail_recall_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0034501422437418767,
+              "saved": 0.0034501422437418767
+            },
+            "near_cold_ndcg_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0,
+              "saved": 0.0
+            },
+            "near_cold_ndcg_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 9.776703488507786e-05,
+              "saved": 9.776703488507786e-05
+            },
+            "near_cold_precision_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0,
+              "saved": 0.0
+            },
+            "near_cold_precision_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 1.9168104274487255e-05,
+              "saved": 1.9168104274487255e-05
+            },
+            "near_cold_recall_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0,
+              "saved": 0.0
+            },
+            "near_cold_recall_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.00038336208548974505,
+              "saved": 0.00038336208548974505
+            }
+          },
+          "status": "pass",
+          "worst_metric": null
+        },
+        "yelp2018|TaxPro-CL|seed42": {
+          "file": "log/p0/taxprocl/yelp2018/taxpro-cl-FINAL-no_merge-temp0.125-tempuser0.15-gammacold1.5/seed42/final_test_group_metrics.json",
+          "max_abs_diff": 0.0,
+          "metrics": {
+            "long_tail_ndcg_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.00044867096163474706,
+              "saved": 0.00044867096163474706
+            },
+            "long_tail_ndcg_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0011472207428339005,
+              "saved": 0.0011472207428339005
+            },
+            "long_tail_precision_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.00022742899455228225,
+              "saved": 0.00022742899455228225
+            },
+            "long_tail_precision_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0003887449092928536,
+              "saved": 0.0003887449092928536
+            },
+            "long_tail_recall_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0009909035809807076,
+              "saved": 0.0009909035809807076
+            },
+            "long_tail_recall_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0032321941269370298,
+              "saved": 0.0032321941269370298
+            },
+            "near_cold_ndcg_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0,
+              "saved": 0.0
+            },
+            "near_cold_ndcg_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 9.546836273793978e-05,
+              "saved": 9.546836273793978e-05
+            },
+            "near_cold_precision_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0,
+              "saved": 0.0
+            },
+            "near_cold_precision_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 1.9168104274487255e-05,
+              "saved": 1.9168104274487255e-05
+            },
+            "near_cold_recall_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0,
+              "saved": 0.0
+            },
+            "near_cold_recall_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.00038336208548974505,
+              "saved": 0.00038336208548974505
+            }
+          },
+          "status": "pass",
+          "worst_metric": null
+        },
+        "amazon-book|NCL|seed0": {
+          "file": "log/p0/baseline/NCL/amazon-book/seed0/final_test_group_metrics.json",
+          "max_abs_diff": 0.0,
+          "metrics": {
+            "long_tail_ndcg_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0006775372661785741,
+              "saved": 0.0006775372661785741
+            },
+            "long_tail_ndcg_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0012589515514923096,
+              "saved": 0.0012589515514923096
+            },
+            "long_tail_precision_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.00034690922997077155,
+              "saved": 0.00034690922997077155
+            },
+            "long_tail_precision_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0004097353109891022,
+              "saved": 0.0004097353109891022
+            },
+            "long_tail_recall_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0012511315423075105,
+              "saved": 0.0012511315423075105
+            },
+            "long_tail_recall_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0030312576566137437,
+              "saved": 0.0030312576566137437
+            },
+            "near_cold_ndcg_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 9.653321716900574e-05,
+              "saved": 9.653321716900574e-05
+            },
+            "near_cold_ndcg_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.00022734416453372398,
+              "saved": 0.00022734416453372398
+            },
+            "near_cold_precision_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 3.777005589968273e-05,
+              "saved": 3.777005589968273e-05
+            },
+            "near_cold_precision_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 4.910107266958756e-05,
+              "saved": 4.910107266958756e-05
+            },
+            "near_cold_recall_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.00030216044719746184,
+              "saved": 0.00030216044719746184
+            },
+            "near_cold_recall_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.000774286145943496,
+              "saved": 0.000774286145943496
+            }
+          },
+          "status": "pass",
+          "worst_metric": null
+        },
+        "amazon-book|NCL|seed1": {
+          "file": "log/p0/baseline/NCL/amazon-book/seed1/final_test_group_metrics.json",
+          "max_abs_diff": 0.0,
+          "metrics": {
+            "long_tail_ndcg_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0007211367079312535,
+              "saved": 0.0007211367079312535
+            },
+            "long_tail_ndcg_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0012902791753911635,
+              "saved": 0.0012902791753911635
+            },
+            "long_tail_precision_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0003605670736704082,
+              "saved": 0.0003605670736704082
+            },
+            "long_tail_precision_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.00041793001720888406,
+              "saved": 0.00041793001720888406
+            },
+            "long_tail_recall_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0013479011173500538,
+              "saved": 0.0013479011173500538
+            },
+            "long_tail_recall_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0030927264281017755,
+              "saved": 0.0030927264281017755
+            },
+            "near_cold_ndcg_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.00016868723330187534,
+              "saved": 0.00016868723330187534
+            },
+            "near_cold_ndcg_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0003457221710551564,
+              "saved": 0.0003457221710551564
+            },
+            "near_cold_precision_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 6.0432089439492366e-05,
+              "saved": 6.0432089439492366e-05
+            },
+            "near_cold_precision_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 7.176310620939719e-05,
+              "saved": 7.176310620939719e-05
+            },
+            "near_cold_recall_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0004532406707961928,
+              "saved": 0.0004532406707961928
+            },
+            "near_cold_recall_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.001133101676990482,
+              "saved": 0.001133101676990482
+            }
+          },
+          "status": "pass",
+          "worst_metric": null
+        },
+        "amazon-book|NCL|seed42": {
+          "file": "log/p0/baseline/NCL/amazon-book/seed42/final_test_group_metrics.json",
+          "max_abs_diff": 0.0,
+          "metrics": {
+            "long_tail_ndcg_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0005420722756389033,
+              "saved": 0.0005420722756389033
+            },
+            "long_tail_ndcg_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.001101736067324014,
+              "saved": 0.001101736067324014
+            },
+            "long_tail_precision_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.00029227785517222494,
+              "saved": 0.00029227785517222494
+            },
+            "long_tail_precision_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0003769564861099736,
+              "saved": 0.0003769564861099736
+            },
+            "long_tail_recall_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0010058906375385928,
+              "saved": 0.0010058906375385928
+            },
+            "long_tail_recall_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0027032278906068442,
+              "saved": 0.0027032278906068442
+            },
+            "near_cold_ndcg_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.00011173088758990938,
+              "saved": 0.00011173088758990938
+            },
+            "near_cold_ndcg_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.00023710923364533642,
+              "saved": 0.00023710923364533642
+            },
+            "near_cold_precision_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 4.532406707961928e-05,
+              "saved": 4.532406707961928e-05
+            },
+            "near_cold_precision_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 5.287807825955583e-05,
+              "saved": 5.287807825955583e-05
+            },
+            "near_cold_recall_at_10": {
+              "abs_diff": 0.0,
+              "recomputed": 0.00033993050309714457,
+              "saved": 0.00033993050309714457
+            },
+            "near_cold_recall_at_20": {
+              "abs_diff": 0.0,
+              "recomputed": 0.0007931711738933374,
+              "saved": 0.0007931711738933374
+            }
+          },
+          "status": "pass",
+          "worst_metric": null
+        }
+      },
+      "per_dataset": {
+        "amazon-book": {
+          "checkpoints": 3,
+          "max_abs_diff": 0.0,
+          "status": "pass"
+        },
+        "arts-crafts-and-sewing": {
+          "checkpoints": 3,
+          "max_abs_diff": 0.0,
+          "status": "pass"
+        },
+        "musical-instruments": {
+          "checkpoints": 3,
+          "max_abs_diff": 0.0,
+          "status": "pass"
+        },
+        "yelp2018": {
+          "checkpoints": 3,
+          "max_abs_diff": 0.0,
+          "status": "pass"
+        }
+      },
+      "status": "pass",
+      "tolerance": 1e-12
+    },
+    "device": "cuda",
+    "elapsed_seconds": 764.1,
+    "failures": [],
+    "generated_at": "2026-09-11T19:57:06.020397+07:00",
+    "git_commit": "a20d2e60df7dfa151afff315f2ed839f1e337a21",
+    "group": {
+      "definition": "6 <= train_item_degree <= 10",
+      "disjoint_from": "near_cold (1 <= degree <= 5)",
+      "identity": "near_cold U mid_tail == long_tail (asserted per user)",
+      "name": "mid_tail",
+      "source": "preprocessed/evaluation_protocol/split_seed_42/<dataset>/item_degrees_train.json + test_targets_by_group.json"
+    },
+    "missing_checkpoints": [],
+    "partial": false,
+    "protocol": {
+      "candidate_catalog": "full (train+validation positives excluded)",
+      "checkpoint": "best_validation_model.pt",
+      "ks": [
+        10,
+        20
+      ],
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        42
+      ],
+      "split": "test",
+      "split_seed": 42,
+      "std": "sample standard deviation (ddof=1)"
+    },
+    "script": "tools/analysis/mid_tail_degree6_10.py",
+    "recomputed_entries": {
+      "amazon-book/NCL": "recomputed 2026-09-20T15:27:32.994321+07:00 for the framework-default NCL family (temperature 0.05, k 2000); all other entries were computed earlier by the same script and unchanged checkpoints"
+    }
+  },
+  "amazon-book": {
+    "LightGCN": {
+      "checkpoint_dirs": {
+        "0": "log/p0/baseline/LightGCN/amazon-book/paper-v1/seed0",
+        "1": "log/p0/baseline/LightGCN/amazon-book/paper-v1/seed1",
+        "42": "log/p0/baseline/LightGCN/amazon-book/paper-v1/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/baseline/LightGCN/amazon-book/paper-v1",
+      "missing_seeds": [],
+      "ndcg10_mean": 0.0005860828428808029,
+      "ndcg10_std": 3.4695385307477295e-05,
+      "ndcg20_mean": 0.001170587903254685,
+      "ndcg20_std": 1.4839430899187931e-05,
+      "per_seed": {
+        "0": {
+          "long_tail": {
+            "eligible_users": 36609,
+            "ndcg": {
+              "10": 0.0005122590366726724,
+              "20": 0.0010251659227509121
+            },
+            "positive_interactions": 112142,
+            "precision": {
+              "10": 0.00028954628643229765,
+              "20": 0.00036876177989019133
+            },
+            "recall": {
+              "10": 0.0009270364879641285,
+              "20": 0.002474495456158372
+            },
+            "relevant_items": 24260
+          },
+          "mid_tail": {
+            "eligible_users": 33808,
+            "ndcg": {
+              "10": 0.0006179837911727662,
+              "20": 0.0011744435741048687
+            },
+            "positive_interactions": 90846,
+            "precision": {
+              "10": 0.0003017037387600564,
+              "20": 0.0003652981542830103
+            },
+            "recall": {
+              "10": 0.0012191287836105633,
+              "20": 0.003003379068215793
+            },
+            "relevant_items": 21897
+          },
+          "near_cold": {
+            "eligible_users": 13238,
+            "ndcg": {
+              "10": 9.887536642182374e-05,
+              "20": 0.0004275908085899305
+            },
+            "positive_interactions": 21296,
+            "precision": {
+              "10": 3.0216044719746186e-05,
+              "20": 8.68711285692703e-05
+            },
+            "recall": {
+              "10": 0.0002643903912977791,
+              "20": 0.001548572291886992
+            },
+            "relevant_items": 2363
+          }
+        },
+        "1": {
+          "long_tail": {
+            "eligible_users": 36609,
+            "ndcg": {
+              "10": 0.0004894250269100972,
+              "20": 0.001028437663349291
+            },
+            "positive_interactions": 112142,
+            "precision": {
+              "10": 0.00027862001147258844,
+              "20": 0.00037422491737004607
+            },
+            "recall": {
+              "10": 0.000877689938706522,
+              "20": 0.0025158796146737944
+            },
+            "relevant_items": 24260
+          },
+          "mid_tail": {
+            "eligible_users": 33808,
+            "ndcg": {
+              "10": 0.000591120862849203,
+              "20": 0.0011831189426521047
+            },
+            "positive_interactions": 90846,
+            "precision": {
+              "10": 0.0002869143398012302,
+              "20": 0.0003682560340747756
+            },
+            "recall": {
+              "10": 0.0011322552891292012,
+              "20": 0.003056255790389523
+            },
+            "relevant_items": 21897
+          },
+          "near_cold": {
+            "eligible_users": 13238,
+            "ndcg": {
+              "10": 0.00010453459595223046,
+              "20": 0.00044871893811070427
+            },
+            "positive_interactions": 21296,
+            "precision": {
+              "10": 3.777005589968273e-05,
+              "20": 9.442513974920687e-05
+            },
+            "recall": {
+              "10": 0.00033993050309714457,
+              "20": 0.0016618824595860402
+            },
+            "relevant_items": 2363
+          }
+        },
+        "42": {
+          "long_tail": {
+            "eligible_users": 36609,
+            "ndcg": {
+              "10": 0.00045229536315077634,
+              "20": 0.0009925594472263558
+            },
+            "positive_interactions": 112142,
+            "precision": {
+              "10": 0.00026496216777295166,
+              "20": 0.0003701275642601549
+            },
+            "recall": {
+              "10": 0.0008345208562368276,
+              "20": 0.0024686844321360427
+            },
+            "relevant_items": 24260
+          },
+          "mid_tail": {
+            "eligible_users": 33808,
+            "ndcg": {
+              "10": 0.0005491438746204399,
+              "20": 0.0011542011930070818
+            },
+            "positive_interactions": 90846,
+            "precision": {
+              "10": 0.000275082820634169,
+              "20": 0.0003712139138665409
+            },
+            "recall": {
+              "10": 0.0010879961128423034,
+              "20": 0.0030348499586549745
+            },
+            "relevant_items": 21897
+          },
+          "near_cold": {
+            "eligible_users": 13238,
+            "ndcg": {
+              "10": 9.894517346828449e-05,
+              "20": 0.0003568905775302051
+            },
+            "positive_interactions": 21296,
+            "precision": {
+              "10": 3.0216044719746186e-05,
+              "20": 7.554011179936549e-05
+            },
+            "recall": {
+              "10": 0.00030216044719746184,
+              "20": 0.0012464118446895301
+            },
+            "relevant_items": 2363
+          }
+        }
+      },
+      "precision10_mean": 0.0002879002997318185,
+      "precision10_std": 1.3337818719897341e-05,
+      "precision20_mean": 0.00036825603407477557,
+      "precision20_std": 2.9578797917652843e-06,
+      "recall10_mean": 0.0011464600618606893,
+      "recall10_std": 6.671038908572734e-05,
+      "recall20_mean": 0.0030314949390867637,
+      "recall20_std": 2.6597538498642436e-05,
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ]
+    },
+    "NCL": {
+      "checkpoint_dirs": {
+        "0": "log/p0/baseline/NCL/amazon-book/seed0",
+        "1": "log/p0/baseline/NCL/amazon-book/seed1",
+        "42": "log/p0/baseline/NCL/amazon-book/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/baseline/NCL/amazon-book",
+      "missing_seeds": [],
+      "ndcg10_mean": 0.0007459401108201852,
+      "ndcg10_std": 0.00011449510454351041,
+      "ndcg20_mean": 0.0013896353046996253,
+      "ndcg20_std": 0.00011508738720216167,
+      "per_seed": {
+        "0": {
+          "long_tail": {
+            "eligible_users": 36609,
+            "ndcg": {
+              "10": 0.0006775372661785741,
+              "20": 0.0012589515514923096
+            },
+            "positive_interactions": 112142,
+            "precision": {
+              "10": 0.00034690922997077155,
+              "20": 0.0004097353109891022
+            },
+            "recall": {
+              "10": 0.0012511315423075105,
+              "20": 0.0030312576566137437
+            },
+            "relevant_items": 24260
+          },
+          "mid_tail": {
+            "eligible_users": 33808,
+            "ndcg": {
+              "10": 0.0007834692744811896,
+              "20": 0.0014445374935680567
+            },
+            "positive_interactions": 90846,
+            "precision": {
+              "10": 0.00036086133459536137,
+              "20": 0.00042445575011831643
+            },
+            "recall": {
+              "10": 0.0015368765094448474,
+              "20": 0.0036480742097043085
+            },
+            "relevant_items": 21897
+          },
+          "near_cold": {
+            "eligible_users": 13238,
+            "ndcg": {
+              "10": 9.653321716900574e-05,
+              "20": 0.00022734416453372398
+            },
+            "positive_interactions": 21296,
+            "precision": {
+              "10": 3.777005589968273e-05,
+              "20": 4.910107266958756e-05
+            },
+            "recall": {
+              "10": 0.00030216044719746184,
+              "20": 0.000774286145943496
+            },
+            "relevant_items": 2363
+          }
+        },
+        "1": {
+          "long_tail": {
+            "eligible_users": 36609,
+            "ndcg": {
+              "10": 0.0007211367079312535,
+              "20": 0.0012902791753911635
+            },
+            "positive_interactions": 112142,
+            "precision": {
+              "10": 0.0003605670736704082,
+              "20": 0.00041793001720888406
+            },
+            "recall": {
+              "10": 0.0013479011173500538,
+              "20": 0.0030927264281017755
+            },
+            "relevant_items": 24260
+          },
+          "mid_tail": {
+            "eligible_users": 33808,
+            "ndcg": {
+              "10": 0.0008369607755877964,
+              "20": 0.0014669907889525876
+            },
+            "positive_interactions": 90846,
+            "precision": {
+              "10": 0.0003667770941788919,
+              "20": 0.0004244557501183162
+            },
+            "recall": {
+              "10": 0.0016301639870201523,
+              "20": 0.0036259595590402856
+            },
+            "relevant_items": 21897
+          },
+          "near_cold": {
+            "eligible_users": 13238,
+            "ndcg": {
+              "10": 0.00016868723330187534,
+              "20": 0.0003457221710551564
+            },
+            "positive_interactions": 21296,
+            "precision": {
+              "10": 6.0432089439492366e-05,
+              "20": 7.176310620939719e-05
+            },
+            "recall": {
+              "10": 0.0004532406707961928,
+              "20": 0.001133101676990482
+            },
+            "relevant_items": 2363
+          }
+        },
+        "42": {
+          "long_tail": {
+            "eligible_users": 36609,
+            "ndcg": {
+              "10": 0.0005420722756389033,
+              "20": 0.001101736067324014
+            },
+            "positive_interactions": 112142,
+            "precision": {
+              "10": 0.00029227785517222494,
+              "20": 0.0003769564861099736
+            },
+            "recall": {
+              "10": 0.0010058906375385928,
+              "20": 0.0027032278906068442
+            },
+            "relevant_items": 24260
+          },
+          "mid_tail": {
+            "eligible_users": 33808,
+            "ndcg": {
+              "10": 0.0006173902823915699,
+              "20": 0.0012573776315782318
+            },
+            "positive_interactions": 90846,
+            "precision": {
+              "10": 0.0002987458589682911,
+              "20": 0.00038748225272125004
+            },
+            "recall": {
+              "10": 0.0011952203223499957,
+              "20": 0.003231433996655045
+            },
+            "relevant_items": 21897
+          },
+          "near_cold": {
+            "eligible_users": 13238,
+            "ndcg": {
+              "10": 0.00011173088758990938,
+              "20": 0.00023710923364533642
+            },
+            "positive_interactions": 21296,
+            "precision": {
+              "10": 4.532406707961928e-05,
+              "20": 5.287807825955583e-05
+            },
+            "recall": {
+              "10": 0.00033993050309714457,
+              "20": 0.0007931711738933374
+            },
+            "relevant_items": 2363
+          }
+        }
+      },
+      "precision10_mean": 0.00034212809591418147,
+      "precision10_std": 3.768637571702225e-05,
+      "precision20_mean": 0.00041213125098596095,
+      "precision20_std": 2.1346658675078146e-05,
+      "recall10_mean": 0.0014540869396049985,
+      "recall10_std": 0.00022898598759504217,
+      "recall20_mean": 0.0035018225884665462,
+      "recall20_std": 0.00023442431055642018,
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ]
+    },
+    "SGL-ED": {
+      "checkpoint_dirs": {
+        "0": "log/p0/baseline/SGL/amazon-book/paper-v1/seed0",
+        "1": "log/p0/baseline/SGL/amazon-book/paper-v1/seed1",
+        "42": "log/p0/baseline/SGL/amazon-book/paper-v1/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/baseline/SGL/amazon-book/paper-v1",
+      "missing_seeds": [],
+      "ndcg10_mean": 0.0006934127299163577,
+      "ndcg10_std": 1.9876118867927414e-05,
+      "ndcg20_mean": 0.0013635010337794144,
+      "ndcg20_std": 2.574711464654812e-05,
+      "per_seed": {
+        "0": {
+          "long_tail": {
+            "eligible_users": 36609,
+            "ndcg": {
+              "10": 0.0005658943411914722,
+              "20": 0.0011949618109280732
+            },
+            "positive_interactions": 112142,
+            "precision": {
+              "10": 0.00034417766123084437,
+              "20": 0.00044934305771804855
+            },
+            "recall": {
+              "10": 0.0010680779148848775,
+              "20": 0.0029679207851108814
+            },
+            "relevant_items": 24260
+          },
+          "mid_tail": {
+            "eligible_users": 33808,
+            "ndcg": {
+              "10": 0.0006724742485737394,
+              "20": 0.0013352476626323376
+            },
+            "positive_interactions": 90846,
+            "precision": {
+              "10": 0.0003579034548035963,
+              "20": 0.0004377662091812601
+            },
+            "recall": {
+              "10": 0.0013604132462270546,
+              "20": 0.003471820975701314
+            },
+            "relevant_items": 21897
+          },
+          "near_cold": {
+            "eligible_users": 13238,
+            "ndcg": {
+              "10": 0.00010485352233741928,
+              "20": 0.0005634731855091317
+            },
+            "positive_interactions": 21296,
+            "precision": {
+              "10": 3.777005589968273e-05,
+              "20": 0.00012464118446895307
+            },
+            "recall": {
+              "10": 0.00033993050309714457,
+              "20": 0.0021528931862819156
+            },
+            "relevant_items": 2363
+          }
+        },
+        "1": {
+          "long_tail": {
+            "eligible_users": 36609,
+            "ndcg": {
+              "10": 0.0006028748044281047,
+              "20": 0.0012602769973289964
+            },
+            "positive_interactions": 112142,
+            "precision": {
+              "10": 0.00035237236745062634,
+              "20": 0.00046982982326750387
+            },
+            "recall": {
+              "10": 0.001083188259422412,
+              "20": 0.0030478861789335226
+            },
+            "relevant_items": 24260
+          },
+          "mid_tail": {
+            "eligible_users": 33808,
+            "ndcg": {
+              "10": 0.0007120210799093678,
+              "20": 0.0013856417181514079
+            },
+            "positive_interactions": 90846,
+            "precision": {
+              "10": 0.0003608613345953615,
+              "20": 0.0004481187884524385
+            },
+            "recall": {
+              "10": 0.0013487439196026877,
+              "20": 0.0034738494495411922
+            },
+            "relevant_items": 21897
+          },
+          "near_cold": {
+            "eligible_users": 13238,
+            "ndcg": {
+              "10": 0.00015783044548633852,
+              "20": 0.000722083608617538
+            },
+            "positive_interactions": 21296,
+            "precision": {
+              "10": 5.287807825955582e-05,
+              "20": 0.00015485722918869924
+            },
+            "recall": {
+              "10": 0.0004910107266958755,
+              "20": 0.0027194440247771566
+            },
+            "relevant_items": 2363
+          }
+        },
+        "42": {
+          "long_tail": {
+            "eligible_users": 36609,
+            "ndcg": {
+              "10": 0.000581371281277032,
+              "20": 0.0012283680743401424
+            },
+            "positive_interactions": 112142,
+            "precision": {
+              "10": 0.00035510393619055363,
+              "20": 0.0004643666857876492
+            },
+            "recall": {
+              "10": 0.0010770769743973054,
+              "20": 0.0030096169762445367
+            },
+            "relevant_items": 24260
+          },
+          "mid_tail": {
+            "eligible_users": 33808,
+            "ndcg": {
+              "10": 0.000695742861265966,
+              "20": 0.0013696137205544976
+            },
+            "positive_interactions": 90846,
+            "precision": {
+              "10": 0.00036973497397065725,
+              "20": 0.0004525556081400865
+            },
+            "recall": {
+              "10": 0.0013807088360448514,
+              "20": 0.0035200247304417826
+            },
+            "relevant_items": 21897
+          },
+          "near_cold": {
+            "eligible_users": 13238,
+            "ndcg": {
+              "10": 0.00010568113934687806,
+              "20": 0.0006023481976997895
+            },
+            "positive_interactions": 21296,
+            "precision": {
+              "10": 3.777005589968273e-05,
+              "20": 0.00012841819005892136
+            },
+            "recall": {
+              "10": 0.00033993050309714457,
+              "20": 0.002266203353980964
+            },
+            "relevant_items": 2363
+          }
+        }
+      },
+      "precision10_mean": 0.0003628332544565384,
+      "precision10_std": 6.1573177930256795e-06,
+      "precision20_mean": 0.0004461468685912617,
+      "precision20_std": 7.589330098566764e-06,
+      "recall10_mean": 0.001363288667291531,
+      "recall10_std": 1.6175289966864698e-05,
+      "recall20_mean": 0.003488565051894763,
+      "recall20_std": 2.7263752625805658e-05,
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ]
+    },
+    "SimGCL": {
+      "checkpoint_dirs": {
+        "0": "log/p0/baseline/SimGCL/amazon-book/simgcl-69bb0902f42f/seed0",
+        "1": "log/p0/baseline/SimGCL/amazon-book/simgcl-69bb0902f42f/seed1",
+        "42": "log/p0/baseline/SimGCL/amazon-book/simgcl-69bb0902f42f/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/baseline/SimGCL/amazon-book/simgcl-69bb0902f42f",
+      "missing_seeds": [],
+      "ndcg10_mean": 0.0014034053168589817,
+      "ndcg10_std": 8.841106129264287e-05,
+      "ndcg20_mean": 0.002416754653183485,
+      "ndcg20_std": 0.00012036817767455493,
+      "per_seed": {
+        "0": {
+          "long_tail": {
+            "eligible_users": 36609,
+            "ndcg": {
+              "10": 0.0012478489486162088,
+              "20": 0.002184919255129723
+            },
+            "positive_interactions": 112142,
+            "precision": {
+              "10": 0.0006118713977437248,
+              "20": 0.0007102078723811124
+            },
+            "recall": {
+              "10": 0.0021542800818388796,
+              "20": 0.005002722284301018
+            },
+            "relevant_items": 24260
+          },
+          "mid_tail": {
+            "eligible_users": 33808,
+            "ndcg": {
+              "10": 0.0014449555639248306,
+              "20": 0.0024279470727745834
+            },
+            "positive_interactions": 90846,
+            "precision": {
+              "10": 0.0006300283956460013,
+              "20": 0.0006995385707524882
+            },
+            "recall": {
+              "10": 0.0026549377062024333,
+              "20": 0.005786322079266502
+            },
+            "relevant_items": 21897
+          },
+          "near_cold": {
+            "eligible_users": 13238,
+            "ndcg": {
+              "10": 0.0002346938674954177,
+              "20": 0.0008280544200358303
+            },
+            "positive_interactions": 21296,
+            "precision": {
+              "10": 8.3094122979302e-05,
+              "20": 0.00017751926272850882
+            },
+            "recall": {
+              "10": 0.0006420909502946065,
+              "20": 0.003002719444024777
+            },
+            "relevant_items": 2363
+          }
+        },
+        "1": {
+          "long_tail": {
+            "eligible_users": 36609,
+            "ndcg": {
+              "10": 0.0012752364692746347,
+              "20": 0.002292358352218375
+            },
+            "positive_interactions": 112142,
+            "precision": {
+              "10": 0.0006501133601027075,
+              "20": 0.0007416209128902771
+            },
+            "recall": {
+              "10": 0.0022956704868939575,
+              "20": 0.005460216143040045
+            },
+            "relevant_items": 24260
+          },
+          "mid_tail": {
+            "eligible_users": 33808,
+            "ndcg": {
+              "10": 0.0014633872269854645,
+              "20": 0.002531135714170638
+            },
+            "positive_interactions": 90846,
+            "precision": {
+              "10": 0.00066848083293895,
+              "20": 0.0007320752484619065
+            },
+            "recall": {
+              "10": 0.002755751042048897,
+              "20": 0.0062252042534270986
+            },
+            "relevant_items": 21897
+          },
+          "near_cold": {
+            "eligible_users": 13238,
+            "ndcg": {
+              "10": 0.0002658353947473979,
+              "20": 0.0008676970162899031
+            },
+            "positive_interactions": 21296,
+            "precision": {
+              "10": 9.064813415923856e-05,
+              "20": 0.00018129626831847712
+            },
+            "recall": {
+              "10": 0.0007931711738933374,
+              "20": 0.0031537996676235082
+            },
+            "relevant_items": 2363
+          }
+        },
+        "42": {
+          "long_tail": {
+            "eligible_users": 36609,
+            "ndcg": {
+              "10": 0.0011282078947769077,
+              "20": 0.0020111388900424213
+            },
+            "positive_interactions": 112142,
+            "precision": {
+              "10": 0.0005572400229451781,
+              "20": 0.0006583080663224929
+            },
+            "recall": {
+              "10": 0.001969558238508498,
+              "20": 0.004644517142845855
+            },
+            "relevant_items": 24260
+          },
+          "mid_tail": {
+            "eligible_users": 33808,
+            "ndcg": {
+              "10": 0.00130187315966665,
+              "20": 0.0022911811726052337
+            },
+            "positive_interactions": 90846,
+            "precision": {
+              "10": 0.0005797444391859919,
+              "20": 0.0006684808329389531
+            },
+            "recall": {
+              "10": 0.0023865167494056872,
+              "20": 0.005535605718972267
+            },
+            "relevant_items": 21897
+          },
+          "near_cold": {
+            "eligible_users": 13238,
+            "ndcg": {
+              "10": 0.0001539672545675661,
+              "20": 0.0005015289388308608
+            },
+            "positive_interactions": 21296,
+            "precision": {
+              "10": 6.0432089439492366e-05,
+              "20": 0.00011331016769904825
+            },
+            "recall": {
+              "10": 0.00041547061489651004,
+              "20": 0.0017751926272850883
+            },
+            "relevant_items": 2363
+          }
+        }
+      },
+      "precision10_mean": 0.0006260845559236478,
+      "precision10_std": 4.44994640179712e-05,
+      "precision20_mean": 0.0007000315507177827,
+      "precision20_std": 3.180007379490103e-05,
+      "recall10_mean": 0.002599068499219006,
+      "recall10_std": 0.00019085208128980595,
+      "recall20_mean": 0.005849044017221955,
+      "recall20_std": 0.0003490516663851194,
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ]
+    },
+    "TaxPro-CL": {
+      "checkpoint_dirs": {
+        "0": "log/p0/taxprocl/amazon-book/taxpro-cl-v15-prototype-leaf-lambda0.5-same_leaf_weight0-user_ssl-warmstart20-noblend-temp0.1-DONE-overall-2.30pct-BEST-overall-nearcold-longtail-positive/seed0",
+        "1": "log/p0/taxprocl/amazon-book/taxpro-cl-v15-prototype-leaf-lambda0.5-same_leaf_weight0-user_ssl-warmstart20-noblend-temp0.1-DONE-overall-2.30pct-BEST-overall-nearcold-longtail-positive/seed1",
+        "42": "log/p0/taxprocl/amazon-book/taxpro-cl-v15-prototype-leaf-lambda0.5-same_leaf_weight0-user_ssl-warmstart20-noblend-temp0.1-DONE-overall-2.30pct-BEST-overall-nearcold-longtail-positive/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/taxprocl/amazon-book/taxpro-cl-v15-prototype-leaf-lambda0.5-same_leaf_weight0-user_ssl-warmstart20-noblend-temp0.1-DONE-overall-2.30pct-BEST-overall-nearcold-longtail-positive",
+      "missing_seeds": [],
+      "ndcg10_mean": 0.0016125330297878102,
+      "ndcg10_std": 5.225034526111814e-05,
+      "ndcg20_mean": 0.002738132832730588,
+      "ndcg20_std": 7.908030345575099e-05,
+      "per_seed": {
+        "0": {
+          "long_tail": {
+            "eligible_users": 36609,
+            "ndcg": {
+              "10": 0.0013400404545257304,
+              "20": 0.0024520594854396775
+            },
+            "positive_interactions": 112142,
+            "precision": {
+              "10": 0.000702013166161328,
+              "20": 0.0008126417001283891
+            },
+            "recall": {
+              "10": 0.002479861305559904,
+              "20": 0.005886624513009502
+            },
+            "relevant_items": 24260
+          },
+          "mid_tail": {
+            "eligible_users": 33808,
+            "ndcg": {
+              "10": 0.0015630149686805875,
+              "20": 0.002695246637488286
+            },
+            "positive_interactions": 90846,
+            "precision": {
+              "10": 0.0007217226691907256,
+              "20": 0.0007912328442972128
+            },
+            "recall": {
+              "10": 0.003027461459637276,
+              "20": 0.006646867250792424
+            },
+            "relevant_items": 21897
+          },
+          "near_cold": {
+            "eligible_users": 13238,
+            "ndcg": {
+              "10": 0.00029016277129989825,
+              "20": 0.001057614288013355
+            },
+            "positive_interactions": 21296,
+            "precision": {
+              "10": 9.820214533917511e-05,
+              "20": 0.00022662033539809623
+            },
+            "recall": {
+              "10": 0.0009064813415923856,
+              "20": 0.0038588407110842528
+            },
+            "relevant_items": 2363
+          }
+        },
+        "1": {
+          "long_tail": {
+            "eligible_users": 36609,
+            "ndcg": {
+              "10": 0.0013589775839046906,
+              "20": 0.002441274736651898
+            },
+            "positive_interactions": 112142,
+            "precision": {
+              "10": 0.0007020131661613282,
+              "20": 0.0007866917970990794
+            },
+            "recall": {
+              "10": 0.0023986634615168582,
+              "20": 0.005763519578204375
+            },
+            "relevant_items": 24260
+          },
+          "mid_tail": {
+            "eligible_users": 33808,
+            "ndcg": {
+              "10": 0.0016074412680899238,
+              "20": 0.0026897599215293853
+            },
+            "positive_interactions": 90846,
+            "precision": {
+              "10": 0.0007276384287742566,
+              "20": 0.0007660908660672079
+            },
+            "recall": {
+              "10": 0.00302877607287806,
+              "20": 0.006530651960340467
+            },
+            "relevant_items": 21897
+          },
+          "near_cold": {
+            "eligible_users": 13238,
+            "ndcg": {
+              "10": 0.00024449828008661466,
+              "20": 0.0010542401542657897
+            },
+            "positive_interactions": 21296,
+            "precision": {
+              "10": 8.3094122979302e-05,
+              "20": 0.0002190663242181597
+            },
+            "recall": {
+              "10": 0.0006609759782444479,
+              "20": 0.003758120562018432
+            },
+            "relevant_items": 2363
+          }
+        },
+        "42": {
+          "long_tail": {
+            "eligible_users": 36609,
+            "ndcg": {
+              "10": 0.0014374876608273727,
+              "20": 0.0025546176530864355
+            },
+            "positive_interactions": 112142,
+            "precision": {
+              "10": 0.0007539129722199478,
+              "20": 0.0008413231718976263
+            },
+            "recall": {
+              "10": 0.002479673821686882,
+              "20": 0.005948656684138013
+            },
+            "relevant_items": 24260
+          },
+          "mid_tail": {
+            "eligible_users": 33808,
+            "ndcg": {
+              "10": 0.0016671428525929192,
+              "20": 0.002829391939174093
+            },
+            "positive_interactions": 90846,
+            "precision": {
+              "10": 0.0007690487458589702,
+              "20": 0.0008296852815901613
+            },
+            "recall": {
+              "10": 0.0030207966777117423,
+              "20": 0.006777488104794592
+            },
+            "relevant_items": 21897
+          },
+          "near_cold": {
+            "eligible_users": 13238,
+            "ndcg": {
+              "10": 0.00037178490551428893,
+              "20": 0.0010373721516020965
+            },
+            "positive_interactions": 21296,
+            "precision": {
+              "10": 0.00012086417887898476,
+              "20": 0.0002077353074482549
+            },
+            "recall": {
+              "10": 0.0010009064813415924,
+              "20": 0.0035881553104698594
+            },
+            "relevant_items": 2363
+          }
+        }
+      },
+      "precision10_mean": 0.0007394699479413174,
+      "precision10_std": 2.578619819889196e-05,
+      "precision20_mean": 0.0007956696639848607,
+      "precision20_std": 3.202852553790194e-05,
+      "recall10_mean": 0.0030256780700756926,
+      "recall10_std": 4.278205879961432e-06,
+      "recall20_mean": 0.0066516691053091605,
+      "recall20_std": 0.00012348811241307548,
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ]
+    },
+    "XSimGCL": {
+      "checkpoint_dirs": {
+        "0": "log/p0/baseline/XSimGCL/amazon-book/xsimgcl-7c3a56b5abcd/seed0",
+        "1": "log/p0/baseline/XSimGCL/amazon-book/xsimgcl-7c3a56b5abcd/seed1",
+        "42": "log/p0/baseline/XSimGCL/amazon-book/xsimgcl-7c3a56b5abcd/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/baseline/XSimGCL/amazon-book/xsimgcl-7c3a56b5abcd",
+      "missing_seeds": [],
+      "ndcg10_mean": 0.0014808525056434461,
+      "ndcg10_std": 3.0611119118820685e-05,
+      "ndcg20_mean": 0.0025055805289187854,
+      "ndcg20_std": 4.099845460737792e-05,
+      "per_seed": {
+        "0": {
+          "long_tail": {
+            "eligible_users": 36609,
+            "ndcg": {
+              "10": 0.0013015370538075278,
+              "20": 0.002223850862923283
+            },
+            "positive_interactions": 112142,
+            "precision": {
+              "10": 0.0006501133601027079,
+              "20": 0.0007279630691906401
+            },
+            "recall": {
+              "10": 0.0023178451258911294,
+              "20": 0.005101473660284669
+            },
+            "relevant_items": 24260
+          },
+          "mid_tail": {
+            "eligible_users": 33808,
+            "ndcg": {
+              "10": 0.0015095907413175654,
+              "20": 0.0024590965274720418
+            },
+            "positive_interactions": 90846,
+            "precision": {
+              "10": 0.0006803123521060112,
+              "20": 0.0007187647893989626
+            },
+            "recall": {
+              "10": 0.0028403508396584957,
+              "20": 0.005825703111510545
+            },
+            "relevant_items": 21897
+          },
+          "near_cold": {
+            "eligible_users": 13238,
+            "ndcg": {
+              "10": 0.00017484591922624755,
+              "20": 0.0008233513393734938
+            },
+            "positive_interactions": 21296,
+            "precision": {
+              "10": 6.0432089439492366e-05,
+              "20": 0.00017751926272850885
+            },
+            "recall": {
+              "10": 0.0004910107266958755,
+              "20": 0.00304048949992446
+            },
+            "relevant_items": 2363
+          }
+        },
+        "1": {
+          "long_tail": {
+            "eligible_users": 36609,
+            "ndcg": {
+              "10": 0.0012764919804916209,
+              "20": 0.002283264060132471
+            },
+            "positive_interactions": 112142,
+            "precision": {
+              "10": 0.0006391870851429984,
+              "20": 0.0007498156191100596
+            },
+            "recall": {
+              "10": 0.00236407584285855,
+              "20": 0.005413476252464269
+            },
+            "relevant_items": 24260
+          },
+          "mid_tail": {
+            "eligible_users": 33808,
+            "ndcg": {
+              "10": 0.0014486613236313053,
+              "20": 0.0025210571264126015
+            },
+            "positive_interactions": 90846,
+            "precision": {
+              "10": 0.0006448177946048279,
+              "20": 0.00073946994794132
+            },
+            "recall": {
+              "10": 0.0027965097685457726,
+              "20": 0.00617350451328168
+            },
+            "relevant_items": 21897
+          },
+          "near_cold": {
+            "eligible_users": 13238,
+            "ndcg": {
+              "10": 0.00032692284123808684,
+              "20": 0.0008583163164491512
+            },
+            "positive_interactions": 21296,
+            "precision": {
+              "10": 0.00012086417887898476,
+              "20": 0.00018507327390844536
+            },
+            "recall": {
+              "10": 0.0009694314347585233,
+              "20": 0.003065669537190915
+            },
+            "relevant_items": 2363
+          }
+        },
+        "42": {
+          "long_tail": {
+            "eligible_users": 36609,
+            "ndcg": {
+              "10": 0.001280332164393363,
+              "20": 0.002292339984106146
+            },
+            "positive_interactions": 112142,
+            "precision": {
+              "10": 0.000639187085142998,
+              "20": 0.0007539129722199501
+            },
+            "recall": {
+              "10": 0.002274239504838539,
+              "20": 0.00536705407946087
+            },
+            "relevant_items": 24260
+          },
+          "mid_tail": {
+            "eligible_users": 33808,
+            "ndcg": {
+              "10": 0.001484305451981468,
+              "20": 0.0025365879328717125
+            },
+            "positive_interactions": 90846,
+            "precision": {
+              "10": 0.0006596071935636539,
+              "20": 0.0007453857075248499
+            },
+            "recall": {
+              "10": 0.002796736165317566,
+              "20": 0.006124492014440884
+            },
+            "relevant_items": 21897
+          },
+          "near_cold": {
+            "eligible_users": 13238,
+            "ndcg": {
+              "10": 0.00023299491506661651,
+              "20": 0.0008382913776481222
+            },
+            "positive_interactions": 21296,
+            "precision": {
+              "10": 8.3094122979302e-05,
+              "20": 0.00018129626831847712
+            },
+            "recall": {
+              "10": 0.0006798610061942891,
+              "20": 0.003065669537190915
+            },
+            "relevant_items": 2363
+          }
+        }
+      },
+      "precision10_mean": 0.000661579113424831,
+      "precision10_std": 1.7829252760712674e-05,
+      "precision20_mean": 0.0007345401482883775,
+      "precision20_std": 1.3978394540501148e-05,
+      "recall10_mean": 0.0028111989245072785,
+      "recall10_std": 2.524655286593429e-05,
+      "recall20_mean": 0.006041233213077704,
+      "recall20_std": 0.00018825640698742963,
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ]
+    },
+    "_mid_tail_support": {
+      "definition": "6 <= train_item_degree <= 10",
+      "eligible_users": 33808,
+      "long_tail_eligible_users": 36609,
+      "near_cold_eligible_users": 13238,
+      "overall_eligible_users": 52639,
+      "partition_check": "near_cold U mid_tail == long_tail verified for all users",
+      "positive_interactions": 90846,
+      "relevant_items": 21897
+    }
+  },
+  "arts-crafts-and-sewing": {
+    "LightGCN": {
+      "checkpoint_dirs": {
+        "0": "log/p0/baseline/LightGCN/arts-crafts-and-sewing/lightgcn-43de3b4b3ff5/seed0",
+        "1": "log/p0/baseline/LightGCN/arts-crafts-and-sewing/lightgcn-43de3b4b3ff5/seed1",
+        "42": "log/p0/baseline/LightGCN/arts-crafts-and-sewing/lightgcn-43de3b4b3ff5/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/baseline/LightGCN/arts-crafts-and-sewing/lightgcn-43de3b4b3ff5",
+      "missing_seeds": [],
+      "ndcg10_mean": 0.009267731405939264,
+      "ndcg10_std": 0.00033899691520619484,
+      "ndcg20_mean": 0.013192011896043257,
+      "ndcg20_std": 0.0004100629781233331,
+      "per_seed": {
+        "0": {
+          "long_tail": {
+            "eligible_users": 17815,
+            "ndcg": {
+              "10": 0.006443301039769964,
+              "20": 0.009273339703171752
+            },
+            "positive_interactions": 22560,
+            "precision": {
+              "10": 0.001577322481055297,
+              "20": 0.00142576480493967
+            },
+            "recall": {
+              "10": 0.013405525930083888,
+              "20": 0.024190912776374456
+            },
+            "relevant_items": 11261
+          },
+          "mid_tail": {
+            "eligible_users": 9852,
+            "ndcg": {
+              "10": 0.009655131476788972,
+              "20": 0.013647482871792176
+            },
+            "positive_interactions": 11274,
+            "precision": {
+              "10": 0.0021721477872513233,
+              "20": 0.0019386926512383407
+            },
+            "recall": {
+              "10": 0.020261537420489917,
+              "20": 0.0356594261740425
+            },
+            "relevant_items": 5028
+          },
+          "near_cold": {
+            "eligible_users": 9765,
+            "ndcg": {
+              "10": 0.00269843929840535,
+              "20": 0.004095130687096874
+            },
+            "positive_interactions": 11286,
+            "precision": {
+              "10": 0.0006861239119303628,
+              "20": 0.0006451612903225792
+            },
+            "recall": {
+              "10": 0.00593958013312852,
+              "20": 0.011379074927462023
+            },
+            "relevant_items": 6233
+          }
+        },
+        "1": {
+          "long_tail": {
+            "eligible_users": 17815,
+            "ndcg": {
+              "10": 0.00584410006803139,
+              "20": 0.008496497321148787
+            },
+            "positive_interactions": 22560,
+            "precision": {
+              "10": 0.0014313780522032045,
+              "20": 0.0013050799887735158
+            },
+            "recall": {
+              "10": 0.012075498175694643,
+              "20": 0.022399195434558886
+            },
+            "relevant_items": 11261
+          },
+          "mid_tail": {
+            "eligible_users": 9852,
+            "ndcg": {
+              "10": 0.009025453625110296,
+              "20": 0.012852199252980404
+            },
+            "positive_interactions": 11274,
+            "precision": {
+              "10": 0.001979293544457979,
+              "20": 0.0017965895249695604
+            },
+            "recall": {
+              "10": 0.01851569901204493,
+              "20": 0.0336733658140479
+            },
+            "relevant_items": 5028
+          },
+          "near_cold": {
+            "eligible_users": 9765,
+            "ndcg": {
+              "10": 0.002216417045179043,
+              "20": 0.0034844936869803445
+            },
+            "positive_interactions": 11286,
+            "precision": {
+              "10": 0.0006144393241167431,
+              "20": 0.0005683563748079867
+            },
+            "recall": {
+              "10": 0.005052056664959891,
+              "20": 0.010069977811913296
+            },
+            "relevant_items": 6233
+          }
+        },
+        "42": {
+          "long_tail": {
+            "eligible_users": 17815,
+            "ndcg": {
+              "10": 0.005866938362481202,
+              "20": 0.008586215328040376
+            },
+            "positive_interactions": 22560,
+            "precision": {
+              "10": 0.001431378052203204,
+              "20": 0.0013163064833005998
+            },
+            "recall": {
+              "10": 0.011959646989116538,
+              "20": 0.022479807902204756
+            },
+            "relevant_items": 11261
+          },
+          "mid_tail": {
+            "eligible_users": 9852,
+            "ndcg": {
+              "10": 0.009122609115918523,
+              "20": 0.013076353563357193
+            },
+            "positive_interactions": 11274,
+            "precision": {
+              "10": 0.0019589930978481536,
+              "20": 0.0018118148599269297
+            },
+            "recall": {
+              "10": 0.018273785356611182,
+              "20": 0.03380362701312762
+            },
+            "relevant_items": 5028
+          },
+          "near_cold": {
+            "eligible_users": 9765,
+            "ndcg": {
+              "10": 0.002221172292383854,
+              "20": 0.0034567372043515453
+            },
+            "positive_interactions": 11286,
+            "precision": {
+              "10": 0.0006349206349206344,
+              "20": 0.0005734767025089595
+            },
+            "recall": {
+              "10": 0.005308073050008534,
+              "20": 0.010172384365932752
+            },
+            "relevant_items": 6233
+          }
+        }
+      },
+      "precision10_mean": 0.002036811476519152,
+      "precision10_std": 0.00011764337969085089,
+      "precision20_mean": 0.0018490323453782768,
+      "precision20_std": 7.802038542157533e-05,
+      "recall10_mean": 0.01901700726304868,
+      "recall10_std": 0.0010845607584441122,
+      "recall20_mean": 0.03437880633373934,
+      "recall20_std": 0.0011109601147340907,
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ]
+    },
+    "NCL": {
+      "checkpoint_dirs": {
+        "0": "log/p0/baseline/NCL/arts-crafts-and-sewing/ncl-0f7e1a630c06/seed0",
+        "1": "log/p0/baseline/NCL/arts-crafts-and-sewing/ncl-0f7e1a630c06/seed1",
+        "42": "log/p0/baseline/NCL/arts-crafts-and-sewing/ncl-0f7e1a630c06/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/baseline/NCL/arts-crafts-and-sewing/ncl-0f7e1a630c06",
+      "missing_seeds": [],
+      "ndcg10_mean": 0.00648085657315318,
+      "ndcg10_std": 0.000728918291126901,
+      "ndcg20_mean": 0.009369928205291032,
+      "ndcg20_std": 0.000710124635322955,
+      "per_seed": {
+        "0": {
+          "long_tail": {
+            "eligible_users": 17815,
+            "ndcg": {
+              "10": 0.004401995428160113,
+              "20": 0.006450564718079601
+            },
+            "positive_interactions": 22560,
+            "precision": {
+              "10": 0.0010665169800729722,
+              "20": 0.0009991580129104745
+            },
+            "recall": {
+              "10": 0.009224436336420618,
+              "20": 0.017092337917485264
+            },
+            "relevant_items": 11261
+          },
+          "mid_tail": {
+            "eligible_users": 9852,
+            "ndcg": {
+              "10": 0.006698825517887043,
+              "20": 0.00955705068915709
+            },
+            "positive_interactions": 11274,
+            "precision": {
+              "10": 0.0014717823792123393,
+              "20": 0.0013449045879009391
+            },
+            "recall": {
+              "10": 0.014091893354987142,
+              "20": 0.025274056029232647
+            },
+            "relevant_items": 5028
+          },
+          "near_cold": {
+            "eligible_users": 9765,
+            "ndcg": {
+              "10": 0.0017786991681942462,
+              "20": 0.0028953347040541616
+            },
+            "positive_interactions": 11286,
+            "precision": {
+              "10": 0.0004608294930875577,
+              "20": 0.0004659498207885297
+            },
+            "recall": {
+              "10": 0.00391705069124424,
+              "20": 0.008320532514080901
+            },
+            "relevant_items": 6233
+          }
+        },
+        "1": {
+          "long_tail": {
+            "eligible_users": 17815,
+            "ndcg": {
+              "10": 0.004443235289908678,
+              "20": 0.006669226444010964
+            },
+            "positive_interactions": 22560,
+            "precision": {
+              "10": 0.0011114229581813083,
+              "20": 0.001046870614650582
+            },
+            "recall": {
+              "10": 0.009436492344154428,
+              "20": 0.018047681417033085
+            },
+            "relevant_items": 11261
+          },
+          "mid_tail": {
+            "eligible_users": 9852,
+            "ndcg": {
+              "10": 0.007075923966409845,
+              "20": 0.009967753888108832
+            },
+            "positive_interactions": 11274,
+            "precision": {
+              "10": 0.001603735282176204,
+              "20": 0.0014210312626877853
+            },
+            "recall": {
+              "10": 0.015194884287454326,
+              "20": 0.026470090675328198
+            },
+            "relevant_items": 5028
+          },
+          "near_cold": {
+            "eligible_users": 9765,
+            "ndcg": {
+              "10": 0.0015827885090490242,
+              "20": 0.0028780766708493316
+            },
+            "positive_interactions": 11286,
+            "precision": {
+              "10": 0.00040962621607782914,
+              "20": 0.0004761904761904755
+            },
+            "recall": {
+              "10": 0.003524492234169654,
+              "20": 0.008610684417136031
+            },
+            "relevant_items": 6233
+          }
+        },
+        "42": {
+          "long_tail": {
+            "eligible_users": 17815,
+            "ndcg": {
+              "10": 0.0038869214433442517,
+              "20": 0.005919907469730443
+            },
+            "positive_interactions": 22560,
+            "precision": {
+              "10": 0.0009598652820656737,
+              "20": 0.0009317990457479698
+            },
+            "recall": {
+              "10": 0.008087753765553374,
+              "20": 0.01593413789877444
+            },
+            "relevant_items": 11261
+          },
+          "mid_tail": {
+            "eligible_users": 9852,
+            "ndcg": {
+              "10": 0.005667820235162653,
+              "20": 0.008584980038607175
+            },
+            "positive_interactions": 11274,
+            "precision": {
+              "10": 0.001258627689809173,
+              "20": 0.0012535525781567235
+            },
+            "recall": {
+              "10": 0.011943429422113952,
+              "20": 0.02334551360129923
+            },
+            "relevant_items": 5028
+          },
+          "near_cold": {
+            "eligible_users": 9765,
+            "ndcg": {
+              "10": 0.0019163835603048251,
+              "20": 0.0028565261367538364
+            },
+            "positive_interactions": 11286,
+            "precision": {
+              "10": 0.00048131080389144905,
+              "20": 0.00043522785458269264
+            },
+            "recall": {
+              "10": 0.004070660522273425,
+              "20": 0.007782898105478751
+            },
+            "relevant_items": 6233
+          }
+        }
+      },
+      "precision10_mean": 0.0014447151170659054,
+      "precision10_std": 0.00017413870933086667,
+      "precision20_mean": 0.0013398294762484826,
+      "precision20_std": 8.385460638377242e-05,
+      "recall10_mean": 0.013743402354851808,
+      "recall10_std": 0.0016535036039325385,
+      "recall20_mean": 0.025029886768620026,
+      "recall20_std": 0.0015765339970193921,
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ]
+    },
+    "SGL-ED": {
+      "checkpoint_dirs": {
+        "0": "log/p0/baseline/SGL/arts-crafts-and-sewing/sgl-9cd8e529a74c/seed0",
+        "1": "log/p0/baseline/SGL/arts-crafts-and-sewing/sgl-9cd8e529a74c/seed1",
+        "42": "log/p0/baseline/SGL/arts-crafts-and-sewing/sgl-9cd8e529a74c/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/baseline/SGL/arts-crafts-and-sewing/sgl-9cd8e529a74c",
+      "missing_seeds": [],
+      "ndcg10_mean": 0.008394028470290327,
+      "ndcg10_std": 0.00024584254894441203,
+      "ndcg20_mean": 0.01229670199410974,
+      "ndcg20_std": 0.0005092821179305618,
+      "per_seed": {
+        "0": {
+          "long_tail": {
+            "eligible_users": 17815,
+            "ndcg": {
+              "10": 0.005792070591658919,
+              "20": 0.008625591649777723
+            },
+            "positive_interactions": 22560,
+            "precision": {
+              "10": 0.0014145383104125781,
+              "20": 0.0013387594723547678
+            },
+            "recall": {
+              "10": 0.011904761904761904,
+              "20": 0.022840303115352227
+            },
+            "relevant_items": 11261
+          },
+          "mid_tail": {
+            "eligible_users": 9852,
+            "ndcg": {
+              "10": 0.008654907247720783,
+              "20": 0.012839160696739795
+            },
+            "positive_interactions": 11274,
+            "precision": {
+              "10": 0.0018980917580186764,
+              "20": 0.0018422655298416682
+            },
+            "recall": {
+              "10": 0.01793206117201245,
+              "20": 0.03420625253755582
+            },
+            "relevant_items": 5028
+          },
+          "near_cold": {
+            "eligible_users": 9765,
+            "ndcg": {
+              "10": 0.002614625208530893,
+              "20": 0.0037939487733636406
+            },
+            "positive_interactions": 11286,
+            "precision": {
+              "10": 0.0006656426011264714,
+              "20": 0.0005837173579109052
+            },
+            "recall": {
+              "10": 0.0056835637480798775,
+              "20": 0.01040279911247653
+            },
+            "relevant_items": 6233
+          }
+        },
+        "1": {
+          "long_tail": {
+            "eligible_users": 17815,
+            "ndcg": {
+              "10": 0.005755472062064084,
+              "20": 0.008545124542118495
+            },
+            "positive_interactions": 22560,
+            "precision": {
+              "10": 0.0014089250631490367,
+              "20": 0.0013387594723547678
+            },
+            "recall": {
+              "10": 0.011943742788536504,
+              "20": 0.022783858795646615
+            },
+            "relevant_items": 11261
+          },
+          "mid_tail": {
+            "eligible_users": 9852,
+            "ndcg": {
+              "10": 0.008360518212832315,
+              "20": 0.012222125109343007
+            },
+            "positive_interactions": 11274,
+            "precision": {
+              "10": 0.0018879415347137635,
+              "20": 0.0017712139667072782
+            },
+            "recall": {
+              "10": 0.01769860603599946,
+              "20": 0.03297469210989308
+            },
+            "relevant_items": 5028
+          },
+          "near_cold": {
+            "eligible_users": 9765,
+            "ndcg": {
+              "10": 0.002725971024547602,
+              "20": 0.00424870643746306
+            },
+            "positive_interactions": 11286,
+            "precision": {
+              "10": 0.0006656426011264716,
+              "20": 0.0006554019457245251
+            },
+            "recall": {
+              "10": 0.0056152927120669055,
+              "20": 0.011682881037719747
+            },
+            "relevant_items": 6233
+          }
+        },
+        "42": {
+          "long_tail": {
+            "eligible_users": 17815,
+            "ndcg": {
+              "10": 0.005569544187346307,
+              "20": 0.008217829057884957
+            },
+            "positive_interactions": 22560,
+            "precision": {
+              "10": 0.0013864720740948677,
+              "20": 0.0012770137524558054
+            },
+            "recall": {
+              "10": 0.011672435837465307,
+              "20": 0.021986777684223656
+            },
+            "relevant_items": 11261
+          },
+          "mid_tail": {
+            "eligible_users": 9852,
+            "ndcg": {
+              "10": 0.008166659950317883,
+              "20": 0.01182882017624642
+            },
+            "positive_interactions": 11274,
+            "precision": {
+              "10": 0.0018371904181891992,
+              "20": 0.001695087291920432
+            },
+            "recall": {
+              "10": 0.017394099336852077,
+              "20": 0.0317904993909866
+            },
+            "relevant_items": 5028
+          },
+          "near_cold": {
+            "eligible_users": 9765,
+            "ndcg": {
+              "10": 0.00265567192257016,
+              "20": 0.004003211533763564
+            },
+            "positive_interactions": 11286,
+            "precision": {
+              "10": 0.0006758832565284172,
+              "20": 0.0006195596518177151
+            },
+            "recall": {
+              "10": 0.005717699266086363,
+              "20": 0.011094043352107869
+            },
+            "relevant_items": 6233
+          }
+        }
+      },
+      "precision10_mean": 0.0018744079036405465,
+      "precision10_std": 3.262840289955711e-05,
+      "precision20_mean": 0.001769522262823126,
+      "precision20_std": 7.360370117000741e-05,
+      "recall10_mean": 0.017674922181621328,
+      "recall10_std": 0.0002697617981496491,
+      "recall20_mean": 0.03299048134614516,
+      "recall20_std": 0.0012079539690219333,
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ]
+    },
+    "SimGCL": {
+      "checkpoint_dirs": {
+        "0": "log/p0/baseline/SimGCL/arts-crafts-and-sewing/simgcl-c8b32441f415/seed0",
+        "1": "log/p0/baseline/SimGCL/arts-crafts-and-sewing/simgcl-c8b32441f415/seed1",
+        "42": "log/p0/baseline/SimGCL/arts-crafts-and-sewing/simgcl-c8b32441f415/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/baseline/SimGCL/arts-crafts-and-sewing/simgcl-c8b32441f415",
+      "missing_seeds": [],
+      "ndcg10_mean": 0.007898873018405096,
+      "ndcg10_std": 0.0004212243027985452,
+      "ndcg20_mean": 0.011112015254070066,
+      "ndcg20_std": 0.0002084145743490926,
+      "per_seed": {
+        "0": {
+          "long_tail": {
+            "eligible_users": 17815,
+            "ndcg": {
+              "10": 0.004950488415753383,
+              "20": 0.007414292863916223
+            },
+            "positive_interactions": 22560,
+            "precision": {
+              "10": 0.0012349143979792333,
+              "20": 0.0011675554308167358
+            },
+            "recall": {
+              "10": 0.010088475468772971,
+              "20": 0.019512805777189723
+            },
+            "relevant_items": 11261
+          },
+          "mid_tail": {
+            "eligible_users": 9852,
+            "ndcg": {
+              "10": 0.007615626905818671,
+              "20": 0.0110179094639983
+            },
+            "positive_interactions": 11274,
+            "precision": {
+              "10": 0.001705237515225332,
+              "20": 0.0015783597239139345
+            },
+            "recall": {
+              "10": 0.015837731763432127,
+              "20": 0.028972120719989173
+            },
+            "relevant_items": 5028
+          },
+          "near_cold": {
+            "eligible_users": 9765,
+            "ndcg": {
+              "10": 0.002103100025614404,
+              "20": 0.003417175540597218
+            },
+            "positive_interactions": 11286,
+            "precision": {
+              "10": 0.0005325140809011775,
+              "20": 0.0005376344086021497
+            },
+            "recall": {
+              "10": 0.004352278545826933,
+              "20": 0.00955794504181601
+            },
+            "relevant_items": 6233
+          }
+        },
+        "1": {
+          "long_tail": {
+            "eligible_users": 17815,
+            "ndcg": {
+              "10": 0.005177845229852211,
+              "20": 0.007668815799070215
+            },
+            "positive_interactions": 22560,
+            "precision": {
+              "10": 0.0013134998596688215,
+              "20": 0.001223687903452156
+            },
+            "recall": {
+              "10": 0.01073689462687498,
+              "20": 0.02029765802850282
+            },
+            "relevant_items": 11261
+          },
+          "mid_tail": {
+            "eligible_users": 9852,
+            "ndcg": {
+              "10": 0.007698065580953037,
+              "20": 0.010967248676665481
+            },
+            "positive_interactions": 11274,
+            "precision": {
+              "10": 0.001776289078359722,
+              "20": 0.0015885099472188473
+            },
+            "recall": {
+              "10": 0.016311408850994722,
+              "20": 0.029171741778319122
+            },
+            "relevant_items": 5028
+          },
+          "near_cold": {
+            "eligible_users": 9765,
+            "ndcg": {
+              "10": 0.002480174108287625,
+              "20": 0.004082199669256295
+            },
+            "positive_interactions": 11286,
+            "precision": {
+              "10": 0.0006041986687147972,
+              "20": 0.0006298003072196609
+            },
+            "recall": {
+              "10": 0.005052056664959891,
+              "20": 0.011324458098651647
+            },
+            "relevant_items": 6233
+          }
+        },
+        "42": {
+          "long_tail": {
+            "eligible_users": 17815,
+            "ndcg": {
+              "10": 0.0055034979183335485,
+              "20": 0.007906247027178084
+            },
+            "positive_interactions": 22560,
+            "precision": {
+              "10": 0.0013471793432500738,
+              "20": 0.0012124614089250722
+            },
+            "recall": {
+              "10": 0.011243957963014937,
+              "20": 0.02048109093015071
+            },
+            "relevant_items": 11261
+          },
+          "mid_tail": {
+            "eligible_users": 9852,
+            "ndcg": {
+              "10": 0.008382926568443578,
+              "20": 0.011350887621546419
+            },
+            "positive_interactions": 11274,
+            "precision": {
+              "10": 0.0018980917580186764,
+              "20": 0.001573284612261478
+            },
+            "recall": {
+              "10": 0.017718906482609285,
+              "20": 0.029344295574502643
+            },
+            "relevant_items": 5028
+          },
+          "near_cold": {
+            "eligible_users": 9765,
+            "ndcg": {
+              "10": 0.0023700170749690716,
+              "20": 0.004032798731156233
+            },
+            "positive_interactions": 11286,
+            "precision": {
+              "10": 0.0005427547363031231,
+              "20": 0.000624679979518688
+            },
+            "recall": {
+              "10": 0.004557091653865848,
+              "20": 0.011076975593104624
+            },
+            "relevant_items": 6233
+          }
+        }
+      },
+      "precision10_mean": 0.0017932061172012436,
+      "precision10_std": 9.753373464203406e-05,
+      "precision20_mean": 0.0015800514277980865,
+      "precision20_std": 7.752361102578018e-06,
+      "recall10_mean": 0.016622682365678713,
+      "recall10_std": 0.0009784543840801205,
+      "recall20_mean": 0.029162719357603645,
+      "recall20_std": 0.00018625139902751306,
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ]
+    },
+    "TaxPro-CL": {
+      "checkpoint_dirs": {
+        "0": "log/p0/taxprocl/arts-crafts-and-sewing/taxpro-cl-FINAL-no_merge-temp0.125-gammacold1.5-sameleaf0/seed0",
+        "1": "log/p0/taxprocl/arts-crafts-and-sewing/taxpro-cl-FINAL-no_merge-temp0.125-gammacold1.5-sameleaf0/seed1",
+        "42": "log/p0/taxprocl/arts-crafts-and-sewing/taxpro-cl-FINAL-no_merge-temp0.125-gammacold1.5-sameleaf0/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/taxprocl/arts-crafts-and-sewing/taxpro-cl-FINAL-no_merge-temp0.125-gammacold1.5-sameleaf0",
+      "missing_seeds": [
+        2,
+        3,
+        4
+      ],
+      "ndcg10_mean": 0.009297716121741635,
+      "ndcg10_std": 0.0003070390512997023,
+      "ndcg20_mean": 0.01274142906129006,
+      "ndcg20_std": 0.00024828712614087154,
+      "per_seed": {
+        "0": {
+          "long_tail": {
+            "eligible_users": 17815,
+            "ndcg": {
+              "10": 0.006072754868978761,
+              "20": 0.008754769009561528
+            },
+            "positive_interactions": 22560,
+            "precision": {
+              "10": 0.0014650575357844564,
+              "20": 0.0013415660959865388
+            },
+            "recall": {
+              "10": 0.012255589858733278,
+              "20": 0.022604971976288277
+            },
+            "relevant_items": 11261
+          },
+          "mid_tail": {
+            "eligible_users": 9852,
+            "ndcg": {
+              "10": 0.00950783270673885,
+              "20": 0.013010567964178441
+            },
+            "positive_interactions": 11274,
+            "precision": {
+              "10": 0.0020503451075923693,
+              "20": 0.0017712139667072782
+            },
+            "recall": {
+              "10": 0.019183922046285017,
+              "20": 0.03285288943023413
+            },
+            "relevant_items": 5028
+          },
+          "near_cold": {
+            "eligible_users": 9765,
+            "ndcg": {
+              "10": 0.002328755760984606,
+              "20": 0.0040404067151341115
+            },
+            "positive_interactions": 11286,
+            "precision": {
+              "10": 0.0006041986687147973,
+              "20": 0.0006605222734254978
+            },
+            "recall": {
+              "10": 0.005120327700972862,
+              "20": 0.011981566820276499
+            },
+            "relevant_items": 6233
+          }
+        },
+        "1": {
+          "long_tail": {
+            "eligible_users": 17815,
+            "ndcg": {
+              "10": 0.005676360473265571,
+              "20": 0.008381297216188197
+            },
+            "positive_interactions": 22560,
+            "precision": {
+              "10": 0.0014089250631490362,
+              "20": 0.0013219197305641417
+            },
+            "recall": {
+              "10": 0.0117023731562042,
+              "20": 0.022058346586833814
+            },
+            "relevant_items": 11261
+          },
+          "mid_tail": {
+            "eligible_users": 9852,
+            "ndcg": {
+              "10": 0.008945349833911594,
+              "20": 0.012521304450905442
+            },
+            "positive_interactions": 11274,
+            "precision": {
+              "10": 0.002009744214372718,
+              "20": 0.0017661388550548219
+            },
+            "recall": {
+              "10": 0.01866626065773447,
+              "20": 0.032698944376776284
+            },
+            "relevant_items": 5028
+          },
+          "near_cold": {
+            "eligible_users": 9765,
+            "ndcg": {
+              "10": 0.002133037713667066,
+              "20": 0.003832048744114398
+            },
+            "positive_interactions": 11286,
+            "precision": {
+              "10": 0.0005427547363031231,
+              "20": 0.0006298003072196609
+            },
+            "recall": {
+              "10": 0.004608294930875576,
+              "20": 0.011256187062638675
+            },
+            "relevant_items": 6233
+          }
+        },
+        "42": {
+          "long_tail": {
+            "eligible_users": 17815,
+            "ndcg": {
+              "10": 0.0059828184912206804,
+              "20": 0.008379979515881196
+            },
+            "positive_interactions": 22560,
+            "precision": {
+              "10": 0.0014987370193657082,
+              "20": 0.0012938534942464315
+            },
+            "recall": {
+              "10": 0.012464839242835314,
+              "20": 0.021672435837465302
+            },
+            "relevant_items": 11261
+          },
+          "mid_tail": {
+            "eligible_users": 9852,
+            "ndcg": {
+              "10": 0.00943996582457446,
+              "20": 0.012692414768786292
+            },
+            "positive_interactions": 11274,
+            "precision": {
+              "10": 0.0021112464474218463,
+              "20": 0.0017559886317499093
+            },
+            "recall": {
+              "10": 0.019850453376640955,
+              "20": 0.03258898362430639
+            },
+            "relevant_items": 5028
+          },
+          "near_cold": {
+            "eligible_users": 9765,
+            "ndcg": {
+              "10": 0.002246479289200374,
+              "20": 0.003644097969473898
+            },
+            "positive_interactions": 11286,
+            "precision": {
+              "10": 0.0006041986687147973,
+              "20": 0.0005888376856118781
+            },
+            "recall": {
+              "10": 0.005120327700972862,
+              "20": 0.01063321385902031
+            },
+            "relevant_items": 6233
+          }
+        }
+      },
+      "precision10_mean": 0.0020571119231289777,
+      "precision10_std": 5.108833695541244e-05,
+      "precision20_mean": 0.0017644471511706697,
+      "precision20_std": 7.752361102577806e-06,
+      "recall10_mean": 0.019233545360220147,
+      "recall10_std": 0.0005936539007218018,
+      "recall20_mean": 0.03271360581043894,
+      "recall20_std": 0.0001325623884379548,
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ]
+    },
+    "XSimGCL": {
+      "checkpoint_dirs": {
+        "0": "log/p0/baseline/XSimGCL/arts-crafts-and-sewing/xsimgcl-fd0112231ebb/seed0",
+        "1": "log/p0/baseline/XSimGCL/arts-crafts-and-sewing/xsimgcl-fd0112231ebb/seed1",
+        "42": "log/p0/baseline/XSimGCL/arts-crafts-and-sewing/xsimgcl-fd0112231ebb/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/baseline/XSimGCL/arts-crafts-and-sewing/xsimgcl-fd0112231ebb",
+      "missing_seeds": [],
+      "ndcg10_mean": 0.005667778253908334,
+      "ndcg10_std": 7.807516175378695e-05,
+      "ndcg20_mean": 0.008530784202058064,
+      "ndcg20_std": 0.00020829074260391692,
+      "per_seed": {
+        "0": {
+          "long_tail": {
+            "eligible_users": 17815,
+            "ndcg": {
+              "10": 0.003533950042459006,
+              "20": 0.005569026984660696
+            },
+            "positive_interactions": 22560,
+            "precision": {
+              "10": 0.0008925063149031695,
+              "20": 0.0009093460566938019
+            },
+            "recall": {
+              "10": 0.007348676209187014,
+              "20": 0.01523738244479193
+            },
+            "relevant_items": 11261
+          },
+          "mid_tail": {
+            "eligible_users": 9852,
+            "ndcg": {
+              "10": 0.005577970116140444,
+              "20": 0.008512633825342933
+            },
+            "positive_interactions": 11274,
+            "precision": {
+              "10": 0.001258627689809173,
+              "20": 0.0012687779131140928
+            },
+            "recall": {
+              "10": 0.011909595344430911,
+              "20": 0.023419948572201924
+            },
+            "relevant_items": 5028
+          },
+          "near_cold": {
+            "eligible_users": 9765,
+            "ndcg": {
+              "10": 0.0014129207392769019,
+              "20": 0.0023588697725321055
+            },
+            "positive_interactions": 11286,
+            "precision": {
+              "10": 0.0003584229390681005,
+              "20": 0.00037890424987199127
+            },
+            "recall": {
+              "10": 0.0028417818740399388,
+              "20": 0.006605222734254993
+            },
+            "relevant_items": 6233
+          }
+        },
+        "1": {
+          "long_tail": {
+            "eligible_users": 17815,
+            "ndcg": {
+              "10": 0.003499739315214566,
+              "20": 0.005556209984534001
+            },
+            "positive_interactions": 22560,
+            "precision": {
+              "10": 0.0009374122930115056,
+              "20": 0.000928992422116199
+            },
+            "recall": {
+              "10": 0.007694826457105436,
+              "20": 0.01569994074905666
+            },
+            "relevant_items": 11261
+          },
+          "mid_tail": {
+            "eligible_users": 9852,
+            "ndcg": {
+              "10": 0.005705855561050588,
+              "20": 0.008747556179806595
+            },
+            "positive_interactions": 11274,
+            "precision": {
+              "10": 0.0013296792529435618,
+              "20": 0.0013043036946812877
+            },
+            "recall": {
+              "10": 0.012518608742725673,
+              "20": 0.02456692380565706
+            },
+            "relevant_items": 5028
+          },
+          "near_cold": {
+            "eligible_users": 9765,
+            "ndcg": {
+              "10": 0.001181690234246103,
+              "20": 0.0020803746653554004
+            },
+            "positive_interactions": 11286,
+            "precision": {
+              "10": 0.0003686635944700463,
+              "20": 0.0003789042498719913
+            },
+            "recall": {
+              "10": 0.0029953917050691246,
+              "20": 0.006554019457245264
+            },
+            "relevant_items": 6233
+          }
+        },
+        "42": {
+          "long_tail": {
+            "eligible_users": 17815,
+            "ndcg": {
+              "10": 0.003536954914905993,
+              "20": 0.005318754518949236
+            },
+            "positive_interactions": 22560,
+            "precision": {
+              "10": 0.0009317990457479634,
+              "20": 0.0008616334549536947
+            },
+            "recall": {
+              "10": 0.007652727102628871,
+              "20": 0.014575732060997288
+            },
+            "relevant_items": 11261
+          },
+          "mid_tail": {
+            "eligible_users": 9852,
+            "ndcg": {
+              "10": 0.0057195090845339695,
+              "20": 0.008332162601024663
+            },
+            "positive_interactions": 11274,
+            "precision": {
+              "10": 0.0013499796995533873,
+              "20": 0.0012180267965895284
+            },
+            "recall": {
+              "10": 0.012704696169982405,
+              "20": 0.02295642170794424
+            },
+            "relevant_items": 5028
+          },
+          "near_cold": {
+            "eligible_users": 9765,
+            "ndcg": {
+              "10": 0.0013069968064830396,
+              "20": 0.0020820355520318463
+            },
+            "positive_interactions": 11286,
+            "precision": {
+              "10": 0.00033794162826420907,
+              "20": 0.0003430619559651814
+            },
+            "recall": {
+              "10": 0.0027820447175285886,
+              "20": 0.005888376856118792
+            },
+            "relevant_items": 6233
+          }
+        }
+      },
+      "precision10_mean": 0.0013127622141020409,
+      "precision10_std": 4.796808390430986e-05,
+      "precision20_mean": 0.0012637028014616362,
+      "precision20_std": 4.3361772966492395e-05,
+      "recall10_mean": 0.01237763341904633,
+      "recall10_std": 0.00041587481543493154,
+      "recall20_mean": 0.023647764695267737,
+      "recall20_std": 0.000829068387487367,
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ]
+    },
+    "_mid_tail_support": {
+      "definition": "6 <= train_item_degree <= 10",
+      "eligible_users": 9852,
+      "long_tail_eligible_users": 17815,
+      "near_cold_eligible_users": 9765,
+      "overall_eligible_users": 45346,
+      "partition_check": "near_cold U mid_tail == long_tail verified for all users",
+      "positive_interactions": 11274,
+      "relevant_items": 5028
+    }
+  },
+  "musical-instruments": {
+    "LightGCN": {
+      "checkpoint_dirs": {
+        "0": "log/p0/baseline/LightGCN/musical-instruments/lightgcn-83fd41817da1/seed0",
+        "1": "log/p0/baseline/LightGCN/musical-instruments/lightgcn-83fd41817da1/seed1",
+        "42": "log/p0/baseline/LightGCN/musical-instruments/lightgcn-83fd41817da1/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/baseline/LightGCN/musical-instruments/lightgcn-83fd41817da1",
+      "missing_seeds": [],
+      "ndcg10_mean": 0.0046643793591548,
+      "ndcg10_std": 0.0002712096201862445,
+      "ndcg20_mean": 0.007072006203027312,
+      "ndcg20_std": 0.00042142972777280585,
+      "per_seed": {
+        "0": {
+          "long_tail": {
+            "eligible_users": 8816,
+            "ndcg": {
+              "10": 0.0033527433158639353,
+              "20": 0.0049571882615503885
+            },
+            "positive_interactions": 10680,
+            "precision": {
+              "10": 0.0007146098003629757,
+              "20": 0.000725952813067149
+            },
+            "recall": {
+              "10": 0.006900332728372656,
+              "20": 0.013152223230490019
+            },
+            "relevant_items": 5316
+          },
+          "mid_tail": {
+            "eligible_users": 4817,
+            "ndcg": {
+              "10": 0.004607834355366234,
+              "20": 0.007106143033696798
+            },
+            "positive_interactions": 5374,
+            "precision": {
+              "10": 0.000913431596429313,
+              "20": 0.001006850736973218
+            },
+            "recall": {
+              "10": 0.008822918829146771,
+              "20": 0.0186838281087814
+            },
+            "relevant_items": 2374
+          },
+          "near_cold": {
+            "eligible_users": 4728,
+            "ndcg": {
+              "10": 0.0015951871616865722,
+              "20": 0.0022005293764562387
+            },
+            "positive_interactions": 5306,
+            "precision": {
+              "10": 0.00040186125211505935,
+              "20": 0.0003278341793570222
+            },
+            "recall": {
+              "10": 0.004018612521150592,
+              "20": 0.006415679639029894
+            },
+            "relevant_items": 2942
+          }
+        },
+        "1": {
+          "long_tail": {
+            "eligible_users": 8816,
+            "ndcg": {
+              "10": 0.0034915594731696363,
+              "20": 0.005203964384509494
+            },
+            "positive_interactions": 10680,
+            "precision": {
+              "10": 0.0007372958257713242,
+              "20": 0.0007429673321234103
+            },
+            "recall": {
+              "10": 0.007013762855414398,
+              "20": 0.013781760435571687
+            },
+            "relevant_items": 5316
+          },
+          "mid_tail": {
+            "eligible_users": 4817,
+            "ndcg": {
+              "10": 0.004959403908822817,
+              "20": 0.007475329299315416
+            },
+            "positive_interactions": 5374,
+            "precision": {
+              "10": 0.001037990450487855,
+              "20": 0.0010483703549927321
+            },
+            "recall": {
+              "10": 0.009757110234585841,
+              "20": 0.019721818559269255
+            },
+            "relevant_items": 2374
+          },
+          "near_cold": {
+            "eligible_users": 4728,
+            "ndcg": {
+              "10": 0.0014708334312047496,
+              "20": 0.002241852214065396
+            },
+            "positive_interactions": 5306,
+            "precision": {
+              "10": 0.000317258883248731,
+              "20": 0.0003172588832487311
+            },
+            "recall": {
+              "10": 0.0031725888324873096,
+              "20": 0.006345177664974619
+            },
+            "relevant_items": 2942
+          }
+        },
+        "42": {
+          "long_tail": {
+            "eligible_users": 8816,
+            "ndcg": {
+              "10": 0.00302360698832634,
+              "20": 0.004605043246227918
+            },
+            "positive_interactions": 10680,
+            "precision": {
+              "10": 0.0006465517241379306,
+              "20": 0.0006692377495462781
+            },
+            "recall": {
+              "10": 0.006200846944948578,
+              "20": 0.012241001209921354
+            },
+            "relevant_items": 5316
+          },
+          "mid_tail": {
+            "eligible_users": 4817,
+            "ndcg": {
+              "10": 0.0044258998132753495,
+              "20": 0.00663454627606972
+            },
+            "positive_interactions": 5374,
+            "precision": {
+              "10": 0.0009341914054390699,
+              "20": 0.0009341914054390685
+            },
+            "recall": {
+              "10": 0.008892118192512628,
+              "20": 0.017472839249878903
+            },
+            "relevant_items": 2374
+          },
+          "near_cold": {
+            "eligible_users": 4728,
+            "ndcg": {
+              "10": 0.001147912585618936,
+              "20": 0.001999724129520839
+            },
+            "positive_interactions": 5306,
+            "precision": {
+              "10": 0.0002538071065989848,
+              "20": 0.000296108291032149
+            },
+            "recall": {
+              "10": 0.0025380710659898475,
+              "20": 0.005816412859560068
+            },
+            "relevant_items": 2942
+          }
+        }
+      },
+      "precision10_mean": 0.0009618711507854127,
+      "precision10_std": 6.673344931833723e-05,
+      "precision20_mean": 0.0009964708324683394,
+      "precision20_std": 5.779286239184136e-05,
+      "recall10_mean": 0.009157382418748415,
+      "recall10_std": 0.0005205307174311703,
+      "recall20_mean": 0.018626161972643187,
+      "recall20_std": 0.0011255980725637857,
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ]
+    },
+    "NCL": {
+      "checkpoint_dirs": {
+        "0": "log/p0/baseline/NCL/musical-instruments/ncl-a8e18596b653/seed0",
+        "1": "log/p0/baseline/NCL/musical-instruments/ncl-a8e18596b653/seed1",
+        "42": "log/p0/baseline/NCL/musical-instruments/ncl-a8e18596b653/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/baseline/NCL/musical-instruments/ncl-a8e18596b653",
+      "missing_seeds": [],
+      "ndcg10_mean": 0.0020589597403614496,
+      "ndcg10_std": 0.00026563800126771044,
+      "ndcg20_mean": 0.0033299914717638012,
+      "ndcg20_std": 0.0005211084431857826,
+      "per_seed": {
+        "0": {
+          "long_tail": {
+            "eligible_users": 8816,
+            "ndcg": {
+              "10": 0.0013962190663713919,
+              "20": 0.002169504986674315
+            },
+            "positive_interactions": 10680,
+            "precision": {
+              "10": 0.0003176043557168785,
+              "20": 0.00033461887477313946
+            },
+            "recall": {
+              "10": 0.0029869933454325466,
+              "20": 0.006030701754385965
+            },
+            "relevant_items": 5316
+          },
+          "mid_tail": {
+            "eligible_users": 4817,
+            "ndcg": {
+              "10": 0.002298191354910434,
+              "20": 0.003628392130760397
+            },
+            "positive_interactions": 5374,
+            "precision": {
+              "10": 0.0004982354162341708,
+              "20": 0.0005397550342536846
+            },
+            "recall": {
+              "10": 0.004774756072244135,
+              "20": 0.010068507369732199
+            },
+            "relevant_items": 2374
+          },
+          "near_cold": {
+            "eligible_users": 4728,
+            "ndcg": {
+              "10": 0.00029676184158036035,
+              "20": 0.00044798994789730783
+            },
+            "positive_interactions": 5306,
+            "precision": {
+              "10": 8.460236886632826e-05,
+              "20": 7.402707275803723e-05
+            },
+            "recall": {
+              "10": 0.0008460236886632825,
+              "20": 0.0014805414551607445
+            },
+            "relevant_items": 2942
+          }
+        },
+        "1": {
+          "long_tail": {
+            "eligible_users": 8816,
+            "ndcg": {
+              "10": 0.0013063879254865394,
+              "20": 0.002243352073704548
+            },
+            "positive_interactions": 10680,
+            "precision": {
+              "10": 0.00029491833030853006,
+              "20": 0.00035163339382940074
+            },
+            "recall": {
+              "10": 0.0028735632183908046,
+              "20": 0.006541137326073806
+            },
+            "relevant_items": 5316
+          },
+          "mid_tail": {
+            "eligible_users": 4817,
+            "ndcg": {
+              "10": 0.002105595921549407,
+              "20": 0.003633308318284612
+            },
+            "positive_interactions": 5374,
+            "precision": {
+              "10": 0.0004774756072244137,
+              "20": 0.0005605148432634416
+            },
+            "recall": {
+              "10": 0.00467095702719535,
+              "20": 0.010691301640024912
+            },
+            "relevant_items": 2374
+          },
+          "near_cold": {
+            "eligible_users": 4728,
+            "ndcg": {
+              "10": 0.0003059210301093879,
+              "20": 0.0005630151848616968
+            },
+            "positive_interactions": 5306,
+            "precision": {
+              "10": 6.34517766497462e-05,
+              "20": 8.460236886632826e-05
+            },
+            "recall": {
+              "10": 0.0006345177664974619,
+              "20": 0.001692047377326565
+            },
+            "relevant_items": 2942
+          }
+        },
+        "42": {
+          "long_tail": {
+            "eligible_users": 8816,
+            "ndcg": {
+              "10": 0.0009734906758287819,
+              "20": 0.0015566884435692172
+            },
+            "positive_interactions": 10680,
+            "precision": {
+              "10": 0.0002495462794918331,
+              "20": 0.0002495462794918331
+            },
+            "recall": {
+              "10": 0.002174077434966727,
+              "20": 0.004480490018148821
+            },
+            "relevant_items": 5316
+          },
+          "mid_tail": {
+            "eligible_users": 4817,
+            "ndcg": {
+              "10": 0.001773091944624507,
+              "20": 0.002728273966246396
+            },
+            "positive_interactions": 5374,
+            "precision": {
+              "10": 0.00043595598920489944,
+              "20": 0.0004151961801951424
+            },
+            "recall": {
+              "10": 0.004048162756902636,
+              "20": 0.007888727423707702
+            },
+            "relevant_items": 2374
+          },
+          "near_cold": {
+            "eligible_users": 4728,
+            "ndcg": {
+              "10": 7.533992959137525e-05,
+              "20": 0.0002380435525578043
+            },
+            "positive_interactions": 5306,
+            "precision": {
+              "10": 2.1150592216582064e-05,
+              "20": 4.230118443316413e-05
+            },
+            "recall": {
+              "10": 0.00021150592216582064,
+              "20": 0.0008460236886632825
+            },
+            "relevant_items": 2942
+          }
+        }
+      },
+      "precision10_mean": 0.000470555670887828,
+      "precision10_std": 3.171113206667942e-05,
+      "precision20_mean": 0.0005051553525707562,
+      "precision20_std": 7.859536842848595e-05,
+      "recall10_mean": 0.004497958618780707,
+      "recall10_std": 0.0003929768421424313,
+      "recall20_mean": 0.009549512144488272,
+      "recall20_std": 0.0014716054472449474,
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ]
+    },
+    "SGL-ED": {
+      "checkpoint_dirs": {
+        "0": "log/p0/baseline/SGL/musical-instruments/sgl-31c2ca981366/seed0",
+        "1": "log/p0/baseline/SGL/musical-instruments/sgl-31c2ca981366/seed1",
+        "42": "log/p0/baseline/SGL/musical-instruments/sgl-31c2ca981366/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/baseline/SGL/musical-instruments/sgl-31c2ca981366",
+      "missing_seeds": [],
+      "ndcg10_mean": 0.005549162727758322,
+      "ndcg10_std": 0.0007305617510056795,
+      "ndcg20_mean": 0.00843694321543423,
+      "ndcg20_std": 0.000387246145940408,
+      "per_seed": {
+        "0": {
+          "long_tail": {
+            "eligible_users": 8816,
+            "ndcg": {
+              "10": 0.004514232628901514,
+              "20": 0.0062493825645277955
+            },
+            "positive_interactions": 10680,
+            "precision": {
+              "10": 0.0009528130671506336,
+              "20": 0.0008563974591651523
+            },
+            "recall": {
+              "10": 0.008709543254688446,
+              "20": 0.015420825771324862
+            },
+            "relevant_items": 5316
+          },
+          "mid_tail": {
+            "eligible_users": 4817,
+            "ndcg": {
+              "10": 0.006386146543670819,
+              "20": 0.008883087149971273
+            },
+            "positive_interactions": 5374,
+            "precision": {
+              "10": 0.0013078679676146966,
+              "20": 0.0011833091135561528
+            },
+            "recall": {
+              "10": 0.012455885405854267,
+              "20": 0.022212995640440106
+            },
+            "relevant_items": 2374
+          },
+          "near_cold": {
+            "eligible_users": 4728,
+            "ndcg": {
+              "10": 0.002135568768041268,
+              "20": 0.002985504175272101
+            },
+            "positive_interactions": 5306,
+            "precision": {
+              "10": 0.00044416243654822347,
+              "20": 0.0003912859560067684
+            },
+            "recall": {
+              "10": 0.004177241962774958,
+              "20": 0.007561336717428088
+            },
+            "relevant_items": 2942
+          }
+        },
+        "1": {
+          "long_tail": {
+            "eligible_users": 8816,
+            "ndcg": {
+              "10": 0.0035391624848702843,
+              "20": 0.005755829454354631
+            },
+            "positive_interactions": 10680,
+            "precision": {
+              "10": 0.0008053539019963692,
+              "20": 0.0008847549909255878
+            },
+            "recall": {
+              "10": 0.007234951603145796,
+              "20": 0.015846188747731395
+            },
+            "relevant_items": 5316
+          },
+          "mid_tail": {
+            "eligible_users": 4817,
+            "ndcg": {
+              "10": 0.005039489456805567,
+              "20": 0.00823987643615877
+            },
+            "positive_interactions": 5374,
+            "precision": {
+              "10": 0.0011210296865268833,
+              "20": 0.0012455885405854238
+            },
+            "recall": {
+              "10": 0.010587502594976126,
+              "20": 0.023129887205037714
+            },
+            "relevant_items": 2374
+          },
+          "near_cold": {
+            "eligible_users": 4728,
+            "ndcg": {
+              "10": 0.0016566743502584539,
+              "20": 0.002626109785305575
+            },
+            "positive_interactions": 5306,
+            "precision": {
+              "10": 0.00035956006768189517,
+              "20": 0.00038071065989847737
+            },
+            "recall": {
+              "10": 0.0034369712351945856,
+              "20": 0.007208826847151719
+            },
+            "relevant_items": 2942
+          }
+        },
+        "42": {
+          "long_tail": {
+            "eligible_users": 8816,
+            "ndcg": {
+              "10": 0.003841315330253441,
+              "20": 0.0058075503228084595
+            },
+            "positive_interactions": 10680,
+            "precision": {
+              "10": 0.0008166969147005434,
+              "20": 0.0008563974591651523
+            },
+            "recall": {
+              "10": 0.0073389292196007275,
+              "20": 0.014844222625529339
+            },
+            "relevant_items": 5316
+          },
+          "mid_tail": {
+            "eligible_users": 4817,
+            "ndcg": {
+              "10": 0.005221852182798579,
+              "20": 0.008187866060172645
+            },
+            "positive_interactions": 5374,
+            "precision": {
+              "10": 0.0011002698775171263,
+              "20": 0.0011729292090512742
+            },
+            "recall": {
+              "10": 0.010137706733098056,
+              "20": 0.021624801051830324
+            },
+            "relevant_items": 2374
+          },
+          "near_cold": {
+            "eligible_users": 4728,
+            "ndcg": {
+              "10": 0.0020056115058794725,
+              "20": 0.002931424788901011
+            },
+            "positive_interactions": 5306,
+            "precision": {
+              "10": 0.00040186125211505935,
+              "20": 0.00040186125211505945
+            },
+            "recall": {
+              "10": 0.0038599830795262267,
+              "20": 0.007561336717428088
+            },
+            "relevant_items": 2942
+          }
+        }
+      },
+      "precision10_mean": 0.0011763891772195688,
+      "precision10_std": 0.00011433611266942248,
+      "precision20_mean": 0.0012006089543976169,
+      "precision20_std": 3.929768421424296e-05,
+      "recall10_mean": 0.011060364911309482,
+      "recall10_std": 0.001229303529386273,
+      "recall20_mean": 0.022322561299102716,
+      "recall20_std": 0.0007585015209693278,
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ]
+    },
+    "SimGCL": {
+      "checkpoint_dirs": {
+        "0": "log/p0/baseline/SimGCL/musical-instruments/simgcl-f263d2bff497/seed0",
+        "1": "log/p0/baseline/SimGCL/musical-instruments/simgcl-f263d2bff497/seed1",
+        "42": "log/p0/baseline/SimGCL/musical-instruments/simgcl-f263d2bff497/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/baseline/SimGCL/musical-instruments/simgcl-f263d2bff497",
+      "missing_seeds": [],
+      "ndcg10_mean": 0.005322250847928033,
+      "ndcg10_std": 3.361442448863266e-05,
+      "ndcg20_mean": 0.007768692850589781,
+      "ndcg20_std": 0.0001319279068784092,
+      "per_seed": {
+        "0": {
+          "long_tail": {
+            "eligible_users": 8816,
+            "ndcg": {
+              "10": 0.003680123884483481,
+              "20": 0.0055157676913645155
+            },
+            "positive_interactions": 10680,
+            "precision": {
+              "10": 0.0008166969147005434,
+              "20": 0.0008280399274047166
+            },
+            "recall": {
+              "10": 0.007329476709013915,
+              "20": 0.014220356926799755
+            },
+            "relevant_items": 5316
+          },
+          "mid_tail": {
+            "eligible_users": 4817,
+            "ndcg": {
+              "10": 0.0053573578546077805,
+              "20": 0.007649638367838541
+            },
+            "positive_interactions": 5374,
+            "precision": {
+              "10": 0.0011625493045463973,
+              "20": 0.0010898899730122462
+            },
+            "recall": {
+              "10": 0.01100269877517127,
+              "20": 0.019756418240952183
+            },
+            "relevant_items": 2374
+          },
+          "near_cold": {
+            "eligible_users": 4728,
+            "ndcg": {
+              "10": 0.0015795379365457593,
+              "20": 0.002844132996937058
+            },
+            "positive_interactions": 5306,
+            "precision": {
+              "10": 0.0003384094754653131,
+              "20": 0.00043358714043993245
+            },
+            "recall": {
+              "10": 0.0031197123519458546,
+              "20": 0.007949097574732092
+            },
+            "relevant_items": 2942
+          }
+        },
+        "1": {
+          "long_tail": {
+            "eligible_users": 8816,
+            "ndcg": {
+              "10": 0.004050629965787207,
+              "20": 0.005899279714429386
+            },
+            "positive_interactions": 10680,
+            "precision": {
+              "10": 0.0009414700544464594,
+              "20": 0.0008904264972776748
+            },
+            "recall": {
+              "10": 0.008558303085299456,
+              "20": 0.015742211131276464
+            },
+            "relevant_items": 5316
+          },
+          "mid_tail": {
+            "eligible_users": 4817,
+            "ndcg": {
+              "10": 0.005290360221613409,
+              "20": 0.007745912770201512
+            },
+            "positive_interactions": 5374,
+            "precision": {
+              "10": 0.0012248287315756684,
+              "20": 0.0011417894955366389
+            },
+            "recall": {
+              "10": 0.011590893363781052,
+              "20": 0.02120960487163518
+            },
+            "relevant_items": 2374
+          },
+          "near_cold": {
+            "eligible_users": 4728,
+            "ndcg": {
+              "10": 0.0023484828209813092,
+              "20": 0.0034681331837605883
+            },
+            "positive_interactions": 5306,
+            "precision": {
+              "10": 0.0005076142131979697,
+              "20": 0.0004970389170896784
+            },
+            "recall": {
+              "10": 0.004670755781161873,
+              "20": 0.009182882120699381
+            },
+            "relevant_items": 2942
+          }
+        },
+        "42": {
+          "long_tail": {
+            "eligible_users": 8816,
+            "ndcg": {
+              "10": 0.0040551372890556174,
+              "20": 0.005810934829335569
+            },
+            "positive_interactions": 10680,
+            "precision": {
+              "10": 0.0008960980036297627,
+              "20": 0.0008563974591651523
+            },
+            "recall": {
+              "10": 0.008047867513611615,
+              "20": 0.014730792498487593
+            },
+            "relevant_items": 5316
+          },
+          "mid_tail": {
+            "eligible_users": 4817,
+            "ndcg": {
+              "10": 0.005319034467562909,
+              "20": 0.00791052741372929
+            },
+            "positive_interactions": 5374,
+            "precision": {
+              "10": 0.0011417894955366404,
+              "20": 0.00113140959103176
+            },
+            "recall": {
+              "10": 0.010898899730122483,
+              "20": 0.020898207736488827
+            },
+            "relevant_items": 2374
+          },
+          "near_cold": {
+            "eligible_users": 4728,
+            "ndcg": {
+              "10": 0.002454447671411314,
+              "20": 0.0033141442000356874
+            },
+            "positive_interactions": 5306,
+            "precision": {
+              "10": 0.0005076142131979697,
+              "20": 0.00044416243654822347
+            },
+            "recall": {
+              "10": 0.004706006768189509,
+              "20": 0.008125352509870275
+            },
+            "relevant_items": 2942
+          }
+        }
+      },
+      "precision10_mean": 0.0011763891772195688,
+      "precision10_std": 4.321498857102183e-05,
+      "precision20_mean": 0.0011210296865268817,
+      "precision20_std": 2.7462645952507587e-05,
+      "recall10_mean": 0.011164163956358268,
+      "recall10_std": 0.00037318500881976767,
+      "recall20_mean": 0.020621410283025398,
+      "recall20_std": 0.0007651146767523352,
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ]
+    },
+    "TaxPro-CL": {
+      "checkpoint_dirs": {
+        "0": "log/p0/taxprocl/musical-instruments/taxpro-cl-FINAL-no_merge-temp0.15-gammacold5.0/seed0",
+        "1": "log/p0/taxprocl/musical-instruments/taxpro-cl-FINAL-no_merge-temp0.15-gammacold5.0/seed1",
+        "42": "log/p0/taxprocl/musical-instruments/taxpro-cl-FINAL-no_merge-temp0.15-gammacold5.0/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/taxprocl/musical-instruments/taxpro-cl-FINAL-no_merge-temp0.15-gammacold5.0",
+      "missing_seeds": [
+        2,
+        3,
+        4
+      ],
+      "ndcg10_mean": 0.00681972982602485,
+      "ndcg10_std": 0.00015205596810840134,
+      "ndcg20_mean": 0.009368540519983039,
+      "ndcg20_std": 0.0002319735214192652,
+      "per_seed": {
+        "0": {
+          "long_tail": {
+            "eligible_users": 8816,
+            "ndcg": {
+              "10": 0.004841194162375122,
+              "20": 0.006752439658219714
+            },
+            "positive_interactions": 10680,
+            "precision": {
+              "10": 0.0010662431941923754,
+              "20": 0.0009641560798548081
+            },
+            "recall": {
+              "10": 0.009487619911848587,
+              "20": 0.016826549131449313
+            },
+            "relevant_items": 5316
+          },
+          "mid_tail": {
+            "eligible_users": 4817,
+            "ndcg": {
+              "10": 0.006728951685779797,
+              "20": 0.00955216100852848
+            },
+            "positive_interactions": 5374,
+            "precision": {
+              "10": 0.0014531866306829958,
+              "20": 0.0013182478721195734
+            },
+            "recall": {
+              "10": 0.013493875856342121,
+              "20": 0.024548474154037783
+            },
+            "relevant_items": 2374
+          },
+          "near_cold": {
+            "eligible_users": 4728,
+            "ndcg": {
+              "10": 0.0024396718717488775,
+              "20": 0.0033465786213828586
+            },
+            "positive_interactions": 5306,
+            "precision": {
+              "10": 0.0005076142131979697,
+              "20": 0.0004547377326565145
+            },
+            "recall": {
+              "10": 0.004864636209813875,
+              "20": 0.008372109419063732
+            },
+            "relevant_items": 2942
+          }
+        },
+        "1": {
+          "long_tail": {
+            "eligible_users": 8816,
+            "ndcg": {
+              "10": 0.004665225633768654,
+              "20": 0.006496121688824836
+            },
+            "positive_interactions": 10680,
+            "precision": {
+              "10": 0.0010549001814882013,
+              "20": 0.0009471415607985465
+            },
+            "recall": {
+              "10": 0.009157592256503326,
+              "20": 0.016096815314147434
+            },
+            "relevant_items": 5316
+          },
+          "mid_tail": {
+            "eligible_users": 4817,
+            "ndcg": {
+              "10": 0.006734963164895849,
+              "20": 0.009107838737202896
+            },
+            "positive_interactions": 5374,
+            "precision": {
+              "10": 0.00149470624870251,
+              "20": 0.0012767282541000593
+            },
+            "recall": {
+              "10": 0.013701473946439693,
+              "20": 0.022801190229049893
+            },
+            "relevant_items": 2374
+          },
+          "near_cold": {
+            "eligible_users": 4728,
+            "ndcg": {
+              "10": 0.002075377160490132,
+              "20": 0.003295274263636433
+            },
+            "positive_interactions": 5306,
+            "precision": {
+              "10": 0.00044416243654822347,
+              "20": 0.00046531302876480545
+            },
+            "recall": {
+              "10": 0.0039304850535815,
+              "20": 0.008689368302312464
+            },
+            "relevant_items": 2942
+          }
+        },
+        "42": {
+          "long_tail": {
+            "eligible_users": 8816,
+            "ndcg": {
+              "10": 0.004719487819412802,
+              "20": 0.006524218408900416
+            },
+            "positive_interactions": 10680,
+            "precision": {
+              "10": 0.00107758620689655,
+              "20": 0.0009471415607985465
+            },
+            "recall": {
+              "10": 0.009799552761213378,
+              "20": 0.016637498919713074
+            },
+            "relevant_items": 5316
+          },
+          "mid_tail": {
+            "eligible_users": 4817,
+            "ndcg": {
+              "10": 0.006995274627398906,
+              "20": 0.009445621814217745
+            },
+            "positive_interactions": 5374,
+            "precision": {
+              "10": 0.001556985675731781,
+              "20": 0.0013078679676146948
+            },
+            "recall": {
+              "10": 0.014739464396927549,
+              "20": 0.024150577814684104
+            },
+            "relevant_items": 2374
+          },
+          "near_cold": {
+            "eligible_users": 4728,
+            "ndcg": {
+              "10": 0.0019852669671344336,
+              "20": 0.0030741288605772776
+            },
+            "positive_interactions": 5306,
+            "precision": {
+              "10": 0.0004230118443316414,
+              "20": 0.00043358714043993245
+            },
+            "recall": {
+              "10": 0.0040891144952058655,
+              "20": 0.008319232938522278
+            },
+            "relevant_items": 2942
+          }
+        }
+      },
+      "precision10_mean": 0.0015016261850390956,
+      "precision10_std": 5.224437364383585e-05,
+      "precision20_mean": 0.0013009480312781091,
+      "precision20_std": 2.160749428551096e-05,
+      "recall10_mean": 0.01397827139990312,
+      "recall10_std": 0.0006673344931833758,
+      "recall20_mean": 0.023833414065923927,
+      "recall20_std": 0.0009158028779579036,
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ]
+    },
+    "XSimGCL": {
+      "checkpoint_dirs": {
+        "0": "log/p0/baseline/XSimGCL/musical-instruments/xsimgcl-d60a996d56f1/seed0",
+        "1": "log/p0/baseline/XSimGCL/musical-instruments/xsimgcl-d60a996d56f1/seed1",
+        "42": "log/p0/baseline/XSimGCL/musical-instruments/xsimgcl-d60a996d56f1/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/baseline/XSimGCL/musical-instruments/xsimgcl-d60a996d56f1",
+      "missing_seeds": [],
+      "ndcg10_mean": 0.0033931024396670734,
+      "ndcg10_std": 0.0003559006310605286,
+      "ndcg20_mean": 0.005427958644936545,
+      "ndcg20_std": 0.00026903791839199653,
+      "per_seed": {
+        "0": {
+          "long_tail": {
+            "eligible_users": 8816,
+            "ndcg": {
+              "10": 0.0024206928369120634,
+              "20": 0.003536896329966013
+            },
+            "positive_interactions": 10680,
+            "precision": {
+              "10": 0.000612522686025408,
+              "20": 0.0005671506352087104
+            },
+            "recall": {
+              "10": 0.005618572292800969,
+              "20": 0.009881654567453114
+            },
+            "relevant_items": 5316
+          },
+          "mid_tail": {
+            "eligible_users": 4817,
+            "ndcg": {
+              "10": 0.003788321657399437,
+              "20": 0.0054679993592334246
+            },
+            "positive_interactions": 5374,
+            "precision": {
+              "10": 0.0009134315964293131,
+              "20": 0.0008303923603902833
+            },
+            "recall": {
+              "10": 0.008719119784097987,
+              "20": 0.01522385994048855
+            },
+            "relevant_items": 2374
+          },
+          "near_cold": {
+            "eligible_users": 4728,
+            "ndcg": {
+              "10": 0.0007459964809310734,
+              "20": 0.0012466256607741855
+            },
+            "positive_interactions": 5306,
+            "precision": {
+              "10": 0.0002115059221658206,
+              "20": 0.0002115059221658207
+            },
+            "recall": {
+              "10": 0.001956429780033841,
+              "20": 0.0039304850535815
+            },
+            "relevant_items": 2942
+          }
+        },
+        "1": {
+          "long_tail": {
+            "eligible_users": 8816,
+            "ndcg": {
+              "10": 0.0019710719386680313,
+              "20": 0.0034072409019761736
+            },
+            "positive_interactions": 10680,
+            "precision": {
+              "10": 0.0004650635208711435,
+              "20": 0.000538793103448275
+            },
+            "recall": {
+              "10": 0.004143980641258318,
+              "20": 0.009692604355716877
+            },
+            "relevant_items": 5316
+          },
+          "mid_tail": {
+            "eligible_users": 4817,
+            "ndcg": {
+              "10": 0.0030979398367897057,
+              "20": 0.005141144439598824
+            },
+            "positive_interactions": 5374,
+            "precision": {
+              "10": 0.000685073697321985,
+              "20": 0.0007681129333610121
+            },
+            "recall": {
+              "10": 0.006331741747975918,
+              "20": 0.014289668535049479
+            },
+            "relevant_items": 2374
+          },
+          "near_cold": {
+            "eligible_users": 4728,
+            "ndcg": {
+              "10": 0.0005648296961573755,
+              "20": 0.0012394961478823826
+            },
+            "positive_interactions": 5306,
+            "precision": {
+              "10": 0.00016920473773265651,
+              "20": 0.00022208121827411173
+            },
+            "recall": {
+              "10": 0.0014276649746192893,
+              "20": 0.004036238014664411
+            },
+            "relevant_items": 2942
+          }
+        },
+        "42": {
+          "long_tail": {
+            "eligible_users": 8816,
+            "ndcg": {
+              "10": 0.0021702055314453857,
+              "20": 0.0036215331319729423
+            },
+            "positive_interactions": 10680,
+            "precision": {
+              "10": 0.0005331215970961887,
+              "20": 0.0005955081669691459
+            },
+            "recall": {
+              "10": 0.004943663036902602,
+              "20": 0.010467710223835448
+            },
+            "relevant_items": 5316
+          },
+          "mid_tail": {
+            "eligible_users": 4817,
+            "ndcg": {
+              "10": 0.0032930458248120772,
+              "20": 0.0056747321359773865
+            },
+            "positive_interactions": 5374,
+            "precision": {
+              "10": 0.0007888727423707706,
+              "20": 0.0009030516919244329
+            },
+            "recall": {
+              "10": 0.007577330288561345,
+              "20": 0.016746245934537402
+            },
+            "relevant_items": 2374
+          },
+          "near_cold": {
+            "eligible_users": 4728,
+            "ndcg": {
+              "10": 0.0007705438887171605,
+              "20": 0.0011737110666132308
+            },
+            "positive_interactions": 5306,
+            "precision": {
+              "10": 0.00019035532994923855,
+              "20": 0.00019035532994923863
+            },
+            "recall": {
+              "10": 0.0017978003384094754,
+              "20": 0.0034017202481669484
+            },
+            "relevant_items": 2942
+          }
+        }
+      },
+      "precision10_mean": 0.0007957926787073563,
+      "precision10_std": 0.00011433611266942285,
+      "precision20_mean": 0.0008338523285585761,
+      "precision20_std": 6.753588435382697e-05,
+      "recall10_mean": 0.0075427306068784165,
+      "recall10_std": 0.001194065042331839,
+      "recall20_mean": 0.015419924803358477,
+      "recall20_std": 0.001239969436219242,
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ]
+    },
+    "_mid_tail_support": {
+      "definition": "6 <= train_item_degree <= 10",
+      "eligible_users": 4817,
+      "long_tail_eligible_users": 8816,
+      "near_cold_eligible_users": 4728,
+      "overall_eligible_users": 24780,
+      "partition_check": "near_cold U mid_tail == long_tail verified for all users",
+      "positive_interactions": 5374,
+      "relevant_items": 2374
+    }
+  },
+  "yelp2018": {
+    "LightGCN": {
+      "checkpoint_dirs": {
+        "0": "log/p0/baseline/LightGCN/yelp2018/paper-v1/seed0",
+        "1": "log/p0/baseline/LightGCN/yelp2018/paper-v1/seed1",
+        "42": "log/p0/baseline/LightGCN/yelp2018/paper-v1/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/baseline/LightGCN/yelp2018/paper-v1",
+      "missing_seeds": [],
+      "ndcg10_mean": 1.2227829602385955e-05,
+      "ndcg10_std": 2.1179222137627213e-05,
+      "ndcg20_mean": 0.00010402398489440699,
+      "ndcg20_std": 4.101835884638167e-05,
+      "per_seed": {
+        "0": {
+          "long_tail": {
+            "eligible_users": 18907,
+            "ndcg": {
+              "10": 0.0,
+              "20": 8.388725189256783e-05
+            },
+            "positive_interactions": 41369,
+            "precision": {
+              "10": 0.0,
+              "20": 2.908975511715238e-05
+            },
+            "recall": {
+              "10": 0.0,
+              "20": 0.00028825302797905536
+            },
+            "relevant_items": 9911
+          },
+          "mid_tail": {
+            "eligible_users": 17297,
+            "ndcg": {
+              "10": 0.0,
+              "20": 0.00010432266473398632
+            },
+            "positive_interactions": 34841,
+            "precision": {
+              "10": 0.0,
+              "20": 3.1797421518182345e-05
+            },
+            "recall": {
+              "10": 0.0,
+              "20": 0.0003806054999903644
+            },
+            "relevant_items": 8935
+          },
+          "near_cold": {
+            "eligible_users": 5217,
+            "ndcg": {
+              "10": 0.0,
+              "20": 0.0
+            },
+            "positive_interactions": 6528,
+            "precision": {
+              "10": 0.0,
+              "20": 0.0
+            },
+            "recall": {
+              "10": 0.0,
+              "20": 0.0
+            },
+            "relevant_items": 976
+          }
+        },
+        "1": {
+          "long_tail": {
+            "eligible_users": 18907,
+            "ndcg": {
+              "10": 2.936283115195541e-05,
+              "20": 0.00012605090585757878
+            },
+            "positive_interactions": 41369,
+            "precision": {
+              "10": 2.1156185539747183e-05,
+              "20": 4.7601417464431175e-05
+            },
+            "recall": {
+              "10": 6.13664997226641e-05,
+              "20": 0.0003911973090055281
+            },
+            "relevant_items": 9911
+          },
+          "mid_tail": {
+            "eligible_users": 17297,
+            "ndcg": {
+              "10": 3.6683488807157864e-05,
+              "20": 0.0001448921882361976
+            },
+            "positive_interactions": 34841,
+            "precision": {
+              "10": 2.3125397467768977e-05,
+              "20": 5.2032144302480215e-05
+            },
+            "recall": {
+              "10": 8.286600759283884e-05,
+              "20": 0.00045142702973540686
+            },
+            "relevant_items": 8935
+          },
+          "near_cold": {
+            "eligible_users": 5217,
+            "ndcg": {
+              "10": 0.0,
+              "20": 0.0
+            },
+            "positive_interactions": 6528,
+            "precision": {
+              "10": 0.0,
+              "20": 0.0
+            },
+            "recall": {
+              "10": 0.0,
+              "20": 0.0
+            },
+            "relevant_items": 976
+          }
+        },
+        "42": {
+          "long_tail": {
+            "eligible_users": 18907,
+            "ndcg": {
+              "10": 0.0,
+              "20": 5.477843258501073e-05
+            },
+            "positive_interactions": 41369,
+            "precision": {
+              "10": 0.0,
+              "20": 2.1156185539747183e-05
+            },
+            "recall": {
+              "10": 0.0,
+              "20": 0.00016484194566386348
+            },
+            "relevant_items": 9911
+          },
+          "mid_tail": {
+            "eligible_users": 17297,
+            "ndcg": {
+              "10": 0.0,
+              "20": 6.285710171303707e-05
+            },
+            "positive_interactions": 34841,
+            "precision": {
+              "10": 0.0,
+              "20": 2.3125397467768974e-05
+            },
+            "recall": {
+              "10": 0.0,
+              "20": 0.0001946387620203889
+            },
+            "relevant_items": 8935
+          },
+          "near_cold": {
+            "eligible_users": 5217,
+            "ndcg": {
+              "10": 0.0,
+              "20": 0.0
+            },
+            "positive_interactions": 6528,
+            "precision": {
+              "10": 0.0,
+              "20": 0.0
+            },
+            "recall": {
+              "10": 0.0,
+              "20": 0.0
+            },
+            "relevant_items": 976
+          }
+        }
+      },
+      "precision10_mean": 7.708465822589658e-06,
+      "precision10_std": 1.335145445313351e-05,
+      "precision20_mean": 3.565165442947718e-05,
+      "precision20_std": 1.4833790366673086e-05,
+      "recall10_mean": 2.762200253094628e-05,
+      "recall10_std": 4.784271179039508e-05,
+      "recall20_mean": 0.0003422237639153867,
+      "recall20_std": 0.00013262700274497974,
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ]
+    },
+    "NCL": {
+      "checkpoint_dirs": {
+        "0": "log/p0/baseline/NCL/yelp2018/paper-v1/seed0",
+        "1": "log/p0/baseline/NCL/yelp2018/paper-v1/seed1",
+        "42": "log/p0/baseline/NCL/yelp2018/paper-v1/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/baseline/NCL/yelp2018/paper-v1",
+      "missing_seeds": [],
+      "ndcg10_mean": 0.00012919580875498757,
+      "ndcg10_std": 3.9621769461609005e-05,
+      "ndcg20_mean": 0.000358842869933079,
+      "ndcg20_std": 3.797264412935695e-05,
+      "per_seed": {
+        "0": {
+          "long_tail": {
+            "eligible_users": 18907,
+            "ndcg": {
+              "10": 0.00011611587545683151,
+              "20": 0.00029033052916807247
+            },
+            "positive_interactions": 41369,
+            "precision": {
+              "10": 5.2890463849367956e-05,
+              "20": 8.991378854392557e-05
+            },
+            "recall": {
+              "10": 0.00025740025740025744,
+              "20": 0.000842721390666596
+            },
+            "relevant_items": 9911
+          },
+          "mid_tail": {
+            "eligible_users": 17297,
+            "ndcg": {
+              "10": 0.00015304018397500725,
+              "20": 0.00035832125148707215
+            },
+            "positive_interactions": 34841,
+            "precision": {
+              "10": 5.7813493669422436e-05,
+              "20": 9.539226455454708e-05
+            },
+            "recall": {
+              "10": 0.00034688096201653467,
+              "20": 0.00107340386579561
+            },
+            "relevant_items": 8935
+          },
+          "near_cold": {
+            "eligible_users": 5217,
+            "ndcg": {
+              "10": 0.0,
+              "20": 2.081289497815479e-05
+            },
+            "positive_interactions": 6528,
+            "precision": {
+              "10": 0.0,
+              "20": 9.584052137243628e-06
+            },
+            "recall": {
+              "10": 0.0,
+              "20": 6.389368091495751e-05
+            },
+            "relevant_items": 976
+          }
+        },
+        "1": {
+          "long_tail": {
+            "eligible_users": 18907,
+            "ndcg": {
+              "10": 0.00011641984701725752,
+              "20": 0.00031496255052392035
+            },
+            "positive_interactions": 41369,
+            "precision": {
+              "10": 6.346855661924155e-05,
+              "20": 0.00010578092769873597
+            },
+            "recall": {
+              "10": 0.0002781786539125091,
+              "20": 0.0009335796517792605
+            },
+            "relevant_items": 9911
+          },
+          "mid_tail": {
+            "eligible_users": 17297,
+            "ndcg": {
+              "10": 0.00015108883877024338,
+              "20": 0.00039707363619875466
+            },
+            "positive_interactions": 34841,
+            "precision": {
+              "10": 6.937619240330693e-05,
+              "20": 0.00011562698733884494
+            },
+            "recall": {
+              "10": 0.00037441119709721204,
+              "20": 0.0012329415780881353
+            },
+            "relevant_items": 8935
+          },
+          "near_cold": {
+            "eligible_users": 5217,
+            "ndcg": {
+              "10": 0.0,
+              "20": 0.0
+            },
+            "positive_interactions": 6528,
+            "precision": {
+              "10": 0.0,
+              "20": 0.0
+            },
+            "recall": {
+              "10": 0.0,
+              "20": 0.0
+            },
+            "relevant_items": 976
+          }
+        },
+        "42": {
+          "long_tail": {
+            "eligible_users": 18907,
+            "ndcg": {
+              "10": 7.635161610411278e-05,
+              "20": 0.0002668237935604293
+            },
+            "positive_interactions": 41369,
+            "precision": {
+              "10": 3.702332469455757e-05,
+              "20": 8.198021896652037e-05
+            },
+            "recall": {
+              "10": 0.00016924948431797747,
+              "20": 0.0008118686200877983
+            },
+            "relevant_items": 9911
+          },
+          "mid_tail": {
+            "eligible_users": 17297,
+            "ndcg": {
+              "10": 8.345840351971211e-05,
+              "20": 0.00032113372211341017
+            },
+            "positive_interactions": 34841,
+            "precision": {
+              "10": 4.0469445568595707e-05,
+              "20": 8.961091518760482e-05
+            },
+            "recall": {
+              "10": 0.00018500317974215182,
+              "20": 0.001028116629087896
+            },
+            "relevant_items": 8935
+          },
+          "near_cold": {
+            "eligible_users": 5217,
+            "ndcg": {
+              "10": 0.0,
+              "20": 0.0
+            },
+            "positive_interactions": 6528,
+            "precision": {
+              "10": 0.0,
+              "20": 0.0
+            },
+            "recall": {
+              "10": 0.0,
+              "20": 0.0
+            },
+            "relevant_items": 976
+          }
+        }
+      },
+      "precision10_mean": 5.588637721377503e-05,
+      "precision10_std": 1.4549410177623769e-05,
+      "precision20_mean": 0.00010021005569366561,
+      "precision20_std": 1.366079558956065e-05,
+      "recall10_mean": 0.0003020984462852995,
+      "recall10_std": 0.00010233745426776768,
+      "recall20_mean": 0.001111487357657214,
+      "recall20_std": 0.00010759218929605104,
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ]
+    },
+    "SGL-ED": {
+      "checkpoint_dirs": {
+        "0": "log/p0/baseline/SGL/yelp2018/sgl-f1d0905794ff/seed0",
+        "1": "log/p0/baseline/SGL/yelp2018/sgl-f1d0905794ff/seed1",
+        "42": "log/p0/baseline/SGL/yelp2018/sgl-f1d0905794ff/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/baseline/SGL/yelp2018/sgl-f1d0905794ff",
+      "missing_seeds": [],
+      "ndcg10_mean": 8.001567123852723e-06,
+      "ndcg10_std": 1.3859120798685686e-05,
+      "ndcg20_mean": 8.720219693488807e-05,
+      "ndcg20_std": 2.334209507903168e-05,
+      "per_seed": {
+        "0": {
+          "long_tail": {
+            "eligible_users": 18907,
+            "ndcg": {
+              "10": 0.0,
+              "20": 5.373424887470733e-05
+            },
+            "positive_interactions": 41369,
+            "precision": {
+              "10": 0.0,
+              "20": 2.380070873221558e-05
+            },
+            "recall": {
+              "10": 0.0,
+              "20": 0.0001574960479070068
+            },
+            "relevant_items": 9911
+          },
+          "mid_tail": {
+            "eligible_users": 17297,
+            "ndcg": {
+              "10": 0.0,
+              "20": 6.789068949101858e-05
+            },
+            "positive_interactions": 34841,
+            "precision": {
+              "10": 0.0,
+              "20": 2.6016072151240098e-05
+            },
+            "recall": {
+              "10": 0.0,
+              "20": 0.0002154240895063003
+            },
+            "relevant_items": 8935
+          },
+          "near_cold": {
+            "eligible_users": 5217,
+            "ndcg": {
+              "10": 0.0,
+              "20": 0.0
+            },
+            "positive_interactions": 6528,
+            "precision": {
+              "10": 0.0,
+              "20": 0.0
+            },
+            "recall": {
+              "10": 0.0,
+              "20": 0.0
+            },
+            "relevant_items": 976
+          }
+        },
+        "1": {
+          "long_tail": {
+            "eligible_users": 18907,
+            "ndcg": {
+              "10": 0.0,
+              "20": 6.353379591232203e-05
+            },
+            "positive_interactions": 41369,
+            "precision": {
+              "10": 0.0,
+              "20": 2.6445231924683978e-05
+            },
+            "recall": {
+              "10": 0.0,
+              "20": 0.00020157143444814675
+            },
+            "relevant_items": 9911
+          },
+          "mid_tail": {
+            "eligible_users": 17297,
+            "ndcg": {
+              "10": 0.0,
+              "20": 8.057444173329577e-05
+            },
+            "positive_interactions": 34841,
+            "precision": {
+              "10": 0.0,
+              "20": 2.8906746834711218e-05
+            },
+            "recall": {
+              "10": 0.0,
+              "20": 0.00027323758317572273
+            },
+            "relevant_items": 8935
+          },
+          "near_cold": {
+            "eligible_users": 5217,
+            "ndcg": {
+              "10": 0.0,
+              "20": 0.0
+            },
+            "positive_interactions": 6528,
+            "precision": {
+              "10": 0.0,
+              "20": 0.0
+            },
+            "recall": {
+              "10": 0.0,
+              "20": 0.0
+            },
+            "relevant_items": 976
+          }
+        },
+        "42": {
+          "long_tail": {
+            "eligible_users": 18907,
+            "ndcg": {
+              "10": 1.930685724797539e-05,
+              "20": 9.373592850833242e-05
+            },
+            "positive_interactions": 41369,
+            "precision": {
+              "10": 1.586713915481039e-05,
+              "20": 3.702332469455758e-05
+            },
+            "recall": {
+              "10": 3.966784788702596e-05,
+              "20": 0.0002820824738632958
+            },
+            "relevant_items": 9911
+          },
+          "mid_tail": {
+            "eligible_users": 17297,
+            "ndcg": {
+              "10": 2.400470137155817e-05,
+              "20": 0.00011314145958034986
+            },
+            "positive_interactions": 34841,
+            "precision": {
+              "10": 1.7344048100826736e-05,
+              "20": 4.046944556859571e-05
+            },
+            "recall": {
+              "10": 5.29957025303039e-05,
+              "20": 0.0003565165442947717
+            },
+            "relevant_items": 8935
+          },
+          "near_cold": {
+            "eligible_users": 5217,
+            "ndcg": {
+              "10": 0.0,
+              "20": 0.0
+            },
+            "positive_interactions": 6528,
+            "precision": {
+              "10": 0.0,
+              "20": 0.0
+            },
+            "recall": {
+              "10": 0.0,
+              "20": 0.0
+            },
+            "relevant_items": 976
+          }
+        }
+      },
+      "precision10_mean": 5.781349366942245e-06,
+      "precision10_std": 1.0013590839850134e-05,
+      "precision20_mean": 3.179742151818234e-05,
+      "precision20_std": 7.648006333654945e-06,
+      "recall10_mean": 1.7665234176767968e-05,
+      "recall10_std": 3.0597083121764285e-05,
+      "recall20_mean": 0.00028172607232559825,
+      "recall20_std": 7.092821043558676e-05,
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ]
+    },
+    "SimGCL": {
+      "checkpoint_dirs": {
+        "0": "log/p0/baseline/SimGCL/yelp2018/simgcl-20c63ca8d16c/seed0",
+        "1": "log/p0/baseline/SimGCL/yelp2018/simgcl-20c63ca8d16c/seed1",
+        "42": "log/p0/baseline/SimGCL/yelp2018/simgcl-20c63ca8d16c/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/baseline/SimGCL/yelp2018/simgcl-20c63ca8d16c",
+      "missing_seeds": [],
+      "ndcg10_mean": 0.00041326820608781294,
+      "ndcg10_std": 2.7328406693718256e-05,
+      "ndcg20_mean": 0.0011458248897533152,
+      "ndcg20_std": 5.351530610841341e-05,
+      "per_seed": {
+        "0": {
+          "long_tail": {
+            "eligible_users": 18907,
+            "ndcg": {
+              "10": 0.0003504684753768235,
+              "20": 0.001007313975663634
+            },
+            "positive_interactions": 41369,
+            "precision": {
+              "10": 0.00019569471624266156,
+              "20": 0.00032263182948114385
+            },
+            "recall": {
+              "10": 0.0006848055771734832,
+              "20": 0.002935824459365383
+            },
+            "relevant_items": 9911
+          },
+          "mid_tail": {
+            "eligible_users": 17297,
+            "ndcg": {
+              "10": 0.00042236127312501957,
+              "20": 0.0011553027713727966
+            },
+            "positive_interactions": 34841,
+            "precision": {
+              "10": 0.00021390992657686314,
+              "20": 0.00034688096201653397
+            },
+            "recall": {
+              "10": 0.0008756414809487597,
+              "20": 0.0034132064867163454
+            },
+            "relevant_items": 8935
+          },
+          "near_cold": {
+            "eligible_users": 5217,
+            "ndcg": {
+              "10": 0.0,
+              "20": 6.76113848710614e-05
+            },
+            "positive_interactions": 6528,
+            "precision": {
+              "10": 0.0,
+              "20": 1.9168104274487255e-05
+            },
+            "recall": {
+              "10": 0.0,
+              "20": 0.00025557472365983003
+            },
+            "relevant_items": 976
+          }
+        },
+        "1": {
+          "long_tail": {
+            "eligible_users": 18907,
+            "ndcg": {
+              "10": 0.0003604798145697768,
+              "20": 0.0010243547995378121
+            },
+            "positive_interactions": 41369,
+            "precision": {
+              "10": 0.00018511662347278794,
+              "20": 0.0003490770614058278
+            },
+            "recall": {
+              "10": 0.0007586003672109346,
+              "20": 0.002866387498899481
+            },
+            "relevant_items": 9911
+          },
+          "mid_tail": {
+            "eligible_users": 17297,
+            "ndcg": {
+              "10": 0.00043489090854028674,
+              "20": 0.0011939680376682315
+            },
+            "positive_interactions": 34841,
+            "precision": {
+              "10": 0.00020234722784297866,
+              "20": 0.0003786783835347162
+            },
+            "recall": {
+              "10": 0.0009723679030495244,
+              "20": 0.0034428014894280737
+            },
+            "relevant_items": 8935
+          },
+          "near_cold": {
+            "eligible_users": 5217,
+            "ndcg": {
+              "10": 0.0,
+              "20": 2.2006765329886494e-05
+            },
+            "positive_interactions": 6528,
+            "precision": {
+              "10": 0.0,
+              "20": 9.584052137243628e-06
+            },
+            "recall": {
+              "10": 0.0,
+              "20": 6.389368091495751e-05
+            },
+            "relevant_items": 976
+          }
+        },
+        "42": {
+          "long_tail": {
+            "eligible_users": 18907,
+            "ndcg": {
+              "10": 0.0003037010072184811,
+              "20": 0.000929361550397735
+            },
+            "positive_interactions": 41369,
+            "precision": {
+              "10": 0.00017982757708785114,
+              "20": 0.0003199873062886755
+            },
+            "recall": {
+              "10": 0.0005906731444891916,
+              "20": 0.0026384547856438713
+            },
+            "relevant_items": 9911
+          },
+          "mid_tail": {
+            "eligible_users": 17297,
+            "ndcg": {
+              "10": 0.00038255243659813257,
+              "20": 0.0010882038602189172
+            },
+            "positive_interactions": 34841,
+            "precision": {
+              "10": 0.0001965658784760364,
+              "20": 0.00034688096201653397
+            },
+            "recall": {
+              "10": 0.0008162714701420837,
+              "20": 0.0031691509527261414
+            },
+            "relevant_items": 8935
+          },
+          "near_cold": {
+            "eligible_users": 5217,
+            "ndcg": {
+              "10": 0.0,
+              "20": 4.6894871021319926e-05
+            },
+            "positive_interactions": 6528,
+            "precision": {
+              "10": 0.0,
+              "20": 9.584052137243628e-06
+            },
+            "recall": {
+              "10": 0.0,
+              "20": 0.00019168104274487253
+            },
+            "relevant_items": 976
+          }
+        }
+      },
+      "precision10_mean": 0.0002042743442986261,
+      "precision10_std": 8.831157030999287e-06,
+      "precision20_mean": 0.0003574801025225947,
+      "precision20_std": 1.8358249873058523e-05,
+      "recall10_mean": 0.0008880936180467892,
+      "recall10_std": 7.878969399825003e-05,
+      "recall20_mean": 0.003341719642956853,
+      "recall20_std": 0.00015017966134711587,
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ]
+    },
+    "TaxPro-CL": {
+      "checkpoint_dirs": {
+        "0": "log/p0/taxprocl/yelp2018/taxpro-cl-FINAL-no_merge-temp0.125-tempuser0.15-gammacold1.5/seed0",
+        "1": "log/p0/taxprocl/yelp2018/taxpro-cl-FINAL-no_merge-temp0.125-tempuser0.15-gammacold1.5/seed1",
+        "42": "log/p0/taxprocl/yelp2018/taxpro-cl-FINAL-no_merge-temp0.125-tempuser0.15-gammacold1.5/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/taxprocl/yelp2018/taxpro-cl-FINAL-no_merge-temp0.125-tempuser0.15-gammacold1.5",
+      "missing_seeds": [
+        2,
+        3,
+        4
+      ],
+      "ndcg10_mean": 0.0005211035392192158,
+      "ndcg10_std": 1.538676849286269e-05,
+      "ndcg20_mean": 0.0013742724367756885,
+      "ndcg20_std": 3.1482606293620616e-05,
+      "per_seed": {
+        "0": {
+          "long_tail": {
+            "eligible_users": 18907,
+            "ndcg": {
+              "10": 0.00041726543201855445,
+              "20": 0.001185041080700808
+            },
+            "positive_interactions": 41369,
+            "precision": {
+              "10": 0.00021685090178240871,
+              "20": 0.0003808113397154484
+            },
+            "recall": {
+              "10": 0.0008547736014065008,
+              "20": 0.003360482222575006
+            },
+            "relevant_items": 9911
+          },
+          "mid_tail": {
+            "eligible_users": 17297,
+            "ndcg": {
+              "10": 0.0005068915618952509,
+              "20": 0.001393572338217184
+            },
+            "positive_interactions": 34841,
+            "precision": {
+              "10": 0.0002370353240446321,
+              "20": 0.0004104758050528984
+            },
+            "recall": {
+              "10": 0.0010627014869079964,
+              "20": 0.004043012113053162
+            },
+            "relevant_items": 8935
+          },
+          "near_cold": {
+            "eligible_users": 5217,
+            "ndcg": {
+              "10": 0.0,
+              "20": 7.365265784607562e-05
+            },
+            "positive_interactions": 6528,
+            "precision": {
+              "10": 0.0,
+              "20": 1.9168104274487255e-05
+            },
+            "recall": {
+              "10": 0.0,
+              "20": 0.0002875215641173088
+            },
+            "relevant_items": 976
+          }
+        },
+        "1": {
+          "long_tail": {
+            "eligible_users": 18907,
+            "ndcg": {
+              "10": 0.00043070185667961773,
+              "20": 0.001203300513746532
+            },
+            "positive_interactions": 41369,
+            "precision": {
+              "10": 0.0002380070873221558,
+              "20": 0.0003966784788702588
+            },
+            "recall": {
+              "10": 0.000894441449293527,
+              "20": 0.0034501422437418767
+            },
+            "relevant_items": 9911
+          },
+          "mid_tail": {
+            "eligible_users": 17297,
+            "ndcg": {
+              "10": 0.0005189754919239212,
+              "20": 0.001391301876083585
+            },
+            "positive_interactions": 34841,
+            "precision": {
+              "10": 0.000260160721512401,
+              "20": 0.0004278198531537251
+            },
+            "recall": {
+              "10": 0.001104134490704416,
+              "20": 0.004049479632673251
+            },
+            "relevant_items": 8935
+          },
+          "near_cold": {
+            "eligible_users": 5217,
+            "ndcg": {
+              "10": 0.0,
+              "20": 9.776703488507786e-05
+            },
+            "positive_interactions": 6528,
+            "precision": {
+              "10": 0.0,
+              "20": 1.9168104274487255e-05
+            },
+            "recall": {
+              "10": 0.0,
+              "20": 0.00038336208548974505
+            },
+            "relevant_items": 976
+          }
+        },
+        "42": {
+          "long_tail": {
+            "eligible_users": 18907,
+            "ndcg": {
+              "10": 0.00044867096163474706,
+              "20": 0.0011472207428339005
+            },
+            "positive_interactions": 41369,
+            "precision": {
+              "10": 0.00022742899455228225,
+              "20": 0.0003887449092928536
+            },
+            "recall": {
+              "10": 0.0009909035809807076,
+              "20": 0.0032321941269370298
+            },
+            "relevant_items": 9911
+          },
+          "mid_tail": {
+            "eligible_users": 17297,
+            "ndcg": {
+              "10": 0.0005374435638384751,
+              "20": 0.001337943096026296
+            },
+            "positive_interactions": 34841,
+            "precision": {
+              "10": 0.00024859802277851653,
+              "20": 0.00041914782910331175
+            },
+            "recall": {
+              "10": 0.0012024174299424344,
+              "20": 0.0038500689632388787
+            },
+            "relevant_items": 8935
+          },
+          "near_cold": {
+            "eligible_users": 5217,
+            "ndcg": {
+              "10": 0.0,
+              "20": 9.546836273793978e-05
+            },
+            "positive_interactions": 6528,
+            "precision": {
+              "10": 0.0,
+              "20": 1.9168104274487255e-05
+            },
+            "recall": {
+              "10": 0.0,
+              "20": 0.00038336208548974505
+            },
+            "relevant_items": 976
+          }
+        }
+      },
+      "precision10_mean": 0.00024859802277851653,
+      "precision10_std": 1.1562698733884441e-05,
+      "precision20_mean": 0.00041914782910331175,
+      "precision20_std": 8.672024050413341e-06,
+      "recall10_mean": 0.0011230844691849488,
+      "recall10_std": 7.175975507072245e-05,
+      "recall20_mean": 0.003980853569655098,
+      "recall20_std": 0.00011330894562695815,
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ]
+    },
+    "XSimGCL": {
+      "checkpoint_dirs": {
+        "0": "log/p0/baseline/XSimGCL/yelp2018/xsimgcl-daf2ce02a033/seed0",
+        "1": "log/p0/baseline/XSimGCL/yelp2018/xsimgcl-daf2ce02a033/seed1",
+        "42": "log/p0/baseline/XSimGCL/yelp2018/xsimgcl-daf2ce02a033/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/baseline/XSimGCL/yelp2018/xsimgcl-daf2ce02a033",
+      "missing_seeds": [],
+      "ndcg10_mean": 0.00026648517523931216,
+      "ndcg10_std": 6.204816991304853e-05,
+      "ndcg20_mean": 0.0006685196346577752,
+      "ndcg20_std": 0.00011008007785941027,
+      "per_seed": {
+        "0": {
+          "long_tail": {
+            "eligible_users": 18907,
+            "ndcg": {
+              "10": 0.0001971601682240677,
+              "20": 0.0006149036808292168
+            },
+            "positive_interactions": 41369,
+            "precision": {
+              "10": 0.00011635902046860954,
+              "20": 0.000200983762627598
+            },
+            "recall": {
+              "10": 0.00040196752525519647,
+              "20": 0.0018265729098007211
+            },
+            "relevant_items": 9911
+          },
+          "mid_tail": {
+            "eligible_users": 17297,
+            "ndcg": {
+              "10": 0.00024198024025422673,
+              "20": 0.0006984443834913083
+            },
+            "positive_interactions": 34841,
+            "precision": {
+              "10": 0.0001271896860727294,
+              "20": 0.0002139099265768628
+            },
+            "recall": {
+              "10": 0.0005227991641820628,
+              "20": 0.0020927452324515394
+            },
+            "relevant_items": 8935
+          },
+          "near_cold": {
+            "eligible_users": 5217,
+            "ndcg": {
+              "10": 0.0,
+              "20": 6.635758249679452e-05
+            },
+            "positive_interactions": 6528,
+            "precision": {
+              "10": 0.0,
+              "20": 1.9168104274487255e-05
+            },
+            "recall": {
+              "10": 0.0,
+              "20": 0.00025557472365983003
+            },
+            "relevant_items": 976
+          }
+        },
+        "1": {
+          "long_tail": {
+            "eligible_users": 18907,
+            "ndcg": {
+              "10": 0.00018068026948880167,
+              "20": 0.0004684541898536148
+            },
+            "positive_interactions": 41369,
+            "precision": {
+              "10": 0.00012164806685354634,
+              "20": 0.0001718940075104457
+            },
+            "recall": {
+              "10": 0.00040158973622770103,
+              "20": 0.001324339435885424
+            },
+            "relevant_items": 9911
+          },
+          "mid_tail": {
+            "eligible_users": 17297,
+            "ndcg": {
+              "10": 0.00022043149802487662,
+              "20": 0.0005465712536935573
+            },
+            "positive_interactions": 34841,
+            "precision": {
+              "10": 0.00013297103543967166,
+              "20": 0.00018500317974215165
+            },
+            "recall": {
+              "10": 0.0005223862106558528,
+              "20": 0.001593079407151211
+            },
+            "relevant_items": 8935
+          },
+          "near_cold": {
+            "eligible_users": 5217,
+            "ndcg": {
+              "10": 0.0,
+              "20": 2.081289497815479e-05
+            },
+            "positive_interactions": 6528,
+            "precision": {
+              "10": 0.0,
+              "20": 9.584052137243628e-06
+            },
+            "recall": {
+              "10": 0.0,
+              "20": 6.389368091495751e-05
+            },
+            "relevant_items": 976
+          }
+        },
+        "42": {
+          "long_tail": {
+            "eligible_users": 18907,
+            "ndcg": {
+              "10": 0.00028031954021896126,
+              "20": 0.0006586542256389402
+            },
+            "positive_interactions": 41369,
+            "precision": {
+              "10": 0.00016396043793304074,
+              "20": 0.0002194954249748767
+            },
+            "recall": {
+              "10": 0.0006281372230491605,
+              "20": 0.0018789966930867121
+            },
+            "relevant_items": 9911
+          },
+          "mid_tail": {
+            "eligible_users": 17297,
+            "ndcg": {
+              "10": 0.0003370437874388332,
+              "20": 0.00076054326678846
+            },
+            "positive_interactions": 34841,
+            "precision": {
+              "10": 0.00017922183037520964,
+              "20": 0.0002341446493611606
+            },
+            "recall": {
+              "10": 0.0007941096309021385,
+              "20": 0.0022336656232707576
+            },
+            "relevant_items": 8935
+          },
+          "near_cold": {
+            "eligible_users": 5217,
+            "ndcg": {
+              "10": 0.0,
+              "20": 6.714296751528252e-05
+            },
+            "positive_interactions": 6528,
+            "precision": {
+              "10": 0.0,
+              "20": 1.9168104274487255e-05
+            },
+            "recall": {
+              "10": 0.0,
+              "20": 0.00025557472365983003
+            },
+            "relevant_items": 976
+          }
+        }
+      },
+      "precision10_mean": 0.00014646085062920355,
+      "precision10_std": 2.8518719213252302e-05,
+      "precision20_mean": 0.00021101925189339168,
+      "precision20_std": 2.4697935322071764e-05,
+      "recall10_mean": 0.0006130983352466848,
+      "recall10_std": 0.0001567605163898208,
+      "recall20_mean": 0.001973163420957836,
+      "recall20_std": 0.000336619269057308,
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ]
+    },
+    "_mid_tail_support": {
+      "definition": "6 <= train_item_degree <= 10",
+      "eligible_users": 17297,
+      "long_tail_eligible_users": 18907,
+      "near_cold_eligible_users": 5217,
+      "overall_eligible_users": 31668,
+      "partition_check": "near_cold U mid_tail == long_tail verified for all users",
+      "positive_interactions": 34841,
+      "relevant_items": 8935
+    }
+  }
+}

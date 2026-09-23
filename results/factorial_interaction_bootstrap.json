@@ -1,0 +1,378 @@
+{
+  "amazon-book": {
+    "near_cold": {
+      "direction_conditional_effect_fixed_epsilon_V1_minus_V0": {
+        "n_users": 13238,
+        "mean_diff": 0.0001573752329153447,
+        "ci95_lo": -4.4065065216296514e-05,
+        "ci95_hi": 0.0003777005589968273,
+        "excludes_zero": false
+      },
+      "direction_conditional_effect_adaptive_epsilon_V3_minus_V2": {
+        "n_users": 13238,
+        "mean_diff": 0.0001573752329153447,
+        "ci95_lo": -4.4065065216296514e-05,
+        "ci95_hi": 0.0003777005589968273,
+        "excludes_zero": false
+      },
+      "interaction_V3V2_minus_V1V0": {
+        "n_users": 13238,
+        "mean_diff": 0.0,
+        "ci95_lo": 0.0,
+        "ci95_hi": 0.0,
+        "excludes_zero": false
+      }
+    },
+    "long_tail": {
+      "direction_conditional_effect_fixed_epsilon_V1_minus_V0": {
+        "n_users": 36609,
+        "mean_diff": 9.847833109225549e-05,
+        "ci95_lo": 2.002598058572215e-05,
+        "ci95_hi": 0.00017797222140847736,
+        "excludes_zero": true
+      },
+      "direction_conditional_effect_adaptive_epsilon_V3_minus_V2": {
+        "n_users": 36609,
+        "mean_diff": 0.00010303094565880104,
+        "ci95_lo": 2.1624296824096706e-05,
+        "ci95_hi": 0.00018469650780730454,
+        "excludes_zero": true
+      },
+      "interaction_V3V2_minus_V1V0": {
+        "n_users": 36609,
+        "mean_diff": 4.552614566545567e-06,
+        "ci95_lo": 0.0,
+        "ci95_hi": 1.3657843699636701e-05,
+        "excludes_zero": false
+      }
+    },
+    "overall": {
+      "direction_conditional_effect_fixed_epsilon_V1_minus_V0": {
+        "n_users": 52639,
+        "mean_diff": 0.000213483705702429,
+        "ci95_lo": 0.00012390011723345016,
+        "ci95_hi": 0.00030123369956803147,
+        "excludes_zero": true
+      },
+      "direction_conditional_effect_adaptive_epsilon_V3_minus_V2": {
+        "n_users": 52639,
+        "mean_diff": 0.0002230231884865338,
+        "ci95_lo": 0.0001381495285864352,
+        "ci95_hi": 0.0003129822516708563,
+        "excludes_zero": true
+      },
+      "interaction_V3V2_minus_V1V0": {
+        "n_users": 52639,
+        "mean_diff": 9.539482784104803e-06,
+        "ci95_lo": -5.132115798480228e-06,
+        "ci95_hi": 2.386017982597989e-05,
+        "excludes_zero": false
+      }
+    },
+    "warm": {
+      "direction_conditional_effect_fixed_epsilon_V1_minus_V0": {
+        "n_users": 52123,
+        "mean_diff": 0.0002757229430992706,
+        "ci95_lo": 0.00014841883626461437,
+        "ci95_hi": 0.0004012962689219618,
+        "excludes_zero": true
+      },
+      "direction_conditional_effect_adaptive_epsilon_V3_minus_V2": {
+        "n_users": 52123,
+        "mean_diff": 0.0002908476262925875,
+        "ci95_lo": 0.00016268936124301395,
+        "ci95_hi": 0.0004169156925311356,
+        "excludes_zero": true
+      },
+      "interaction_V3V2_minus_V1V0": {
+        "n_users": 52123,
+        "mean_diff": 1.5124683193316906e-05,
+        "ci95_lo": -5.065529063439062e-06,
+        "ci95_hi": 3.57520808117049e-05,
+        "excludes_zero": false
+      }
+    }
+  },
+  "yelp2018": {
+    "near_cold": {
+      "direction_conditional_effect_fixed_epsilon_V1_minus_V0": {
+        "n_users": 5217,
+        "mean_diff": 0.0,
+        "ci95_lo": 0.0,
+        "ci95_hi": 0.0,
+        "excludes_zero": false
+      },
+      "direction_conditional_effect_adaptive_epsilon_V3_minus_V2": {
+        "n_users": 5217,
+        "mean_diff": 0.0,
+        "ci95_lo": 0.0,
+        "ci95_hi": 0.0,
+        "excludes_zero": false
+      },
+      "interaction_V3V2_minus_V1V0": {
+        "n_users": 5217,
+        "mean_diff": 0.0,
+        "ci95_lo": 0.0,
+        "ci95_hi": 0.0,
+        "excludes_zero": false
+      }
+    },
+    "long_tail": {
+      "direction_conditional_effect_fixed_epsilon_V1_minus_V0": {
+        "n_users": 18907,
+        "mean_diff": -3.278160572080302e-05,
+        "ci95_lo": -0.00016829408802492197,
+        "ci95_hi": 9.998583057943788e-05,
+        "excludes_zero": false
+      },
+      "direction_conditional_effect_adaptive_epsilon_V3_minus_V2": {
+        "n_users": 18907,
+        "mean_diff": -5.628847854274433e-05,
+        "ci95_lo": -0.00019148306819539694,
+        "ci95_hi": 7.805982932154524e-05,
+        "excludes_zero": false
+      },
+      "interaction_V3V2_minus_V1V0": {
+        "n_users": 18907,
+        "mean_diff": -2.3506872821941314e-05,
+        "ci95_lo": -6.464390026033862e-05,
+        "ci95_hi": 0.0,
+        "excludes_zero": false
+      }
+    },
+    "overall": {
+      "direction_conditional_effect_fixed_epsilon_V1_minus_V0": {
+        "n_users": 31668,
+        "mean_diff": -6.645468022291034e-05,
+        "ci95_lo": -0.00022645987552518285,
+        "ci95_hi": 9.090856086416862e-05,
+        "excludes_zero": false
+      },
+      "direction_conditional_effect_adaptive_epsilon_V3_minus_V2": {
+        "n_users": 31668,
+        "mean_diff": -4.2668255268008505e-05,
+        "ci95_lo": -0.0001987567998915321,
+        "ci95_hi": 0.0001173220989705803,
+        "excludes_zero": false
+      },
+      "interaction_V3V2_minus_V1V0": {
+        "n_users": 31668,
+        "mean_diff": 2.3786424954901853e-05,
+        "ci95_lo": -1.5062788709370283e-08,
+        "ci95_hi": 4.910124117141806e-05,
+        "excludes_zero": false
+      }
+    },
+    "warm": {
+      "direction_conditional_effect_fixed_epsilon_V1_minus_V0": {
+        "n_users": 31661,
+        "mean_diff": -3.2299837946904054e-05,
+        "ci95_lo": -0.00021464297332242057,
+        "ci95_hi": 0.0001531210970264374,
+        "excludes_zero": false
+      },
+      "direction_conditional_effect_adaptive_epsilon_V3_minus_V2": {
+        "n_users": 31661,
+        "mean_diff": -5.15359710070197e-06,
+        "ci95_lo": -0.00020327973582246609,
+        "ci95_hi": 0.00019001695622986617,
+        "excludes_zero": false
+      },
+      "interaction_V3V2_minus_V1V0": {
+        "n_users": 31661,
+        "mean_diff": 2.7146240846202073e-05,
+        "ci95_lo": -1.0378588481843396e-08,
+        "ci95_hi": 5.579459320428199e-05,
+        "excludes_zero": false
+      }
+    }
+  },
+  "musical-instruments": {
+    "near_cold": {
+      "direction_conditional_effect_fixed_epsilon_V1_minus_V0": {
+        "n_users": 4728,
+        "mean_diff": 0.00010575296108291032,
+        "ci95_lo": -0.0001410039481105471,
+        "ci95_hi": 0.00038776085730400455,
+        "excludes_zero": false
+      },
+      "direction_conditional_effect_adaptive_epsilon_V3_minus_V2": {
+        "n_users": 4728,
+        "mean_diff": 0.0002467569091934574,
+        "ci95_lo": -0.00031725888324873094,
+        "ci95_hi": 0.000775521714608009,
+        "excludes_zero": false
+      },
+      "interaction_V3V2_minus_V1V0": {
+        "n_users": 4728,
+        "mean_diff": 0.00014100394811054708,
+        "ci95_lo": -0.0003877608573040045,
+        "ci95_hi": 0.0007050197405527354,
+        "excludes_zero": false
+      }
+    },
+    "long_tail": {
+      "direction_conditional_effect_fixed_epsilon_V1_minus_V0": {
+        "n_users": 8816,
+        "mean_diff": 9.26346037507562e-05,
+        "ci95_lo": -0.00011343012704174228,
+        "ci95_hi": 0.0003213853599516032,
+        "excludes_zero": false
+      },
+      "direction_conditional_effect_adaptive_epsilon_V3_minus_V2": {
+        "n_users": 8816,
+        "mean_diff": 0.0001512401693889897,
+        "ci95_lo": -0.00026467029643073196,
+        "ci95_hi": 0.0005576981246218996,
+        "excludes_zero": false
+      },
+      "interaction_V3V2_minus_V1V0": {
+        "n_users": 8816,
+        "mean_diff": 5.860556563823351e-05,
+        "ci95_lo": -0.0004014166162532769,
+        "ci95_hi": 0.0005167372454123815,
+        "excludes_zero": false
+      }
+    },
+    "overall": {
+      "direction_conditional_effect_fixed_epsilon_V1_minus_V0": {
+        "n_users": 24780,
+        "mean_diff": -0.00044569523325298607,
+        "ci95_lo": -0.0007955230317466917,
+        "ci95_hi": -9.409742956283782e-05,
+        "excludes_zero": true
+      },
+      "direction_conditional_effect_adaptive_epsilon_V3_minus_V2": {
+        "n_users": 24780,
+        "mean_diff": -0.0007606673522743712,
+        "ci95_lo": -0.0012781270551383873,
+        "ci95_hi": -0.0002608231113765055,
+        "excludes_zero": true
+      },
+      "interaction_V3V2_minus_V1V0": {
+        "n_users": 24780,
+        "mean_diff": -0.0003149721190213851,
+        "ci95_lo": -0.0008229811356146637,
+        "ci95_hi": 0.00020845992067040697,
+        "excludes_zero": false
+      }
+    },
+    "warm": {
+      "direction_conditional_effect_fixed_epsilon_V1_minus_V0": {
+        "n_users": 19545,
+        "mean_diff": -0.0006966219590931794,
+        "ci95_lo": -0.0011378097755687935,
+        "ci95_hi": -0.00024388164065830987,
+        "excludes_zero": true
+      },
+      "direction_conditional_effect_adaptive_epsilon_V3_minus_V2": {
+        "n_users": 19545,
+        "mean_diff": -0.0011273361486769141,
+        "ci95_lo": -0.0018019357351667404,
+        "ci95_hi": -0.0004671852407846268,
+        "excludes_zero": true
+      },
+      "interaction_V3V2_minus_V1V0": {
+        "n_users": 19545,
+        "mean_diff": -0.0004307141895837349,
+        "ci95_lo": -0.0011099528990091928,
+        "ci95_hi": 0.00025390078896831195,
+        "excludes_zero": false
+      }
+    }
+  },
+  "arts-crafts-and-sewing": {
+    "near_cold": {
+      "direction_conditional_effect_fixed_epsilon_V1_minus_V0": {
+        "n_users": 9765,
+        "mean_diff": -6.82710360129715e-05,
+        "ci95_lo": -0.00027308414405188597,
+        "ci95_hi": 0.00010240655401945725,
+        "excludes_zero": false
+      },
+      "direction_conditional_effect_adaptive_epsilon_V3_minus_V2": {
+        "n_users": 9765,
+        "mean_diff": -0.00017067759003242875,
+        "ci95_lo": -0.0003754906980713432,
+        "ci95_hi": 3.413551800648574e-05,
+        "excludes_zero": false
+      },
+      "interaction_V3V2_minus_V1V0": {
+        "n_users": 9765,
+        "mean_diff": -0.00010240655401945725,
+        "ci95_lo": -0.00037549069807134316,
+        "ci95_hi": 0.00013654207202594298,
+        "excludes_zero": false
+      }
+    },
+    "long_tail": {
+      "direction_conditional_effect_fixed_epsilon_V1_minus_V0": {
+        "n_users": 17815,
+        "mean_diff": -0.00015436429974740386,
+        "ci95_lo": -0.0003445910125674369,
+        "ci95_hi": 2.806623631770979e-05,
+        "excludes_zero": false
+      },
+      "direction_conditional_effect_adaptive_epsilon_V3_minus_V2": {
+        "n_users": 17815,
+        "mean_diff": -0.00010446876851591978,
+        "ci95_lo": -0.00028689930458103343,
+        "ci95_hi": 7.796176754919388e-05,
+        "excludes_zero": false
+      },
+      "interaction_V3V2_minus_V1V0": {
+        "n_users": 17815,
+        "mean_diff": 4.989553123148409e-05,
+        "ci95_lo": -0.00018087130071412977,
+        "ci95_hi": 0.0002681884803692269,
+        "excludes_zero": false
+      }
+    },
+    "overall": {
+      "direction_conditional_effect_fixed_epsilon_V1_minus_V0": {
+        "n_users": 45346,
+        "mean_diff": -0.0005134830619350811,
+        "ci95_lo": -0.000747118112762271,
+        "ci95_hi": -0.0002729327350311734,
+        "excludes_zero": true
+      },
+      "direction_conditional_effect_adaptive_epsilon_V3_minus_V2": {
+        "n_users": 45346,
+        "mean_diff": -0.00030499606940516253,
+        "ci95_lo": -0.000557074473737465,
+        "ci95_hi": -5.196040623641738e-05,
+        "excludes_zero": true
+      },
+      "interaction_V3V2_minus_V1V0": {
+        "n_users": 45346,
+        "mean_diff": 0.0002084869925299186,
+        "ci95_lo": -5.600252835255287e-05,
+        "ci95_hi": 0.00047451083091956653,
+        "excludes_zero": false
+      }
+    },
+    "warm": {
+      "direction_conditional_effect_fixed_epsilon_V1_minus_V0": {
+        "n_users": 35000,
+        "mean_diff": -0.0006752879131450561,
+        "ci95_lo": -0.0009929164089878377,
+        "ci95_hi": -0.00034796897546897544,
+        "excludes_zero": true
+      },
+      "direction_conditional_effect_adaptive_epsilon_V3_minus_V2": {
+        "n_users": 35000,
+        "mean_diff": -0.0003142161410018553,
+        "ci95_lo": -0.0006387093726379439,
+        "ci95_hi": 2.6299388442245583e-05,
+        "excludes_zero": false
+      },
+      "interaction_V3V2_minus_V1V0": {
+        "n_users": 35000,
+        "mean_diff": 0.0003610717721432007,
+        "ci95_lo": 9.276609633752487e-06,
+        "ci95_hi": 0.000710045695045695,
+        "excludes_zero": true
+      }
+    }
+  }
+}

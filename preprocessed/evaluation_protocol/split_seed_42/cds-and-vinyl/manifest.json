@@ -1,0 +1,50 @@
+{
+  "creation_command": "python -m tools.protocol.build --build",
+  "dataset": "cds-and-vinyl",
+  "group_definitions": {
+    "long_tail": {
+      "maximum": 10,
+      "minimum": 1
+    },
+    "near_cold": {
+      "maximum": 5,
+      "minimum": 1
+    },
+    "strict_cold": {
+      "audit_only": true,
+      "maximum": 0,
+      "minimum": 0
+    },
+    "warm": {
+      "maximum": null,
+      "minimum": 11
+    }
+  },
+  "output_hashes": {
+    "group_masks.npz": "1f2dbd459d672a26036669a75f181e1121a4f1bf669527c1be3f15dceecdd854",
+    "group_statistics.json": "ce8f17eb65454abdf122edd40acc336f204913c81c9370897c356f837d5f8056",
+    "item_degrees_train.json": "ac38b32077b321f3398f043126caa99fe9350e963e612f02471beeddd0725380",
+    "test_targets_by_group.json": "471faeef38f7d081fa69b074d6671d3afb49a72361aa924bba61201b0850d2b3",
+    "validation_targets_by_group.json": "d4338b2941493a9efcbb2263179c21d5e4be7aedbdac9cea52da383086bc852c"
+  },
+  "protocol_version": "taxprocl-p0-week3-v1",
+  "ranking_protocol": {
+    "candidate_catalog": "full catalog",
+    "denominator": "users with >=1 relevant positive in the slice",
+    "group_slice": "filter relevant positives only",
+    "test_excludes": "train + validation positives",
+    "test_role": "evaluation-only",
+    "validation_excludes": "train positives"
+  },
+  "source_hashes": {
+    "test": "98b8934158ec75692c1b940a35722390c2a24ce777d370f56db07530c9eda133",
+    "train": "caf16ea3324aee3ef920b53b1c89505caebf5c020c2dec12cd9b127c75f8bc26",
+    "validation": "e4b807d00c227bed0de2ca892088d3f908791a56a082cbfbb1bb7cdaa6d72eee"
+  },
+  "source_paths": {
+    "test": "dataset_verify/cds-and-vinyl/test.txt",
+    "train": "dataset_verify/cds-and-vinyl/train.txt",
+    "validation": "dataset_verify/cds-and-vinyl/validation.txt"
+  },
+  "split_seed": 42
+}

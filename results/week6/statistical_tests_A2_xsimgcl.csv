@@ -1,0 +1,17 @@
+reference_config,candidate_config,dataset,group,metric,k,n_pairs,mean_paired_delta,rank_biserial_sign,wilcoxon_statistic,p_value,p_holm,significant_0_05
+XSimGCL,TaxPro-CL,amazon-book,long_tail,recall,20,3,0.000572265594380694,1.0,0.0,0.25,1.0,False
+XSimGCL,TaxPro-CL,amazon-book,near_cold,recall,20,3,0.0006777626697554181,1.0,0.0,0.25,1.0,False
+XSimGCL,TaxPro-CL,amazon-book,overall,recall,20,3,-0.0014345988921548453,-1.0,0.0,0.25,1.0,False
+XSimGCL,TaxPro-CL,amazon-book,warm,recall,20,3,-0.0019117293619899667,-1.0,0.0,0.25,1.0,False
+XSimGCL,TaxPro-CL,arts-crafts-and-sewing,long_tail,recall,20,3,0.006940899715247172,1.0,0.0,0.25,1.0,False
+XSimGCL,TaxPro-CL,arts-crafts-and-sewing,near_cold,recall,20,3,0.004941116231438812,1.0,0.0,0.25,1.0,False
+XSimGCL,TaxPro-CL,arts-crafts-and-sewing,overall,recall,20,3,-0.016577580537028902,-1.0,0.0,0.25,1.0,False
+XSimGCL,TaxPro-CL,arts-crafts-and-sewing,warm,recall,20,3,-0.027186759213055012,-1.0,0.0,0.25,1.0,False
+XSimGCL,TaxPro-CL,musical-instruments,long_tail,recall,20,3,0.006506298072768128,1.0,0.0,0.25,1.0,False
+XSimGCL,TaxPro-CL,musical-instruments,near_cold,recall,20,3,0.004670755781161872,1.0,0.0,0.25,1.0,False
+XSimGCL,TaxPro-CL,musical-instruments,overall,recall,20,3,-0.019631105214552625,-1.0,0.0,0.25,1.0,False
+XSimGCL,TaxPro-CL,musical-instruments,warm,recall,20,3,-0.030348679865246992,-1.0,0.0,0.25,1.0,False
+XSimGCL,TaxPro-CL,yelp2018,long_tail,recall,20,3,0.001670969851493685,1.0,0.0,0.25,1.0,False
+XSimGCL,TaxPro-CL,yelp2018,near_cold,recall,20,3,0.00015973420228739378,1.0,0.0,0.25,1.0,False
+XSimGCL,TaxPro-CL,yelp2018,overall,recall,20,3,-0.00406636656280325,-1.0,0.0,0.25,1.0,False
+XSimGCL,TaxPro-CL,yelp2018,warm,recall,20,3,-0.005025871349362503,-1.0,0.0,0.25,1.0,False

@@ -3,7 +3,7 @@
     "amazon-book": "ca1faa2483cf1419bc7a05747487d7ac19eb27e381dbaf3183c7410de1e20417",
     "yelp2018": "674b88c2ff56b5c3ce3a13aa08971cbf1c16ffff5b683616207009f90cb81f5a"
   },
-  "experiment_protocol_sha256": "d636fca9e9e9beb921eb0bb49af44657cacacec0ace553e0e3af2b6f8e2ab085",
+  "experiment_protocol_sha256": "f8cfa0a91237cddde7248128d7a232b5c1018b0ca393ecd79c5cc67de7392d86",
   "gate_g1": "PASS",
   "metric_count": 24,
   "taxonomy_variant_manifests": {

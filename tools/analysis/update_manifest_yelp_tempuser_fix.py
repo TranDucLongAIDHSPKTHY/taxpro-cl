@@ -55,7 +55,7 @@ def build_row(variant_label, seed, run_dir):
         "augmentation_direction": str(config.get("augmentation_direction", "")),
         "use_adaptive_epsilon": str(config.get("use_adaptive_epsilon", "")),
         "taxonomy_policy": str(config.get("taxonomy_policy", "")),
-        "used_in_tables": "Table 8 (factorial); Table 9; Figure 3; Online Resource 1 Tables S16/S20/S22 (Yelp2018 rows, tempuser0.15-corrected, supersedes original A2-V0..V3)",
+        "used_in_tables": "Table 8; Table 9; Figure 2; Online Resource 1 Tables S13/S13b/S17/S17b/S19/S27 (Yelp2018 rows, trained with temperature_user=0.15)",
     })
     return row
 
@@ -89,8 +89,8 @@ def main():
         if r["dataset"] == "yelp2018" and r["variant"] in ("V0", "V1", "V2", "V3"):
             if "SUPERSEDED" not in r["used_in_tables"]:
                 r["used_in_tables"] = (
-                    "SUPERSEDED by V{0-3}-tempuser0.15 (temperature_user confound, see Online Resource 1 "
-                    "Section S26) -- " + r["used_in_tables"]
+                    "SUPERSEDED by V{0-3}-tempuser0.15 (trained with temperature_user=0.2, not the main "
+                    "configuration's 0.15); not used in the paper"
                 )
                 superseded += 1
 

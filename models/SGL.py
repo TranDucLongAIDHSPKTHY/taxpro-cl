@@ -1,5 +1,6 @@
 """
 PyTorch Implementation of SGL
+Adapted from ID-GRec (https://github.com/BlueGhostYi/ID-GRec).
 Self-supervised Graph Learning for Recommendation  Wu et al. SIGIR'21
 """
 

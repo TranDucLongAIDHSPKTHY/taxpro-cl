@@ -73,8 +73,8 @@ BATCH_SIZE = 256
 N_BOOT = 5000
 
 VARIANTS = {
-    "leaf_uniform": "log/p0/taxprocl/amazon-book/gvhd-A3-leafuniform",
-    "leave_one_out": "log/p0/taxprocl/amazon-book/gvhd-A3-leaveoneout",
+    "leaf_uniform": "log/p0/taxprocl/amazon-book/proto-leafuniform",
+    "leave_one_out": "log/p0/taxprocl/amazon-book/proto-leaveoneout",
 }
 MAIN_DIR = "log/p0/taxprocl/amazon-book/taxpro-cl-v15-prototype-leaf-lambda0.5-same_leaf_weight0-user_ssl-warmstart20-noblend-temp0.1-DONE-overall-2.30pct-BEST-overall-nearcold-longtail-positive"
 

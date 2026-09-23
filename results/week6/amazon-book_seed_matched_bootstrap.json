@@ -1,0 +1,114 @@
+{
+  "per_seed": [
+    {
+      "seed_index": 0,
+      "group": "near_cold",
+      "n": 13238,
+      "mean_diff_recall20": 0.0018129626831847711,
+      "ci95_lo": 0.0009631364254419096,
+      "ci95_hi": 0.002738329052726998,
+      "excludes_zero": true,
+      "seed": 42
+    },
+    {
+      "seed_index": 1,
+      "group": "near_cold",
+      "n": 13238,
+      "mean_diff_recall20": 0.0008561212670594752,
+      "ci95_lo": 9.442513974920683e-05,
+      "ci95_hi": 0.0016115223850531298,
+      "excludes_zero": true,
+      "seed": 0
+    },
+    {
+      "seed_index": 2,
+      "group": "near_cold",
+      "n": 13238,
+      "mean_diff_recall20": 0.0006043208943949237,
+      "ci95_lo": -0.00032104547514730323,
+      "ci95_hi": 0.0015296872639371506,
+      "excludes_zero": false,
+      "seed": 1
+    },
+    {
+      "seed_index": 0,
+      "group": "long_tail",
+      "n": 36609,
+      "mean_diff_recall20": 0.0013041395412921564,
+      "ci95_lo": 0.0008814456673967062,
+      "ci95_hi": 0.001722300853614525,
+      "excludes_zero": true,
+      "seed": 42
+    },
+    {
+      "seed_index": 1,
+      "group": "long_tail",
+      "n": 36609,
+      "mean_diff_recall20": 0.0008839022287084839,
+      "ci95_lo": 0.0005002698308322874,
+      "ci95_hi": 0.0012787903008070782,
+      "excludes_zero": true,
+      "seed": 0
+    },
+    {
+      "seed_index": 2,
+      "group": "long_tail",
+      "n": 36609,
+      "mean_diff_recall20": 0.0003033034351643319,
+      "ci95_lo": -0.00011233210843210154,
+      "ci95_hi": 0.0007242132212701225,
+      "excludes_zero": false,
+      "seed": 1
+    }
+  ],
+  "pooled_seed_averaged": {
+    "near_cold": {
+      "n": 13238,
+      "mean_diff_recall20": 0.0010911349482130566,
+      "ci95_lo": 0.0004574373436739353,
+      "ci95_hi": 0.0017919793187960585,
+      "excludes_zero": true
+    },
+    "long_tail": {
+      "n": 36609,
+      "mean_diff_recall20": 0.0008304484017216575,
+      "ci95_lo": 0.000528052284807684,
+      "ci95_hi": 0.001115437156164846,
+      "excludes_zero": true
+    }
+  },
+  "metadata": {
+    "dataset": "amazon-book",
+    "baseline_name": "SimGCL",
+    "k": 20,
+    "n_boot": 2000,
+    "rng_seed": 42,
+    "batch_size": 256,
+    "seed_pairs": [
+      {
+        "seed": 42,
+        "taxpro_run_dir": "log/p0/taxprocl/amazon-book/taxpro-cl-v15-prototype-leaf-lambda0.5-same_leaf_weight0-user_ssl-warmstart20-noblend-temp0.1-DONE-overall-2.30pct-BEST-overall-nearcold-longtail-positive/seed42",
+        "baseline_run_dir": "log/p0/baseline/SimGCL/amazon-book/simgcl-69bb0902f42f/seed42",
+        "taxpro_checkpoint_sha256": "77f236b89b376f851db1ebfa4d5421aaa62ba2189aa77628beeb4c5ae1b6613f",
+        "baseline_checkpoint_sha256": "9cdf75be7536befcdfed8e4199c60bb87d1d2ae90e46e632e53c6baf6eb0d656"
+      },
+      {
+        "seed": 0,
+        "taxpro_run_dir": "log/p0/taxprocl/amazon-book/taxpro-cl-v15-prototype-leaf-lambda0.5-same_leaf_weight0-user_ssl-warmstart20-noblend-temp0.1-DONE-overall-2.30pct-BEST-overall-nearcold-longtail-positive/seed0",
+        "baseline_run_dir": "log/p0/baseline/SimGCL/amazon-book/simgcl-69bb0902f42f/seed0",
+        "taxpro_checkpoint_sha256": "9f2c0ffae8e021ad524f0351490f989cd7c76c746d35884846541d0f7dce1560",
+        "baseline_checkpoint_sha256": "a63102c805b04bece8853d6f4c1621b3f82e1e681bb314de277136a2a4b1b62a"
+      },
+      {
+        "seed": 1,
+        "taxpro_run_dir": "log/p0/taxprocl/amazon-book/taxpro-cl-v15-prototype-leaf-lambda0.5-same_leaf_weight0-user_ssl-warmstart20-noblend-temp0.1-DONE-overall-2.30pct-BEST-overall-nearcold-longtail-positive/seed1",
+        "baseline_run_dir": "log/p0/baseline/SimGCL/amazon-book/simgcl-69bb0902f42f/seed1",
+        "taxpro_checkpoint_sha256": "11fe0a284a92cfa361008b2e2c959f34b753cab0075cb7ceefafcf5f0afeb115",
+        "baseline_checkpoint_sha256": "e11106232ae29304bf0896e5057dd5151dc2ce7a8535845e88e7ec03a7493a87"
+      }
+    ],
+    "script": "tools/analysis/seed_matched_bootstrap.py",
+    "note": "Metadata backfilled 2026-09-05 (script enriched after this run already completed); computed values above are unchanged, only this metadata block and per-seed 'seed' labels are new.",
+    "backfilled_at_utc": "2026-09-04T20:34:09.542015+00:00"
+  }
+}

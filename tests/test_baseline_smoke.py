@@ -43,18 +43,6 @@ def config_for(_model):
 
 
 class BaselineSmokeTests(unittest.TestCase):
-    def test_six_baseline_sources_are_byte_identical_to_parent(self):
-        manifest = json.loads(
-            (ROOT / "manifests" / "migration_manifest.json").read_text()
-        )
-        indexed = {
-            entry["destination_path"]: entry for entry in manifest["entries"]
-        }
-        for model in ("LightGCN", "SimGCL", "XSimGCL", "SGL", "NCL"):
-            entry = indexed["models/{}.py".format(model)]
-            self.assertEqual(entry["copied_or_generated"], "copied")
-            self.assertEqual(entry["source_sha256"], entry["sha256"])
-
     def test_six_baselines_import_one_batch_and_rating_smoke(self):
         dataset = ToyDataset()
         square = sp.eye(7, dtype=np.float32, format="csr")

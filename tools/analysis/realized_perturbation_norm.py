@@ -46,7 +46,7 @@ from tests.Recommendation_system import checkpoint_selection, inference
 logger = logging.getLogger("realized_perturbation_norm")
 
 DATASETS = ["amazon-book", "yelp2018", "musical-instruments", "arts-crafts-and-sewing"]
-SEEDS = [0, 1, 2, 3, 4, 42]
+SEEDS = [0, 1, 42]
 REPEATS_DEFAULT = 30
 
 BIN_ORDER = ["strict_cold", "near_cold", "mid_tail", "warm"]

@@ -1,0 +1,38 @@
+{
+  "catalog_items": 73713,
+  "coverage_percent": 99.761236,
+  "dataset": "cds-and-vinyl",
+  "final_leaf_count": 743,
+  "final_leaf_train_support_distribution": {
+    "count": 742,
+    "max": 3800,
+    "mean": 96.698113,
+    "median": 27.0,
+    "min": 1
+  },
+  "invalid_items": 176,
+  "metadata_missing_items": 90,
+  "original_leaf_count": 1481,
+  "policy": {
+    "invalid_policy": "retain in BPR/evaluation; exclude from prototype/EMA/taxonomy CL",
+    "kind": "amazon_hierarchical_train_support",
+    "no_merge": false,
+    "promotion": "nearest non-root ancestor with aggregated train support >= threshold",
+    "rare_definition": "original leaf support < 10",
+    "root_only_cds_and_vinyl_prototype": false,
+    "validation_or_test_used": false
+  },
+  "promoted_items": 2620,
+  "reassigned_items": 0,
+  "retained_items": 70917,
+  "status_counts": {
+    "invalid_no_supported_ancestor": 85,
+    "invalid_root_only": 1,
+    "metadata_missing": 90,
+    "promoted": 2620,
+    "retained": 70917
+  },
+  "threshold": 10,
+  "train_observed_items": 71917,
+  "variant": "merge_t10"
+}

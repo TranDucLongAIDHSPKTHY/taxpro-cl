@@ -1,0 +1,142 @@
+[
+  {
+    "dataset": "amazon-book",
+    "leaf_bucket": "1-2",
+    "n_items": 10,
+    "mean_dist": 0.6847088932991028,
+    "median_dist": 0.7628530263900757
+  },
+  {
+    "dataset": "amazon-book",
+    "leaf_bucket": "3-5",
+    "n_items": 11,
+    "mean_dist": 1.230369210243225,
+    "median_dist": 1.2677110433578491
+  },
+  {
+    "dataset": "amazon-book",
+    "leaf_bucket": "6-20",
+    "n_items": 1389,
+    "mean_dist": 1.5686479806900024,
+    "median_dist": 1.5457477569580078
+  },
+  {
+    "dataset": "amazon-book",
+    "leaf_bucket": "21-100",
+    "n_items": 7869,
+    "mean_dist": 1.6824274063110352,
+    "median_dist": 1.640108346939087
+  },
+  {
+    "dataset": "amazon-book",
+    "leaf_bucket": "101+",
+    "n_items": 80144,
+    "mean_dist": 1.8324882984161377,
+    "median_dist": 1.7415871620178223
+  },
+  {
+    "dataset": "yelp2018",
+    "leaf_bucket": "1-2",
+    "n_items": 318,
+    "mean_dist": 0.47456374764442444,
+    "median_dist": 0.10807053744792938
+  },
+  {
+    "dataset": "yelp2018",
+    "leaf_bucket": "3-5",
+    "n_items": 504,
+    "mean_dist": 1.2464659214019775,
+    "median_dist": 1.1680102348327637
+  },
+  {
+    "dataset": "yelp2018",
+    "leaf_bucket": "6-20",
+    "n_items": 2045,
+    "mean_dist": 1.429465889930725,
+    "median_dist": 1.358717679977417
+  },
+  {
+    "dataset": "yelp2018",
+    "leaf_bucket": "21-100",
+    "n_items": 5594,
+    "mean_dist": 1.5877466201782227,
+    "median_dist": 1.5057833194732666
+  },
+  {
+    "dataset": "yelp2018",
+    "leaf_bucket": "101+",
+    "n_items": 28259,
+    "mean_dist": 1.645051121711731,
+    "median_dist": 1.5641489028930664
+  },
+  {
+    "dataset": "musical-instruments",
+    "leaf_bucket": "1-2",
+    "n_items": 548,
+    "mean_dist": 0.5807651281356812,
+    "median_dist": 0.09476525336503983
+  },
+  {
+    "dataset": "musical-instruments",
+    "leaf_bucket": "3-5",
+    "n_items": 480,
+    "mean_dist": 1.703506588935852,
+    "median_dist": 1.6314780712127686
+  },
+  {
+    "dataset": "musical-instruments",
+    "leaf_bucket": "6-20",
+    "n_items": 2118,
+    "mean_dist": 2.053800106048584,
+    "median_dist": 2.006298065185547
+  },
+  {
+    "dataset": "musical-instruments",
+    "leaf_bucket": "21-100",
+    "n_items": 4500,
+    "mean_dist": 2.08243989944458,
+    "median_dist": 1.9720767736434937
+  },
+  {
+    "dataset": "musical-instruments",
+    "leaf_bucket": "101+",
+    "n_items": 2859,
+    "mean_dist": 2.2020456790924072,
+    "median_dist": 2.0127642154693604
+  },
+  {
+    "dataset": "arts-crafts-and-sewing",
+    "leaf_bucket": "1-2",
+    "n_items": 1199,
+    "mean_dist": 0.6498067378997803,
+    "median_dist": 0.14980146288871765
+  },
+  {
+    "dataset": "arts-crafts-and-sewing",
+    "leaf_bucket": "3-5",
+    "n_items": 1318,
+    "mean_dist": 2.0032541751861572,
+    "median_dist": 1.8452224731445312
+  },
+  {
+    "dataset": "arts-crafts-and-sewing",
+    "leaf_bucket": "6-20",
+    "n_items": 3986,
+    "mean_dist": 2.423666477203369,
+    "median_dist": 2.233701705932617
+  },
+  {
+    "dataset": "arts-crafts-and-sewing",
+    "leaf_bucket": "21-100",
+    "n_items": 7980,
+    "mean_dist": 2.357119083404541,
+    "median_dist": 2.229360580444336
+  },
+  {
+    "dataset": "arts-crafts-and-sewing",
+    "leaf_bucket": "101+",
+    "n_items": 7873,
+    "mean_dist": 2.1135635375976562,
+    "median_dist": 1.958612322807312
+  }
+]

@@ -13,3 +13,37 @@ authors:
     given-names: "Author"
 version: 0.1.0
 date-released: 2026-08-02
+references:
+  - type: article
+    title: "Simplify to the Limit! Embedding-less Graph Collaborative Filtering for Recommender Systems"
+    authors:
+      - family-names: "Zhang"
+        given-names: "Yi"
+      - family-names: "Zhang"
+        given-names: "Yiwen"
+      - family-names: "Sang"
+        given-names: "Lei"
+      - family-names: "Sheng"
+        given-names: "Victor S."
+    journal: "ACM Transactions on Information Systems"
+    volume: 43
+    issue: 1
+    number: 22
+    start: 1
+    end: 30
+    year: 2025
+    doi: "10.1145/3701230"
+    notes: "Associated work of the ID-GRec framework; cite it if you use the baselines or the training/evaluation pipeline."
+  - type: software
+    title: "ID-GRec: a graph recommendation framework"
+    authors:
+      - family-names: "Zhang"
+        given-names: "Yi"
+      - family-names: "Zhang"
+        given-names: "Yiwen"
+      - family-names: "Sang"
+        given-names: "Lei"
+      - family-names: "Sheng"
+        given-names: "Victor S."
+    url: "https://github.com/BlueGhostYi/ID-GRec"
+    notes: "Upstream framework from which the baseline implementations (LightGCN, SGL, SimGCL, NCL, XSimGCL) and the training/evaluation pipeline in this repository are adapted; no license was declared upstream when checked on 2026-09-20 (see README.md, Acknowledgements And Upstream Code)."

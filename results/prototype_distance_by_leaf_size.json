@@ -1,0 +1,322 @@
+{
+  "amazon-book": {
+    "per_seed": {
+      "42": {
+        "run_dir": "log/p0/taxprocl/amazon-book/taxpro-cl-v15-prototype-leaf-lambda0.5-same_leaf_weight0-user_ssl-warmstart20-noblend-temp0.1-DONE-overall-2.30pct-BEST-overall-nearcold-longtail-positive/seed42",
+        "by_leaf_size": {
+          "1": {
+            "n_items": 2,
+            "median_relative_distance": 0.7811672687530518
+          },
+          "2": {
+            "n_items": 8,
+            "median_relative_distance": 0.8996989130973816
+          },
+          "3-10": {
+            "n_items": 233,
+            "median_relative_distance": 0.9606240391731262
+          },
+          "11-100": {
+            "n_items": 9002,
+            "median_relative_distance": 0.9793631434440613
+          },
+          "101+": {
+            "n_items": 77053,
+            "median_relative_distance": 0.9944489002227783
+          }
+        }
+      },
+      "0": {
+        "run_dir": "log/p0/taxprocl/amazon-book/taxpro-cl-v15-prototype-leaf-lambda0.5-same_leaf_weight0-user_ssl-warmstart20-noblend-temp0.1-DONE-overall-2.30pct-BEST-overall-nearcold-longtail-positive/seed0",
+        "by_leaf_size": {
+          "1": {
+            "n_items": 2,
+            "median_relative_distance": 0.7839711904525757
+          },
+          "2": {
+            "n_items": 8,
+            "median_relative_distance": 0.9060949087142944
+          },
+          "3-10": {
+            "n_items": 233,
+            "median_relative_distance": 0.9638825058937073
+          },
+          "11-100": {
+            "n_items": 9002,
+            "median_relative_distance": 0.9799928069114685
+          },
+          "101+": {
+            "n_items": 77053,
+            "median_relative_distance": 0.9945717453956604
+          }
+        }
+      },
+      "1": {
+        "run_dir": "log/p0/taxprocl/amazon-book/taxpro-cl-v15-prototype-leaf-lambda0.5-same_leaf_weight0-user_ssl-warmstart20-noblend-temp0.1-DONE-overall-2.30pct-BEST-overall-nearcold-longtail-positive/seed1",
+        "by_leaf_size": {
+          "1": {
+            "n_items": 2,
+            "median_relative_distance": 0.7778985500335693
+          },
+          "2": {
+            "n_items": 8,
+            "median_relative_distance": 0.907053530216217
+          },
+          "3-10": {
+            "n_items": 233,
+            "median_relative_distance": 0.9625942707061768
+          },
+          "11-100": {
+            "n_items": 9002,
+            "median_relative_distance": 0.9792217016220093
+          },
+          "101+": {
+            "n_items": 77053,
+            "median_relative_distance": 0.9946560263633728
+          }
+        }
+      }
+    },
+    "max_seed_spread": 0.007354617118835449
+  },
+  "yelp2018": {
+    "per_seed": {
+      "42": {
+        "run_dir": "log/p0/taxprocl/yelp2018/taxpro-cl-FINAL-no_merge-temp0.125-tempuser0.15-gammacold1.5/seed42",
+        "by_leaf_size": {
+          "1": {
+            "n_items": 168,
+            "median_relative_distance": 0.8677492737770081
+          },
+          "2": {
+            "n_items": 148,
+            "median_relative_distance": 0.9329686760902405
+          },
+          "3-10": {
+            "n_items": 1126,
+            "median_relative_distance": 0.9736390709877014
+          },
+          "11-100": {
+            "n_items": 6912,
+            "median_relative_distance": 0.9923752546310425
+          },
+          "101+": {
+            "n_items": 27929,
+            "median_relative_distance": 0.9985389709472656
+          }
+        }
+      },
+      "0": {
+        "run_dir": "log/p0/taxprocl/yelp2018/taxpro-cl-FINAL-no_merge-temp0.125-tempuser0.15-gammacold1.5/seed0",
+        "by_leaf_size": {
+          "1": {
+            "n_items": 168,
+            "median_relative_distance": 0.8706633448600769
+          },
+          "2": {
+            "n_items": 148,
+            "median_relative_distance": 0.9343283176422119
+          },
+          "3-10": {
+            "n_items": 1126,
+            "median_relative_distance": 0.9744735956192017
+          },
+          "11-100": {
+            "n_items": 6912,
+            "median_relative_distance": 0.9925161600112915
+          },
+          "101+": {
+            "n_items": 27929,
+            "median_relative_distance": 0.9985568523406982
+          }
+        }
+      },
+      "1": {
+        "run_dir": "log/p0/taxprocl/yelp2018/taxpro-cl-FINAL-no_merge-temp0.125-tempuser0.15-gammacold1.5/seed1",
+        "by_leaf_size": {
+          "1": {
+            "n_items": 168,
+            "median_relative_distance": 0.8729736804962158
+          },
+          "2": {
+            "n_items": 148,
+            "median_relative_distance": 0.9320841431617737
+          },
+          "3-10": {
+            "n_items": 1126,
+            "median_relative_distance": 0.9736176133155823
+          },
+          "11-100": {
+            "n_items": 6912,
+            "median_relative_distance": 0.9921537041664124
+          },
+          "101+": {
+            "n_items": 27929,
+            "median_relative_distance": 0.9984560012817383
+          }
+        }
+      }
+    },
+    "max_seed_spread": 0.005224406719207764
+  },
+  "musical-instruments": {
+    "per_seed": {
+      "42": {
+        "run_dir": "log/p0/taxprocl/musical-instruments/taxpro-cl-FINAL-no_merge-temp0.15-gammacold5.0/seed42",
+        "by_leaf_size": {
+          "1": {
+            "n_items": 295,
+            "median_relative_distance": 0.5166864991188049
+          },
+          "2": {
+            "n_items": 246,
+            "median_relative_distance": 0.7580594420433044
+          },
+          "3-10": {
+            "n_items": 1129,
+            "median_relative_distance": 0.9293306469917297
+          },
+          "11-100": {
+            "n_items": 5751,
+            "median_relative_distance": 0.9828469753265381
+          },
+          "101+": {
+            "n_items": 2402,
+            "median_relative_distance": 0.9974981546401978
+          }
+        }
+      },
+      "0": {
+        "run_dir": "log/p0/taxprocl/musical-instruments/taxpro-cl-FINAL-no_merge-temp0.15-gammacold5.0/seed0",
+        "by_leaf_size": {
+          "1": {
+            "n_items": 295,
+            "median_relative_distance": 0.5273972153663635
+          },
+          "2": {
+            "n_items": 246,
+            "median_relative_distance": 0.7552615404129028
+          },
+          "3-10": {
+            "n_items": 1129,
+            "median_relative_distance": 0.9273112416267395
+          },
+          "11-100": {
+            "n_items": 5751,
+            "median_relative_distance": 0.9852209687232971
+          },
+          "101+": {
+            "n_items": 2402,
+            "median_relative_distance": 1.0002760887145996
+          }
+        }
+      },
+      "1": {
+        "run_dir": "log/p0/taxprocl/musical-instruments/taxpro-cl-FINAL-no_merge-temp0.15-gammacold5.0/seed1",
+        "by_leaf_size": {
+          "1": {
+            "n_items": 295,
+            "median_relative_distance": 0.5212492346763611
+          },
+          "2": {
+            "n_items": 246,
+            "median_relative_distance": 0.7553085684776306
+          },
+          "3-10": {
+            "n_items": 1129,
+            "median_relative_distance": 0.9282284379005432
+          },
+          "11-100": {
+            "n_items": 5751,
+            "median_relative_distance": 0.9829660654067993
+          },
+          "101+": {
+            "n_items": 2402,
+            "median_relative_distance": 0.9983305931091309
+          }
+        }
+      }
+    },
+    "max_seed_spread": 0.010710716247558594
+  },
+  "arts-crafts-and-sewing": {
+    "per_seed": {
+      "42": {
+        "run_dir": "log/p0/taxprocl/arts-crafts-and-sewing/taxpro-cl-FINAL-no_merge-temp0.125-gammacold1.5-sameleaf0/seed42",
+        "by_leaf_size": {
+          "1": {
+            "n_items": 666,
+            "median_relative_distance": 0.5009700059890747
+          },
+          "2": {
+            "n_items": 466,
+            "median_relative_distance": 0.7546607851982117
+          },
+          "3-10": {
+            "n_items": 2717,
+            "median_relative_distance": 0.9275625944137573
+          },
+          "11-100": {
+            "n_items": 9510,
+            "median_relative_distance": 0.9811550974845886
+          },
+          "101+": {
+            "n_items": 7175,
+            "median_relative_distance": 0.9802690148353577
+          }
+        }
+      },
+      "0": {
+        "run_dir": "log/p0/taxprocl/arts-crafts-and-sewing/taxpro-cl-FINAL-no_merge-temp0.125-gammacold1.5-sameleaf0/seed0",
+        "by_leaf_size": {
+          "1": {
+            "n_items": 666,
+            "median_relative_distance": 0.49978315830230713
+          },
+          "2": {
+            "n_items": 466,
+            "median_relative_distance": 0.758086085319519
+          },
+          "3-10": {
+            "n_items": 2717,
+            "median_relative_distance": 0.928961992263794
+          },
+          "11-100": {
+            "n_items": 9510,
+            "median_relative_distance": 0.9809389114379883
+          },
+          "101+": {
+            "n_items": 7175,
+            "median_relative_distance": 0.9802765250205994
+          }
+        }
+      },
+      "1": {
+        "run_dir": "log/p0/taxprocl/arts-crafts-and-sewing/taxpro-cl-FINAL-no_merge-temp0.125-gammacold1.5-sameleaf0/seed1",
+        "by_leaf_size": {
+          "1": {
+            "n_items": 666,
+            "median_relative_distance": 0.504746675491333
+          },
+          "2": {
+            "n_items": 466,
+            "median_relative_distance": 0.7593124508857727
+          },
+          "3-10": {
+            "n_items": 2717,
+            "median_relative_distance": 0.9275873899459839
+          },
+          "11-100": {
+            "n_items": 9510,
+            "median_relative_distance": 0.9816521406173706
+          },
+          "101+": {
+            "n_items": 7175,
+            "median_relative_distance": 0.9806418418884277
+          }
+        }
+      }
+    },
+    "max_seed_spread": 0.004963517189025879
+  }
+}

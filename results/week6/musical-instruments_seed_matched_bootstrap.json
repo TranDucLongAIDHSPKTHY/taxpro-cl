@@ -1,0 +1,114 @@
+{
+  "per_seed": [
+    {
+      "seed_index": 0,
+      "group": "near_cold",
+      "n": 4728,
+      "mean_diff_recall20": 0.00019388042865200233,
+      "ci95_lo": -0.0018506768189509306,
+      "ci95_hi": 0.002326565143824027,
+      "excludes_zero": false,
+      "seed": 42
+    },
+    {
+      "seed_index": 1,
+      "group": "near_cold",
+      "n": 4728,
+      "mean_diff_recall20": 0.00042301184433164127,
+      "ci95_lo": -0.0013747884940778343,
+      "ci95_hi": 0.002326565143824027,
+      "excludes_zero": false,
+      "seed": 0
+    },
+    {
+      "seed_index": 2,
+      "group": "near_cold",
+      "n": 4728,
+      "mean_diff_recall20": -0.0004935138183869149,
+      "ci95_lo": -0.002608573040045121,
+      "ci95_hi": 0.0016215454032712914,
+      "excludes_zero": false,
+      "seed": 1
+    },
+    {
+      "seed_index": 0,
+      "group": "long_tail",
+      "n": 8816,
+      "mean_diff_recall20": 0.0019067064212254777,
+      "ci95_lo": 0.0001496197390026792,
+      "ci95_hi": 0.003757507994123239,
+      "excludes_zero": true,
+      "seed": 42
+    },
+    {
+      "seed_index": 1,
+      "group": "long_tail",
+      "n": 8816,
+      "mean_diff_recall20": 0.002606192204649555,
+      "ci95_lo": 0.0009520028519574799,
+      "ci95_hi": 0.004439979258491055,
+      "excludes_zero": true,
+      "seed": 0
+    },
+    {
+      "seed_index": 2,
+      "group": "long_tail",
+      "n": 8816,
+      "mean_diff_recall20": 0.00035460418287097065,
+      "ci95_lo": -0.001337395212168352,
+      "ci95_hi": 0.002229172068101288,
+      "excludes_zero": false,
+      "seed": 1
+    }
+  ],
+  "pooled_seed_averaged": {
+    "near_cold": {
+      "n": 4728,
+      "mean_diff_recall20": 4.112615153224304e-05,
+      "ci95_lo": -0.0012690355329949238,
+      "ci95_hi": 0.0013747884940778343,
+      "excludes_zero": false
+    },
+    "long_tail": {
+      "n": 8816,
+      "mean_diff_recall20": 0.0016225009362486676,
+      "ci95_lo": 0.0003527136807536082,
+      "ci95_hi": 0.002864110707803993,
+      "excludes_zero": true
+    }
+  },
+  "metadata": {
+    "dataset": "musical-instruments",
+    "baseline_name": "SimGCL",
+    "k": 20,
+    "n_boot": 2000,
+    "rng_seed": 42,
+    "batch_size": 256,
+    "seed_pairs": [
+      {
+        "seed": 42,
+        "taxpro_run_dir": "log/p0/taxprocl/musical-instruments/taxpro-cl-v7-no_merge-e38fcea9385b/seed42",
+        "baseline_run_dir": "log/p0/baseline/SimGCL/musical-instruments/simgcl-f263d2bff497/seed42",
+        "taxpro_checkpoint_sha256": "ba99ba12ba32ff8a545882369320aa3985ada75b1ed0a0d9fb89dcf721930c82",
+        "baseline_checkpoint_sha256": "df8d51f853679724a1e31a3fec1bd68776934f2e7d547c2d8d31819e93527267"
+      },
+      {
+        "seed": 0,
+        "taxpro_run_dir": "log/p0/taxprocl/musical-instruments/taxpro-cl-v7-no_merge-e38fcea9385b/seed0",
+        "baseline_run_dir": "log/p0/baseline/SimGCL/musical-instruments/simgcl-f263d2bff497/seed0",
+        "taxpro_checkpoint_sha256": "a26611e3cefacebccc6a11bdb4cc4c52cd1becf60399e936193ad9892864dd7a",
+        "baseline_checkpoint_sha256": "2593b4265f873cfead820bd57c8052447469bcee0a6e6d07f2e61f2a31d489be"
+      },
+      {
+        "seed": 1,
+        "taxpro_run_dir": "log/p0/taxprocl/musical-instruments/taxpro-cl-v7-no_merge-e38fcea9385b/seed1",
+        "baseline_run_dir": "log/p0/baseline/SimGCL/musical-instruments/simgcl-f263d2bff497/seed1",
+        "taxpro_checkpoint_sha256": "35263df633506e62e7ec20dbea0c47eb32e475f79fd8153c7d2ff23ba3b8925d",
+        "baseline_checkpoint_sha256": "8bcd7fa1a06ef0325e0df36d2f4363393b17ec3661aa83c28bf0516aaaa6797c"
+      }
+    ],
+    "script": "tools/analysis/seed_matched_bootstrap.py",
+    "note": "Metadata backfilled 2026-09-05 (script enriched after this run already completed); computed values above are unchanged, only this metadata block and per-seed 'seed' labels are new.",
+    "backfilled_at_utc": "2026-09-04T20:34:08.967954+00:00"
+  }
+}

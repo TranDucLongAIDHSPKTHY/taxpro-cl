@@ -1,0 +1,46 @@
+[
+  {
+    "dataset": "amazon-book",
+    "policy": "merge_t10",
+    "catalog_items": 91599,
+    "degree_zero_only_excluded": 3125,
+    "invalid_taxonomy_only_excluded": 2118,
+    "both_excluded": 58,
+    "valid_mask_count": 86298,
+    "total_excluded": 5301,
+    "pct_excluded": 5.787181082762912
+  },
+  {
+    "dataset": "yelp2018",
+    "policy": "no_merge",
+    "catalog_items": 38048,
+    "degree_zero_only_excluded": 437,
+    "invalid_taxonomy_only_excluded": 1098,
+    "both_excluded": 230,
+    "valid_mask_count": 36283,
+    "total_excluded": 1765,
+    "pct_excluded": 4.638877207737595
+  },
+  {
+    "dataset": "musical-instruments",
+    "policy": "no_merge",
+    "catalog_items": 10620,
+    "degree_zero_only_excluded": 682,
+    "invalid_taxonomy_only_excluded": 104,
+    "both_excluded": 11,
+    "valid_mask_count": 9823,
+    "total_excluded": 797,
+    "pct_excluded": 7.504708097928436
+  },
+  {
+    "dataset": "arts-crafts-and-sewing",
+    "policy": "no_merge",
+    "catalog_items": 22931,
+    "degree_zero_only_excluded": 1822,
+    "invalid_taxonomy_only_excluded": 505,
+    "both_excluded": 70,
+    "valid_mask_count": 20534,
+    "total_excluded": 2397,
+    "pct_excluded": 10.453098425711918
+  }
+]

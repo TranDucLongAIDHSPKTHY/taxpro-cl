@@ -1,0 +1,33 @@
+[
+  {
+    "dataset": "amazon-book",
+    "TaxPro-CL": {
+      "near_cold": {
+        "mean_cosine": 0.9999207488128117,
+        "n_items": 2310
+      },
+      "mid_tail": {
+        "mean_cosine": 0.9999726863821661,
+        "n_items": 24336
+      },
+      "warm": {
+        "mean_cosine": 0.9999857437764105,
+        "n_items": 59652
+      }
+    },
+    "SimGCL": {
+      "near_cold": {
+        "mean_cosine": 0.9999063516187809,
+        "n_items": 2363
+      },
+      "mid_tail": {
+        "mean_cosine": 0.9999249437419261,
+        "n_items": 24973
+      },
+      "warm": {
+        "mean_cosine": 0.9999570571115459,
+        "n_items": 61080
+      }
+    }
+  }
+]

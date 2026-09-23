@@ -1,0 +1,912 @@
+{
+  "_metadata": {
+    "definition": {
+      "bins": "strict_cold: degree=0; near_cold: 1<=degree<=5; mid_tail: 6<=degree<=10; warm: degree>10 (same definitions as the paper's main evaluation groups).",
+      "quantity": "mean over `repeats` stochastic aggregate(perturbed=True) draws of ||item_embedding_perturbed - item_embedding_clean||_2 per item, using each checkpoint's own trained weights and graph; final embeddings are the model's own mean-pooled-across-layers output (post aggregate()), not a single-layer analytical bound.",
+      "repeats_per_checkpoint": 30
+    },
+    "device": "cpu",
+    "elapsed_seconds": 496.2,
+    "failures": [],
+    "generated_at": "2026-09-05T13:53:15.073714+07:00",
+    "git_commit": "9ec5e0280718bb06154d7fc2a54c5b9a2c12412c",
+    "missing_checkpoints": [],
+    "script": "tools/analysis/realized_perturbation_norm.py"
+  },
+  "amazon-book": {
+    "SimGCL": {
+      "aggregate": {
+        "mid_tail": {
+          "mean_across_seeds": 0.05033520778019234,
+          "n_items": 24973,
+          "n_seeds": 3,
+          "std_across_seeds": 5.117102043916409e-05
+        },
+        "near_cold": {
+          "mean_across_seeds": 0.04979246082602622,
+          "n_items": 2363,
+          "n_seeds": 3,
+          "std_across_seeds": 4.6887919282269434e-05
+        },
+        "strict_cold": {
+          "mean_across_seeds": 0.0,
+          "n_items": 3183,
+          "n_seeds": 3,
+          "std_across_seeds": 0.0
+        },
+        "warm": {
+          "mean_across_seeds": 0.053202029063433555,
+          "n_items": 61080,
+          "n_seeds": 3,
+          "std_across_seeds": 7.998580810974614e-05
+        }
+      },
+      "checkpoint_dirs": {
+        "0": "log/p0/baseline/SimGCL/amazon-book/simgcl-69bb0902f42f/seed0",
+        "1": "log/p0/baseline/SimGCL/amazon-book/simgcl-69bb0902f42f/seed1",
+        "42": "log/p0/baseline/SimGCL/amazon-book/simgcl-69bb0902f42f/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/baseline/SimGCL/amazon-book/simgcl-69bb0902f42f",
+      "epsilon_fixed_per_layer": 0.05,
+      "missing_seeds": [],
+      "per_seed": {
+        "0": {
+          "mid_tail": {
+            "mean": 0.05033628126994833,
+            "n_items": 24973,
+            "std": 0.0027088833425459526
+          },
+          "near_cold": {
+            "mean": 0.04981476585999097,
+            "n_items": 2363,
+            "std": 0.0025255084414540782
+          },
+          "strict_cold": {
+            "mean": 0.0,
+            "n_items": 3183,
+            "std": 0.0
+          },
+          "warm": {
+            "mean": 0.053194162203969504,
+            "n_items": 61080,
+            "std": 0.00411826788902719
+          }
+        },
+        "1": {
+          "mid_tail": {
+            "mean": 0.05038583360999147,
+            "n_items": 24973,
+            "std": 0.002731234394846758
+          },
+          "near_cold": {
+            "mean": 0.04982403231950042,
+            "n_items": 2363,
+            "std": 0.002585190707142357
+          },
+          "strict_cold": {
+            "mean": 0.0,
+            "n_items": 3183,
+            "std": 0.0
+          },
+          "warm": {
+            "mean": 0.053285657624074556,
+            "n_items": 61080,
+            "std": 0.004185739853979788
+          }
+        },
+        "42": {
+          "mid_tail": {
+            "mean": 0.050283508460637207,
+            "n_items": 24973,
+            "std": 0.0027078835020017964
+          },
+          "near_cold": {
+            "mean": 0.04973858429858726,
+            "n_items": 2363,
+            "std": 0.0025167593634636753
+          },
+          "strict_cold": {
+            "mean": 0.0,
+            "n_items": 3183,
+            "std": 0.0
+          },
+          "warm": {
+            "mean": 0.053126267362256605,
+            "n_items": 61080,
+            "std": 0.004109283971371518
+          }
+        }
+      },
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ]
+    },
+    "TaxPro-CL": {
+      "GCN_layer": 3,
+      "aggregate": {
+        "mid_tail": {
+          "mean_across_seeds": 0.027482193343221245,
+          "n_items": 24973,
+          "n_seeds": 3,
+          "std_across_seeds": 8.921899302096807e-06
+        },
+        "near_cold": {
+          "mean_across_seeds": 0.04324829080927695,
+          "n_items": 2363,
+          "n_seeds": 3,
+          "std_across_seeds": 7.886567967756389e-05
+        },
+        "strict_cold": {
+          "mean_across_seeds": 0.0,
+          "n_items": 3183,
+          "n_seeds": 3,
+          "std_across_seeds": 0.0
+        },
+        "warm": {
+          "mean_across_seeds": 0.02578442930590683,
+          "n_items": 61080,
+          "n_seeds": 3,
+          "std_across_seeds": 1.207569334390836e-05
+        }
+      },
+      "checkpoint_dirs": {
+        "0": "log/p0/taxprocl/amazon-book/taxpro-cl-v15-prototype-leaf-lambda0.5-same_leaf_weight0-user_ssl-warmstart20-noblend-temp0.1-DONE-overall-2.30pct-BEST-overall-nearcold-longtail-positive/seed0",
+        "1": "log/p0/taxprocl/amazon-book/taxpro-cl-v15-prototype-leaf-lambda0.5-same_leaf_weight0-user_ssl-warmstart20-noblend-temp0.1-DONE-overall-2.30pct-BEST-overall-nearcold-longtail-positive/seed1",
+        "42": "log/p0/taxprocl/amazon-book/taxpro-cl-v15-prototype-leaf-lambda0.5-same_leaf_weight0-user_ssl-warmstart20-noblend-temp0.1-DONE-overall-2.30pct-BEST-overall-nearcold-longtail-positive/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/taxprocl/amazon-book/taxpro-cl-v15-prototype-leaf-lambda0.5-same_leaf_weight0-user_ssl-warmstart20-noblend-temp0.1-DONE-overall-2.30pct-BEST-overall-nearcold-longtail-positive",
+      "epsilon_max": 0.2,
+      "gamma_cold": 1.5,
+      "gamma_warm": 1.0,
+      "missing_seeds": [],
+      "per_seed": {
+        "0": {
+          "mid_tail": {
+            "mean": 0.027489603410404875,
+            "n_items": 24973,
+            "std": 0.0041327530614988575
+          },
+          "near_cold": {
+            "mean": 0.043336681886968625,
+            "n_items": 2363,
+            "std": 0.006586991699881722
+          },
+          "strict_cold": {
+            "mean": 0.0,
+            "n_items": 3183,
+            "std": 0.0
+          },
+          "warm": {
+            "mean": 0.02577079945865751,
+            "n_items": 61080,
+            "std": 0.0039023773366464493
+          }
+        },
+        "1": {
+          "mid_tail": {
+            "mean": 0.027472290046533423,
+            "n_items": 24973,
+            "std": 0.004133276075657641
+          },
+          "near_cold": {
+            "mean": 0.04322307047713311,
+            "n_items": 2363,
+            "std": 0.006539667120089803
+          },
+          "strict_cold": {
+            "mean": 0.0,
+            "n_items": 3183,
+            "std": 0.0
+          },
+          "warm": {
+            "mean": 0.02578869612872771,
+            "n_items": 61080,
+            "std": 0.0039015966806225195
+          }
+        },
+        "42": {
+          "mid_tail": {
+            "mean": 0.027484686572725438,
+            "n_items": 24973,
+            "std": 0.0041379010156242626
+          },
+          "near_cold": {
+            "mean": 0.043185120063729134,
+            "n_items": 2363,
+            "std": 0.006548880320353665
+          },
+          "strict_cold": {
+            "mean": 0.0,
+            "n_items": 3183,
+            "std": 0.0
+          },
+          "warm": {
+            "mean": 0.025793792330335272,
+            "n_items": 61080,
+            "std": 0.003893065817696781
+          }
+        }
+      },
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ],
+      "use_adaptive_epsilon": true
+    }
+  },
+  "arts-crafts-and-sewing": {
+    "SimGCL": {
+      "aggregate": {
+        "mid_tail": {
+          "mean_across_seeds": 0.06608573346269718,
+          "n_items": 6347,
+          "n_seeds": 3,
+          "std_across_seeds": 3.7399412165814166e-05
+        },
+        "near_cold": {
+          "mean_across_seeds": 0.06252615566863491,
+          "n_items": 8005,
+          "n_seeds": 3,
+          "std_across_seeds": 1.750529723610216e-05
+        },
+        "strict_cold": {
+          "mean_across_seeds": 0.0,
+          "n_items": 1892,
+          "n_seeds": 3,
+          "std_across_seeds": 0.0
+        },
+        "warm": {
+          "mean_across_seeds": 0.07635842951057202,
+          "n_items": 6687,
+          "n_seeds": 3,
+          "std_across_seeds": 3.517704214287821e-05
+        }
+      },
+      "checkpoint_dirs": {
+        "0": "log/p0/baseline/SimGCL/arts-crafts-and-sewing/simgcl-c8b32441f415/seed0",
+        "1": "log/p0/baseline/SimGCL/arts-crafts-and-sewing/simgcl-c8b32441f415/seed1",
+        "42": "log/p0/baseline/SimGCL/arts-crafts-and-sewing/simgcl-c8b32441f415/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/baseline/SimGCL/arts-crafts-and-sewing/simgcl-c8b32441f415",
+      "epsilon_fixed_per_layer": 0.05,
+      "missing_seeds": [],
+      "per_seed": {
+        "0": {
+          "mid_tail": {
+            "mean": 0.0661050906819396,
+            "n_items": 6347,
+            "std": 0.0045155371949002565
+          },
+          "near_cold": {
+            "mean": 0.06253368091345311,
+            "n_items": 8005,
+            "std": 0.004408371223598809
+          },
+          "strict_cold": {
+            "mean": 0.0,
+            "n_items": 1892,
+            "std": 0.0
+          },
+          "warm": {
+            "mean": 0.0763842511712152,
+            "n_items": 6687,
+            "std": 0.011152371400081657
+          }
+        },
+        "1": {
+          "mid_tail": {
+            "mean": 0.06604262298836953,
+            "n_items": 6347,
+            "std": 0.004566227306049115
+          },
+          "near_cold": {
+            "mean": 0.06250614609423032,
+            "n_items": 8005,
+            "std": 0.0044666208617998165
+          },
+          "strict_cold": {
+            "mean": 0.0,
+            "n_items": 1892,
+            "std": 0.0
+          },
+          "warm": {
+            "mean": 0.07631836438638843,
+            "n_items": 6687,
+            "std": 0.011394629337715102
+          }
+        },
+        "42": {
+          "mid_tail": {
+            "mean": 0.0661094867177824,
+            "n_items": 6347,
+            "std": 0.0045375077492233705
+          },
+          "near_cold": {
+            "mean": 0.0625386399982213,
+            "n_items": 8005,
+            "std": 0.004422063365560817
+          },
+          "strict_cold": {
+            "mean": 0.0,
+            "n_items": 1892,
+            "std": 0.0
+          },
+          "warm": {
+            "mean": 0.0763726729741124,
+            "n_items": 6687,
+            "std": 0.011127677925401485
+          }
+        }
+      },
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ]
+    },
+    "TaxPro-CL": {
+      "GCN_layer": 3,
+      "aggregate": {
+        "mid_tail": {
+          "mean_across_seeds": 0.028057020069624256,
+          "n_items": 6347,
+          "n_seeds": 3,
+          "std_across_seeds": 4.307221441505326e-05
+        },
+        "near_cold": {
+          "mean_across_seeds": 0.04458890134802953,
+          "n_items": 8005,
+          "n_seeds": 3,
+          "std_across_seeds": 3.470910460229507e-05
+        },
+        "strict_cold": {
+          "mean_across_seeds": 0.0,
+          "n_items": 1892,
+          "n_seeds": 3,
+          "std_across_seeds": 0.0
+        },
+        "warm": {
+          "mean_across_seeds": 0.027047412316306352,
+          "n_items": 6687,
+          "n_seeds": 3,
+          "std_across_seeds": 3.3360953585028295e-05
+        }
+      },
+      "checkpoint_dirs": {
+        "0": "log/p0/taxprocl/arts-crafts-and-sewing/taxpro-cl-v2-no_merge/seed0",
+        "1": "log/p0/taxprocl/arts-crafts-and-sewing/taxpro-cl-v2-no_merge/seed1",
+        "42": "log/p0/taxprocl/arts-crafts-and-sewing/taxpro-cl-v2-no_merge/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/taxprocl/arts-crafts-and-sewing/taxpro-cl-v2-no_merge",
+      "epsilon_max": 0.2,
+      "gamma_cold": 1.5,
+      "gamma_warm": 1.0,
+      "missing_seeds": [],
+      "per_seed": {
+        "0": {
+          "mid_tail": {
+            "mean": 0.028039472764537644,
+            "n_items": 6347,
+            "std": 0.004194458139432606
+          },
+          "near_cold": {
+            "mean": 0.04459856006025569,
+            "n_items": 8005,
+            "std": 0.007037591732786604
+          },
+          "strict_cold": {
+            "mean": 0.0,
+            "n_items": 1892,
+            "std": 0.0
+          },
+          "warm": {
+            "mean": 0.027075675817743425,
+            "n_items": 6687,
+            "std": 0.007056564884571671
+          }
+        },
+        "1": {
+          "mid_tail": {
+            "mean": 0.02802549130638681,
+            "n_items": 6347,
+            "std": 0.004147402160988707
+          },
+          "near_cold": {
+            "mean": 0.04455038588349038,
+            "n_items": 8005,
+            "std": 0.007016527499068466
+          },
+          "strict_cold": {
+            "mean": 0.0,
+            "n_items": 1892,
+            "std": 0.0
+          },
+          "warm": {
+            "mean": 0.027010612656796093,
+            "n_items": 6687,
+            "std": 0.00690069313006345
+          }
+        },
+        "42": {
+          "mid_tail": {
+            "mean": 0.02810609613794831,
+            "n_items": 6347,
+            "std": 0.004229573252587061
+          },
+          "near_cold": {
+            "mean": 0.0446177581003425,
+            "n_items": 8005,
+            "std": 0.0070727687379025
+          },
+          "strict_cold": {
+            "mean": 0.0,
+            "n_items": 1892,
+            "std": 0.0
+          },
+          "warm": {
+            "mean": 0.027055948474379535,
+            "n_items": 6687,
+            "std": 0.006874640451104053
+          }
+        }
+      },
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ],
+      "use_adaptive_epsilon": true
+    }
+  },
+  "musical-instruments": {
+    "SimGCL": {
+      "aggregate": {
+        "mid_tail": {
+          "mean_across_seeds": 0.06601464079907306,
+          "n_items": 3023,
+          "n_seeds": 3,
+          "std_across_seeds": 1.5726946130110426e-05
+        },
+        "near_cold": {
+          "mean_across_seeds": 0.0627480860789313,
+          "n_items": 3769,
+          "n_seeds": 3,
+          "std_across_seeds": 1.847376145402193e-05
+        },
+        "strict_cold": {
+          "mean_across_seeds": 0.0,
+          "n_items": 693,
+          "n_seeds": 3,
+          "std_across_seeds": 0.0
+        },
+        "warm": {
+          "mean_across_seeds": 0.07527517234385779,
+          "n_items": 3135,
+          "n_seeds": 3,
+          "std_across_seeds": 6.895455555027965e-05
+        }
+      },
+      "checkpoint_dirs": {
+        "0": "log/p0/baseline/SimGCL/musical-instruments/simgcl-f263d2bff497/seed0",
+        "1": "log/p0/baseline/SimGCL/musical-instruments/simgcl-f263d2bff497/seed1",
+        "42": "log/p0/baseline/SimGCL/musical-instruments/simgcl-f263d2bff497/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/baseline/SimGCL/musical-instruments/simgcl-f263d2bff497",
+      "epsilon_fixed_per_layer": 0.05,
+      "missing_seeds": [],
+      "per_seed": {
+        "0": {
+          "mid_tail": {
+            "mean": 0.06601799040568854,
+            "n_items": 3023,
+            "std": 0.0042244042986682865
+          },
+          "near_cold": {
+            "mean": 0.06272675445032254,
+            "n_items": 3769,
+            "std": 0.004255486949159938
+          },
+          "strict_cold": {
+            "mean": 0.0,
+            "n_items": 693,
+            "std": 0.0
+          },
+          "warm": {
+            "mean": 0.07535422597191958,
+            "n_items": 3135,
+            "std": 0.011020959090482372
+          }
+        },
+        "1": {
+          "mid_tail": {
+            "mean": 0.0660284230956298,
+            "n_items": 3023,
+            "std": 0.004299107360014836
+          },
+          "near_cold": {
+            "mean": 0.06275878472513105,
+            "n_items": 3769,
+            "std": 0.004275641212142977
+          },
+          "strict_cold": {
+            "mean": 0.0,
+            "n_items": 693,
+            "std": 0.0
+          },
+          "warm": {
+            "mean": 0.07524386888977512,
+            "n_items": 3135,
+            "std": 0.011116636521027122
+          }
+        },
+        "42": {
+          "mid_tail": {
+            "mean": 0.06599750889590084,
+            "n_items": 3023,
+            "std": 0.004299426198574564
+          },
+          "near_cold": {
+            "mean": 0.06275871906134033,
+            "n_items": 3769,
+            "std": 0.004248660000773567
+          },
+          "strict_cold": {
+            "mean": 0.0,
+            "n_items": 693,
+            "std": 0.0
+          },
+          "warm": {
+            "mean": 0.07522742216987868,
+            "n_items": 3135,
+            "std": 0.011070547002193312
+          }
+        }
+      },
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ]
+    },
+    "TaxPro-CL": {
+      "GCN_layer": 3,
+      "aggregate": {
+        "mid_tail": {
+          "mean_across_seeds": 0.028444737246655694,
+          "n_items": 3023,
+          "n_seeds": 3,
+          "std_across_seeds": 0.00010926535094117967
+        },
+        "near_cold": {
+          "mean_across_seeds": 0.1605530984824565,
+          "n_items": 3769,
+          "n_seeds": 3,
+          "std_across_seeds": 0.00024700586380349657
+        },
+        "strict_cold": {
+          "mean_across_seeds": 0.0,
+          "n_items": 693,
+          "n_seeds": 3,
+          "std_across_seeds": 0.0
+        },
+        "warm": {
+          "mean_across_seeds": 0.026564887560300943,
+          "n_items": 3135,
+          "n_seeds": 3,
+          "std_across_seeds": 0.00019603934416331459
+        }
+      },
+      "checkpoint_dirs": {
+        "0": "log/p0/taxprocl/musical-instruments/taxpro-cl-v7-no_merge-e38fcea9385b/seed0",
+        "1": "log/p0/taxprocl/musical-instruments/taxpro-cl-v7-no_merge-e38fcea9385b/seed1",
+        "42": "log/p0/taxprocl/musical-instruments/taxpro-cl-v7-no_merge-e38fcea9385b/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/taxprocl/musical-instruments/taxpro-cl-v7-no_merge-e38fcea9385b",
+      "epsilon_max": 0.2,
+      "gamma_cold": 5.0,
+      "gamma_warm": 1.0,
+      "missing_seeds": [],
+      "per_seed": {
+        "0": {
+          "mid_tail": {
+            "mean": 0.028565505245638362,
+            "n_items": 3023,
+            "std": 0.0040245819993126415
+          },
+          "near_cold": {
+            "mean": 0.16083285884125334,
+            "n_items": 3769,
+            "std": 0.025013433226978785
+          },
+          "strict_cold": {
+            "mean": 0.0,
+            "n_items": 693,
+            "std": 0.0
+          },
+          "warm": {
+            "mean": 0.02669468413853011,
+            "n_items": 3135,
+            "std": 0.006675796762057009
+          }
+        },
+        "1": {
+          "mid_tail": {
+            "mean": 0.02835272675933231,
+            "n_items": 3023,
+            "std": 0.003930383557285437
+          },
+          "near_cold": {
+            "mean": 0.1603651298118392,
+            "n_items": 3769,
+            "std": 0.02531439466857899
+          },
+          "strict_cold": {
+            "mean": 0.0,
+            "n_items": 693,
+            "std": 0.0
+          },
+          "warm": {
+            "mean": 0.026339377750211113,
+            "n_items": 3135,
+            "std": 0.006504522817269461
+          }
+        },
+        "42": {
+          "mid_tail": {
+            "mean": 0.028415979734996405,
+            "n_items": 3023,
+            "std": 0.003884845113973287
+          },
+          "near_cold": {
+            "mean": 0.16046130679427695,
+            "n_items": 3769,
+            "std": 0.02526068145642466
+          },
+          "strict_cold": {
+            "mean": 0.0,
+            "n_items": 693,
+            "std": 0.0
+          },
+          "warm": {
+            "mean": 0.026660600792161607,
+            "n_items": 3135,
+            "std": 0.006548918458455521
+          }
+        }
+      },
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ],
+      "use_adaptive_epsilon": true
+    }
+  },
+  "yelp2018": {
+    "SimGCL": {
+      "aggregate": {
+        "mid_tail": {
+          "mean_across_seeds": 0.0502536947131079,
+          "n_items": 9683,
+          "n_seeds": 3,
+          "std_across_seeds": 1.551934363258327e-05
+        },
+        "near_cold": {
+          "mean_across_seeds": 0.04986997416332426,
+          "n_items": 976,
+          "n_seeds": 3,
+          "std_across_seeds": 1.549293155668197e-05
+        },
+        "strict_cold": {
+          "mean_across_seeds": 0.0,
+          "n_items": 667,
+          "n_seeds": 3,
+          "std_across_seeds": 0.0
+        },
+        "warm": {
+          "mean_across_seeds": 0.05366805629689284,
+          "n_items": 26722,
+          "n_seeds": 3,
+          "std_across_seeds": 4.255682544842975e-05
+        }
+      },
+      "checkpoint_dirs": {
+        "0": "log/p0/baseline/SimGCL/yelp2018/simgcl-20c63ca8d16c/seed0",
+        "1": "log/p0/baseline/SimGCL/yelp2018/simgcl-20c63ca8d16c/seed1",
+        "42": "log/p0/baseline/SimGCL/yelp2018/simgcl-20c63ca8d16c/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/baseline/SimGCL/yelp2018/simgcl-20c63ca8d16c",
+      "epsilon_fixed_per_layer": 0.05,
+      "missing_seeds": [],
+      "per_seed": {
+        "0": {
+          "mid_tail": {
+            "mean": 0.050259903909798495,
+            "n_items": 9683,
+            "std": 0.002512657385992412
+          },
+          "near_cold": {
+            "mean": 0.04985211135758093,
+            "n_items": 976,
+            "std": 0.0023327263209180194
+          },
+          "strict_cold": {
+            "mean": 0.0,
+            "n_items": 667,
+            "std": 0.0
+          },
+          "warm": {
+            "mean": 0.053661896891034414,
+            "n_items": 26722,
+            "std": 0.004317088543564951
+          }
+        },
+        "1": {
+          "mid_tail": {
+            "mean": 0.05026514808282582,
+            "n_items": 9683,
+            "std": 0.002516155922776213
+          },
+          "near_cold": {
+            "mean": 0.049878056415766474,
+            "n_items": 976,
+            "std": 0.002340940369123724
+          },
+          "strict_cold": {
+            "mean": 0.0,
+            "n_items": 667,
+            "std": 0.0
+          },
+          "warm": {
+            "mean": 0.053713357199258495,
+            "n_items": 26722,
+            "std": 0.0043226720212401586
+          }
+        },
+        "42": {
+          "mid_tail": {
+            "mean": 0.0502360321466994,
+            "n_items": 9683,
+            "std": 0.002538072468509519
+          },
+          "near_cold": {
+            "mean": 0.049879754716625396,
+            "n_items": 976,
+            "std": 0.002370622336629847
+          },
+          "strict_cold": {
+            "mean": 0.0,
+            "n_items": 667,
+            "std": 0.0
+          },
+          "warm": {
+            "mean": 0.05362891480038562,
+            "n_items": 26722,
+            "std": 0.004326614514450657
+          }
+        }
+      },
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ]
+    },
+    "TaxPro-CL": {
+      "GCN_layer": 3,
+      "aggregate": {
+        "mid_tail": {
+          "mean_across_seeds": 0.026882675769061518,
+          "n_items": 9683,
+          "n_seeds": 3,
+          "std_across_seeds": 4.372314734778403e-05
+        },
+        "near_cold": {
+          "mean_across_seeds": 0.04099305854515763,
+          "n_items": 976,
+          "n_seeds": 3,
+          "std_across_seeds": 5.9015194693966024e-05
+        },
+        "strict_cold": {
+          "mean_across_seeds": 0.0,
+          "n_items": 667,
+          "n_seeds": 3,
+          "std_across_seeds": 0.0
+        },
+        "warm": {
+          "mean_across_seeds": 0.025079580580462505,
+          "n_items": 26722,
+          "n_seeds": 3,
+          "std_across_seeds": 1.867638440429018e-05
+        }
+      },
+      "checkpoint_dirs": {
+        "0": "log/p0/taxprocl/yelp2018/taxpro-cl-v12-no_merge/seed0",
+        "1": "log/p0/taxprocl/yelp2018/taxpro-cl-v12-no_merge/seed1",
+        "42": "log/p0/taxprocl/yelp2018/taxpro-cl-v12-no_merge/seed42"
+      },
+      "checkpoint_family_dir": "log/p0/taxprocl/yelp2018/taxpro-cl-v12-no_merge",
+      "epsilon_max": 0.2,
+      "gamma_cold": 1.5,
+      "gamma_warm": 1.0,
+      "missing_seeds": [],
+      "per_seed": {
+        "0": {
+          "mid_tail": {
+            "mean": 0.026868492617601332,
+            "n_items": 9683,
+            "std": 0.004863542574535496
+          },
+          "near_cold": {
+            "mean": 0.04097076577357933,
+            "n_items": 976,
+            "std": 0.010913482878920093
+          },
+          "strict_cold": {
+            "mean": 0.0,
+            "n_items": 667,
+            "std": 0.0
+          },
+          "warm": {
+            "mean": 0.025067279214658324,
+            "n_items": 26722,
+            "std": 0.003920788188666496
+          }
+        },
+        "1": {
+          "mid_tail": {
+            "mean": 0.026847804953594383,
+            "n_items": 9683,
+            "std": 0.004844634126725187
+          },
+          "near_cold": {
+            "mean": 0.041059972909718516,
+            "n_items": 976,
+            "std": 0.01088823342026942
+          },
+          "strict_cold": {
+            "mean": 0.0,
+            "n_items": 667,
+            "std": 0.0
+          },
+          "warm": {
+            "mean": 0.025070391294853205,
+            "n_items": 26722,
+            "std": 0.0039092701497076025
+          }
+        },
+        "42": {
+          "mid_tail": {
+            "mean": 0.026931729735988837,
+            "n_items": 9683,
+            "std": 0.004869410706999837
+          },
+          "near_cold": {
+            "mean": 0.04094843695217504,
+            "n_items": 976,
+            "std": 0.010929858433682235
+          },
+          "strict_cold": {
+            "mean": 0.0,
+            "n_items": 667,
+            "std": 0.0
+          },
+          "warm": {
+            "mean": 0.025101071231875993,
+            "n_items": 26722,
+            "std": 0.003937247737318926
+          }
+        }
+      },
+      "seeds_evaluated": [
+        0,
+        1,
+        42
+      ],
+      "use_adaptive_epsilon": true
+    }
+  }
+}

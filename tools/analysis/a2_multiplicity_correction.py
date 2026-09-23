@@ -1,15 +1,25 @@
-"""Holm-Bonferroni-corrected re-analysis of Main Paper Table 11 (the 8-cell
-TaxPro-CL vs. SimGCL bootstrap that anchors the Abstract's headline claim).
+"""Multiplicity-corrected re-analysis of Main Paper Table 11 (the 8-cell
+TaxPro-CL vs. SimGCL comparison that anchors the Abstract's headline claim).
 
 Reuses the exact same checkpoints, evaluation protocol, and per-user diff
 computation as tools/analysis/seed_matched_bootstrap.py (which produced
-Table 11); the only addition is a two-sided bootstrap p-value per cell and
-a Holm-Bonferroni step-down correction across the 8 dataset x group cells.
-Inference only -- no retraining.
+Table 11) and adds, per cell:
 
-Bootstrap p-value convention: p = 2 * min(P(boot_mean <= 0), P(boot_mean >= 0)),
-floored at 1/(n_boot+1) to avoid a reported p of exactly 0 from a finite
-resample (matches the standard percentile-bootstrap p-value convention).
+- the percentile-bootstrap 95% CI (unchanged; a descriptive interval);
+- a paired sign-flip randomization p-value on the seed-averaged per-user
+  differences: under H0 (the per-user difference is symmetric about zero) the
+  sign of each user's difference is exchangeable, so the p-value is the share
+  of random sign assignments whose mean is at least as extreme as the
+  observed mean (Monte Carlo, floored at 1/(n_perm+1)). This is a null-
+  distribution p-value and is the one fed to Holm-Bonferroni;
+- a null-centred bootstrap p-value (resample the differences after subtracting
+  their mean) as a second, independent check;
+- the earlier percentile-bootstrap tail p-value, p = 2 * min(P(boot<=0),
+  P(boot>=0)), kept only for comparison with the previous analysis: it is the
+  CI inverted, not a null-distribution p-value.
+
+All three describe uncertainty over users conditional on the three trained
+checkpoints; none reflects training-seed randomness. Inference only.
 """
 from __future__ import annotations
 
@@ -66,7 +76,37 @@ def user_diffs(per_user, idx_total, idx_tax, idx_sim):
     return diffs
 
 
-def bootstrap_stat(values, n_boot, rng):
+def sign_flip_pvalue(values, n_perm, rng, chunk=200):
+    """Two-sided paired sign-flip randomization test for mean(values) == 0."""
+    values = np.asarray(values, dtype=np.float64)
+    n = len(values)
+    observed = abs(float(values.sum()))
+    extreme = 0
+    done = 0
+    while done < n_perm:
+        m = min(chunk, n_perm - done)
+        signs = rng.integers(0, 2, size=(m, n), dtype=np.int8) * 2 - 1
+        sums = np.abs(signs @ values)
+        extreme += int(np.sum(sums >= observed - 1e-12))
+        done += m
+    return (extreme + 1) / (n_perm + 1)
+
+
+def centred_bootstrap_pvalue(values, n_boot, rng):
+    """Two-sided p-value from a bootstrap of the mean-centred differences."""
+    values = np.asarray(values, dtype=np.float64)
+    n = len(values)
+    observed = abs(float(values.mean()))
+    centred = values - values.mean()
+    extreme = 0
+    for b in range(n_boot):
+        idx = rng.integers(0, n, size=n)
+        if abs(float(centred[idx].mean())) >= observed - 1e-15:
+            extreme += 1
+    return (extreme + 1) / (n_boot + 1)
+
+
+def bootstrap_stat(values, n_boot, rng, n_perm=None):
     values = np.asarray(values, dtype=np.float64)
     n = len(values)
     observed_mean = float(values.mean())
@@ -79,33 +119,34 @@ def bootstrap_stat(values, n_boot, rng):
     hi = float(boot_means[int(0.975 * n_boot) - 1])
     p_le = float(np.mean(boot_means <= 0.0))
     p_ge = float(np.mean(boot_means >= 0.0))
-    p_two_sided = 2 * min(p_le, p_ge)
-    p_floor = 1.0 / (n_boot + 1)
-    p_two_sided = max(p_two_sided, p_floor)
-    p_two_sided = min(p_two_sided, 1.0)
+    p_tail = min(max(2 * min(p_le, p_ge), 1.0 / (n_boot + 1)), 1.0)
+    n_perm = n_perm or n_boot
+    p_flip = sign_flip_pvalue(values, n_perm, rng)
+    p_centred = centred_bootstrap_pvalue(values, n_boot, rng)
     return {
         "n": n, "mean_diff_recall20": observed_mean,
         "ci95_lo": lo, "ci95_hi": hi,
         "excludes_zero_uncorrected": bool((lo > 0) or (hi < 0)),
-        "p_two_sided_bootstrap": p_two_sided,
+        "p_signflip": p_flip,
+        "p_centred_bootstrap": p_centred,
+        "p_percentile_tail_legacy": p_tail,
+        "n_perm": n_perm,
+        "n_boot": n_boot,
     }
 
 
-def holm_bonferroni(cells, alpha=0.05):
-    """cells: list of dicts with 'p_two_sided_bootstrap'; adds 'holm_significant'."""
-    order = sorted(range(len(cells)), key=lambda i: cells[i]["p_two_sided_bootstrap"])
+def holm_bonferroni(cells, p_key, out_key, alpha=0.05):
+    """Holm step-down over cells using cells[i][p_key]; writes cells[i][out_key]
+    (bool) and cells[i][out_key + '_threshold']."""
+    order = sorted(range(len(cells)), key=lambda i: cells[i][p_key])
     m = len(cells)
     still_significant = True
     for rank, idx in enumerate(order):
         threshold = alpha / (m - rank)
-        p = cells[idx]["p_two_sided_bootstrap"]
-        if still_significant and p <= threshold:
-            cells[idx]["holm_significant"] = True
-            cells[idx]["holm_threshold"] = threshold
-        else:
-            still_significant = False
-            cells[idx]["holm_significant"] = False
-            cells[idx]["holm_threshold"] = threshold
+        significant = still_significant and cells[idx][p_key] <= threshold
+        still_significant = significant
+        cells[idx][out_key] = bool(significant)
+        cells[idx][out_key + "_threshold"] = threshold
     return cells
 
 
@@ -115,11 +156,17 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--k", type=int, default=20)
     parser.add_argument("--n-boot", type=int, default=2000)
+    parser.add_argument("--n-perm", type=int, default=None,
+                        help="Sign-flip permutations per cell (default: --n-boot).")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--batch-size", type=int, default=256)
     parser.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
     parser.add_argument("--output", type=Path, default=ROOT / "results" / "a2_multiplicity_correction.json")
     parser.add_argument("--datasets", nargs="+", default=DATASETS)
+    parser.add_argument("--save-diffs", type=Path, default=None,
+                        help="Write the seed-averaged per-user differences of every cell to this .npz.")
+    parser.add_argument("--load-diffs", type=Path, default=None,
+                        help="Reuse per-user differences saved by --save-diffs instead of re-scoring checkpoints.")
     args = parser.parse_args()
 
     rng = np.random.default_rng(args.seed)
@@ -134,6 +181,8 @@ def main():
                 d[int(row["seed"])] = ROOT / row["run_dir"].replace("\\", "/")
         return d
 
+    cached = dict(np.load(args.load_diffs)) if args.load_diffs else {}
+    saved = {}
     all_cells = []
     for dataset_name in args.datasets:
         taxpro_dirs = seed_dirs(dataset_name, "TaxPro-CL-main")
@@ -142,34 +191,54 @@ def main():
         assert len(seeds) == 3, f"{dataset_name}: expected 3 seeds, got {len(seeds)}"
 
         per_seed_hits = []
-        for s in seeds:
-            print(f"[{dataset_name}] scoring seed={s}")
-            per_seed_hits.append(
-                compute_hits_for_seed_pair(dataset_name, taxpro_dirs[s], simgcl_dirs[s], args.device, args.k, args.batch_size)
-            )
+        if not cached:
+            for s in seeds:
+                print(f"[{dataset_name}] scoring seed={s}", flush=True)
+                per_seed_hits.append(
+                    compute_hits_for_seed_pair(dataset_name, taxpro_dirs[s], simgcl_dirs[s], args.device, args.k, args.batch_size)
+                )
 
         for group, idx_total, idx_tax, idx_sim in [("near_cold", 0, 1, 2), ("long_tail", 3, 4, 5)]:
-            per_user_across_seeds = {}
-            for per_user in per_seed_hits:
-                for user, diff in user_diffs(per_user, idx_total, idx_tax, idx_sim).items():
-                    per_user_across_seeds.setdefault(user, []).append(diff)
-            averaged = [float(np.mean(vals)) for vals in per_user_across_seeds.values()]
-            stat = bootstrap_stat(averaged, args.n_boot, rng)
+            key = f"{dataset_name}|{group}"
+            if cached:
+                averaged = cached[key]
+            else:
+                per_user_across_seeds = {}
+                for per_user in per_seed_hits:
+                    for user, diff in user_diffs(per_user, idx_total, idx_tax, idx_sim).items():
+                        per_user_across_seeds.setdefault(user, []).append(diff)
+                averaged = [float(np.mean(vals)) for vals in per_user_across_seeds.values()]
+            saved[key] = np.asarray(averaged, dtype=np.float64)
+            stat = bootstrap_stat(averaged, args.n_boot, rng, args.n_perm)
             stat["dataset"] = dataset_name
             stat["group"] = group
             all_cells.append(stat)
             print(f"  {group}: n={stat['n']} mean_diff={stat['mean_diff_recall20']:.6f} "
                   f"CI=[{stat['ci95_lo']:.6f},{stat['ci95_hi']:.6f}] "
-                  f"p_boot={stat['p_two_sided_bootstrap']:.5f} "
-                  f"excl0(uncorrected)={stat['excludes_zero_uncorrected']}")
+                  f"p_signflip={stat['p_signflip']:.5f} p_centred={stat['p_centred_bootstrap']:.5f} "
+                  f"p_tail_legacy={stat['p_percentile_tail_legacy']:.5f} "
+                  f"excl0(uncorrected)={stat['excludes_zero_uncorrected']}", flush=True)
 
-    all_cells = holm_bonferroni(all_cells, alpha=0.05)
+    for p_key, out_key in (
+        ("p_signflip", "holm_significant_signflip"),
+        ("p_centred_bootstrap", "holm_significant_centred_bootstrap"),
+        ("p_percentile_tail_legacy", "holm_significant_percentile_tail_legacy"),
+    ):
+        all_cells = holm_bonferroni(all_cells, p_key, out_key, alpha=0.05)
 
-    print("\n=== Holm-Bonferroni summary (alpha=0.05, m=8) ===")
-    for c in sorted(all_cells, key=lambda x: x["p_two_sided_bootstrap"]):
-        print(f"  {c['dataset']:25s} {c['group']:10s} p={c['p_two_sided_bootstrap']:.5f} "
-              f"threshold={c['holm_threshold']:.5f} holm_significant={c['holm_significant']} "
+    print("\n=== Holm-Bonferroni summary (alpha=0.05, m=8), primary = sign-flip ===")
+    for c in sorted(all_cells, key=lambda x: x["p_signflip"]):
+        print(f"  {c['dataset']:25s} {c['group']:10s} p_flip={c['p_signflip']:.5f} "
+              f"thr={c['holm_significant_signflip_threshold']:.5f} "
+              f"holm(flip)={c['holm_significant_signflip']} "
+              f"holm(centred)={c['holm_significant_centred_bootstrap']} "
+              f"holm(legacy tail)={c['holm_significant_percentile_tail_legacy']} "
               f"(uncorrected_excl0={c['excludes_zero_uncorrected']})")
+
+    if args.save_diffs:
+        args.save_diffs.parent.mkdir(parents=True, exist_ok=True)
+        np.savez_compressed(args.save_diffs, **saved)
+        print("Wrote per-user differences to", args.save_diffs)
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open("w", encoding="utf-8") as f:

@@ -64,31 +64,35 @@ N_BOOT = 5000
 
 # Run-directory layout, relative to the project root. V3 for Musical-
 # Instruments/Arts-Crafts-and-Sewing reuses each dataset's locked main
-# checkpoint family instead of a separate gvhd-taxctrl-V3 run, since it is
+# checkpoint family instead of a separate A2-V3 run, since it is
 # bit-for-bit the same configuration (taxonomy direction + adaptive epsilon).
 DATASET_DIRS = {
     "amazon-book": {
-        "V0": "log/p0/taxprocl/amazon-book/A2-V0",
-        "V1": "log/p0/taxprocl/amazon-book/A2-V1",
-        "V2": "log/p0/taxprocl/amazon-book/A2-V2",
-        "V3": "log/p0/taxprocl/amazon-book/A2-V3",
+        # taxonomy_policy=merge_t10 (the main configuration's policy); V3 is
+        # A2-V3-warm20, an independent run of the main configuration
+        # (see Online Resource 1, Section S23).
+        "V0": "log/p0/taxprocl/amazon-book/A2-V0-mergedt10",
+        "V1": "log/p0/taxprocl/amazon-book/A2-V1-mergedt10",
+        "V2": "log/p0/taxprocl/amazon-book/A2-V2-mergedt10",
+        "V3": "log/p0/taxprocl/amazon-book/A2-V3-warm20",
     },
     "yelp2018": {
-        "V0": "log/p0/taxprocl/yelp2018/A2-V0",
-        "V1": "log/p0/taxprocl/yelp2018/A2-V1",
-        "V2": "log/p0/taxprocl/yelp2018/A2-V2",
-        "V3": "log/p0/taxprocl/yelp2018/A2-V3",
+        # temperature_user=0.15 (the main configuration's value for Yelp2018)
+        "V0": "log/p0/taxprocl/yelp2018/A2-V0-tempuser0.15",
+        "V1": "log/p0/taxprocl/yelp2018/A2-V1-tempuser0.15",
+        "V2": "log/p0/taxprocl/yelp2018/A2-V2-tempuser0.15",
+        "V3": "log/p0/taxprocl/yelp2018/A2-V3-tempuser0.15",
     },
     "musical-instruments": {
-        "V0": "log/p0/taxprocl/musical-instruments/gvhd-taxctrl-V0",
-        "V1": "log/p0/taxprocl/musical-instruments/gvhd-taxctrl-V1",
-        "V2": "log/p0/taxprocl/musical-instruments/gvhd-taxctrl-V2",
+        "V0": "log/p0/taxprocl/musical-instruments/A2-V0",
+        "V1": "log/p0/taxprocl/musical-instruments/A2-V1",
+        "V2": "log/p0/taxprocl/musical-instruments/A2-V2",
         "V3": "log/p0/taxprocl/musical-instruments/taxpro-cl-FINAL-no_merge-temp0.15-gammacold5.0",
     },
     "arts-crafts-and-sewing": {
-        "V0": "log/p0/taxprocl/arts-crafts-and-sewing/gvhd-taxctrl-V0",
-        "V1": "log/p0/taxprocl/arts-crafts-and-sewing/gvhd-taxctrl-V1",
-        "V2": "log/p0/taxprocl/arts-crafts-and-sewing/gvhd-taxctrl-V2",
+        "V0": "log/p0/taxprocl/arts-crafts-and-sewing/A2-V0",
+        "V1": "log/p0/taxprocl/arts-crafts-and-sewing/A2-V1",
+        "V2": "log/p0/taxprocl/arts-crafts-and-sewing/A2-V2",
         "V3": "log/p0/taxprocl/arts-crafts-and-sewing/taxpro-cl-FINAL-no_merge-temp0.125-gammacold1.5-sameleaf0",
     },
 }

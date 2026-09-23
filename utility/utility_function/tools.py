@@ -151,5 +151,5 @@ def convert_sp_mat_to_sp_tensor(sp_mat):
     index = torch.stack([row, col])
     value = torch.FloatTensor(coo.data)
     # from a sparse matrix to a sparse float tensor
-    sp_tensor = torch.sparse.FloatTensor(index, value, torch.Size(coo.shape))
+    sp_tensor = torch.sparse_coo_tensor(index, value, torch.Size(coo.shape))
     return sp_tensor

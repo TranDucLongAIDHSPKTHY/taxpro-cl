@@ -19,8 +19,6 @@ class ToolsLayoutTests(unittest.TestCase):
             "tools.analysis.compile_runs",
             "tools.analysis.compile_ablation_sweep",
             "tools.repository.preflight",
-            "tools.repository.build_manifest",
-            "tools.repository.validate_manifest",
         )
         for name in modules:
             with self.subTest(module=name):

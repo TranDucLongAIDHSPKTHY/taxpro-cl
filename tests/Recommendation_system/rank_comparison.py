@@ -57,11 +57,10 @@ LONG_TAIL_MAX_DEGREE = 10
 
 ITEM_GROUPS = ("overall", "near_cold", "long_tail", "warm")
 
-# Vietnamese labels with diacritics, matching the spec's own example table.
 _STATUS_LABELS = {
-    1: "Tăng hạng",
-    -1: "Giảm hạng",
-    0: "Không đổi",
+    1: "Rank improved",
+    -1: "Rank worsened",
+    0: "Rank unchanged",
 }
 
 

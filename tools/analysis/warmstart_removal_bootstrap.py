@@ -31,8 +31,9 @@ BATCH_SIZE = 256
 N_BOOT = 5000
 
 PAIRS = {
-    "random_direction": ("log/p0/taxprocl/amazon-book/A2-V0-nowarm", "log/p0/taxprocl/amazon-book/A2-V0"),
-    "taxonomy_direction": ("log/p0/taxprocl/amazon-book/A2-V3-nowarm", "log/p0/taxprocl/amazon-book/A2-V3"),
+    # both sides of each pair run under taxonomy_policy=merge_t10
+    "random_direction": ("log/p0/taxprocl/amazon-book/A2-V0-nowarm", "log/p0/taxprocl/amazon-book/A2-V0-mergedt10"),
+    "taxonomy_direction": ("log/p0/taxprocl/amazon-book/A2-V3-nowarm", "log/p0/taxprocl/amazon-book/A2-V3-warm20"),
 }
 
 

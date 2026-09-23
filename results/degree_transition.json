@@ -1,0 +1,119 @@
+{
+  "amazon-book": {
+    "NC": {
+      "total": 2363,
+      "from_higher": 1153,
+      "from": {
+        "MT": 1152,
+        "WM": 1
+      },
+      "rate_percent": 48.793906051629286
+    },
+    "MT": {
+      "total": 24973,
+      "from_higher": 5563,
+      "from": {
+        "WM": 5563
+      },
+      "rate_percent": 22.276058142794216
+    },
+    "WM": {
+      "total": 61080,
+      "from_higher": 0,
+      "from": {},
+      "rate_percent": 0.0
+    }
+  },
+  "yelp2018": {
+    "NC": {
+      "total": 976,
+      "from_higher": 517,
+      "from": {
+        "MT": 517
+      },
+      "rate_percent": 52.971311475409834
+    },
+    "MT": {
+      "total": 9683,
+      "from_higher": 2009,
+      "from": {
+        "WM": 2009
+      },
+      "rate_percent": 20.747702158421976
+    },
+    "WM": {
+      "total": 26722,
+      "from_higher": 0,
+      "from": {},
+      "rate_percent": 0.0
+    }
+  },
+  "musical-instruments": {
+    "SC": {
+      "total": 3,
+      "from_higher": 3,
+      "from": {
+        "MT": 1,
+        "NC": 2
+      },
+      "rate_percent": 100.0
+    },
+    "NC": {
+      "total": 3769,
+      "from_higher": 2115,
+      "from": {
+        "MT": 2070,
+        "WM": 45
+      },
+      "rate_percent": 56.115680551870526
+    },
+    "MT": {
+      "total": 3023,
+      "from_higher": 1275,
+      "from": {
+        "WM": 1275
+      },
+      "rate_percent": 42.17664571617598
+    },
+    "WM": {
+      "total": 3135,
+      "from_higher": 0,
+      "from": {},
+      "rate_percent": 0.0
+    }
+  },
+  "arts-crafts-and-sewing": {
+    "SC": {
+      "total": 11,
+      "from_higher": 11,
+      "from": {
+        "NC": 10,
+        "MT": 1
+      },
+      "rate_percent": 100.0
+    },
+    "NC": {
+      "total": 8005,
+      "from_higher": 4410,
+      "from": {
+        "MT": 4318,
+        "WM": 92
+      },
+      "rate_percent": 55.09056839475328
+    },
+    "MT": {
+      "total": 6347,
+      "from_higher": 2639,
+      "from": {
+        "WM": 2639
+      },
+      "rate_percent": 41.578698597762724
+    },
+    "WM": {
+      "total": 6687,
+      "from_higher": 0,
+      "from": {},
+      "rate_percent": 0.0
+    }
+  }
+}

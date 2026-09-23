@@ -7,7 +7,7 @@ found that the original Yelp2018 A2-V0..V3 factorial checkpoints were
 trained with temperature_user=0.2 (the base-config default), not 0.15
 (Yelp2018's tuned main-configuration value, Table 6) -- confirmed via
 results_manifest.csv's checkpoint SHA256 and config diff. This script
-reproduces Table S16/S20/S22's Yelp2018 rows using the corrected
+reproduces the Yelp2018 rows of Tables S13/S17/S19 using the corrected
 checkpoints, with the identical bootstrap methodology (5000 resamples,
 per-user pooling across seeds before resampling -- see
 factorial_direction_bootstrap.py's own pool_diffs_across_seeds fix) so the

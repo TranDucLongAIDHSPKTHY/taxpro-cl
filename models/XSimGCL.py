@@ -1,5 +1,6 @@
 """
 PyTorch Implementation of XSimGCL
+Adapted from ID-GRec (https://github.com/BlueGhostYi/ID-GRec).
 XSimGCL: Towards Extremely Simple Graph Contrastive Learning for Recommendation  Yu et al. arXiv'22
 """
 

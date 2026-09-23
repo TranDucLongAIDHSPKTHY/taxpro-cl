@@ -1,0 +1,39 @@
+{
+  "TaxPro-CL": {
+    "near_cold": {
+      "per_layer_epsilon_max": 0.1,
+      "mean_delta_e": 0.04999798854935193,
+      "std_delta_e": 0.02886640424172766,
+      "note": "same for every layer (eps_max divided evenly by L), same for every view"
+    },
+    "mid_tail": {
+      "per_layer_epsilon_max": 0.06666666666666667,
+      "mean_delta_e": 0.03331084035663458,
+      "std_delta_e": 0.01923652932599111,
+      "note": "same for every layer (eps_max divided evenly by L), same for every view"
+    },
+    "warm": {
+      "per_layer_epsilon_max": 0.06666666666666667,
+      "mean_delta_e": 0.03329039979803054,
+      "std_delta_e": 0.019228092985468744,
+      "note": "same for every layer (eps_max divided evenly by L), same for every view"
+    }
+  },
+  "SimGCL": {
+    "near_cold": {
+      "mean_delta_e": 0.05,
+      "std_delta_e": 0.0,
+      "note": "deterministic constant, no degree-adaptivity, undivided by L"
+    },
+    "mid_tail": {
+      "mean_delta_e": 0.05,
+      "std_delta_e": 0.0,
+      "note": "deterministic constant, no degree-adaptivity, undivided by L"
+    },
+    "warm": {
+      "mean_delta_e": 0.05,
+      "std_delta_e": 0.0,
+      "note": "deterministic constant, no degree-adaptivity, undivided by L"
+    }
+  }
+}

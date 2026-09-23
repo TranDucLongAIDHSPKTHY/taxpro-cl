@@ -6,7 +6,7 @@ CLI_ALIASES = {
     "training_epochs": ("--epochs",),
 }
 
-DEFAULT_TRAINING_SEEDS = (42, 0, 1, 2, 3, 4)
+DEFAULT_TRAINING_SEEDS = (42, 0, 1)
 
 
 def parse_bool(value):
@@ -33,7 +33,7 @@ def _base_parser(add_help=True):
         type=int,
         nargs="+",
         default=list(DEFAULT_TRAINING_SEEDS),
-        help="random seeds to run sequentially (default: 42 0 1 2 3 4)",
+        help="random seeds to run sequentially (default: 42 0 1)",
     )
 
     parser.add_argument(

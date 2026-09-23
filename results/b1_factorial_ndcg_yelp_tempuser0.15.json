@@ -1,0 +1,54 @@
+[
+  {
+    "n_users": 5217,
+    "mean_diff": 1.150021910355091e-06,
+    "ci95_lo": 0.0,
+    "ci95_hi": 3.4500657310652737e-06,
+    "excludes_zero": false,
+    "dataset": "yelp2018",
+    "comparison": "V1-V0",
+    "label": "direction_fixed_epsilon",
+    "group": "near_cold",
+    "n_seed_pairs": 3,
+    "metric": "NDCG@20"
+  },
+  {
+    "n_users": 18907,
+    "mean_diff": -1.2001622700129532e-05,
+    "ci95_lo": -4.658564806846359e-05,
+    "ci95_hi": 2.2116454291182197e-05,
+    "excludes_zero": false,
+    "dataset": "yelp2018",
+    "comparison": "V1-V0",
+    "label": "direction_fixed_epsilon",
+    "group": "long_tail",
+    "n_seed_pairs": 3,
+    "metric": "NDCG@20"
+  },
+  {
+    "n_users": 5217,
+    "mean_diff": 1.150021910355091e-06,
+    "ci95_lo": 0.0,
+    "ci95_hi": 3.4500657310652737e-06,
+    "excludes_zero": false,
+    "dataset": "yelp2018",
+    "comparison": "V3-V2",
+    "label": "direction_adaptive_epsilon",
+    "group": "near_cold",
+    "n_seed_pairs": 3,
+    "metric": "NDCG@20"
+  },
+  {
+    "n_users": 18907,
+    "mean_diff": -1.8098152585024197e-05,
+    "ci95_lo": -5.445827686350792e-05,
+    "ci95_hi": 1.74836119732615e-05,
+    "excludes_zero": false,
+    "dataset": "yelp2018",
+    "comparison": "V3-V2",
+    "label": "direction_adaptive_epsilon",
+    "group": "long_tail",
+    "n_seed_pairs": 3,
+    "metric": "NDCG@20"
+  }
+]

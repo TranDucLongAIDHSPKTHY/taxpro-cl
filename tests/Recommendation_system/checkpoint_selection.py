@@ -8,6 +8,16 @@ run whose training reached the highest validation selection metric
 (the same metric best_validation_model.pt was checkpointed on), never the
 test metric, so nothing here is chosen by looking at the number being
 reported. CHECKPOINT_OVERRIDES in config.py can still pin an exact run.
+
+Two safeguards keep the choice tied to the canonical training commands even
+when the output tree also holds other experiments:
+
+* run families named with config.EXPLORATORY_FAMILY_PREFIXES (the A7
+  comparable-budget grid) are never candidates;
+* if more than one run family remains for a (model, dataset), the resolver
+  raises AmbiguousCheckpointFamilyError instead of silently picking the
+  highest-validation family -- pin it with CHECKPOINT_FAMILY_OVERRIDES or
+  CHECKPOINT_OVERRIDES in config.py.
 """
 
 from __future__ import annotations
@@ -44,6 +54,17 @@ class CheckpointChoice:
         }
 
 
+class AmbiguousCheckpointFamilyError(RuntimeError):
+    """More than one non-exploratory run family exists and none is pinned."""
+
+
+def _display(path):
+    try:
+        return relative_to_project(path)
+    except ValueError:
+        return str(path)
+
+
 def _read_json(path):
     with Path(path).open("r", encoding="utf-8") as stream:
         return json.load(stream)
@@ -59,20 +80,35 @@ def _seed_from_run_dir(run_dir):
     return -1
 
 
+def _is_exploratory(run_dir, family_root):
+    parts = Path(run_dir).relative_to(family_root).parts
+    return any(part.startswith(config.EXPLORATORY_FAMILY_PREFIXES) for part in parts)
+
+
 def find_candidate_runs(model_name, dataset_name):
-    """Return every completed run directory for (model_name, dataset_name)."""
+    """Return every completed, non-exploratory run directory for the pair.
+
+    If config.CHECKPOINT_FAMILY_OVERRIDES pins a family for the pair, only that
+    family's runs are returned.
+    """
     family_dir = model_result_dir(model_name, dataset_name)
     candidates = []
     if not family_dir.exists():
         return candidates
-    for manifest_path in family_dir.rglob("run_manifest.json"):
+    pinned_family = config.CHECKPOINT_FAMILY_OVERRIDES.get((model_name, dataset_name))
+    for manifest_path in sorted(family_dir.rglob("run_manifest.json")):
+        run_dir = manifest_path.parent
+        if _is_exploratory(run_dir, family_dir):
+            continue
+        if pinned_family is not None and Path(pinned_family) not in run_dir.parents:
+            continue
         try:
             manifest = _read_json(manifest_path)
         except (json.JSONDecodeError, OSError):
             continue
         if manifest.get("status") != "completed":
             continue
-        candidates.append(manifest_path.parent)
+        candidates.append(run_dir)
     return candidates
 
 
@@ -127,6 +163,15 @@ def select_checkpoint(model_name, dataset_name):
             "No completed checkpoint found for model={!r} dataset={!r} "
             "under {}".format(
                 model_name, dataset_name, relative_to_project(model_result_dir(model_name, dataset_name))
+            )
+        )
+
+    families = sorted({_display(run_dir.parent) for run_dir in candidates})
+    if len(families) > 1:
+        raise AmbiguousCheckpointFamilyError(
+            "Several run families for model={!r} dataset={!r}: {}. Pin one in "
+            "tests/Recommendation_system/config.py (CHECKPOINT_FAMILY_OVERRIDES).".format(
+                model_name, dataset_name, ", ".join(families)
             )
         )
 

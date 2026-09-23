@@ -1,0 +1,114 @@
+{
+  "per_seed": [
+    {
+      "seed_index": 0,
+      "group": "near_cold",
+      "n": 5217,
+      "mean_diff_recall20": 0.00019168104274487253,
+      "ci95_lo": 0.0,
+      "ci95_hi": 0.0005750431282346176,
+      "excludes_zero": false,
+      "seed": 42
+    },
+    {
+      "seed_index": 1,
+      "group": "near_cold",
+      "n": 5217,
+      "mean_diff_recall20": 3.194684045747876e-05,
+      "ci95_lo": -0.00019168104274487253,
+      "ci95_hi": 0.0002875215641173088,
+      "excludes_zero": false,
+      "seed": 0
+    },
+    {
+      "seed_index": 2,
+      "group": "near_cold",
+      "n": 5217,
+      "mean_diff_recall20": 0.00031946840457478757,
+      "ci95_lo": -0.00012778736182991502,
+      "ci95_hi": 0.0009584052137243627,
+      "excludes_zero": false,
+      "seed": 1
+    },
+    {
+      "seed_index": 0,
+      "group": "long_tail",
+      "n": 18907,
+      "mean_diff_recall20": 0.0005937393412931574,
+      "ci95_lo": 4.489392943404684e-05,
+      "ci95_hi": 0.0011364351873158133,
+      "excludes_zero": true,
+      "seed": 42
+    },
+    {
+      "seed_index": 1,
+      "group": "long_tail",
+      "n": 18907,
+      "mean_diff_recall20": 0.0004246577632096223,
+      "ci95_lo": -0.00015661072412540125,
+      "ci95_hi": 0.0009681931404044906,
+      "excludes_zero": false,
+      "seed": 0
+    },
+    {
+      "seed_index": 2,
+      "group": "long_tail",
+      "n": 18907,
+      "mean_diff_recall20": 0.0005837547448423956,
+      "ci95_lo": 1.037594250077511e-05,
+      "ci95_hi": 0.0011195302831928644,
+      "excludes_zero": true,
+      "seed": 1
+    }
+  ],
+  "pooled_seed_averaged": {
+    "near_cold": {
+      "n": 5217,
+      "mean_diff_recall20": 0.00018103209592571295,
+      "ci95_lo": -3.1946840457478754e-05,
+      "ci95_hi": 0.00043660681958554296,
+      "excludes_zero": false
+    },
+    "long_tail": {
+      "n": 18907,
+      "mean_diff_recall20": 0.0005340506164483917,
+      "ci95_lo": 0.00010457381710857866,
+      "ci95_hi": 0.0009494487993818511,
+      "excludes_zero": true
+    }
+  },
+  "metadata": {
+    "dataset": "yelp2018",
+    "baseline_name": "SimGCL",
+    "k": 20,
+    "n_boot": 2000,
+    "rng_seed": 42,
+    "batch_size": 256,
+    "seed_pairs": [
+      {
+        "seed": 42,
+        "taxpro_run_dir": "log/p0/taxprocl/yelp2018/taxpro-cl-v12-no_merge/seed42",
+        "baseline_run_dir": "log/p0/baseline/SimGCL/yelp2018/simgcl-20c63ca8d16c/seed42",
+        "taxpro_checkpoint_sha256": "7779b2d43d4477dfdf119ca6e0601dc251e762b89ae87a6914dd18317d7351a5",
+        "baseline_checkpoint_sha256": "cb9629996997e6e38d0b7ac06556b69245e8d18dd7d733ceba7fd1d6481b9e9b"
+      },
+      {
+        "seed": 0,
+        "taxpro_run_dir": "log/p0/taxprocl/yelp2018/taxpro-cl-v12-no_merge/seed0",
+        "baseline_run_dir": "log/p0/baseline/SimGCL/yelp2018/simgcl-20c63ca8d16c/seed0",
+        "taxpro_checkpoint_sha256": "129549a890f30195b73490e32390afc760ace9b7e2b1e9ea6954b768672e9ef7",
+        "baseline_checkpoint_sha256": "e49a649f09f881d0f04272a362cdd6c0a90e4fa17cc6d821f46ea5df12073784"
+      },
+      {
+        "seed": 1,
+        "taxpro_run_dir": "log/p0/taxprocl/yelp2018/taxpro-cl-v12-no_merge/seed1",
+        "baseline_run_dir": "log/p0/baseline/SimGCL/yelp2018/simgcl-20c63ca8d16c/seed1",
+        "taxpro_checkpoint_sha256": "6a5038776131d80b2abe2e00fa17b43838d253a036d235a9b6365d444cbbefb6",
+        "baseline_checkpoint_sha256": "18fada30ca4e86b1cd245e5cca93f3b1e55f10e8297df0222fabad596d9102b8"
+      }
+    ],
+    "script": "tools/analysis/seed_matched_bootstrap.py",
+    "note": "Metadata backfilled 2026-09-05 (script enriched after this run already completed); computed values above are unchanged, only this metadata block and per-seed 'seed' labels are new.",
+    "backfilled_at_utc": "2026-09-04T20:34:08.491320+00:00"
+  }
+}

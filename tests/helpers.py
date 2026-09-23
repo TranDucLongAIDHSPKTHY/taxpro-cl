@@ -98,9 +98,7 @@ def base_config():
 
 @contextmanager
 def patched_taxpro_dependencies():
-    # models/TaxProCL.py (the frozen baseline TaxProCLImproved used to
-    # subclass) was removed 2026-08-21 -- models/TaxPro-CL.py is now
-    # self-contained (see its class docstring), so only its own module
+    # models/TaxPro-CL.py is self-contained (see its class docstring), so only its own module
     # namespace needs patching. evaluation_protocol_dir/read_json are left
     # to callers (e.g. tests/test_taxpro_cl_improved.py's
     # patched_improved_dependencies), which need call-order-specific

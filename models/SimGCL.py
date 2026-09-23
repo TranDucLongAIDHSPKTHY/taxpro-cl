@@ -1,5 +1,6 @@
 """
 PyTorch Implementation of SimGCL
+Adapted from ID-GRec (https://github.com/BlueGhostYi/ID-GRec).
 Are Graph Augmentations Necessary? Simple Graph Contrastive Learning for Recommendation  Yu et al. SIGIR'22
 """
 

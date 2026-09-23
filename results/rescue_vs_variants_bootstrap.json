@@ -1,0 +1,32 @@
+{
+  "vs_main": {
+    "near_cold": {
+      "n_users": 13238,
+      "mean_diff": -2.5180037266455153e-05,
+      "ci95_lo": -7.554011179936546e-05,
+      "ci95_hi": 0.0,
+      "excludes_zero": false
+    },
+    "long_tail": {
+      "n_users": 36609,
+      "mean_diff": -3.4650126840571814e-05,
+      "ci95_lo": -7.703280054341268e-05,
+      "ci95_hi": 7.410316350740826e-07,
+      "excludes_zero": false
+    },
+    "overall": {
+      "n_users": 52639,
+      "mean_diff": -8.614270925953627e-06,
+      "ci95_lo": -5.3251509266202047e-05,
+      "ci95_hi": 3.6043610207406956e-05,
+      "excludes_zero": false
+    },
+    "warm": {
+      "n_users": 52123,
+      "mean_diff": -2.724353919874972e-05,
+      "ci95_lo": -9.201386573649943e-05,
+      "ci95_hi": 3.729163558245678e-05,
+      "excludes_zero": false
+    }
+  }
+}

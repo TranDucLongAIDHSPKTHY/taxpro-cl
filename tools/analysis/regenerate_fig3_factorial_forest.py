@@ -1,5 +1,9 @@
-"""Regenerate main paper Figure 3 (factorial-forest plot, per-user bootstrap
-95% CI for both RQ5 marginal comparisons), after the Yelp2018 checkpoint fix
+"""Regenerate the paper's factorial-forest figure (per-user bootstrap 95% CI for
+both RQ5 marginal comparisons). The Amazon-Book block of
+results/factorial_direction_bootstrap_full_FIXED.json holds the merge_t10 factorial
+(see tools/analysis/merge_a2_ab_into_result_jsons.py).
+
+Originally written after the Yelp2018 checkpoint fix
 (temperature_user 0.2 -> 0.15) changed one cell's significance status
 (epsilon-adaptivity, V2-V0, Long-Tail: was significant-negative, now
 non-significant). All other 31 cells are unchanged, sourced from
@@ -51,8 +55,8 @@ panel_b = rows_for(["V2_vs_V0", "V3_vs_V1"], lambda k: "V2-V0" if k == "V2_vs_V0
 fig, axes = plt.subplots(1, 2, figsize=(13, 8))
 
 for ax, rows, title in [
-    (axes[0], panel_a, "(a) Direction marginal effect\n(taxonomy $-$ random, V1$-$V0 and V3$-$V2)"),
-    (axes[1], panel_b, "(b) Epsilon-adaptivity marginal effect\n(adaptive $-$ fixed $\\epsilon$, V2$-$V0 and V3$-$V1)"),
+    (axes[0], panel_a, "(a) Direction conditional effect\n(taxonomy $-$ random, V1$-$V0 and V3$-$V2)"),
+    (axes[1], panel_b, "(b) Epsilon-adaptivity conditional effect\n(adaptive $-$ fixed $\\epsilon$, V2$-$V0 and V3$-$V1)"),
 ]:
     n = len(rows)
     ys = list(range(n, 0, -1))

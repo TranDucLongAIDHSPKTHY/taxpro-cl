@@ -1,0 +1,119 @@
+{
+  "algorithm": "taxprocl-cds-and-vinyl-per-user-shuffle-70-10-20-v1",
+  "assertions": {
+    "partition_covers_five_core": true,
+    "train_test_disjoint": true,
+    "train_validation_disjoint": true,
+    "validation_test_disjoint": true
+  },
+  "counts": {
+    "distinct_review_pairs": 1402148,
+    "dropped_reverifying_five_core": 25140,
+    "five_core_pairs": 1377008,
+    "items": 73713,
+    "test": 265039,
+    "train": 975762,
+    "users": 112395,
+    "validation": 136207
+  },
+  "dataset": "cds-and-vinyl",
+  "five_core_verification": {
+    "interactions": 1377008,
+    "items": 71943,
+    "iterations": [
+      {
+        "input_interactions": 1402148,
+        "iteration": 1,
+        "output_interactions": 1382701,
+        "removed_interactions": 19447
+      },
+      {
+        "input_interactions": 1382701,
+        "iteration": 2,
+        "output_interactions": 1379341,
+        "removed_interactions": 3360
+      },
+      {
+        "input_interactions": 1379341,
+        "iteration": 3,
+        "output_interactions": 1377933,
+        "removed_interactions": 1408
+      },
+      {
+        "input_interactions": 1377933,
+        "iteration": 4,
+        "output_interactions": 1377418,
+        "removed_interactions": 515
+      },
+      {
+        "input_interactions": 1377418,
+        "iteration": 5,
+        "output_interactions": 1377170,
+        "removed_interactions": 248
+      },
+      {
+        "input_interactions": 1377170,
+        "iteration": 6,
+        "output_interactions": 1377074,
+        "removed_interactions": 96
+      },
+      {
+        "input_interactions": 1377074,
+        "iteration": 7,
+        "output_interactions": 1377024,
+        "removed_interactions": 50
+      },
+      {
+        "input_interactions": 1377024,
+        "iteration": 8,
+        "output_interactions": 1377012,
+        "removed_interactions": 12
+      },
+      {
+        "input_interactions": 1377012,
+        "iteration": 9,
+        "output_interactions": 1377008,
+        "removed_interactions": 4
+      },
+      {
+        "input_interactions": 1377008,
+        "iteration": 10,
+        "output_interactions": 1377008,
+        "removed_interactions": 0
+      }
+    ],
+    "minimum_degree": 5,
+    "minimum_item_degree": 5,
+    "minimum_user_degree": 5,
+    "users": 107546
+  },
+  "id_maps": {
+    "item_list_sha256": "3d96f01465b386bc3c8d4659c673369d6db03a89d09e3bb07ea6cf908ec8ad1f",
+    "user_list_sha256": "c945890dace2897d04b92f2f1f19c521685d37a5fa6d254a610b6dfc11843f33"
+  },
+  "minimum_degree": 5,
+  "output_hashes": {
+    "raw_test": "98b8934158ec75692c1b940a35722390c2a24ce777d370f56db07530c9eda133",
+    "raw_train": "a0311b82b7722e2d77023c469db77a7a0090d2b051c761017092e51b877c12bf",
+    "test": "98b8934158ec75692c1b940a35722390c2a24ce777d370f56db07530c9eda133",
+    "train": "caf16ea3324aee3ef920b53b1c89505caebf5c020c2dec12cd9b127c75f8bc26",
+    "validation": "e4b807d00c227bed0de2ca892088d3f908791a56a082cbfbb1bb7cdaa6d72eee"
+  },
+  "ratios": {
+    "test": 0.2,
+    "train": 0.7,
+    "validation": 0.1
+  },
+  "schema_version": 1,
+  "source": {
+    "reviews_file": "dataset_raw\\cds-and-vinyl\\CDs_and_Vinyl_5.json",
+    "reviews_file_sha256": "d3ae7a26a173298df371d2f5d0250a41ec7b58b4dab876bf7c77bc8309da1b5c"
+  },
+  "split_policy": {
+    "count_rounding": "round(ratio * degree) for train/validation, test takes the exact remainder",
+    "item_order_before_shuffle": "ascending_item_id",
+    "shuffle": "one_python_random_rng_per_dataset",
+    "user_order": "ascending_user_id"
+  },
+  "split_seed": 42
+}
