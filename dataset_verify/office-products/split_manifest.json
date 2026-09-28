@@ -1,0 +1,119 @@
+{
+  "algorithm": "taxprocl-office-products-per-user-shuffle-70-10-20-v1",
+  "assertions": {
+    "partition_covers_five_core": true,
+    "train_test_disjoint": true,
+    "train_validation_disjoint": true,
+    "validation_test_disjoint": true
+  },
+  "counts": {
+    "distinct_review_pairs": 740703,
+    "dropped_reverifying_five_core": 63456,
+    "five_core_pairs": 677247,
+    "items": 27965,
+    "test": 125315,
+    "train": 488046,
+    "users": 101501,
+    "validation": 63886
+  },
+  "dataset": "office-products",
+  "five_core_verification": {
+    "interactions": 677247,
+    "items": 25898,
+    "iterations": [
+      {
+        "input_interactions": 740703,
+        "iteration": 1,
+        "output_interactions": 689109,
+        "removed_interactions": 51594
+      },
+      {
+        "input_interactions": 689109,
+        "iteration": 2,
+        "output_interactions": 683402,
+        "removed_interactions": 5707
+      },
+      {
+        "input_interactions": 683402,
+        "iteration": 3,
+        "output_interactions": 679090,
+        "removed_interactions": 4312
+      },
+      {
+        "input_interactions": 679090,
+        "iteration": 4,
+        "output_interactions": 678181,
+        "removed_interactions": 909
+      },
+      {
+        "input_interactions": 678181,
+        "iteration": 5,
+        "output_interactions": 677487,
+        "removed_interactions": 694
+      },
+      {
+        "input_interactions": 677487,
+        "iteration": 6,
+        "output_interactions": 677359,
+        "removed_interactions": 128
+      },
+      {
+        "input_interactions": 677359,
+        "iteration": 7,
+        "output_interactions": 677279,
+        "removed_interactions": 80
+      },
+      {
+        "input_interactions": 677279,
+        "iteration": 8,
+        "output_interactions": 677263,
+        "removed_interactions": 16
+      },
+      {
+        "input_interactions": 677263,
+        "iteration": 9,
+        "output_interactions": 677247,
+        "removed_interactions": 16
+      },
+      {
+        "input_interactions": 677247,
+        "iteration": 10,
+        "output_interactions": 677247,
+        "removed_interactions": 0
+      }
+    ],
+    "minimum_degree": 5,
+    "minimum_item_degree": 5,
+    "minimum_user_degree": 5,
+    "users": 86713
+  },
+  "id_maps": {
+    "item_list_sha256": "ba0e13362450e2b43fbe8e333e3b1a0c1002cb382151f8470135c198ae632096",
+    "user_list_sha256": "6a381c09e841f6e5f43d29effa977203d99dd0bdaed18d6209d92e28e1df6697"
+  },
+  "minimum_degree": 5,
+  "output_hashes": {
+    "raw_test": "0254eed2883d3f90b7c72bfdb2bafdb4ce2abd17e33fc60715cb810e37d3e091",
+    "raw_train": "0e5a4d15f6aa92789c8ec7f0a31ad6677b3a3b56411f147c50c5dd3d8df5cffe",
+    "test": "0254eed2883d3f90b7c72bfdb2bafdb4ce2abd17e33fc60715cb810e37d3e091",
+    "train": "cdf2344a19f1b9d2748d049656b0156c63eb93e3f0c285780bb5b6dba6f5d1e8",
+    "validation": "c777182229a7c313426abbba784882a1e9718bee7c27a48dc9d6c5755c7cc6de"
+  },
+  "ratios": {
+    "test": 0.2,
+    "train": 0.7,
+    "validation": 0.1
+  },
+  "schema_version": 1,
+  "source": {
+    "reviews_file": "dataset_raw\\office-products\\Office_Products_5.json",
+    "reviews_file_sha256": "521729ee6014e9e83fa31a6fee9d76e1cb7d9b633c3312ca59dece85377c138c"
+  },
+  "split_policy": {
+    "count_rounding": "round(ratio * degree) for train/validation, test takes the exact remainder",
+    "item_order_before_shuffle": "ascending_item_id",
+    "shuffle": "one_python_random_rng_per_dataset",
+    "user_order": "ascending_user_id"
+  },
+  "split_seed": 42
+}

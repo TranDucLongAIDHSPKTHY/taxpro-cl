@@ -44,6 +44,8 @@ AMAZON_DATASET_NAME = "amazon-book"
 MUSICAL_INSTRUMENTS_DATASET_NAME = "musical-instruments"
 ARTS_CRAFTS_AND_SEWING_DATASET_NAME = "arts-crafts-and-sewing"
 CDS_AND_VINYL_DATASET_NAME = "cds-and-vinyl"
+DIGITAL_MUSIC_DATASET_NAME = "digital-music"  # confirmatory evaluation only
+OFFICE_PRODUCTS_DATASET_NAME = "office-products"  # confirmatory evaluation only
 YELP_DATASET_NAME = "yelp2018"
 README_FILE_NAME = "README.md"
 ITEM_LIST_FILE_NAME = "item_list.txt"
@@ -70,6 +72,8 @@ AMAZON_CATEGORY_NAMES = {
     MUSICAL_INSTRUMENTS_DATASET_NAME: "Musical_Instruments",
     ARTS_CRAFTS_AND_SEWING_DATASET_NAME: "Arts_Crafts_and_Sewing",
     CDS_AND_VINYL_DATASET_NAME: "CDs_and_Vinyl",
+    DIGITAL_MUSIC_DATASET_NAME: "Digital_Music",
+    OFFICE_PRODUCTS_DATASET_NAME: "Office_Products",
 }
 _AMAZON_METADATA_URL_TEMPLATES = {
     "2014": "https://mcauleylab.ucsd.edu/public_datasets/data/amazon/categoryFiles/meta_{}.json.gz",

@@ -1,0 +1,34 @@
+{
+  "creation_command": "python -m tools.protocol.build --build",
+  "dataset": "office-products",
+  "output_hashes": {
+    "item_to_leaf.json": "46b9806dc03f543d8e3544dd99e787967b930dd402c96a19b76ac768c47088cf",
+    "item_to_leaf_id.npy": "970ee448187442ea5b6925b424a52e1c7c9a64f92608eae9a0a2e5f80dad4b12",
+    "leaf_id_to_name.json": "f0529ff375cb411b3f9ae1add59c724494278317e7cf454fd1db810df6a592fc",
+    "mapping_provenance.jsonl": "29339d50f137d20e95eecd664d463a5b944a5423469c3aab1992896bbc36fc0a",
+    "taxonomy_statistics.json": "d759225721229ca611ce0ca289b5d43622069713d55de99cb5036d613c2d40e8",
+    "valid_taxonomy_mask.npy": "cc7158940b9c960a22bbf6422394f09539d0089ff11ad884f4f0b22c65d84e17"
+  },
+  "policy": {
+    "invalid_policy": "retain in BPR/evaluation; exclude from prototype/EMA/taxonomy CL",
+    "kind": "amazon_hierarchical_train_support",
+    "no_merge": true,
+    "promotion": "nearest non-root ancestor with aggregated train support >= threshold",
+    "rare_definition": null,
+    "root_only_office_products_prototype": false,
+    "validation_or_test_used": false
+  },
+  "protocol_version": "taxprocl-p0-week3-v1",
+  "source_hashes": {
+    "mapping": "28e1454a8a6adc5174d569330675f6f60f1ee3efa7ac4f3cd1a184183dcb2494",
+    "merged_metadata": "51f38d7eb26b75dd83b639e840252ee5748bf68802f2fae0014bc6440a49f538",
+    "train": "cdf2344a19f1b9d2748d049656b0156c63eb93e3f0c285780bb5b6dba6f5d1e8"
+  },
+  "source_paths": {
+    "mapping": "metadata/item2category_office_products.json",
+    "merged_metadata": "metadata/merged_metadata_office_products.json",
+    "train": "dataset_verify/office-products/train.txt"
+  },
+  "threshold": null,
+  "variant": "no_merge"
+}

@@ -1,0 +1,1002 @@
+{
+  "protocol": "docs/confirmatory_protocol.md (with Deviations 1-2)",
+  "dataset": "office-products",
+  "rule_R": "Overall within 2% of the best validation Overall, then highest validation Long-Tail",
+  "step1_policy": {
+    "selected": "no_merge",
+    "cells": {
+      "no_merge": {
+        "mean": {
+          "near_cold": 0.0029210201100999893,
+          "long_tail": 0.008956036477473799,
+          "warm": 0.17818526427665884,
+          "overall": 0.1450435873946941
+        },
+        "sd": {
+          "near_cold": 0.000600425747849454,
+          "long_tail": 0.0003313795787107615,
+          "warm": 0.0005200457675434071,
+          "overall": 0.0005023266679882674
+        },
+        "per_seed": [
+          {
+            "near_cold": 0.0024435456690259524,
+            "long_tail": 0.008990063971689125,
+            "warm": 0.1786352138614239,
+            "overall": 0.14545047150445967
+          },
+          {
+            "near_cold": 0.0035951016739692175,
+            "long_tail": 0.009269089424254797,
+            "warm": 0.17830468261533028,
+            "overall": 0.1451981482340558
+          },
+          {
+            "near_cold": 0.002724412987304797,
+            "long_tail": 0.008608956036477475,
+            "warm": 0.1776158963532224,
+            "overall": 0.14448214244556687
+          }
+        ],
+        "run_dirs": [
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step1-no_merge\\seed42",
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step1-no_merge\\seed0",
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step1-no_merge\\seed1"
+        ]
+      },
+      "merge_t5": {
+        "mean": {
+          "near_cold": 0.003033367037411527,
+          "long_tail": 0.009092146454335103,
+          "warm": 0.1781686009754069,
+          "overall": 0.14506170515182137
+        },
+        "sd": {
+          "near_cold": 0.0007909295495072869,
+          "long_tail": 0.0005414970827421423,
+          "warm": 0.000516679591662752,
+          "overall": 0.0004930292636269527
+        },
+        "per_seed": [
+          {
+            "near_cold": 0.0024435456690259524,
+            "long_tail": 0.008990063971689125,
+            "warm": 0.17866989425422497,
+            "overall": 0.14547216592810128
+          },
+          {
+            "near_cold": 0.003932142455903831,
+            "long_tail": 0.00967741935483871,
+            "warm": 0.17819810891279372,
+            "overall": 0.14519811685439085
+          },
+          {
+            "near_cold": 0.002724412987304797,
+            "long_tail": 0.008608956036477475,
+            "warm": 0.17763779975920202,
+            "overall": 0.144514832672972
+          }
+        ],
+        "run_dirs": [
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step1-merge_t5\\seed42",
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step1-merge_t5\\seed0",
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step1-merge_t5\\seed1"
+        ]
+      },
+      "merge_t10": {
+        "mean": {
+          "near_cold": 0.002808673182788451,
+          "long_tail": 0.00898325847284606,
+          "warm": 0.1781674144230845,
+          "overall": 0.14503273568008718
+        },
+        "sd": {
+          "near_cold": 0.00041374339576048325,
+          "long_tail": 0.0002892937431173574,
+          "warm": 0.00040888486732981613,
+          "overall": 0.0003895288388093495
+        },
+        "per_seed": [
+          {
+            "near_cold": 0.0024435456690259524,
+            "long_tail": 0.008990063971689125,
+            "warm": 0.178509269277041,
+            "overall": 0.14534140501848083
+          },
+          {
+            "near_cold": 0.0032580608920346034,
+            "long_tail": 0.009269089424254797,
+            "warm": 0.17827851231208186,
+            "overall": 0.14516172969972344
+          },
+          {
+            "near_cold": 0.002724412987304797,
+            "long_tail": 0.008690622022594257,
+            "warm": 0.17771446168013072,
+            "overall": 0.14459507232205726
+          }
+        ],
+        "run_dirs": [
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step1-merge_t10\\seed42",
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step1-merge_t10\\seed0",
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step1-merge_t10\\seed1"
+        ]
+      },
+      "merge_t15": {
+        "mean": {
+          "near_cold": 0.0029210201100999893,
+          "long_tail": 0.00898325847284606,
+          "warm": 0.1781467594796391,
+          "overall": 0.14502318784369653
+        },
+        "sd": {
+          "near_cold": 0.000600425747849454,
+          "long_tail": 0.0002892937431173574,
+          "warm": 0.00043283030582873385,
+          "overall": 0.0004130590050640547
+        },
+        "per_seed": [
+          {
+            "near_cold": 0.0024435456690259524,
+            "long_tail": 0.008990063971689125,
+            "warm": 0.17848736587106137,
+            "overall": 0.14531465846878575
+          },
+          {
+            "near_cold": 0.0035951016739692175,
+            "long_tail": 0.009269089424254797,
+            "warm": 0.1782932094026743,
+            "overall": 0.14520441032307171
+          },
+          {
+            "near_cold": 0.002724412987304797,
+            "long_tail": 0.008690622022594257,
+            "warm": 0.17765970316518165,
+            "overall": 0.1445504947392321
+          }
+        ],
+        "run_dirs": [
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step1-merge_t15\\seed42",
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step1-merge_t15\\seed0",
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step1-merge_t15\\seed1"
+        ]
+      }
+    }
+  },
+  "step2_taxpro": {
+    "selected": "temp0.15-gamma1.5",
+    "selected_rule_ov_sensitivity": "temp0.15-gamma1.5",
+    "cells": {
+      "temp0.1-gamma1.5": {
+        "mean": {
+          "near_cold": 0.0029116578661573605,
+          "long_tail": 0.008708770019509097,
+          "warm": 0.17554968213958097,
+          "overall": 0.14288671469251743
+        },
+        "sd": {
+          "near_cold": 0.0005448632935232545,
+          "long_tail": 0.0002420819667338887,
+          "warm": 0.0004712291384709912,
+          "overall": 0.00041098307749346246
+        },
+        "per_seed": [
+          {
+            "near_cold": 0.0026401527918211436,
+            "long_tail": 0.008758677011024908,
+            "warm": 0.1759159462659394,
+            "overall": 0.14316895453716816
+          },
+          {
+            "near_cold": 0.003538928210313448,
+            "long_tail": 0.008922008983258473,
+            "warm": 0.17571503944962752,
+            "overall": 0.14307599239814153
+          },
+          {
+            "near_cold": 0.00255589259633749,
+            "long_tail": 0.00844562406424391,
+            "warm": 0.175018060703176,
+            "overall": 0.14241519714224257
+          }
+        ],
+        "run_dirs": [
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step2-no_merge-temp0.1-gamma1.5\\seed42",
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step2-no_merge-temp0.1-gamma1.5\\seed0",
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step2-no_merge-temp0.1-gamma1.5\\seed1"
+        ]
+      },
+      "temp0.1-gamma5.0": {
+        "mean": {
+          "near_cold": 0.0029678313298131293,
+          "long_tail": 0.008844879996370401,
+          "warm": 0.17539234267329396,
+          "overall": 0.14279696515909612
+        },
+        "sd": {
+          "near_cold": 0.0004963755436397246,
+          "long_tail": 0.0002750409612309366,
+          "warm": 0.00045421326477515343,
+          "overall": 0.00040872853461945913
+        },
+        "per_seed": [
+          {
+            "near_cold": 0.0026401527918211436,
+            "long_tail": 0.009003674969375255,
+            "warm": 0.17575532128875548,
+            "overall": 0.14310208816293046
+          },
+          {
+            "near_cold": 0.003538928210313448,
+            "long_tail": 0.009003674969375255,
+            "warm": 0.1755387170314915,
+            "overall": 0.1429562272922846
+          },
+          {
+            "near_cold": 0.002724412987304797,
+            "long_tail": 0.008527290050360691,
+            "warm": 0.17488298969963492,
+            "overall": 0.1423325800220733
+          }
+        ],
+        "run_dirs": [
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step2-no_merge-temp0.1-gamma5.0\\seed42",
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step2-no_merge-temp0.1-gamma5.0\\seed0",
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step2-no_merge-temp0.1-gamma5.0\\seed1"
+        ]
+      },
+      "temp0.125-gamma1.5": {
+        "mean": {
+          "near_cold": 0.0029210201100999893,
+          "long_tail": 0.008956036477473799,
+          "warm": 0.17818526427665884,
+          "overall": 0.1450435873946941
+        },
+        "sd": {
+          "near_cold": 0.000600425747849454,
+          "long_tail": 0.0003313795787107615,
+          "warm": 0.0005200457675434071,
+          "overall": 0.0005023266679882674
+        },
+        "per_seed": [
+          {
+            "near_cold": 0.0024435456690259524,
+            "long_tail": 0.008990063971689125,
+            "warm": 0.1786352138614239,
+            "overall": 0.14545047150445967
+          },
+          {
+            "near_cold": 0.0035951016739692175,
+            "long_tail": 0.009269089424254797,
+            "warm": 0.17830468261533028,
+            "overall": 0.1451981482340558
+          },
+          {
+            "near_cold": 0.002724412987304797,
+            "long_tail": 0.008608956036477475,
+            "warm": 0.1776158963532224,
+            "overall": 0.14448214244556687
+          }
+        ],
+        "run_dirs": [
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step1-no_merge\\seed42",
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step1-no_merge\\seed0",
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step1-no_merge\\seed1"
+        ]
+      },
+      "temp0.125-gamma5.0": {
+        "mean": {
+          "near_cold": 0.0029771935737557577,
+          "long_tail": 0.009010480468218321,
+          "warm": 0.17810592527277705,
+          "overall": 0.14498940086623777
+        },
+        "sd": {
+          "near_cold": 0.0005380643764933163,
+          "long_tail": 0.0003305399331585926,
+          "warm": 0.000421505170959403,
+          "overall": 0.0004259823908886645
+        },
+        "per_seed": [
+          {
+            "near_cold": 0.002612066059993259,
+            "long_tail": 0.008990063971689125,
+            "warm": 0.17841983036929085,
+            "overall": 0.1452766189314416
+          },
+          {
+            "near_cold": 0.0035951016739692175,
+            "long_tail": 0.009350755410371581,
+            "warm": 0.17827109739282815,
+            "overall": 0.14519161018857477
+          },
+          {
+            "near_cold": 0.002724412987304797,
+            "long_tail": 0.008690622022594257,
+            "warm": 0.1776268480562122,
+            "overall": 0.14449997347869695
+          }
+        ],
+        "run_dirs": [
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step2-no_merge-temp0.125-gamma5.0\\seed42",
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step2-no_merge-temp0.125-gamma5.0\\seed0",
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step2-no_merge-temp0.125-gamma5.0\\seed1"
+        ]
+      },
+      "temp0.15-gamma1.5": {
+        "mean": {
+          "near_cold": 0.0029771935737557577,
+          "long_tail": 0.009201034435824146,
+          "warm": 0.1826362876168337,
+          "overall": 0.14863966152326105
+        },
+        "sd": {
+          "near_cold": 0.000580383617564651,
+          "long_tail": 0.0004805954430976955,
+          "warm": 0.0008169608298080786,
+          "overall": 0.0005991368220248746
+        },
+        "per_seed": [
+          {
+            "near_cold": 0.0024435456690259524,
+            "long_tail": 0.008663400027221995,
+            "warm": 0.18273057790914812,
+            "overall": 0.14860759144905164
+          },
+          {
+            "near_cold": 0.0035951016739692175,
+            "long_tail": 0.009350755410371581,
+            "warm": 0.18340201208077528,
+            "overall": 0.1492541893040655
+          },
+          {
+            "near_cold": 0.002892933378272104,
+            "long_tail": 0.009588947869878862,
+            "warm": 0.1817762728605777,
+            "overall": 0.14805720381666607
+          }
+        ],
+        "run_dirs": [
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step2-no_merge-temp0.15-gamma1.5\\seed42",
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step2-no_merge-temp0.15-gamma1.5\\seed0",
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step2-no_merge-temp0.15-gamma1.5\\seed1"
+        ]
+      },
+      "temp0.15-gamma5.0": {
+        "mean": {
+          "near_cold": 0.0029771935737557577,
+          "long_tail": 0.009146590445079624,
+          "warm": 0.18238305990659143,
+          "overall": 0.14841499758162913
+        },
+        "sd": {
+          "near_cold": 0.000580383617564651,
+          "long_tail": 0.0004350731511752991,
+          "warm": 0.0010048344497792085,
+          "overall": 0.0007227757180984593
+        },
+        "per_seed": [
+          {
+            "near_cold": 0.0024435456690259524,
+            "long_tail": 0.008663400027221995,
+            "warm": 0.18274883074746445,
+            "overall": 0.1485942181742041
+          },
+          {
+            "near_cold": 0.0035951016739692175,
+            "long_tail": 0.009269089424254797,
+            "warm": 0.18315377347967282,
+            "overall": 0.14903130138993975
+          },
+          {
+            "near_cold": 0.002892933378272104,
+            "long_tail": 0.00950728188376208,
+            "warm": 0.181246575492637,
+            "overall": 0.14761947318074353
+          }
+        ],
+        "run_dirs": [
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step2-no_merge-temp0.15-gamma5.0\\seed42",
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step2-no_merge-temp0.15-gamma5.0\\seed0",
+          "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step2-no_merge-temp0.15-gamma5.0\\seed1"
+        ]
+      }
+    }
+  },
+  "step3_tuned_simgcl": {
+    "selected": "temp0.2-eps0.1",
+    "selected_rule_ov_sensitivity": "temp0.2-eps0.2",
+    "default_cell": "temp0.2-eps0.05",
+    "cells": {
+      "temp0.05-eps0.05": {
+        "mean": {
+          "near_cold": 0.0011234692731153803,
+          "long_tail": 0.0028242820198720563,
+          "warm": 0.14075561206990275,
+          "overall": 0.11350958468130053
+        },
+        "sd": {
+          "near_cold": 9.729529308891571e-05,
+          "long_tail": 8.251228836928085e-05,
+          "warm": 0.00019042566624329443,
+          "overall": 0.00015673996464538387
+        },
+        "per_seed": [
+          {
+            "near_cold": 0.0011796427367711494,
+            "long_tail": 0.002735810534912209,
+            "warm": 0.1409220866887634,
+            "overall": 0.11364087635101115
+          },
+          {
+            "near_cold": 0.0010111223458038423,
+            "long_tail": 0.002837893017558187,
+            "warm": 0.140796779685297,
+            "overall": 0.11355182438586309
+          },
+          {
+            "near_cold": 0.0011796427367711494,
+            "long_tail": 0.0028991425071457737,
+            "warm": 0.14054796983564788,
+            "overall": 0.11333605330702735
+          }
+        ],
+        "run_dirs": [
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.05-eps0.05\\seed42",
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.05-eps0.05\\seed0",
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.05-eps0.05\\seed1"
+        ]
+      },
+      "temp0.05-eps0.1": {
+        "mean": {
+          "near_cold": 0.0009923978579185861,
+          "long_tail": 0.002463590581189601,
+          "warm": 0.14077029813975658,
+          "overall": 0.1134692462080889
+        },
+        "sd": {
+          "near_cold": 0.00016215882181485944,
+          "long_tail": 0.00014340075885194958,
+          "warm": 0.0005122995210665804,
+          "overall": 0.0004179953364896776
+        },
+        "per_seed": [
+          {
+            "near_cold": 0.0008987754184923044,
+            "long_tail": 0.002449979583503471,
+            "warm": 0.14050670344948352,
+            "overall": 0.11324483483482406
+          },
+          {
+            "near_cold": 0.0008987754184923044,
+            "long_tail": 0.0026133115557370355,
+            "warm": 0.14044346799037286,
+            "overall": 0.11321138466705971
+          },
+          {
+            "near_cold": 0.0011796427367711494,
+            "long_tail": 0.0023274806043282973,
+            "warm": 0.14136072297941338,
+            "overall": 0.11395151912238295
+          }
+        ],
+        "run_dirs": [
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.05-eps0.1\\seed42",
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.05-eps0.1\\seed0",
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.05-eps0.1\\seed1"
+        ]
+      },
+      "temp0.05-eps0.2": {
+        "mean": {
+          "near_cold": 0.0006740815638692282,
+          "long_tail": 0.001762624200353886,
+          "warm": 0.14174354656255514,
+          "overall": 0.1140925784338651
+        },
+        "sd": {
+          "near_cold": 0.00016852039096730705,
+          "long_tail": 0.00012966216743744152,
+          "warm": 0.0009466659948468131,
+          "overall": 0.0008239279091855974
+        },
+        "per_seed": [
+          {
+            "near_cold": 0.0005055611729019212,
+            "long_tail": 0.0018374846876276032,
+            "warm": 0.14078221937662583,
+            "overall": 0.11327796529616685
+          },
+          {
+            "near_cold": 0.0006740815638692282,
+            "long_tail": 0.0016129032258064516,
+            "warm": 0.14177358388354458,
+            "overall": 0.11407425455684361
+          },
+          {
+            "near_cold": 0.0008426019548365353,
+            "long_tail": 0.0018374846876276032,
+            "warm": 0.14267483642749496,
+            "overall": 0.11492551544858483
+          }
+        ],
+        "run_dirs": [
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.05-eps0.2\\seed42",
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.05-eps0.2\\seed0",
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.05-eps0.2\\seed1"
+        ]
+      },
+      "temp0.1-eps0.05": {
+        "mean": {
+          "near_cold": 0.0015728569823615325,
+          "long_tail": 0.0028855315094596435,
+          "warm": 0.15415182631340407,
+          "overall": 0.12456937740964764
+        },
+        "sd": {
+          "near_cold": 9.729529308891571e-05,
+          "long_tail": 0.0003057934114422346,
+          "warm": 0.0008508794316060476,
+          "overall": 0.0007759368994484176
+        },
+        "per_seed": [
+          {
+            "near_cold": 0.0015166835187057635,
+            "long_tail": 0.002633728052266231,
+            "warm": 0.15363585776366967,
+            "overall": 0.12409615006204924
+          },
+          {
+            "near_cold": 0.0015166835187057635,
+            "long_tail": 0.002797060024499796,
+            "warm": 0.15513391565585052,
+            "overall": 0.1254648689021958
+          },
+          {
+            "near_cold": 0.0016852039096730705,
+            "long_tail": 0.0032258064516129032,
+            "warm": 0.153685705520692,
+            "overall": 0.12414711326469793
+          }
+        ],
+        "run_dirs": [
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.1-eps0.05\\seed42",
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.1-eps0.05\\seed0",
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.1-eps0.05\\seed1"
+        ]
+      },
+      "temp0.1-eps0.1": {
+        "mean": {
+          "near_cold": 0.0017413773733288395,
+          "long_tail": 0.003559275894923098,
+          "warm": 0.16048628892448938,
+          "overall": 0.12978905688003606
+        },
+        "sd": {
+          "near_cold": 0.00019459058617783142,
+          "long_tail": 0.00018859951627264222,
+          "warm": 0.0008094078225463378,
+          "overall": 0.0007147719914375245
+        },
+        "per_seed": [
+          {
+            "near_cold": 0.0015166835187057635,
+            "long_tail": 0.0034503879134340546,
+            "warm": 0.1599690711497798,
+            "overall": 0.1292946391791753
+          },
+          {
+            "near_cold": 0.0018537243006403776,
+            "long_tail": 0.0034503879134340546,
+            "warm": 0.16141906793380342,
+            "overall": 0.13060859636266275
+          },
+          {
+            "near_cold": 0.0018537243006403776,
+            "long_tail": 0.003777051857901184,
+            "warm": 0.16007072768988492,
+            "overall": 0.12946393509827012
+          }
+        ],
+        "run_dirs": [
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.1-eps0.1\\seed42",
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.1-eps0.1\\seed0",
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.1-eps0.1\\seed1"
+        ]
+      },
+      "temp0.1-eps0.2": {
+        "mean": {
+          "near_cold": 0.0015728569823615325,
+          "long_tail": 0.0035728868926092282,
+          "warm": 0.16662132733436943,
+          "overall": 0.1347098778494264
+        },
+        "sd": {
+          "near_cold": 0.0002574191492504123,
+          "long_tail": 0.0004078191987635396,
+          "warm": 0.0002959694305528817,
+          "overall": 0.00021513018339823194
+        },
+        "per_seed": [
+          {
+            "near_cold": 0.0013481631277384564,
+            "long_tail": 0.0033074724377296855,
+            "warm": 0.16664492037898976,
+            "overall": 0.1346476740690064
+          },
+          {
+            "near_cold": 0.0015166835187057635,
+            "long_tail": 0.0033687219273172723,
+            "warm": 0.16690479413522347,
+            "overall": 0.1349492560298978
+          },
+          {
+            "near_cold": 0.0018537243006403776,
+            "long_tail": 0.0040424663127807264,
+            "warm": 0.1663142674888951,
+            "overall": 0.13453270344937499
+          }
+        ],
+        "run_dirs": [
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.1-eps0.2\\seed42",
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.1-eps0.2\\seed0",
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.1-eps0.2\\seed1"
+        ]
+      },
+      "temp0.15-eps0.05": {
+        "mean": {
+          "near_cold": 0.002003520203722428,
+          "long_tail": 0.004380472755319632,
+          "warm": 0.17236849503713667,
+          "overall": 0.13942164103914814
+        },
+        "sd": {
+          "near_cold": 8.107941090742981e-05,
+          "long_tail": 0.00022799267563635464,
+          "warm": 0.00017553489441317872,
+          "overall": 0.00015066976844802193
+        },
+        "per_seed": [
+          {
+            "near_cold": 0.0019098977642961466,
+            "long_tail": 0.00415135429426977,
+            "warm": 0.17256271575850896,
+            "overall": 0.13944823396344674
+          },
+          {
+            "near_cold": 0.002050331423435569,
+            "long_tail": 0.004607322716755138,
+            "warm": 0.17232159655451595,
+            "overall": 0.13955724384297122
+          },
+          {
+            "near_cold": 0.0020503314234355694,
+            "long_tail": 0.004382741254933986,
+            "warm": 0.17222117279838503,
+            "overall": 0.13925944531102644
+          }
+        ],
+        "run_dirs": [
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.15-eps0.05\\seed42",
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.15-eps0.05\\seed0",
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.15-eps0.05\\seed1"
+        ]
+      },
+      "temp0.15-eps0.1": {
+        "mean": {
+          "near_cold": 0.001919260008238775,
+          "long_tail": 0.0044485277437502834,
+          "warm": 0.1753497800957868,
+          "overall": 0.1417861102675689
+        },
+        "sd": {
+          "near_cold": 0.00020318442135912367,
+          "long_tail": 1.7126796504856084e-05,
+          "warm": 0.0005362377110842488,
+          "overall": 0.0004885770997698414
+        },
+        "per_seed": [
+          {
+            "near_cold": 0.0016852039096730705,
+            "long_tail": 0.004450796243364638,
+            "warm": 0.17515322889715482,
+            "overall": 0.14158704515997697
+          },
+          {
+            "near_cold": 0.0020222446916076846,
+            "long_tail": 0.004430379746835443,
+            "warm": 0.17595655997485482,
+            "overall": 0.1423427942127267
+          },
+          {
+            "near_cold": 0.0020503314234355694,
+            "long_tail": 0.004464407241050769,
+            "warm": 0.17493955141535078,
+            "overall": 0.141428491430003
+          }
+        ],
+        "run_dirs": [
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.15-eps0.1\\seed42",
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.15-eps0.1\\seed0",
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.15-eps0.1\\seed1"
+        ]
+      },
+      "temp0.15-eps0.2": {
+        "mean": {
+          "near_cold": 0.0015822192263041607,
+          "long_tail": 0.004362324758404791,
+          "warm": 0.178750038395837,
+          "overall": 0.14450012837912984
+        },
+        "sd": {
+          "near_cold": 0.00011351117527040173,
+          "long_tail": 0.0001650245767385617,
+          "warm": 0.00017612539054239043,
+          "overall": 0.00017460170128154003
+        },
+        "per_seed": [
+          {
+            "near_cold": 0.0015166835187057635,
+            "long_tail": 0.0043895467537770514,
+            "warm": 0.17855589773077316,
+            "overall": 0.14432383278897595
+          },
+          {
+            "near_cold": 0.0015166835187057635,
+            "long_tail": 0.004185381788485096,
+            "warm": 0.17889957018870062,
+            "overall": 0.1446729853989679
+          },
+          {
+            "near_cold": 0.0017132906415009551,
+            "long_tail": 0.004512045732952225,
+            "warm": 0.17879464726803726,
+            "overall": 0.14450356694944566
+          }
+        ],
+        "run_dirs": [
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.15-eps0.2\\seed42",
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.15-eps0.2\\seed0",
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.15-eps0.2\\seed1"
+        ]
+      },
+      "temp0.2-eps0.05": {
+        "mean": {
+          "near_cold": 0.0017039283975583267,
+          "long_tail": 0.004698062701329341,
+          "warm": 0.1871065878783945,
+          "overall": 0.15118131161225257
+        },
+        "sd": {
+          "near_cold": 0.0002654654323251662,
+          "long_tail": 0.0004358885263030564,
+          "warm": 0.00042208059819132126,
+          "overall": 0.0004968328305273572
+        },
+        "per_seed": [
+          {
+            "near_cold": 0.0014043365913942252,
+            "long_tail": 0.004233020280386552,
+            "warm": 0.18661949994342802,
+            "overall": 0.15060919923000735
+          },
+          {
+            "near_cold": 0.0017975508369846083,
+            "long_tail": 0.004763849190145638,
+            "warm": 0.18736465902995164,
+            "overall": 0.15150422466231747
+          },
+          {
+            "near_cold": 0.0019098977642961464,
+            "long_tail": 0.005097318633455833,
+            "warm": 0.18733560466180382,
+            "overall": 0.1514305109444329
+          }
+        ],
+        "run_dirs": [
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.2-eps0.05\\seed42",
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.2-eps0.05\\seed0",
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.2-eps0.05\\seed1"
+        ]
+      },
+      "temp0.2-eps0.1": {
+        "mean": {
+          "near_cold": 0.0017413773733288395,
+          "long_tail": 0.004936255160836622,
+          "warm": 0.19006015232778864,
+          "overall": 0.1535801072288209
+        },
+        "sd": {
+          "near_cold": 0.00016852039096730705,
+          "long_tail": 5.107903565717381e-05,
+          "warm": 0.0009882077964043124,
+          "overall": 0.0007746090180456806
+        },
+        "per_seed": [
+          {
+            "near_cold": 0.0015728569823615323,
+            "long_tail": 0.004988430651966789,
+            "warm": 0.18901055139649486,
+            "overall": 0.15274903334208548
+          },
+          {
+            "near_cold": 0.0017413773733288393,
+            "long_tail": 0.004886348169320811,
+            "warm": 0.1901972569556391,
+            "overall": 0.15370927679114194
+          },
+          {
+            "near_cold": 0.0019098977642961464,
+            "long_tail": 0.0049339866612222675,
+            "warm": 0.19097264863123198,
+            "overall": 0.15428201155323532
+          }
+        ],
+        "run_dirs": [
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.2-eps0.1\\seed42",
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.2-eps0.1\\seed0",
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.2-eps0.1\\seed1"
+        ]
+      },
+      "temp0.2-eps0.2": {
+        "mean": {
+          "near_cold": 0.001516683518705763,
+          "long_tail": 0.00450070323488045,
+          "warm": 0.19160974981978016,
+          "overall": 0.15472837987686172
+        },
+        "sd": {
+          "near_cold": 0.00019459058617783142,
+          "long_tail": 0.00018716152926213217,
+          "warm": 0.00037581542080580783,
+          "overall": 0.0003100629467607259
+        },
+        "per_seed": [
+          {
+            "near_cold": 0.0014043365913942252,
+            "long_tail": 0.004498434735266095,
+            "warm": 0.19125437281072477,
+            "overall": 0.1544170840365617
+          },
+          {
+            "near_cold": 0.0014043365913942252,
+            "long_tail": 0.004314686266503335,
+            "warm": 0.19157175889415373,
+            "overall": 0.15473086054916518
+          },
+          {
+            "near_cold": 0.0017413773733288393,
+            "long_tail": 0.00468898870287192,
+            "warm": 0.1920031177544619,
+            "overall": 0.15503719504485824
+          }
+        ],
+        "run_dirs": [
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.2-eps0.2\\seed42",
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.2-eps0.2\\seed0",
+          "log\\p0\\confirmatory\\office-products\\SimGCL\\grid-temp0.2-eps0.2\\seed1"
+        ]
+      }
+    }
+  },
+  "step4_factorial": {
+    "V0": {
+      "mean": {
+        "near_cold": 0.0029771935737557577,
+        "long_tail": 0.009173812440451885,
+        "warm": 0.1827343835850425,
+        "overall": 0.14870432024577795
+      },
+      "sd": {
+        "near_cold": 0.000580383617564651,
+        "long_tail": 0.0003899378617334096,
+        "warm": 0.0008983331458745154,
+        "overall": 0.0006588141497027683
+      },
+      "per_seed": [
+        {
+          "near_cold": 0.0024435456690259524,
+          "long_tail": 0.008745066013338777,
+          "warm": 0.18285156815170225,
+          "overall": 0.14872230442885503
+        },
+        {
+          "near_cold": 0.0035951016739692175,
+          "long_tail": 0.009269089424254797,
+          "warm": 0.18356837366428727,
+          "overall": 0.1493539581799123
+        },
+        {
+          "near_cold": 0.002892933378272104,
+          "long_tail": 0.00950728188376208,
+          "warm": 0.18178320893913794,
+          "overall": 0.1480366981285665
+        }
+      ],
+      "run_dirs": [
+        "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step4-V0-no_merge-temp0.15-gamma1.5\\seed42",
+        "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step4-V0-no_merge-temp0.15-gamma1.5\\seed0",
+        "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step4-V0-no_merge-temp0.15-gamma1.5\\seed1"
+      ]
+    },
+    "V1": {
+      "mean": {
+        "near_cold": 0.0029771935737557577,
+        "long_tail": 0.009201034435824146,
+        "warm": 0.18263750447272145,
+        "overall": 0.14864065213621275
+      },
+      "sd": {
+        "near_cold": 0.000580383617564651,
+        "long_tail": 0.0004805954430976955,
+        "warm": 0.0008032263078729924,
+        "overall": 0.0005923206005454762
+      },
+      "per_seed": [
+        {
+          "near_cold": 0.0024435456690259524,
+          "long_tail": 0.008663400027221995,
+          "warm": 0.18269042166485217,
+          "overall": 0.14857490122164654
+        },
+        {
+          "near_cold": 0.0035951016739692175,
+          "long_tail": 0.009350755410371581,
+          "warm": 0.1834129637837651,
+          "overall": 0.14926310482063054
+        },
+        {
+          "near_cold": 0.002892933378272104,
+          "long_tail": 0.009588947869878862,
+          "warm": 0.18180912796954715,
+          "overall": 0.14808395036636116
+        }
+      ],
+      "run_dirs": [
+        "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step4-V1-no_merge-temp0.15-gamma1.5\\seed42",
+        "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step4-V1-no_merge-temp0.15-gamma1.5\\seed0",
+        "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step4-V1-no_merge-temp0.15-gamma1.5\\seed1"
+      ]
+    },
+    "V2": {
+      "mean": {
+        "near_cold": 0.0029771935737557577,
+        "long_tail": 0.009173812440451885,
+        "warm": 0.18270663927080164,
+        "overall": 0.14868074365752817
+      },
+      "sd": {
+        "near_cold": 0.000580383617564651,
+        "long_tail": 0.0003899378617334096,
+        "warm": 0.0008775111175967045,
+        "overall": 0.0006455789087950898
+      },
+      "per_seed": [
+        {
+          "near_cold": 0.0024435456690259524,
+          "long_tail": 0.008745066013338777,
+          "warm": 0.18285156815170225,
+          "overall": 0.14871338891229
+        },
+        {
+          "near_cold": 0.0035951016739692175,
+          "long_tail": 0.009269089424254797,
+          "warm": 0.18350266344634839,
+          "overall": 0.14930938059708712
+        },
+        {
+          "near_cold": 0.002892933378272104,
+          "long_tail": 0.00950728188376208,
+          "warm": 0.18176568621435427,
+          "overall": 0.14801946146320746
+        }
+      ],
+      "run_dirs": [
+        "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step4-V2-no_merge-temp0.15-gamma1.5\\seed42",
+        "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step4-V2-no_merge-temp0.15-gamma1.5\\seed0",
+        "log\\p0\\confirmatory\\office-products\\TaxPro-CL\\step4-V2-no_merge-temp0.15-gamma1.5\\seed1"
+      ]
+    },
+    "V3": "= step2 selected cell temp0.15-gamma1.5"
+  },
+  "frozen_at_utc": "2026-09-28T12:05:24Z"
+}

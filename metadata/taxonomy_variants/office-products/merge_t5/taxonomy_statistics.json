@@ -1,0 +1,38 @@
+{
+  "catalog_items": 27965,
+  "coverage_percent": 97.958162,
+  "dataset": "office-products",
+  "final_leaf_count": 952,
+  "final_leaf_train_support_distribution": {
+    "count": 947,
+    "max": 817,
+    "mean": 26.784583,
+    "median": 9,
+    "min": 1
+  },
+  "invalid_items": 571,
+  "metadata_missing_items": 5,
+  "original_leaf_count": 2037,
+  "policy": {
+    "invalid_policy": "retain in BPR/evaluation; exclude from prototype/EMA/taxonomy CL",
+    "kind": "amazon_hierarchical_train_support",
+    "no_merge": false,
+    "promotion": "nearest non-root ancestor with aggregated train support >= threshold",
+    "rare_definition": "original leaf support < 5",
+    "root_only_office_products_prototype": false,
+    "validation_or_test_used": false
+  },
+  "promoted_items": 2448,
+  "reassigned_items": 0,
+  "retained_items": 24946,
+  "status_counts": {
+    "invalid_no_supported_ancestor": 49,
+    "invalid_root_only": 517,
+    "metadata_missing": 5,
+    "promoted": 2448,
+    "retained": 24946
+  },
+  "threshold": 5,
+  "train_observed_items": 25888,
+  "variant": "merge_t5"
+}

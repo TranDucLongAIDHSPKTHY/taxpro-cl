@@ -1,0 +1,50 @@
+{
+  "creation_command": "python -m tools.protocol.build --build",
+  "dataset": "office-products",
+  "group_definitions": {
+    "long_tail": {
+      "maximum": 10,
+      "minimum": 1
+    },
+    "near_cold": {
+      "maximum": 5,
+      "minimum": 1
+    },
+    "strict_cold": {
+      "audit_only": true,
+      "maximum": 0,
+      "minimum": 0
+    },
+    "warm": {
+      "maximum": null,
+      "minimum": 11
+    }
+  },
+  "output_hashes": {
+    "group_masks.npz": "c4a589af76bd697003876fa93333f83fd17e006f9879ed1d03b597bc3548575c",
+    "group_statistics.json": "1d491ae42cfbceb049e98f92379afcaf12809eb2c22e80bfd00fda5963c98cd3",
+    "item_degrees_train.json": "b93f6af4e5540e72ead3f5843d025cfa9381c15554872a57ffaa6f0c68b5f0cf",
+    "test_targets_by_group.json": "cf7e488a5f01795026cd1b3450bf56d398a7e06451757a99f2d23f2b41acb755",
+    "validation_targets_by_group.json": "64fe20d3ff506d5caf5c4ed1b3ffa6061c729bad11a95f5b3acdd98f496976b2"
+  },
+  "protocol_version": "taxprocl-p0-week3-v1",
+  "ranking_protocol": {
+    "candidate_catalog": "full catalog",
+    "denominator": "users with >=1 relevant positive in the slice",
+    "group_slice": "filter relevant positives only",
+    "test_excludes": "train + validation positives",
+    "test_role": "evaluation-only",
+    "validation_excludes": "train positives"
+  },
+  "source_hashes": {
+    "test": "0254eed2883d3f90b7c72bfdb2bafdb4ce2abd17e33fc60715cb810e37d3e091",
+    "train": "cdf2344a19f1b9d2748d049656b0156c63eb93e3f0c285780bb5b6dba6f5d1e8",
+    "validation": "c777182229a7c313426abbba784882a1e9718bee7c27a48dc9d6c5755c7cc6de"
+  },
+  "source_paths": {
+    "test": "dataset_verify/office-products/test.txt",
+    "train": "dataset_verify/office-products/train.txt",
+    "validation": "dataset_verify/office-products/validation.txt"
+  },
+  "split_seed": 42
+}

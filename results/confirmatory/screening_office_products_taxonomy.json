@@ -1,0 +1,16 @@
+{
+  "dataset": "Office_Products",
+  "S4_mean_taxonomy_depth": 4.987303,
+  "S4_threshold": 3.0,
+  "S5_taxonomy_coverage_pct_no_merge": 98.133381,
+  "S5_threshold": 95.0,
+  "metadata_id_match_pct": 99.9821,
+  "no_merge_leaf_count": 2036,
+  "status_counts": {
+    "invalid_root_only": 517,
+    "metadata_missing": 5,
+    "retained": 27443
+  },
+  "decision": "meets S1-S5 (S1-S3: screening_office_products.json); first eligible candidate in alphabetical order after Deviation 1 -> selected",
+  "source": "metadata/merge_summary_office_products.json; metadata/taxonomy_variants/office-products/no_merge/taxonomy_statistics.json"
+}

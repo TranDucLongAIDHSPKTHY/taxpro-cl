@@ -1,4 +1,5 @@
-"""Deterministic loader for the train-locked Week-3 taxonomy variants."""
+"""Deterministic loader for the train-locked taxonomy variants
+(metadata/taxonomy_variants/<dataset>/<policy>/)."""
 
 from __future__ import annotations
 
@@ -79,6 +80,7 @@ class TaxonomyArtifacts:
 def validate_variant_manifest(dataset, policy, directory, manifest):
     if dataset not in {
         "amazon-book", "yelp2018", "musical-instruments", "arts-crafts-and-sewing",
+        "cds-and-vinyl", "digital-music", "office-products",
     }:
         raise ValueError("Unsupported dataset: {}".format(dataset))
     if policy not in SUPPORTED_POLICIES:

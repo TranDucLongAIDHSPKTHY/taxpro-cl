@@ -1,0 +1,12 @@
+[
+  {
+    "file": "Prime_Pantry_5.json.gz",
+    "file_sha256": "2761286f45bad08ed77627a35efede9fbf0f5a00b79201829fd7b2f4fafd5594",
+    "distinct_pairs": 131114,
+    "S1_interactions": 126702,
+    "users": 13073,
+    "items": 4898,
+    "S2_near_cold_test_users": 1796,
+    "S3_long_tail_test_users": 3888
+  }
+]

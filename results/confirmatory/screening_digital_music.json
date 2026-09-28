@@ -1,0 +1,12 @@
+[
+  {
+    "file": "Digital_Music_5.json.gz",
+    "file_sha256": "703f60f74bf1967a75cbb3033532172eeb21139d4df04ec5fe44a7eb8d7fde58",
+    "distinct_pairs": 145292,
+    "S1_interactions": 123518,
+    "users": 12381,
+    "items": 9906,
+    "S2_near_cold_test_users": 4761,
+    "S3_long_tail_test_users": 7698
+  }
+]

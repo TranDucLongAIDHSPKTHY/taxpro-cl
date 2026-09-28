@@ -1,0 +1,10 @@
+{
+  "dataset": "Digital_Music",
+  "catalog_items": 11797,
+  "metadata_matched": 8132,
+  "items_with_path_below_root": 3,
+  "S5_upper_bound_taxonomy_coverage_pct": 0.0254,
+  "S4_mean_depth_upper_bound": "undefined: 8129 of 8132 matched items have the root-only path ['Digital Music']",
+  "decision": "fails S4 and S5 (docs/confirmatory_protocol.md, Section 3); next candidate in alphabetical order",
+  "source": "metadata/merged_metadata_digital_music.json (tools/data/build_digital_music_metadata.py)"
+}

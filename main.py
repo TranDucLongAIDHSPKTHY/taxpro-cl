@@ -259,8 +259,14 @@ def run_training_seed(
         if device.type == "cuda":
             torch.cuda.reset_peak_memory_stats(device)
         recommender.train()
-        logger.info("Loading Best Model")
-        batch_test.final_test(dataset, recommender.model, device, config, logger)
+        if os.environ.get("TAXPRO_DEFER_TEST") == "1":
+            # Sealed-test protocol (docs/confirmatory_protocol.md): no test metric is
+            # computed here; tools/experiments/evaluate_sealed_test.py runs the same
+            # final_test on the saved best-validation checkpoint later.
+            logger.info("Test evaluation deferred (TAXPRO_DEFER_TEST=1)")
+        else:
+            logger.info("Loading Best Model")
+            batch_test.final_test(dataset, recommender.model, device, config, logger)
         run_manifest["status"] = "completed"
         run_manifest["completed_at_utc"] = datetime.now(timezone.utc).isoformat()
         run_manifest["duration_seconds"] = round(time() - started_at, 6)

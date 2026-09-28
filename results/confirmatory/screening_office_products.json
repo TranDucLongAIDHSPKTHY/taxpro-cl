@@ -1,0 +1,12 @@
+[
+  {
+    "file": "Office_Products_5.json.gz",
+    "file_sha256": "325277af44e0566f21a6e03022f83b030e8e6e94300a0f7a2ae58490062d8670",
+    "distinct_pairs": 740703,
+    "S1_interactions": 677247,
+    "users": 86713,
+    "items": 25898,
+    "S2_near_cold_test_users": 11203,
+    "S3_long_tail_test_users": 22202
+  }
+]
