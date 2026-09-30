@@ -80,7 +80,8 @@ so runs are not expected to be bitwise reproducible across GPUs, operating
 systems or library versions; the reported means and spreads come from three
 seeds on the documented environments. Set `TAXPRO_OUTPUT_ROOT` to an empty
 directory to keep a reproduction run apart from any existing `log/` tree; the
-checkpoint resolver additionally ignores exploratory `A7-*` families and fails
+checkpoint resolver additionally ignores the `A7-*` grid families (read only by
+`tools.analysis.a7_tuned_comparison`) and fails
 on an unpinned choice between several canonical families.
 
 ## Result policy

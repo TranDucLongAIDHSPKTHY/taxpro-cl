@@ -1,28 +1,30 @@
 # TaxPro-CL
 
-> Taxonomy-guided prototype contrastive learning for long-tail graph recommendation.
+> Taxonomy-guided perturbation for sparse-item recommendation in graph contrastive learning.
 
 TaxPro-CL is a research codebase for studying taxonomy-aware item
-perturbations in graph collaborative filtering. The method augments a LightGCN
-encoder with train-locked taxonomy guidance and an item-level InfoNCE objective
-to improve representation learning for sparsely observed items, with
+perturbations in graph collaborative filtering. It keeps SimGCL's LightGCN
+encoder and two-view InfoNCE training and changes only the item-side
+perturbation: each item is pushed toward the prototype of its product-taxonomy
+leaf, with a magnitude scaled by its training degree. Every run uses
 validation-based checkpoint selection and a single full-catalog test
-evaluation per run.
+evaluation.
 
 ## Overview
 
 Long-tail recommendation is difficult because low-degree items have limited
-collaborative evidence. TaxPro-CL uses item taxonomy only from training data to
-construct structured contrastive views. Invalid or unknown taxonomy items remain
-in the recommender objective and evaluation catalog, but are excluded from the
-taxonomy contrastive term.
+collaborative evidence. TaxPro-CL takes each item's leaf category from external
+product metadata; leaf merging and the validity mask use training interactions
+only. Items without a valid leaf remain in the BPR objective and the evaluation
+catalog, but receive no taxonomy direction and are excluded from the item-side
+InfoNCE term.
 
 This implementation provides:
 
 - A TaxPro-CL model built on a LightGCN backbone, using the same 2-view
   self-supervised structure as SimGCL (one clean forward pass for BPR, two
-  independent perturbed passes for InfoNCE) but replacing SimGCL's isotropic
-  random perturbation with a taxonomy-prototype-guided direction and a
+  independent perturbed passes for InfoNCE) but replacing SimGCL's random, sign-aligned
+  perturbation direction with a taxonomy-prototype-guided direction and a
   degree-adaptive magnitude.
 - Train-only taxonomy policies: `no_merge`, `merge_t5`, `merge_t10`, and
   `merge_t15`.
@@ -32,14 +34,16 @@ This implementation provides:
   XSimGCL, NCL, and TaxPro-CL, each with 3 seeds (42, 0, 1) on all 4 datasets,
   completed 2026-09-05. LightGCL appears in the paper only as a literature
   comparison (Related Work, Table 1) and is not implemented in this repository.
-- Overall and groupwise evaluation for Near-cold, Long-tail, and Warm items.
+- Overall and groupwise evaluation for Strict-Cold, Near-Cold, Mid-Tail,
+  Long-Tail, and Warm items.
 - Checkpoint selection and early stopping on validation Overall Recall@20,
   followed by a single full-catalog test evaluation. The test split plays no
   role in epoch or checkpoint selection. As the paper discloses (Section 4.3,
   Limitation 10), TaxPro-CL's configuration and taxonomy policies were chosen
   during development with test-split metrics in view.
-- Experiment runners for policy screening, main multi-seed runs, and the
-  A1-A7 ablation and sensitivity checks.
+- Experiment runners for policy screening, main multi-seed runs, the A1-A7
+  ablation and sensitivity checks, the V0-V3 factorial, and the pre-registered
+  held-out evaluation.
 
 ## Installation
 
@@ -104,7 +108,8 @@ evaluated here.
 
 ## Datasets And Evaluation Protocol
 
-The experiments target four public datasets, from two source platforms:
+The main experiments use four public datasets from two source platforms; a
+held-out fifth dataset and an excluded candidate are listed below them:
 
 | Dataset                    | Platform | Role                                                       |
 | -------------------------- | -------- | ---------------------------------------------------------- |
@@ -112,6 +117,8 @@ The experiments target four public datasets, from two source platforms:
 | `yelp2018`               | Yelp     | Business recommendation with multi-label category metadata |
 | `musical-instruments`    | Amazon   | Product recommendation, Musical Instruments category       |
 | `arts-crafts-and-sewing` | Amazon   | Product recommendation, Arts/Crafts/Sewing category        |
+| `office-products`        | Amazon   | Pre-registered held-out evaluation (Table 12)              |
+| `cds-and-vinyl`          | Amazon   | Excluded candidate, reported in Online Resource 1, S30     |
 
 `amazon-book` and `yelp2018` reuse the canonical splits established by
 NGCF/LightGCN/SGL/SimGCL/NCL/XSimGCL: iterative 5-core filtering applied to the
@@ -121,9 +128,10 @@ test file is copied byte-for-byte, unfiltered. `musical-instruments` and
 the pipeline instead runs iterative 5-core filtering ONCE over the whole
 interaction pool, then cuts the filtered pool 70/10/20 (train/validation/test)
 per user; test here is therefore the remainder of that single filtering pass
-and is not guaranteed to be individually 5-core. Both protocols are driven by
-`tools.data.build_splits` (see Data Bootstrap below) and share the same
-downstream group/evaluation logic. All 4 datasets use split seed 42.
+and is not guaranteed to be individually 5-core. Protocol A is built by
+`tools.data.build_splits` and Protocol B by the per-dataset builders
+`tools.data.build_<dataset>` (see Data Bootstrap below); both share the same
+downstream group/evaluation logic. Every dataset uses split seed 42.
 
 The immutable model-ready splits are stored in `dataset_verify/`. Item groups
 are defined exclusively from training degree:
@@ -303,7 +311,7 @@ hyperparameters + --training_epochs 200, no per-dataset tuning sweep).
 | **SGL-ED** | 0.0024±0.0003 | 0.0000±0.0000 | 0.0074±0.0002 | 0.0111±0.0006 | 0.0030±0.0000 | 0.0002±0.0001 | 0.0154±0.0005 | 0.0225±0.0005 |
 | **SimGCL** | 0.0026±0.0008 | 0.0002±0.0001 | 0.0084±0.0007 | 0.0107±0.0010 | 0.0050±0.0004 | 0.0028±0.0002 | 0.0149±0.0008 | 0.0201±0.0005 |
 | **XSimGCL** | 0.0031±0.0000 | 0.0002±0.0001 | 0.0038±0.0003 | 0.0063±0.0004 | 0.0053±0.0002 | 0.0017±0.0003 | 0.0100±0.0004 | 0.0152±0.0006 |
-| **NCL** | 0.0008±0.0001 | 0.0000±0.0000 | 0.0013±0.0004 | 0.0082±0.0004 | 0.0030±0.0001 | 0.0009±0.0001 | 0.0057±0.0011 | 0.0170±0.0011 |
+| **NCL** | 0.0009±0.0002 | 0.0000±0.0000 | 0.0013±0.0004 | 0.0082±0.0004 | 0.0029±0.0002 | 0.0009±0.0001 | 0.0057±0.0011 | 0.0170±0.0011 |
 | **TaxPro-CL** | **0.0037±0.0001** | **0.0004±0.0001** | **0.0085±0.0002** | **0.0113±0.0007** | **0.0059±0.0001** | **0.0033±0.0001** | **0.0165±0.0004** | 0.0221±0.0005 |
 
 #### Warm (Wm) and Overall
@@ -314,7 +322,7 @@ hyperparameters + --training_epochs 200, no per-dataset tuning sweep).
 | **SGL-ED** | 0.0574±0.0007 | 0.0778±0.0002 | 0.2458±0.0017 | **0.2554±0.0010** | 0.0438±0.0006 | 0.0662±0.0002 | 0.1867±0.0014 | **0.1898±0.0007** |
 | **SimGCL** | **0.0608±0.0007** | 0.0826±0.0006 | 0.2378±0.0006 | 0.2356±0.0010 | **0.0472±0.0005** | 0.0708±0.0005 | 0.1811±0.0005 | 0.1750±0.0009 |
 | **XSimGCL** | 0.0606±0.0005 | **0.0831±0.0006** | **0.2604±0.0010** | 0.2518±0.0006 | 0.0472±0.0003 | **0.0711±0.0004** | **0.1957±0.0005** | 0.1848±0.0004 |
-| **NCL** | 0.0532±0.0003 | 0.0770±0.0005 | 0.2523±0.0007 | 0.2348±0.0022 | 0.0409±0.0002 | 0.0660±0.0004 | 0.1888±0.0004 | 0.1737±0.0012 |
+| **NCL** | 0.0539±0.0002 | 0.0770±0.0005 | 0.2523±0.0007 | 0.2348±0.0022 | 0.0414±0.0002 | 0.0660±0.0004 | 0.1888±0.0004 | 0.1737±0.0012 |
 | **TaxPro-CL** | 0.0587±0.0004 | 0.0781±0.0004 | 0.2301±0.0018 | 0.2246±0.0015 | 0.0457±0.0003 | 0.0670±0.0004 | 0.1761±0.0012 | 0.1683±0.0011 |
 
 Source: `log/p0/baseline/<model>/<dataset>/` and `log/p0/taxprocl/<dataset>/`

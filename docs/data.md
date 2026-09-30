@@ -5,8 +5,10 @@ evaluation use these files and the artifacts under `preprocessed/`. Both, and
 `metadata/taxonomy_variants/`, are verified by SHA256, so `.gitattributes` stores
 them byte for byte (no line-ending conversion) on every platform.
 
-`python -m tools.data.build_splits` reconstructs these inputs from raw
-`dataset/<dataset>/train.txt` and `test.txt`. It repeatedly removes users and
+For Amazon-Book and Yelp2018 (Protocol A), `python -m tools.data.build_splits`
+reconstructs these inputs from raw `dataset/<dataset>/train.txt` and `test.txt`;
+the Protocol B datasets are rebuilt by `python -m tools.data.build_<dataset>`
+(README, Data Bootstrap). It repeatedly removes users and
 items below degree 5 until stable, then creates a per-user validation holdout
 by shuffling sorted user interactions with a seeded RNG. Users with 2-9
 interactions contribute one item, users with at least 10 contribute

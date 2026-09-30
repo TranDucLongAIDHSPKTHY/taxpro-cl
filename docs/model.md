@@ -16,7 +16,8 @@ item-side perturbation:
   1 for 6-10, `gamma_warm` above 10).
 - **Users:** SimGCL's sign-aligned random perturbation with `epsilon_user`, and
   a user-side InfoNCE term with its own temperature (`use_user_ssl`).
-- **Warm-start:** the first `warm_start_epochs` epochs train BPR only; the
+- **Warm-start:** the first `warm_start_epochs` epochs train BPR plus the L2
+  regularizer only (no perturbed pass, no InfoNCE); the
   prototypes are initialized once, immediately before the first joint epoch.
 
 Items without a valid leaf, and items with no training interaction, get a zero
