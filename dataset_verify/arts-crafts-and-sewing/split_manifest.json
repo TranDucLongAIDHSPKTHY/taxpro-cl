@@ -106,7 +106,7 @@
   },
   "schema_version": 1,
   "source": {
-    "reviews_file": "C:\\Users\\Admin\\AppData\\Local\\Temp\\claude\\l--TaxPro-CL-v3---Tester\\1718e1b7-f080-4052-8ddf-5506139da911\\scratchpad\\Arts_Crafts_and_Sewing_5.json",
+    "reviews_file": "Arts_Crafts_and_Sewing_5.json",
     "reviews_file_sha256": "357fa59616ed58daee47952ba73779b2adc0ce45187dfd79b964eef274498593"
   },
   "split_policy": {
