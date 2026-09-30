@@ -40,7 +40,6 @@ def per_user_recall(model, dataset, device, targets_by_group):
     for start in range(0, len(all_users), BATCH_SIZE):
         batch = all_users[start:start + BATCH_SIZE]
         order, _rank = compute_batch_order_and_rank(model, dataset, device, batch, split="test")
-        topk = set()
         order_np = order[:, :K].cpu().numpy()
         for row_idx, user in enumerate(batch):
             topk_items = set(order_np[row_idx].tolist())

@@ -28,7 +28,6 @@ from __future__ import annotations
 import argparse
 import json
 import statistics
-from pathlib import Path
 
 from config_path.config_path import RESULT_DIR, PROJECT_ROOT
 

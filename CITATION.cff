@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite the TaxPro-CL paper and this repository."
-title: "TaxPro-CL"
+title: "TaxPro-CL: Taxonomy-Guided Perturbation for Sparse-Item Recommendation in Graph Contrastive Learning"
 type: software
 authors:
   - family-names: "1"
@@ -11,8 +11,10 @@ authors:
     given-names: "Author"
   - family-names: "4"
     given-names: "Author"
-version: 0.1.0
-date-released: 2026-08-02
+version: "v1.0-jiis"
+date-released: 2026-09-30
+license: MIT
+repository-code: "https://github.com/TranDucLongAIDHSPKTHY/taxpro-cl"
 references:
   - type: article
     title: "Simplify to the Limit! Embedding-less Graph Collaborative Filtering for Recommender Systems"

@@ -628,18 +628,17 @@ in the TaxPro-CL manuscript.
 ## Citation
 
 If you use this repository, please cite the associated TaxPro-CL manuscript.
-The entry below uses placeholder author names pending the final accepted
-version; replace it (and `CITATION.cff`) once the paper is published.
+The entry below uses placeholder author names; the full reference (and
+`CITATION.cff`) will be updated once the paper is published.
 
 ```bibtex
-@article{taxprocl2026,
-  title   = {TaxPro-CL: Taxonomy-Guided Perturbation for Sparse-Item
-             Recommendation in Graph Contrastive Learning -- A Controlled
-             Ablation Study},
-  author  = {Author 1 and Author 2 and Author 3 and Author 4},
-  journal = {Journal of Intelligent Information Systems},
-  year    = {2026},
-  note    = {Manuscript under review; update year/volume/DOI once published}
+@unpublished{taxprocl2026,
+  title  = {TaxPro-CL: Taxonomy-Guided Perturbation for Sparse-Item
+            Recommendation in Graph Contrastive Learning -- A Controlled
+            Ablation Study},
+  author = {Author 1 and Author 2 and Author 3 and Author 4},
+  year   = {2026},
+  note   = {Manuscript; code and results: release v1.0-jiis}
 }
 ```
 
