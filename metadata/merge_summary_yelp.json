@@ -1,0 +1,15 @@
+{
+  "domain": "yelp",
+  "total_items": 38048,
+  "coverage": 0.96533326,
+  "coverage_percent": 96.5333,
+  "matched_items": 36729,
+  "missing_items": 1319,
+  "selected_from_2014": 0,
+  "selected_from_2018": 36725,
+  "selected_from_2021": 2,
+  "selected_from_2022": 2,
+  "selected_from_2023": 0,
+  "average_taxonomy_depth": 0.999755,
+  "average_num_paths": 4.173569
+}

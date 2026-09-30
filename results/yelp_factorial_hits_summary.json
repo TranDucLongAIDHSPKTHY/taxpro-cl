@@ -1,0 +1,384 @@
+{
+  "k": 20,
+  "split_sha256": {
+    "train": "0ab254dd0bec5914efc4a4a6d7f6bb318d234b5f9c64b0aa9449925d0ba81bf8",
+    "validation": "a0950d1880a909c41424b903945bcd1cf32b23181e076be92428a2a241b81c41",
+    "test": "9cd9b37926cd1447a06625ffa7914527573fb097c10cb0bbdb1d1b8ded3742fe"
+  },
+  "per_variant_seed": {
+    "V0_seed42": {
+      "N": 5217,
+      "H": 2,
+      "J": 2,
+      "S": 2.0,
+      "recall_nc": 0.00038336208548974505,
+      "U_LT": 18907,
+      "recall_lt": 0.003249685096122303,
+      "C_NC": 7.052061846582395e-05,
+      "C_MT": 0.003179164477656479,
+      "nc_hit_users": [
+        29819,
+        30512
+      ],
+      "run_dir": "log/p0/taxprocl/yelp2018/A2-V0-tempuser0.15/seed42",
+      "checkpoint_sha256": "b356c262c5671c776bea8306c4edbfdb2c360f9b51b33f59262ab763565a87db",
+      "config_sha256": "2c606ba4b7d2a0750a01457781b45a6ec9b724915bd7a42e9d3dea4e5815b5c7",
+      "config": {
+        "temperature": "0.125",
+        "temperature_user": "0.15",
+        "augmentation_direction": "random",
+        "use_adaptive_epsilon": "false",
+        "taxonomy_policy": "no_merge",
+        "gamma_cold": "1.5"
+      }
+    },
+    "V0_seed0": {
+      "N": 5217,
+      "H": 2,
+      "J": 2,
+      "S": 1.5,
+      "recall_nc": 0.0002875215641173088,
+      "U_LT": 18907,
+      "recall_lt": 0.003388690469961336,
+      "C_NC": 6.346855661924155e-05,
+      "C_MT": 0.0033252219133420944,
+      "nc_hit_users": [
+        28342,
+        29819
+      ],
+      "run_dir": "log/p0/taxprocl/yelp2018/A2-V0-tempuser0.15/seed0",
+      "checkpoint_sha256": "293b852ce420976eee65d288dd564c06adcf73dd54c90d2378061fd386fad7fa",
+      "config_sha256": "2c606ba4b7d2a0750a01457781b45a6ec9b724915bd7a42e9d3dea4e5815b5c7",
+      "config": {
+        "temperature": "0.125",
+        "temperature_user": "0.15",
+        "augmentation_direction": "random",
+        "use_adaptive_epsilon": "false",
+        "taxonomy_policy": "no_merge",
+        "gamma_cold": "1.5"
+      }
+    },
+    "V0_seed1": {
+      "N": 5217,
+      "H": 2,
+      "J": 2,
+      "S": 2.0,
+      "recall_nc": 0.00038336208548974505,
+      "U_LT": 18907,
+      "recall_lt": 0.0035027878443326826,
+      "C_NC": 0.00010578092769873591,
+      "C_MT": 0.003397006916633947,
+      "nc_hit_users": [
+        9807,
+        29819
+      ],
+      "run_dir": "log/p0/taxprocl/yelp2018/A2-V0-tempuser0.15/seed1",
+      "checkpoint_sha256": "9c9cd13640bbddd2932bd409514dc7db864af53cd8a2e103b150f7b48df5ac2a",
+      "config_sha256": "2c606ba4b7d2a0750a01457781b45a6ec9b724915bd7a42e9d3dea4e5815b5c7",
+      "config": {
+        "temperature": "0.125",
+        "temperature_user": "0.15",
+        "augmentation_direction": "random",
+        "use_adaptive_epsilon": "false",
+        "taxonomy_policy": "no_merge",
+        "gamma_cold": "1.5"
+      }
+    },
+    "V1_seed42": {
+      "N": 5217,
+      "H": 2,
+      "J": 2,
+      "S": 2.0,
+      "recall_nc": 0.00038336208548974505,
+      "U_LT": 18907,
+      "recall_lt": 0.0032321941269370298,
+      "C_NC": 7.052061846582395e-05,
+      "C_MT": 0.0031616735084712055,
+      "nc_hit_users": [
+        29819,
+        30512
+      ],
+      "run_dir": "log/p0/taxprocl/yelp2018/A2-V1-tempuser0.15/seed42",
+      "checkpoint_sha256": "353f86236f3fcf54aa6b8b4aab72ed97f5b9d9f9fa84a988a7637016608ff880",
+      "config_sha256": "042a742474af5563ebb643f9237a4211d7364e105bb116511e0a3ccd6b47320f",
+      "config": {
+        "temperature": "0.125",
+        "temperature_user": "0.15",
+        "augmentation_direction": "taxonomy",
+        "use_adaptive_epsilon": "false",
+        "taxonomy_policy": "no_merge",
+        "gamma_cold": "1.5"
+      }
+    },
+    "V1_seed0": {
+      "N": 5217,
+      "H": 2,
+      "J": 2,
+      "S": 1.5,
+      "recall_nc": 0.0002875215641173088,
+      "U_LT": 18907,
+      "recall_lt": 0.003360482222575006,
+      "C_NC": 6.346855661924155e-05,
+      "C_MT": 0.0032970136659557646,
+      "nc_hit_users": [
+        28342,
+        29819
+      ],
+      "run_dir": "log/p0/taxprocl/yelp2018/A2-V1-tempuser0.15/seed0",
+      "checkpoint_sha256": "1f975d3c3ecb0cc500a6efaf3b0a8af84b85d304230c6d2771ead7ae75fe3dfa",
+      "config_sha256": "042a742474af5563ebb643f9237a4211d7364e105bb116511e0a3ccd6b47320f",
+      "config": {
+        "temperature": "0.125",
+        "temperature_user": "0.15",
+        "augmentation_direction": "taxonomy",
+        "use_adaptive_epsilon": "false",
+        "taxonomy_policy": "no_merge",
+        "gamma_cold": "1.5"
+      }
+    },
+    "V1_seed1": {
+      "N": 5217,
+      "H": 2,
+      "J": 2,
+      "S": 2.0,
+      "recall_nc": 0.00038336208548974505,
+      "U_LT": 18907,
+      "recall_lt": 0.0034501422437418767,
+      "C_NC": 0.00010578092769873591,
+      "C_MT": 0.003344361316043141,
+      "nc_hit_users": [
+        9807,
+        29819
+      ],
+      "run_dir": "log/p0/taxprocl/yelp2018/A2-V1-tempuser0.15/seed1",
+      "checkpoint_sha256": "d35fc31659ebad9148e70fc0bab11061232ebed67635c071b1167d771ffee0b4",
+      "config_sha256": "042a742474af5563ebb643f9237a4211d7364e105bb116511e0a3ccd6b47320f",
+      "config": {
+        "temperature": "0.125",
+        "temperature_user": "0.15",
+        "augmentation_direction": "taxonomy",
+        "use_adaptive_epsilon": "false",
+        "taxonomy_policy": "no_merge",
+        "gamma_cold": "1.5"
+      }
+    },
+    "V2_seed42": {
+      "N": 5217,
+      "H": 2,
+      "J": 2,
+      "S": 2.0,
+      "recall_nc": 0.00038336208548974505,
+      "U_LT": 18907,
+      "recall_lt": 0.003302575559971671,
+      "C_NC": 7.052061846582395e-05,
+      "C_MT": 0.0032320549415058466,
+      "nc_hit_users": [
+        29819,
+        30512
+      ],
+      "run_dir": "log/p0/taxprocl/yelp2018/A2-V2-tempuser0.15/seed42",
+      "checkpoint_sha256": "bdec4bfd0dd143028000f83d30d4c254738b62a10649b504c9b9690a96b9c418",
+      "config_sha256": "60bb7c2f968c24ad92c5bb7775aeee6bee479b0340b1ff5048f3d9f9d90f9951",
+      "config": {
+        "temperature": "0.125",
+        "temperature_user": "0.15",
+        "augmentation_direction": "random",
+        "use_adaptive_epsilon": "true",
+        "taxonomy_policy": "no_merge",
+        "gamma_cold": "1.5"
+      }
+    },
+    "V2_seed0": {
+      "N": 5217,
+      "H": 2,
+      "J": 2,
+      "S": 1.5,
+      "recall_nc": 0.0002875215641173088,
+      "U_LT": 18907,
+      "recall_lt": 0.003388690469961336,
+      "C_NC": 6.346855661924155e-05,
+      "C_MT": 0.0033252219133420944,
+      "nc_hit_users": [
+        28342,
+        29819
+      ],
+      "run_dir": "log/p0/taxprocl/yelp2018/A2-V2-tempuser0.15/seed0",
+      "checkpoint_sha256": "8d8fd121d715548354e8e2f266c2fd62460f5e95d561fd633d8d605541e6ea8d",
+      "config_sha256": "60bb7c2f968c24ad92c5bb7775aeee6bee479b0340b1ff5048f3d9f9d90f9951",
+      "config": {
+        "temperature": "0.125",
+        "temperature_user": "0.15",
+        "augmentation_direction": "random",
+        "use_adaptive_epsilon": "true",
+        "taxonomy_policy": "no_merge",
+        "gamma_cold": "1.5"
+      }
+    },
+    "V2_seed1": {
+      "N": 5217,
+      "H": 2,
+      "J": 2,
+      "S": 2.0,
+      "recall_nc": 0.00038336208548974505,
+      "U_LT": 18907,
+      "recall_lt": 0.0035204179989491383,
+      "C_NC": 0.00010578092769873591,
+      "C_MT": 0.0034146370712504026,
+      "nc_hit_users": [
+        9807,
+        29819
+      ],
+      "run_dir": "log/p0/taxprocl/yelp2018/A2-V2-tempuser0.15/seed1",
+      "checkpoint_sha256": "04a8afa57c5d6247f4260fd6d6e0026785e88cf1f68af81a95074748f66b727f",
+      "config_sha256": "60bb7c2f968c24ad92c5bb7775aeee6bee479b0340b1ff5048f3d9f9d90f9951",
+      "config": {
+        "temperature": "0.125",
+        "temperature_user": "0.15",
+        "augmentation_direction": "random",
+        "use_adaptive_epsilon": "true",
+        "taxonomy_policy": "no_merge",
+        "gamma_cold": "1.5"
+      }
+    },
+    "V3_seed42": {
+      "N": 5217,
+      "H": 2,
+      "J": 2,
+      "S": 2.0,
+      "recall_nc": 0.00038336208548974505,
+      "U_LT": 18907,
+      "recall_lt": 0.0032321941269370298,
+      "C_NC": 7.052061846582395e-05,
+      "C_MT": 0.0031616735084712055,
+      "nc_hit_users": [
+        29819,
+        30512
+      ],
+      "run_dir": "log/p0/taxprocl/yelp2018/A2-V3-tempuser0.15/seed42",
+      "checkpoint_sha256": "50134484e054e7d105315f555e55136c32b7b54fee39c1df4890d5d398b0a98c",
+      "config_sha256": "017433e8aed17460d3f01bbf47b935e694bd28e7b540ab0fe31c661886bcde6d",
+      "config": {
+        "temperature": "0.125",
+        "temperature_user": "0.15",
+        "augmentation_direction": "taxonomy",
+        "use_adaptive_epsilon": "true",
+        "taxonomy_policy": "no_merge",
+        "gamma_cold": "1.5"
+      }
+    },
+    "V3_seed0": {
+      "N": 5217,
+      "H": 2,
+      "J": 2,
+      "S": 1.5,
+      "recall_nc": 0.0002875215641173088,
+      "U_LT": 18907,
+      "recall_lt": 0.003360482222575006,
+      "C_NC": 6.346855661924155e-05,
+      "C_MT": 0.0032970136659557646,
+      "nc_hit_users": [
+        28342,
+        29819
+      ],
+      "run_dir": "log/p0/taxprocl/yelp2018/A2-V3-tempuser0.15/seed0",
+      "checkpoint_sha256": "661b37f607bdfaf6fee71dab92bf191f4a3996b47d1eb92d6dbde95ecf79f9da",
+      "config_sha256": "017433e8aed17460d3f01bbf47b935e694bd28e7b540ab0fe31c661886bcde6d",
+      "config": {
+        "temperature": "0.125",
+        "temperature_user": "0.15",
+        "augmentation_direction": "taxonomy",
+        "use_adaptive_epsilon": "true",
+        "taxonomy_policy": "no_merge",
+        "gamma_cold": "1.5"
+      }
+    },
+    "V3_seed1": {
+      "N": 5217,
+      "H": 2,
+      "J": 2,
+      "S": 2.0,
+      "recall_nc": 0.00038336208548974505,
+      "U_LT": 18907,
+      "recall_lt": 0.0034501422437418767,
+      "C_NC": 0.00010578092769873591,
+      "C_MT": 0.003344361316043141,
+      "nc_hit_users": [
+        9807,
+        29819
+      ],
+      "run_dir": "log/p0/taxprocl/yelp2018/A2-V3-tempuser0.15/seed1",
+      "checkpoint_sha256": "d3e5b5727dbc7e0e0819a903a177d5512a30e317b0f88687d79e4830625986f9",
+      "config_sha256": "017433e8aed17460d3f01bbf47b935e694bd28e7b540ab0fe31c661886bcde6d",
+      "config": {
+        "temperature": "0.125",
+        "temperature_user": "0.15",
+        "augmentation_direction": "taxonomy",
+        "use_adaptive_epsilon": "true",
+        "taxonomy_policy": "no_merge",
+        "gamma_cold": "1.5"
+      }
+    }
+  },
+  "pairs": {
+    "V1-V0_seed42": {
+      "h_NC_identical_per_user": true,
+      "delta_C_NC": 0.0,
+      "delta_C_MT": -1.7490969185273483e-05
+    },
+    "V1-V0_seed0": {
+      "h_NC_identical_per_user": true,
+      "delta_C_NC": 0.0,
+      "delta_C_MT": -2.820824738632979e-05
+    },
+    "V1-V0_seed1": {
+      "h_NC_identical_per_user": true,
+      "delta_C_NC": 0.0,
+      "delta_C_MT": -5.2645600590805856e-05
+    },
+    "V3-V2_seed42": {
+      "h_NC_identical_per_user": true,
+      "delta_C_NC": 0.0,
+      "delta_C_MT": -7.038143303464113e-05
+    },
+    "V3-V2_seed0": {
+      "h_NC_identical_per_user": true,
+      "delta_C_NC": 0.0,
+      "delta_C_MT": -2.820824738632979e-05
+    },
+    "V3-V2_seed1": {
+      "h_NC_identical_per_user": true,
+      "delta_C_NC": 0.0,
+      "delta_C_MT": -7.02757552072616e-05
+    },
+    "V2-V0_seed42": {
+      "h_NC_identical_per_user": true,
+      "delta_C_NC": 0.0,
+      "delta_C_MT": 5.289046384936765e-05
+    },
+    "V2-V0_seed0": {
+      "h_NC_identical_per_user": true,
+      "delta_C_NC": 0.0,
+      "delta_C_MT": 0.0
+    },
+    "V2-V0_seed1": {
+      "h_NC_identical_per_user": true,
+      "delta_C_NC": 0.0,
+      "delta_C_MT": 1.763015461645574e-05
+    },
+    "V3-V1_seed42": {
+      "h_NC_identical_per_user": true,
+      "delta_C_NC": 0.0,
+      "delta_C_MT": 0.0
+    },
+    "V3-V1_seed0": {
+      "h_NC_identical_per_user": true,
+      "delta_C_NC": 0.0,
+      "delta_C_MT": 0.0
+    },
+    "V3-V1_seed1": {
+      "h_NC_identical_per_user": true,
+      "delta_C_NC": 0.0,
+      "delta_C_MT": 0.0
+    }
+  }
+}

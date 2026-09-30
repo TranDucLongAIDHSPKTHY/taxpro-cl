@@ -16,7 +16,7 @@ Also reports the harmonic mean of Long-Tail and Overall Recall@20 (already
 computed, read from final_test_group_metrics.json) as a single
 balance-of-trade-off number per method.
 
-Reuses tests/Recommendation_system/inference.py (checkpoint loading, full-
+Reuses tools/ranking/inference.py (checkpoint loading, full-
 catalog ranking) and checkpoint_selection.py (same official-checkpoint choice
 used everywhere else), so results are directly comparable to the main table.
 """
@@ -34,8 +34,8 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from tests.Recommendation_system.checkpoint_selection import select_checkpoint
-from tests.Recommendation_system.inference import compute_batch_order_and_rank, load_model
+from tools.ranking.checkpoint_selection import select_checkpoint
+from tools.ranking.inference import compute_batch_order_and_rank, load_model
 
 MODELS = ("LightGCN", "SGL", "SimGCL", "XSimGCL", "NCL", "TaxPro-CL")
 DATASETS = ("amazon-book", "yelp2018", "musical-instruments", "arts-crafts-and-sewing")

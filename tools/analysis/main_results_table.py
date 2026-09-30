@@ -1,4 +1,4 @@
-"""Main results table (manuscript Section 5.1, Tables 7-10):
+"""Main results table (main paper Section 5.1 and Table 7; Online Resource 1, Tables S1 and S18):
 Recall@20 mean+-std over 3 seeds, all six methods x four datasets x five
 evaluation groups (Near-Cold, Mid-Tail, Long-Tail, Overall, Warm).
 
@@ -14,7 +14,7 @@ inference:
   the disjoint mid_tail slice).
 
 Run tools/analysis/mid_tail_degree6_10.py first (or with --resume, if some
-entries are already up to date) if results/week6/mid_tail_degree6_10.json
+entries are already up to date) if results/mid_tail_degree6_10.json
 does not exist or is stale relative to the current checkpoint_selection
 resolution -- this script does not re-verify that itself.
 
@@ -32,7 +32,7 @@ from pathlib import Path
 
 from config_path.config_path import RESULT_DIR, PROJECT_ROOT
 
-MID_TAIL_FILE = RESULT_DIR / "week6" / "mid_tail_degree6_10.json"
+MID_TAIL_FILE = RESULT_DIR / "mid_tail_degree6_10.json"
 OUTPUT_JSON = RESULT_DIR / "main_results_table.json"
 OUTPUT_TEX = RESULT_DIR / "main_results_table.tex"
 

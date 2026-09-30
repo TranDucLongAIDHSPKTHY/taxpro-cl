@@ -1,0 +1,15 @@
+{
+  "domain": "amazon",
+  "total_items": 10620,
+  "coverage": 1.0,
+  "coverage_percent": 100.0,
+  "matched_items": 10620,
+  "missing_items": 0,
+  "selected_from_2014": 811,
+  "selected_from_2018": 5130,
+  "selected_from_2021": 0,
+  "selected_from_2022": 0,
+  "selected_from_2023": 4679,
+  "average_taxonomy_depth": 4.590019,
+  "average_num_paths": 1.000282
+}

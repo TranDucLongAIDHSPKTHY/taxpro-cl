@@ -142,17 +142,16 @@ class PrototypeBank(nn.Module):
         valid_train_mask,
         epoch,
     ):
-        """prototype_weighting=leaf_uniform (the "unique-item EMA" sensitivity-
-        check variant): unlike ema_update above (which pulls p_l toward
-        whichever items happened to be positive in *this* batch -- an item
-        that appears as positive in more batches over an epoch gets more
-        pulls, i.e. an interaction-frequency-weighted centroid, exactly the
-        A3 review concern), this recomputes p_l's EMA target as the
+        """prototype_weighting=leaf_uniform (the leaf_uniform sensitivity
+        variant, Online Resource 1, Section S14): unlike ema_update above
+        (which pulls p_l toward the items that are positives in *this*
+        batch, so an item that is a positive in more batches gets more pulls
+        and p_l becomes an interaction-frequency-weighted centroid; main
+        paper, Section 5.5), this recomputes p_l's EMA target as the
         UNWEIGHTED mean over every valid item currently in that leaf,
-        regardless of whether it was a positive this batch. Gated to run at
-        most once per epoch (self.last_snapshot_epoch) since it touches the
-        full catalog, not just batch positives -- doing this every batch
-        would be wasteful and the embeddings barely move batch-to-batch."""
+        regardless of whether it was a positive this batch. Runs at most
+        once per epoch (self.last_snapshot_epoch) because it touches the
+        full catalog, not just batch positives."""
         if not bool(self.initialized.item()):
             raise RuntimeError("Prototype bank must be initialized before EMA")
         if int(epoch) == int(self.last_snapshot_epoch.item()):
@@ -279,7 +278,8 @@ def create_mixture_item_views(
     delta=1e-8,
     generator=None,
 ):
-    """Create V2 views from a fixed convex mixture of leaf/parent directions."""
+    """Create the two item views from a fixed convex mixture of leaf and parent
+    directions (prototype_mode="mixture")."""
     alpha = float(alpha)
     if not 0.0 <= alpha <= 1.0:
         raise ValueError("mixture alpha must be in [0, 1]")

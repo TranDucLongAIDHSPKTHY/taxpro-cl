@@ -93,17 +93,16 @@ CHECKPOINT_OVERRIDES = {
     # treated as "the" single representative checkpoint for single-pair
     # tools like the rank-level comparison; it does not affect main_results,
     # which averages all 3 seeds regardless of this override). This keeps
-    # the rank-level Table 8/9 comparing TaxPro-CL and SimGCL under the
-    # same training seed for this dataset.
+    # the rank-level audit (Online Resource 1, Tables S11-S12) comparing
+    # TaxPro-CL and SimGCL under the same training seed for this dataset.
     ("SimGCL", "yelp2018"): (
         P0_BASELINE_OUTPUT_DIR / "SimGCL" / "yelp2018" / "simgcl-20c63ca8d16c" / "seed1"
     ),
-    # same_leaf_weight=0.0 is the paper's locked main config -- beta=0
-    # (exact standard InfoNCE) is uniform across all 4 datasets. The
-    # same_leaf_weight=0.4 configuration (the previous main config) moved to
-    # ablation A6_same_leaf_weight_ACS. This configuration otherwise matches
-    # that one (temperature=0.125, gamma_cold=1.5, no_merge -- verified via
-    # config_resolved.json diff, only same_leaf_weight differs).
+    # same_leaf_weight=0.0 is the paper's main configuration (beta=0, the
+    # one-positive InfoNCE, on all four datasets); same_leaf_weight=0.4 is
+    # the A6 sensitivity run. The two configurations differ only in
+    # same_leaf_weight (temperature=0.125, gamma_cold=1.5, no_merge;
+    # checked against config_resolved.json).
     ("TaxPro-CL", "arts-crafts-and-sewing"): (
         P0_TAXPROCL_OUTPUT_DIR / "arts-crafts-and-sewing" / "taxpro-cl-FINAL-no_merge-temp0.125-gammacold1.5-sameleaf0" / "seed42"
     ),

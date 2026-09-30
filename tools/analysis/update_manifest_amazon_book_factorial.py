@@ -7,7 +7,7 @@ Idempotent: rows already present (same dataset/variant/seed, or same
 run_id/group in metrics_seed.csv) are not duplicated.
 
 Usage:
-    python -m tools.analysis.update_manifest_a2_mergedt10
+    python -m tools.analysis.update_manifest_amazon_book_factorial
 """
 from __future__ import annotations
 

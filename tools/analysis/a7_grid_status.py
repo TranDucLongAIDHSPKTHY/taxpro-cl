@@ -1,24 +1,17 @@
-"""Limitation-5 interim re-analysis: for the datasets
-where the ongoing A7 comparable-budget grid (tau in {0.05,0.10,0.15,0.20} x
-epsilon in {0.05,0.10,0.20}, SimGCL, 3 seeds) has already finished as of
-this check, select the validation-best (tau, epsilon) cell per dataset and
-report its test Near-Cold/Long-Tail/Overall/Warm Recall@20 against
-TaxPro-CL's main configuration.
+"""A7 comparable-budget grid status (Online Resource 1, Tables S24 and S24b).
 
-This does NOT resolve Limitation 5 -- the A7 grid was still running (on
-Amazon-Book's SimGCL cells, and had not yet started XSimGCL or NCL) at the
-time this script was run; see results/a7_full_grid_progress.log for the
-live status. This script only extracts what is already complete and
-usable, without retraining anything itself.
+For every dataset whose SimGCL grid (tau in {0.05, 0.10, 0.15, 0.20} x
+epsilon in {0.05, 0.10, 0.20}, 3 seeds) is complete, select the
+validation-best (tau, epsilon) cell and report its test Near-Cold, Long-Tail,
+Overall and Warm Recall@20 next to TaxPro-CL's main configuration. Only
+completed cells are read; nothing is trained. The grid was incomplete at its
+2026-09-15 data cut-off; results/a7_full_grid_progress.log (written by
+tools/experiments/run_a7_full_grid.py) records its state.
 
-Model selection matches the paper's own rule everywhere else: for each
-(tau, epsilon) cell, the checkpoint is chosen by best validation Recall@20
-Overall (max over recorded epochs in validation_metrics.json); the cell
-chosen for this report is the one with the highest mean best-validation
-Recall@20 Overall across its 3 seeds -- i.e. comparable-budget tuning
-selects a temperature/epsilon combination the same way the paper selects
-an epoch, on validation only, never on test.
-"""
+Model selection: within each run, the checkpoint with the best validation
+Overall Recall@20 (max over validation_metrics.json); across cells, the one
+with the highest 3-seed mean of that value. Test metrics play no role in the
+selection."""
 from __future__ import annotations
 
 import csv
@@ -130,7 +123,7 @@ def analyze_dataset(dataset):
 def main():
     datasets_to_check = ["musical-instruments", "arts-crafts-and-sewing", "yelp2018", "amazon-book"]
     results = {ds: analyze_dataset(ds) for ds in datasets_to_check}
-    out_path = ROOT / "results" / "b2_interim_matched_budget.json"
+    out_path = ROOT / "results" / "a7_grid_status.json"
     out_path.write_text(json.dumps(results, indent=2), encoding="utf-8")
     print("Wrote", out_path)
     for ds, r in results.items():

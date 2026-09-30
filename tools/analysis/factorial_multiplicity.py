@@ -1,20 +1,16 @@
-"""GVHD V6 review, points A1 and A2: (1) restore the Amazon-Book no_merge
-V0-V3 factorial (dropped from the manuscript when the team reran under
-merge_t10, even though both are valid controlled comparisons under different
-taxonomy policies), and (2) multiplicity-correct the direction and
-epsilon-adaptivity factorial cells with the same paired sign-flip test and
-Holm-Bonferroni procedure the manuscript already applies to Table 11
-(tools/analysis/a2_multiplicity_correction.py), instead of leaving the
-factorial's bootstrap CIs uncorrected.
+"""RQ5 factorial: (1) the Amazon-Book V0-V3 factorial under taxonomy_policy=
+no_merge, a policy-sensitivity check next to the main merge_t10 factorial
+(Online Resource 1, Tables S13c-S13d), and (2) multiplicity correction of the
+direction and epsilon-adaptivity factorial cells with the same paired
+sign-flip test and Holm-Bonferroni procedure applied to Table 11
+(tools/analysis/a2_multiplicity_correction.py; Online Resource 1, Table S13e).
 
-This script does not modify or re-run anything that already produces a
-published table (factorial_direction_bootstrap.py / S13,S17,S19,Fig.3;
-a2_mergedt10_factorial_recompute.py / results/a2_mergedt10_factorial_bootstrap.json).
-It rescoring the same checkpoints those scripts already use (inference only,
-no retraining) plus the original Amazon-Book no_merge V0-V3 checkpoints
-(log/p0/taxprocl/amazon-book/A2-V{0,1,2,3}, still on disk, 3 seeds,
-config_resolved.json confirms taxonomy_policy=no_merge, environment.json
-confirms all four ran on the same machine, Environment A / RTX 4060 Ti).
+Inference only: it re-scores the checkpoints used by
+factorial_direction_bootstrap.py (Tables S13, S17, S19, Figure 2) and
+factorial_amazon_book.py, plus the Amazon-Book no_merge V0-V3 checkpoints
+(log/p0/taxprocl/amazon-book/A2-V{0,1,2,3}; 3 seeds; taxonomy_policy=no_merge
+in config_resolved.json; all four trained in Environment A). It does not
+rewrite the outputs of those scripts.
 
 For each dataset x checkpoint-set (the "current" one behind S13/S17/S19, and,
 Amazon-Book only, the "no_merge" sensitivity set), it computes, per user,
@@ -29,9 +25,12 @@ Recall@20 and NDCG@20 for near_cold/long_tail/overall/warm, then:
     10^6-permutation / seed-123 precision re-run, matching S26's practice;
   - for each dataset x group, an intersection-union combined p
     (p_cell = max(p_V1-V0, p_V3-V2) for direction; max(p_V2-V0, p_V3-V1) for
-    epsilon-adaptivity) -- the two comparisons of one cell share users and
-    seeds, so this is not two independent tests, matching the manuscript's
-    own decision rule (both comparisons must favor taxonomy);
+    epsilon-adaptivity), so that a cell counts only when both comparisons
+    support it, matching the manuscript's own decision rule (both comparisons
+    must favor taxonomy); an intersection-union test is valid at level alpha
+    whatever the dependence between the two comparisons (they do share users
+    and seeds, but that is a property of the data, not the reason for the
+    max rule);
   - Holm-Bonferroni (alpha=0.05) across the 8 dataset x group (near_cold,
     long_tail only -- the same family structure as Table 11/S26) combined
     p-values, separately for direction and epsilon-adaptivity, on Recall@20
@@ -39,8 +38,8 @@ Recall@20 and NDCG@20 for near_cold/long_tail/overall/warm, then:
     secondary check, on NDCG@20.
 
 Usage:
-    python -m tools.analysis.a1a2_factorial_multiplicity
-    python -m tools.analysis.a1a2_factorial_multiplicity --skip-precision-rerun
+    python -m tools.analysis.factorial_multiplicity
+    python -m tools.analysis.factorial_multiplicity --skip-precision-rerun
 """
 from __future__ import annotations
 
@@ -59,7 +58,7 @@ if str(ROOT) not in sys.path:
 
 from config_path.config_path import evaluation_protocol_dir
 from utility.utility_train.group_evaluator import load_targets
-from tests.Recommendation_system.inference import load_model, compute_batch_order_and_rank
+from tools.ranking.inference import load_model, compute_batch_order_and_rank
 
 SEEDS = ["42", "0", "1"]
 GROUPS = ["near_cold", "long_tail", "overall", "warm"]
@@ -71,11 +70,11 @@ N_PERM_PRIMARY = 100_000
 N_PERM_PRECISION = 1_000_000
 PRECISION_SEED = 123
 
-# Checkpoint sets. "current" = exactly what S13/S17/S19/Fig.3 already report
-# (factorial_direction_bootstrap.py's DATASET_DIRS, reproduced verbatim so
-# this script's "current" numbers must match the published ones).
-# "nomerge" is Amazon-Book only: the original no_merge V0-V3 run, dropped
-# from the manuscript body when the team reran under merge_t10 (A1).
+# Checkpoint sets. "current" = the checkpoints behind Tables S13/S17/S19 and
+# Figure 2 (factorial_direction_bootstrap.py's DATASET_DIRS, reproduced
+# verbatim so this script's "current" numbers must match the published ones).
+# "nomerge" is Amazon-Book only: the V0-V3 runs under taxonomy_policy=no_merge
+# (policy-sensitivity check, Online Resource 1, Tables S13c-S13d).
 CHECKPOINT_SETS = {
     "amazon-book": {
         "current": {
@@ -161,7 +160,7 @@ STATS_DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 def bootstrap_ci(diffs, n_boot, rng, chunk=1000):
     """GPU-vectorized percentile bootstrap (mathematically identical
     resampling scheme to the CPU per-iteration loop in
-    a2_mergedt10_factorial_recompute.py / factorial_direction_bootstrap.py,
+    factorial_amazon_book.py / factorial_direction_bootstrap.py,
     just batched on the idle GPU instead of a 5000-iteration Python loop --
     this analysis is new, not reproducing an already-published number
     bit-for-bit, so torch's own RNG stream is fine)."""
@@ -253,7 +252,7 @@ def main(argv=None):
     parser.add_argument("--datasets", nargs="+", default=list(CHECKPOINT_SETS))
     parser.add_argument("--skip-precision-rerun", action="store_true",
                          help="skip the 10^6-permutation / seed-123 precision check")
-    parser.add_argument("--output", type=Path, default=ROOT / "results" / "a1a2_factorial_multiplicity.json")
+    parser.add_argument("--output", type=Path, default=ROOT / "results" / "factorial_multiplicity.json")
     args = parser.parse_args(argv)
     device = torch.device(args.device)
     t0 = time.time()

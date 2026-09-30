@@ -199,10 +199,9 @@ class TaxProCLImprovedModelTests(unittest.TestCase):
 
 class TaxProCLImprovedPeerDirectionTests(unittest.TestCase):
     """direction_source="peer": stochastic same-leaf peer direction, an
-    alternative to the fixed EMA prototype target -- addresses the "both
-    views point the same way" diversity ceiling while staying single-level
-    leaf-taxonomy (no parent/multi-level signal, no new loss term, no
-    gating)."""
+    alternative to the fixed EMA prototype target that gives the two views
+    different directions while using only leaf membership (not used in the
+    paper)."""
 
     def test_build_leaf_peer_index_groups_and_ranks_correctly(self):
         # ToyDataset leaves: [0, 0, 1, -1(invalid)] -- items 0,1 share leaf 0.
@@ -313,8 +312,7 @@ class TaxProCLImprovedPeerDirectionTests(unittest.TestCase):
 
 class TaxProCLImprovedMixtureModeTests(unittest.TestCase):
     """prototype_mode="mixture": fixed convex mixture of leaf and parent
-    prototype directions. Still 100% taxonomy-derived, reuses the locked
-    baseline's mixture infrastructure."""
+    prototype directions, with no random component."""
 
     def test_mixture_requires_amazon_book_dataset(self):
         with self.assertRaises(ValueError):

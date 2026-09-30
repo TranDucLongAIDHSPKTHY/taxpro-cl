@@ -29,7 +29,7 @@ from pathlib import Path
 import numpy as np
 
 from config_path.config_path import evaluation_protocol_dir
-from tests.Recommendation_system import inference
+from tools.ranking import inference
 from utility.utility_train.group_evaluator import load_targets
 
 ROOT = Path(__file__).resolve().parents[2]

@@ -1,13 +1,10 @@
-# Re-run the V0-V3 factorial on Yelp2018 with temperature_user=0.15 (matching the
-# main-configuration value in Table 6), fixing a confound found during a
-# cross-check: the original A2-V0..V3 Yelp2018 runs used temperature_user's
-# base-config default (0.2) instead of Yelp2018's tuned value (0.15), so "V3" did
-# not exactly match the TaxPro-CL-main checkpoint used everywhere else in the paper.
-# Output goes to a NEW directory (A2-V{0-3}-tempuser0.15) so the original
-# (documented-as-flawed) A2-V0..V3 runs are preserved for the audit trail.
+# Train the Yelp2018 V0-V3 factorial (RQ5) with temperature_user=0.15, the main
+# configuration's value (main paper Table 6), so that V3 has the configuration
+# of the TaxPro-CL-main result. Idempotent: completed seeds are skipped.
+# Outputs: log/p0/taxprocl/yelp2018/A2-V{0-3}-tempuser0.15/seed{42,0,1}.
 
 $ErrorActionPreference = "Stop"
-$logFile = "results/yelp_factorial_tempuser_fix_progress.log"
+$logFile = "results/yelp_factorial_progress.log"
 function Log($msg) {
     $line = "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss') | $msg"
     Write-Output $line
@@ -21,7 +18,7 @@ $variants = @(
   @{ id="A2-V3-tempuser0.15"; direction="taxonomy"; adaptive="true"  }
 )
 
-Log "START yelp2018 factorial re-run, temperature_user=0.15 fix, 4 variants x 3 seeds = 12 runs"
+Log "START yelp2018 factorial, temperature_user=0.15, 4 variants x 3 seeds = 12 runs"
 
 foreach ($v in $variants) {
   foreach ($seed in 42,0,1) {
@@ -50,4 +47,4 @@ foreach ($v in $variants) {
   }
 }
 
-Log "ALL DONE: yelp2018 factorial re-run with temperature_user=0.15"
+Log "ALL DONE: yelp2018 factorial, temperature_user=0.15"

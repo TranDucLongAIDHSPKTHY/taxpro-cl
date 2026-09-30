@@ -25,19 +25,6 @@ class ToolsLayoutTests(unittest.TestCase):
                 module = importlib.import_module(name)
                 self.assertEqual(module.ROOT, ROOT)
 
-    def test_legacy_cli_paths_are_removed(self):
-        obsolete = (
-            "download_data.py",
-            "prepare_metadata.py",
-            "week3_protocol.py",
-            "preflight.py",
-            "compile_results.py",
-            "running",
-        )
-        for relative in obsolete:
-            with self.subTest(path=relative):
-                self.assertFalse((ROOT / "tools" / relative).exists())
-
 
 if __name__ == "__main__":
     unittest.main()

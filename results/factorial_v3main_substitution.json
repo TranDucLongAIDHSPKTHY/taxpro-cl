@@ -1,0 +1,831 @@
+{
+ "v3": "log/p0/taxprocl/amazon-book/taxpro-cl-v15-prototype-leaf-lambda0.5-same_leaf_weight0-user_ssl-warmstart20-noblend-temp0.1-DONE-overall-2.30pct-BEST-overall-nearcold-longtail-positive",
+ "cells": {
+  "direction_fixed_eps__V1-V0|recall|near_cold": {
+   "n_users": 13238,
+   "mean_diff": 0.0001573752329153447,
+   "ci95_lo": -3.777005589968272e-05,
+   "ci95_hi": 0.000383995568313441,
+   "excludes_zero": false,
+   "p1e5": 0.17005829941700584,
+   "p1e6": 0.16997483002516997
+  },
+  "direction_fixed_eps__V1-V0|recall|long_tail": {
+   "n_users": 36609,
+   "mean_diff": 9.847833109225547e-05,
+   "ci95_lo": 2.0282724259025742e-05,
+   "ci95_hi": 0.00017912185426357236,
+   "excludes_zero": true,
+   "p1e5": 0.016159838401615983,
+   "p1e6": 0.015656984343015656
+  },
+  "direction_fixed_eps__V1-V0|recall|overall": {
+   "n_users": 52639,
+   "mean_diff": 0.00021348370570242905,
+   "ci95_lo": 0.00012882814201125076,
+   "ci95_hi": 0.0003009620708479477,
+   "excludes_zero": true,
+   "p1e5": 9.99990000099999e-06,
+   "p1e6": null
+  },
+  "direction_fixed_eps__V1-V0|recall|warm": {
+   "n_users": 52123,
+   "mean_diff": 0.00027572294309927066,
+   "ci95_lo": 0.0001496765731774646,
+   "ci95_hi": 0.00040470280410364993,
+   "excludes_zero": true,
+   "p1e5": 9.99990000099999e-06,
+   "p1e6": null
+  },
+  "direction_fixed_eps__V1-V0|ndcg|near_cold": {
+   "n_users": 13238,
+   "mean_diff": 5.2362696590488374e-05,
+   "ci95_lo": 5.442553411713966e-06,
+   "ci95_hi": 0.00010697819825171755,
+   "excludes_zero": true,
+   "p1e5": 0.04310956890431096,
+   "p1e6": 0.04240895759104241
+  },
+  "direction_fixed_eps__V1-V0|ndcg|long_tail": {
+   "n_users": 36609,
+   "mean_diff": 3.963098427711936e-05,
+   "ci95_lo": 1.4658842968207356e-05,
+   "ci95_hi": 6.454921509598168e-05,
+   "excludes_zero": true,
+   "p1e5": 0.001909980900190998,
+   "p1e6": 0.00170999829000171
+  },
+  "direction_fixed_eps__V1-V0|ndcg|overall": {
+   "n_users": 52639,
+   "mean_diff": 0.00018700324288614193,
+   "ci95_lo": 0.00013691812700097477,
+   "ci95_hi": 0.00023703321181385993,
+   "excludes_zero": true,
+   "p1e5": 9.99990000099999e-06,
+   "p1e6": null
+  },
+  "direction_fixed_eps__V1-V0|ndcg|warm": {
+   "n_users": 52123,
+   "mean_diff": 0.0002061185872907123,
+   "ci95_lo": 0.00014517248646151975,
+   "ci95_hi": 0.0002667203792253234,
+   "excludes_zero": true,
+   "p1e5": 9.99990000099999e-06,
+   "p1e6": null
+  },
+  "direction_adaptive_eps__V3-V2|recall|near_cold": {
+   "n_users": 13238,
+   "mean_diff": 0.0001573752329153447,
+   "ci95_lo": -3.777005589968272e-05,
+   "ci95_hi": 0.000383995568313441,
+   "excludes_zero": false,
+   "p1e5": 0.17005829941700584,
+   "p1e6": 0.16997483002516997
+  },
+  "direction_adaptive_eps__V3-V2|recall|long_tail": {
+   "n_users": 36609,
+   "mean_diff": 9.847833109225547e-05,
+   "ci95_lo": 2.0282724259025742e-05,
+   "ci95_hi": 0.00017912185426357236,
+   "excludes_zero": true,
+   "p1e5": 0.016159838401615983,
+   "p1e6": 0.015656984343015656
+  },
+  "direction_adaptive_eps__V3-V2|recall|overall": {
+   "n_users": 52639,
+   "mean_diff": 0.0002203448404420704,
+   "ci95_lo": 0.00013554338498926439,
+   "ci95_hi": 0.00030821219905484605,
+   "excludes_zero": true,
+   "p1e5": 9.99990000099999e-06,
+   "p1e6": null
+  },
+  "direction_adaptive_eps__V3-V2|recall|warm": {
+   "n_users": 52123,
+   "mean_diff": 0.0002923400059604838,
+   "ci95_lo": 0.00016740416980652378,
+   "ci95_hi": 0.0004198317716779736,
+   "excludes_zero": true,
+   "p1e5": 9.99990000099999e-06,
+   "p1e6": null
+  },
+  "direction_adaptive_eps__V3-V2|ndcg|near_cold": {
+   "n_users": 13238,
+   "mean_diff": 5.259888932072591e-05,
+   "ci95_lo": 5.654130853329657e-06,
+   "ci95_hi": 0.00010711568981459166,
+   "excludes_zero": true,
+   "p1e5": 0.04209957900420996,
+   "p1e6": 0.041450958549041454
+  },
+  "direction_adaptive_eps__V3-V2|ndcg|long_tail": {
+   "n_users": 36609,
+   "mean_diff": 3.938173446761888e-05,
+   "ci95_lo": 1.4474713833755017e-05,
+   "ci95_hi": 6.429975659054252e-05,
+   "excludes_zero": true,
+   "p1e5": 0.002039979600203998,
+   "p1e6": 0.001835998164001836
+  },
+  "direction_adaptive_eps__V3-V2|ndcg|overall": {
+   "n_users": 52639,
+   "mean_diff": 0.00018927135755534647,
+   "ci95_lo": 0.00013903563575261925,
+   "ci95_hi": 0.00023969506676625434,
+   "excludes_zero": true,
+   "p1e5": 9.99990000099999e-06,
+   "p1e6": null
+  },
+  "direction_adaptive_eps__V3-V2|ndcg|warm": {
+   "n_users": 52123,
+   "mean_diff": 0.0002101092589171448,
+   "ci95_lo": 0.0001490575840349156,
+   "ci95_hi": 0.00027111770782235024,
+   "excludes_zero": true,
+   "p1e5": 9.99990000099999e-06,
+   "p1e6": null
+  },
+  "eps_random_dir__V2-V0|recall|near_cold": {
+   "n_users": 13238,
+   "mean_diff": 0.0,
+   "ci95_lo": 0.0,
+   "ci95_hi": 0.0,
+   "excludes_zero": false,
+   "p1e5": 1.0,
+   "p1e6": 1.0
+  },
+  "eps_random_dir__V2-V0|recall|long_tail": {
+   "n_users": 36609,
+   "mean_diff": 0.0,
+   "ci95_lo": 0.0,
+   "ci95_hi": 0.0,
+   "excludes_zero": false,
+   "p1e5": 1.0,
+   "p1e6": 1.0
+  },
+  "eps_random_dir__V2-V0|recall|overall": {
+   "n_users": 52639,
+   "mean_diff": -3.783038361737308e-06,
+   "ci95_lo": -1.2195231034258098e-05,
+   "ci95_hi": 4.540188934673591e-06,
+   "excludes_zero": false,
+   "p1e5": 0.3871061289387106,
+   "p1e6": null
+  },
+  "eps_random_dir__V2-V0|recall|warm": {
+   "n_users": 52123,
+   "mean_diff": -5.9854888956428164e-06,
+   "ci95_lo": -1.6844648141873227e-05,
+   "ci95_hi": 4.737716331049607e-06,
+   "excludes_zero": false,
+   "p1e5": 0.2798772012279877,
+   "p1e6": null
+  },
+  "eps_random_dir__V2-V0|ndcg|near_cold": {
+   "n_users": 13238,
+   "mean_diff": -1.346995488184006e-07,
+   "ci95_lo": -4.040986464552018e-07,
+   "ci95_hi": 0.0,
+   "excludes_zero": false,
+   "p1e5": 1.0,
+   "p1e6": 1.0
+  },
+  "eps_random_dir__V2-V0|ndcg|long_tail": {
+   "n_users": 36609,
+   "mean_diff": 1.0070440898319516e-07,
+   "ci95_lo": -6.057179566612629e-08,
+   "ci95_hi": 3.184155863739408e-07,
+   "excludes_zero": false,
+   "p1e5": 0.3906060939390606,
+   "p1e6": 0.3904066095933904
+  },
+  "eps_random_dir__V2-V0|ndcg|overall": {
+   "n_users": 52639,
+   "mean_diff": -6.323604945577077e-07,
+   "ci95_lo": -4.624756930724644e-06,
+   "ci95_hi": 3.195724240348373e-06,
+   "excludes_zero": false,
+   "p1e5": 0.7564524354756452,
+   "p1e6": null
+  },
+  "eps_random_dir__V2-V0|ndcg|warm": {
+   "n_users": 52123,
+   "mean_diff": -1.2767524857790153e-06,
+   "ci95_lo": -5.907638468720344e-06,
+   "ci95_hi": 3.456513217137021e-06,
+   "excludes_zero": false,
+   "p1e5": 0.5900540994590054,
+   "p1e6": null
+  },
+  "eps_taxonomy_dir__V3-V1|recall|near_cold": {
+   "n_users": 13238,
+   "mean_diff": 0.0,
+   "ci95_lo": 0.0,
+   "ci95_hi": 0.0,
+   "excludes_zero": false,
+   "p1e5": 1.0,
+   "p1e6": 1.0
+  },
+  "eps_taxonomy_dir__V3-V1|recall|long_tail": {
+   "n_users": 36609,
+   "mean_diff": 0.0,
+   "ci95_lo": 0.0,
+   "ci95_hi": 0.0,
+   "excludes_zero": false,
+   "p1e5": 1.0,
+   "p1e6": 1.0
+  },
+  "eps_taxonomy_dir__V3-V1|recall|overall": {
+   "n_users": 52639,
+   "mean_diff": 3.078096377904099e-06,
+   "ci95_lo": -2.7628400206167835e-06,
+   "ci95_hi": 9.622536672429534e-06,
+   "excludes_zero": false,
+   "p1e5": 0.35160648393516064,
+   "p1e6": null
+  },
+  "eps_taxonomy_dir__V3-V1|recall|warm": {
+   "n_users": 52123,
+   "mean_diff": 1.0631573965570373e-05,
+   "ci95_lo": -9.073791155042289e-07,
+   "ci95_hi": 2.7543076916673982e-05,
+   "excludes_zero": false,
+   "p1e5": 0.12587874121258788,
+   "p1e6": null
+  },
+  "eps_taxonomy_dir__V3-V1|ndcg|near_cold": {
+   "n_users": 13238,
+   "mean_diff": 1.0149318141912412e-07,
+   "ci95_lo": 0.0,
+   "ci95_hi": 3.0447954425737236e-07,
+   "excludes_zero": false,
+   "p1e5": 1.0,
+   "p1e6": 1.0
+  },
+  "eps_taxonomy_dir__V3-V1|ndcg|long_tail": {
+   "n_users": 36609,
+   "mean_diff": -1.4854540051728192e-07,
+   "ci95_lo": -5.549465655326672e-07,
+   "ci95_hi": 9.975720893097718e-08,
+   "excludes_zero": false,
+   "p1e5": 0.7171928280717192,
+   "p1e6": 0.7178882821117178
+  },
+  "eps_taxonomy_dir__V3-V1|ndcg|overall": {
+   "n_users": 52639,
+   "mean_diff": 1.6357541746468046e-06,
+   "ci95_lo": -1.2917474001950137e-06,
+   "ci95_hi": 4.758187486570889e-06,
+   "excludes_zero": false,
+   "p1e5": 0.2949370506294937,
+   "p1e6": null
+  },
+  "eps_taxonomy_dir__V3-V1|ndcg|warm": {
+   "n_users": 52123,
+   "mean_diff": 2.713919140653498e-06,
+   "ci95_lo": -1.6644876951106279e-06,
+   "ci95_hi": 7.677515423100875e-06,
+   "excludes_zero": false,
+   "p1e5": 0.26343736562634373,
+   "p1e6": null
+  },
+  "interaction__(V3-V2)-(V1-V0)|recall|near_cold": {
+   "n_users": 13238,
+   "mean_diff": 0.0,
+   "ci95_lo": 0.0,
+   "ci95_hi": 0.0,
+   "excludes_zero": false,
+   "p1e5": 1.0,
+   "p1e6": 1.0
+  },
+  "interaction__(V3-V2)-(V1-V0)|recall|long_tail": {
+   "n_users": 36609,
+   "mean_diff": 0.0,
+   "ci95_lo": 0.0,
+   "ci95_hi": 0.0,
+   "excludes_zero": false,
+   "p1e5": 1.0,
+   "p1e6": 1.0
+  },
+  "interaction__(V3-V2)-(V1-V0)|recall|overall": {
+   "n_users": 52639,
+   "mean_diff": 6.861134739641407e-06,
+   "ci95_lo": -3.462941551458077e-06,
+   "ci95_hi": 1.777378360167005e-05,
+   "excludes_zero": false,
+   "p1e5": 0.1995780042199578,
+   "p1e6": null
+  },
+  "interaction__(V3-V2)-(V1-V0)|recall|warm": {
+   "n_users": 52123,
+   "mean_diff": 1.661706286121319e-05,
+   "ci95_lo": 1.4998976341741582e-07,
+   "ci95_hi": 3.627836154924722e-05,
+   "excludes_zero": true,
+   "p1e5": 0.05844941550584494,
+   "p1e6": null
+  },
+  "interaction__(V3-V2)-(V1-V0)|ndcg|near_cold": {
+   "n_users": 13238,
+   "mean_diff": 2.3619273023752472e-07,
+   "ci95_lo": 0.0,
+   "ci95_hi": 6.0708500929345e-07,
+   "excludes_zero": false,
+   "p1e5": 0.5025349746502535,
+   "p1e6": 0.4997055002944997
+  },
+  "interaction__(V3-V2)-(V1-V0)|ndcg|long_tail": {
+   "n_users": 36609,
+   "mean_diff": -2.492498095004773e-07,
+   "ci95_lo": -7.18427522918964e-07,
+   "ci95_hi": 7.46883230198855e-08,
+   "excludes_zero": false,
+   "p1e5": 0.26426735732642676,
+   "p1e6": 0.26428873571126427
+  },
+  "interaction__(V3-V2)-(V1-V0)|ndcg|overall": {
+   "n_users": 52639,
+   "mean_diff": 2.2681146692045124e-06,
+   "ci95_lo": -2.7343504228085653e-06,
+   "ci95_hi": 7.386372629170142e-06,
+   "excludes_zero": false,
+   "p1e5": 0.3733862661373386,
+   "p1e6": null
+  },
+  "interaction__(V3-V2)-(V1-V0)|ndcg|warm": {
+   "n_users": 52123,
+   "mean_diff": 3.990671626432514e-06,
+   "ci95_lo": -2.51200714801733e-06,
+   "ci95_hi": 1.0481510593138074e-05,
+   "excludes_zero": false,
+   "p1e5": 0.23130768692313078,
+   "p1e6": null
+  }
+ },
+ "holm": {
+  "direction|recall|p1e5": [
+   {
+    "dataset": "amazon-book",
+    "group": "near_cold",
+    "p": 0.17005829941700584,
+    "sig": false,
+    "sig_threshold": 0.0071428571428571435
+   },
+   {
+    "dataset": "amazon-book",
+    "group": "long_tail",
+    "p": 0.016159838401615983,
+    "sig": false,
+    "sig_threshold": 0.00625
+   },
+   {
+    "dataset": "yelp2018",
+    "group": "near_cold",
+    "p": 1.0,
+    "sig": false,
+    "sig_threshold": 0.05
+   },
+   {
+    "dataset": "yelp2018",
+    "group": "long_tail",
+    "p": 0.6323236767632324,
+    "sig": false,
+    "sig_threshold": 0.016666666666666666
+   },
+   {
+    "dataset": "musical-instruments",
+    "group": "near_cold",
+    "p": 0.6252537474625254,
+    "sig": false,
+    "sig_threshold": 0.0125
+   },
+   {
+    "dataset": "musical-instruments",
+    "group": "long_tail",
+    "p": 0.49162508374916253,
+    "sig": false,
+    "sig_threshold": 0.01
+   },
+   {
+    "dataset": "arts-crafts-and-sewing",
+    "group": "near_cold",
+    "p": 0.7272927270727293,
+    "sig": false,
+    "sig_threshold": 0.025
+   },
+   {
+    "dataset": "arts-crafts-and-sewing",
+    "group": "long_tail",
+    "p": 0.27893721062789373,
+    "sig": false,
+    "sig_threshold": 0.008333333333333333
+   }
+  ],
+  "direction|recall|p1e6": [
+   {
+    "dataset": "amazon-book",
+    "group": "near_cold",
+    "p": 0.16997483002516997,
+    "sig": false,
+    "sig_threshold": 0.0071428571428571435
+   },
+   {
+    "dataset": "amazon-book",
+    "group": "long_tail",
+    "p": 0.015656984343015656,
+    "sig": false,
+    "sig_threshold": 0.00625
+   },
+   {
+    "dataset": "yelp2018",
+    "group": "near_cold",
+    "p": 1.0,
+    "sig": false,
+    "sig_threshold": 0.05
+   },
+   {
+    "dataset": "yelp2018",
+    "group": "long_tail",
+    "p": 0.6321253678746321,
+    "sig": false,
+    "sig_threshold": 0.016666666666666666
+   },
+   {
+    "dataset": "musical-instruments",
+    "group": "near_cold",
+    "p": 0.6254583745416255,
+    "sig": false,
+    "sig_threshold": 0.0125
+   },
+   {
+    "dataset": "musical-instruments",
+    "group": "long_tail",
+    "p": 0.4936885063114937,
+    "sig": false,
+    "sig_threshold": 0.01
+   },
+   {
+    "dataset": "arts-crafts-and-sewing",
+    "group": "near_cold",
+    "p": 0.7269322730677269,
+    "sig": false,
+    "sig_threshold": 0.025
+   },
+   {
+    "dataset": "arts-crafts-and-sewing",
+    "group": "long_tail",
+    "p": 0.2794207205792794,
+    "sig": false,
+    "sig_threshold": 0.008333333333333333
+   }
+  ],
+  "epsilon|recall|p1e5": [
+   {
+    "dataset": "amazon-book",
+    "group": "near_cold",
+    "p": 1.0,
+    "sig": false,
+    "sig_threshold": 0.0071428571428571435
+   },
+   {
+    "dataset": "amazon-book",
+    "group": "long_tail",
+    "p": 1.0,
+    "sig": false,
+    "sig_threshold": 0.008333333333333333
+   },
+   {
+    "dataset": "yelp2018",
+    "group": "near_cold",
+    "p": 1.0,
+    "sig": false,
+    "sig_threshold": 0.01
+   },
+   {
+    "dataset": "yelp2018",
+    "group": "long_tail",
+    "p": 1.0,
+    "sig": false,
+    "sig_threshold": 0.0125
+   },
+   {
+    "dataset": "musical-instruments",
+    "group": "near_cold",
+    "p": 1.0,
+    "sig": false,
+    "sig_threshold": 0.016666666666666666
+   },
+   {
+    "dataset": "musical-instruments",
+    "group": "long_tail",
+    "p": 0.5807441925580744,
+    "sig": false,
+    "sig_threshold": 0.00625
+   },
+   {
+    "dataset": "arts-crafts-and-sewing",
+    "group": "near_cold",
+    "p": 1.0,
+    "sig": false,
+    "sig_threshold": 0.025
+   },
+   {
+    "dataset": "arts-crafts-and-sewing",
+    "group": "long_tail",
+    "p": 1.0,
+    "sig": false,
+    "sig_threshold": 0.05
+   }
+  ],
+  "epsilon|recall|p1e6": [
+   {
+    "dataset": "amazon-book",
+    "group": "near_cold",
+    "p": 1.0,
+    "sig": false,
+    "sig_threshold": 0.0071428571428571435
+   },
+   {
+    "dataset": "amazon-book",
+    "group": "long_tail",
+    "p": 1.0,
+    "sig": false,
+    "sig_threshold": 0.008333333333333333
+   },
+   {
+    "dataset": "yelp2018",
+    "group": "near_cold",
+    "p": 1.0,
+    "sig": false,
+    "sig_threshold": 0.01
+   },
+   {
+    "dataset": "yelp2018",
+    "group": "long_tail",
+    "p": 1.0,
+    "sig": false,
+    "sig_threshold": 0.0125
+   },
+   {
+    "dataset": "musical-instruments",
+    "group": "near_cold",
+    "p": 1.0,
+    "sig": false,
+    "sig_threshold": 0.016666666666666666
+   },
+   {
+    "dataset": "musical-instruments",
+    "group": "long_tail",
+    "p": 0.5790424209575791,
+    "sig": false,
+    "sig_threshold": 0.00625
+   },
+   {
+    "dataset": "arts-crafts-and-sewing",
+    "group": "near_cold",
+    "p": 1.0,
+    "sig": false,
+    "sig_threshold": 0.025
+   },
+   {
+    "dataset": "arts-crafts-and-sewing",
+    "group": "long_tail",
+    "p": 1.0,
+    "sig": false,
+    "sig_threshold": 0.05
+   }
+  ],
+  "direction|ndcg|p1e5": [
+   {
+    "dataset": "amazon-book",
+    "group": "near_cold",
+    "p": 0.04310956890431096,
+    "sig": false,
+    "sig_threshold": 0.0071428571428571435
+   },
+   {
+    "dataset": "amazon-book",
+    "group": "long_tail",
+    "p": 0.002039979600203998,
+    "sig": true,
+    "sig_threshold": 0.00625
+   },
+   {
+    "dataset": "yelp2018",
+    "group": "near_cold",
+    "p": 1.0,
+    "sig": false,
+    "sig_threshold": 0.05
+   },
+   {
+    "dataset": "yelp2018",
+    "group": "long_tail",
+    "p": 0.4925650743492565,
+    "sig": false,
+    "sig_threshold": 0.0125
+   },
+   {
+    "dataset": "musical-instruments",
+    "group": "near_cold",
+    "p": 0.45103548964510354,
+    "sig": false,
+    "sig_threshold": 0.01
+   },
+   {
+    "dataset": "musical-instruments",
+    "group": "long_tail",
+    "p": 0.36061639383606164,
+    "sig": false,
+    "sig_threshold": 0.008333333333333333
+   },
+   {
+    "dataset": "arts-crafts-and-sewing",
+    "group": "near_cold",
+    "p": 0.8075419245807542,
+    "sig": false,
+    "sig_threshold": 0.025
+   },
+   {
+    "dataset": "arts-crafts-and-sewing",
+    "group": "long_tail",
+    "p": 0.5203947960520395,
+    "sig": false,
+    "sig_threshold": 0.016666666666666666
+   }
+  ],
+  "direction|ndcg|p1e6": [
+   {
+    "dataset": "amazon-book",
+    "group": "near_cold",
+    "p": 0.04240895759104241,
+    "sig": false,
+    "sig_threshold": 0.0071428571428571435
+   },
+   {
+    "dataset": "amazon-book",
+    "group": "long_tail",
+    "p": 0.001835998164001836,
+    "sig": true,
+    "sig_threshold": 0.00625
+   },
+   {
+    "dataset": "yelp2018",
+    "group": "near_cold",
+    "p": 1.0,
+    "sig": false,
+    "sig_threshold": 0.05
+   },
+   {
+    "dataset": "yelp2018",
+    "group": "long_tail",
+    "p": 0.49445950554049445,
+    "sig": false,
+    "sig_threshold": 0.0125
+   },
+   {
+    "dataset": "musical-instruments",
+    "group": "near_cold",
+    "p": 0.45176554823445175,
+    "sig": false,
+    "sig_threshold": 0.01
+   },
+   {
+    "dataset": "musical-instruments",
+    "group": "long_tail",
+    "p": 0.35767564232435767,
+    "sig": false,
+    "sig_threshold": 0.008333333333333333
+   },
+   {
+    "dataset": "arts-crafts-and-sewing",
+    "group": "near_cold",
+    "p": 0.8058261941738059,
+    "sig": false,
+    "sig_threshold": 0.025
+   },
+   {
+    "dataset": "arts-crafts-and-sewing",
+    "group": "long_tail",
+    "p": 0.522986477013523,
+    "sig": false,
+    "sig_threshold": 0.016666666666666666
+   }
+  ],
+  "epsilon|ndcg|p1e5": [
+   {
+    "dataset": "amazon-book",
+    "group": "near_cold",
+    "p": 1.0,
+    "sig": false,
+    "sig_threshold": 0.016666666666666666
+   },
+   {
+    "dataset": "amazon-book",
+    "group": "long_tail",
+    "p": 0.7171928280717192,
+    "sig": false,
+    "sig_threshold": 0.008333333333333333
+   },
+   {
+    "dataset": "yelp2018",
+    "group": "near_cold",
+    "p": 1.0,
+    "sig": false,
+    "sig_threshold": 0.025
+   },
+   {
+    "dataset": "yelp2018",
+    "group": "long_tail",
+    "p": 1.0,
+    "sig": false,
+    "sig_threshold": 0.05
+   },
+   {
+    "dataset": "musical-instruments",
+    "group": "near_cold",
+    "p": 0.6147738522614774,
+    "sig": false,
+    "sig_threshold": 0.00625
+   },
+   {
+    "dataset": "musical-instruments",
+    "group": "long_tail",
+    "p": 0.6376236237637624,
+    "sig": false,
+    "sig_threshold": 0.0071428571428571435
+   },
+   {
+    "dataset": "arts-crafts-and-sewing",
+    "group": "near_cold",
+    "p": 0.941130588694113,
+    "sig": false,
+    "sig_threshold": 0.01
+   },
+   {
+    "dataset": "arts-crafts-and-sewing",
+    "group": "long_tail",
+    "p": 0.986670133298667,
+    "sig": false,
+    "sig_threshold": 0.0125
+   }
+  ],
+  "epsilon|ndcg|p1e6": [
+   {
+    "dataset": "amazon-book",
+    "group": "near_cold",
+    "p": 1.0,
+    "sig": false,
+    "sig_threshold": 0.016666666666666666
+   },
+   {
+    "dataset": "amazon-book",
+    "group": "long_tail",
+    "p": 0.7178882821117178,
+    "sig": false,
+    "sig_threshold": 0.008333333333333333
+   },
+   {
+    "dataset": "yelp2018",
+    "group": "near_cold",
+    "p": 1.0,
+    "sig": false,
+    "sig_threshold": 0.025
+   },
+   {
+    "dataset": "yelp2018",
+    "group": "long_tail",
+    "p": 1.0,
+    "sig": false,
+    "sig_threshold": 0.05
+   },
+   {
+    "dataset": "musical-instruments",
+    "group": "near_cold",
+    "p": 0.6141273858726142,
+    "sig": false,
+    "sig_threshold": 0.00625
+   },
+   {
+    "dataset": "musical-instruments",
+    "group": "long_tail",
+    "p": 0.6355983644016356,
+    "sig": false,
+    "sig_threshold": 0.0071428571428571435
+   },
+   {
+    "dataset": "arts-crafts-and-sewing",
+    "group": "near_cold",
+    "p": 0.9405190594809405,
+    "sig": false,
+    "sig_threshold": 0.01
+   },
+   {
+    "dataset": "arts-crafts-and-sewing",
+    "group": "long_tail",
+    "p": 0.9871300128699871,
+    "sig": false,
+    "sig_threshold": 0.0125
+   }
+  ]
+ }
+}

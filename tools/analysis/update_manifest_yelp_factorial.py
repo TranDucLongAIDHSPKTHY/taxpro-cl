@@ -1,7 +1,7 @@
-"""Add results_manifest.csv rows for the 12 corrected Yelp2018 factorial
-checkpoints (temperature_user=0.15 fix), and mark the original (confound-
-bearing) V0-V3 Yelp2018 rows as superseded in their used_in_tables field.
-"""
+"""Add results_manifest.csv rows for the 12 Yelp2018 factorial runs trained with
+temperature_user=0.15 (the main configuration's value; V0-V3 x 3 seeds), and
+mark the earlier Yelp2018 V0-V3 runs, trained with temperature_user=0.2, as not
+used in the paper (used_in_tables field)."""
 import csv
 import hashlib
 import json
@@ -43,7 +43,7 @@ def build_row(variant_label, seed, run_dir):
         "git_commit": manifest.get("git_commit", ""),
         "config_sha256": hashlib.sha256(json.dumps(config, sort_keys=True).encode()).hexdigest(),
         "checkpoint_sha256_best_validation_model": sha256_of(ckpt) if ckpt.exists() else "",
-        "v3_is_same_checkpoint_as_taxprocl_main": "N/A (superseded fix, see ESM S26)" if variant_label != "V3-tempuser0.15" else "NO (separately trained, but temperature_user now matches main config)",
+        "v3_is_same_checkpoint_as_taxprocl_main": "N/A" if variant_label != "V3-tempuser0.15" else "NO (separately trained with the main configuration's temperature_user=0.15)",
         "selection_metric": "validation Recall@20 Overall",
         "test_policy": "once after loading best validation checkpoint",
         "completed_epochs": str(manifest.get("completed_epochs", "")),
@@ -83,7 +83,7 @@ def main():
             existing_rows.append(r)
             appended += 1
 
-    # Mark original Yelp2018 V0-V3 rows as superseded.
+    # Mark the earlier Yelp2018 V0-V3 rows (temperature_user=0.2) as not used.
     superseded = 0
     for r in existing_rows:
         if r["dataset"] == "yelp2018" and r["variant"] in ("V0", "V1", "V2", "V3"):

@@ -1,28 +1,18 @@
-"""Build the cds-and-vinyl dataset (rebuilt 2026-09-22 to recover real
-dataset statistics and enable a full 3-seed/6-method re-run for the
-Limitation-4 disclosure GVHD's V6 review requested (B2): the original
-checkpoints, logs, and dataset_verify/ split for this dataset -- dropped
-from the paper's four-dataset comparison after twelve tuning rounds, see
-Document/Ke_Hoach_Tuan_8/fine_tune_CDs_and_Vinyl/ -- were removed from disk
-when the project's active dataset set narrowed to four. This rebuilds it
-from the original public source, byte-for-byte the same pipeline as the
-four datasets already reported.
+"""Build the cds-and-vinyl dataset (Protocol B) from the McAuley Lab Amazon Review
+Data (2018) 5-core file CDs_and_Vinyl_5.json, downloaded and decompressed manually
+and passed with --reviews-file (see README, Data Bootstrap). Used only for Online Resource 1, Section S30 (the dataset dropped during development).
 
-Self-contained, additive-only companion to build_splits.py, mirroring
-build_arts_crafts_and_sewing.py exactly (same algorithm, only the dataset
-name differs): downloads the 5-core CDs_and_Vinyl review file directly from
-McAuley Lab (5-core filtering already applied upstream), verifies 5-core
-holds after our own ID remap, then does ONE deterministic per-user
-70/10/20 shuffle-split -- Protocol B, the same protocol already used for
-musical-instruments/arts-crafts-and-sewing (Musical-Instruments/
-Arts-Crafts-and-Sewing did not come with a pre-existing split; neither does
-this one).
+Companion to build_splits.py, which handles the pre-split amazon-book and
+yelp2018 files: it reuses build_splits.py's helpers (iterative_k_core,
+sha256_file, the atomic-write helpers) and adds this dataset's name, paths and
+split ratio. Pipeline: deduplicate (user, item) pairs, remap IDs, re-verify
+the 5-core property with iterative_k_core, then one deterministic per-user
+70/10/20 shuffle-split (one seeded RNG over users in sorted order; split seed
+42). There is no second k-core pass after the split.
 
-Outputs, mirroring the amazon-book/yelp2018/musical-instruments/
-arts-crafts-and-sewing convention:
+Outputs:
     dataset/cds-and-vinyl/{train,test,item_list,user_list}.txt
-    dataset_verify/cds-and-vinyl/{train,validation,test}.txt + split_manifest.json
-"""
+    dataset_verify/cds-and-vinyl/{train,validation,test}.txt + split_manifest.json"""
 
 from __future__ import annotations
 

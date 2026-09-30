@@ -1,23 +1,19 @@
 """Interaction-effect bootstrap for the V0-V3 direction-by-epsilon-adaptivity
-factorial: computes, per dataset
-and group, the interaction term (V3-V2)-(V1-V0) from the SAME per-user,
-per-seed data used for the two conditional (marginal) effects -- not two
-independently-resampled bootstraps -- so the interaction's uncertainty
-correctly reflects the shared dependency between the two conditional
-effects (both are computed from the same four checkpoints and the same
-users).
+factorial (Online Resource 1, Table S27): per dataset and group, the
+interaction term (V3-V2)-(V1-V0) is computed from the same per-user, per-seed
+data as the two conditional effects -- not from two independently resampled
+bootstraps -- so its uncertainty reflects the dependence between the two
+conditional effects (same four checkpoints, same users).
 
-Terminology: V1-V0 and V3-V2 are "direction's
-conditional effect" (at fixed epsilon and at adaptive epsilon,
-respectively); V2-V0 and V3-V1 are "epsilon-adaptivity's conditional
-effect" (at random direction and at taxonomy direction, respectively);
-the interaction (V3-V2)-(V1-V0) [equivalently (V3-V1)-(V2-V0)] tests
-whether direction's effect depends on the epsilon-adaptivity setting.
+Terminology: V1-V0 and V3-V2 are direction's conditional effect (at fixed and
+at adaptive epsilon); V2-V0 and V3-V1 are epsilon-adaptivity's conditional
+effect (at random and at taxonomy direction); the interaction
+(V3-V2)-(V1-V0), equivalently (V3-V1)-(V2-V0), tests whether direction's
+effect depends on the epsilon-adaptivity setting.
 
-Reuses the corrected Yelp2018 checkpoints (temperature_user=0.15) and the
-original checkpoints for Amazon-Book/Musical-Instruments/Arts-Crafts-and-
-Sewing. Inference-only, no retraining.
-"""
+Uses the run directories in DATASET_DIRS (Yelp2018: the V0-V3 runs trained
+with temperature_user=0.15, the main configuration's value; Amazon-Book: the
+merge_t10 runs). Inference only; no retraining."""
 from __future__ import annotations
 
 import json
@@ -34,7 +30,7 @@ if str(ROOT) not in sys.path:
 
 from config_path.config_path import evaluation_protocol_dir
 from utility.utility_train.group_evaluator import load_targets
-from tests.Recommendation_system.inference import load_model, compute_batch_order_and_rank
+from tools.ranking.inference import load_model, compute_batch_order_and_rank
 
 SEEDS = ["42", "0", "1"]
 GROUPS = ["near_cold", "long_tail", "overall", "warm"]

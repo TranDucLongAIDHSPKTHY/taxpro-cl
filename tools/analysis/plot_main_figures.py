@@ -10,7 +10,7 @@ it (ESM Section S10).
 
 Usage:
     python -m tools.analysis.plot_main_figures
-    python -m tools.analysis.plot_main_figures --out-dir Document/paper_P0/V62
+    python -m tools.analysis.plot_main_figures --out-dir <figure directory>
 """
 from __future__ import annotations
 

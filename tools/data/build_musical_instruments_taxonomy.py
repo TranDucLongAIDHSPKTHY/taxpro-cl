@@ -10,8 +10,7 @@ build_evaluation_protocol, parse_split, item_degrees, build_group_masks,
 choose_amazon_ancestor, taxonomy_record, distribution, THRESHOLDS,
 VARIANT_NAMES, GROUP_DEFINITIONS) and re-implements only
 build_amazon_variants' loop body, parameterized by dataset_name and
-root_category instead of the hardcoded "amazon-book"/"Books". Zero lines
-of tools/protocol/build.py are modified.
+root_category instead of the hardcoded "amazon-book"/"Books".
 """
 
 from __future__ import annotations

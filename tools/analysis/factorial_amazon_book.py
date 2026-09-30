@@ -27,7 +27,7 @@ same data, not from two independent bootstraps.
 Inference only; no retraining.
 
 Usage:
-    python -m tools.analysis.a2_mergedt10_factorial_recompute
+    python -m tools.analysis.factorial_amazon_book
 """
 from __future__ import annotations
 
@@ -46,7 +46,7 @@ if str(ROOT) not in sys.path:
 
 from config_path.config_path import evaluation_protocol_dir
 from utility.utility_train.group_evaluator import load_targets
-from tests.Recommendation_system.inference import load_model, compute_batch_order_and_rank
+from tools.ranking.inference import load_model, compute_batch_order_and_rank
 
 DATASET = "amazon-book"
 BASE = "log/p0/taxprocl/amazon-book/"
@@ -119,7 +119,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--device", choices=("cpu", "cuda"), default="cuda" if torch.cuda.is_available() else "cpu")
     parser.add_argument("--n-boot", type=int, default=N_BOOT)
-    parser.add_argument("--output", type=Path, default=ROOT / "results" / "a2_mergedt10_factorial_bootstrap.json")
+    parser.add_argument("--output", type=Path, default=ROOT / "results" / "factorial_amazon_book.json")
     parser.add_argument("--v3-dir", default=None,
                         help="alternative V3 run directory (relative to project root); with this option the "
                              "warm-start-removal comparisons are skipped")

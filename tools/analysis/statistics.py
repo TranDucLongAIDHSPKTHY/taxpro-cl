@@ -17,14 +17,14 @@ def parse_args(argv=None):
     parser.add_argument(
         "--input",
         type=Path,
-        default=ROOT / "results" / "week6" / "week6_raw_results.csv",
+        default=ROOT / "results" / "ablation_raw_results.csv",
     )
     parser.add_argument("--reference-config", required=True)
     parser.add_argument("--candidate-config", required=True)
     parser.add_argument(
         "--output",
         type=Path,
-        default=ROOT / "results" / "week6" / "statistical_tests.csv",
+        default=ROOT / "results" / "statistical_tests.csv",
     )
     return parser.parse_args(argv)
 

@@ -1,26 +1,20 @@
-"""Seed-matched bootstrap CI, TaxPro-CL vs a baseline, for one dataset.
+"""Seed-matched bootstrap CI, TaxPro-CL vs. a baseline, for one dataset
+(main paper Table 11; Online Resource 1, Table S6).
 
-Unlike tests/Recommendation_system/rank_comparison.py (used by
-tools/analysis/bootstrap_ci.py), which auto-selects ONE best-validation
-checkpoint per model independently -- so the two models' seeds need not
-match -- this pairs each of the 3 trained seeds of TaxPro-CL with the SAME
-seed of the baseline, computes per-user Recall@K hit indicators for each of
-the 3 seed-matched pairs, then reports:
+Unlike tools/ranking/rank_comparison.py (used by
+tools/analysis/bootstrap_ci.py), which selects one best-validation checkpoint
+per model independently -- so the two models' seeds need not match -- this
+pairs each of the 3 trained seeds of TaxPro-CL with the SAME seed of the
+baseline, computes per-user Recall@K hit indicators for each of the 3
+seed-matched pairs, then reports:
 
   1. a bootstrap CI per seed pair (consistency check across seeds), and
-  2. one pooled CI where each user's diff is first AVERAGED across the
-     (up to 3) seed pairs they appear in, then bootstrap-resampled over
-     users -- this is the number that should be reported as the headline
-     "seed-matched" result: it avoids pseudo-replication (a user is one
-     resampling unit, not 3), while still folding in all 3 training seeds
-     instead of one arbitrarily-picked checkpoint pair.
+  2. one pooled CI where each user's difference is first AVERAGED across the
+     (up to 3) seed pairs the user appears in, then bootstrap-resampled over
+     users -- the reported result: a user is one resampling unit, and all 3
+     training seeds are used.
 
-Motivated by the paper's Section 5.3/5.4 disclosure: the existing
-Yelp2018 bootstrap compared TaxPro-CL's declared-winner checkpoint
-(v12/seed1) against SimGCL's auto-selected checkpoint (seed42) -- a genuine
-seed mismatch, not just checkpoint-conditional evidence. Inference-only
-(reuses already-trained checkpoints), no retraining needed.
-"""
+Inference only (reuses trained checkpoints); no retraining."""
 
 from __future__ import annotations
 
@@ -32,7 +26,7 @@ import numpy as np
 import torch
 
 from config_path.config_path import evaluation_protocol_dir
-from tests.Recommendation_system import inference
+from tools.ranking import inference
 from utility.utility_train.group_evaluator import load_targets
 
 ROOT = Path(__file__).resolve().parents[2]

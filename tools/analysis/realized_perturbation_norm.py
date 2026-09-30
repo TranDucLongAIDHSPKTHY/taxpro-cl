@@ -41,7 +41,7 @@ if str(ROOT) not in sys.path:
 import torch
 
 from config_path.config_path import RESULT_DIR, evaluation_protocol_dir, relative_to_project
-from tests.Recommendation_system import checkpoint_selection, inference
+from tools.ranking import checkpoint_selection, inference
 
 logger = logging.getLogger("realized_perturbation_norm")
 
@@ -178,7 +178,7 @@ def parse_args(argv=None):
     )
     parser.add_argument(
         "--output", type=Path,
-        default=RESULT_DIR / "week6" / "realized_perturbation_norm.json",
+        default=RESULT_DIR / "realized_perturbation_norm.json",
     )
     return parser.parse_args(argv)
 

@@ -7,9 +7,9 @@ baselines. This script closes that gap: every run behind the main comparison
 (Table S1, Table 7) now has a manifest row with its run directory, resolved
 configuration hash, split hashes and best-validation checkpoint hash.
 
-The run families are read from results/week6/mid_tail_degree6_10.json (the
+The run families are read from results/mid_tail_degree6_10.json (the
 checkpoint-resolved source of the main table; the resolver never selects the
-exploratory A7 families, see tests/Recommendation_system/checkpoint_selection.py).
+exploratory A7 families, see tools/ranking/checkpoint_selection.py).
 Each family must be the framework default for its dataset: the script refuses
 to record a run whose resolved configuration names an A7 family.
 

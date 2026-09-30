@@ -1,17 +1,11 @@
-"""Bootstrap CI for the leaf-uniform and leave-one-out prototype-construction
-variants vs TaxPro-CL-main, Amazon-Book. Each user's diff is averaged
-across the 3 seed pairs it appears in BEFORE bootstrapping (the previous
-version pseudo-replicated each user up to 3x by appending per-seed diffs
-directly into the pooled list inside the seed loop), same corrected
-methodology as tools/analysis/rescue_vs_variants_bootstrap.py and
-tools/analysis/seed_matched_bootstrap.py.
+"""Bootstrap CI for the leaf_uniform and leave_one_out prototype-construction
+variants vs. TaxPro-CL-main, Amazon-Book, all under taxonomy_policy=merge_t10
+(Online Resource 1, Table S14). Each user's difference is averaged across the
+3 seed pairs in which the user appears before bootstrapping, as in
+tools/analysis/rescue_vs_variants_bootstrap.py and
+tools/analysis/seed_matched_bootstrap.py, so every user is one resampling unit.
 
-The reference model was previously A2-V3, which was later discovered to
-run under taxonomy_policy=no_merge while leaf_uniform/leave_one_out (like
-TaxPro-CL-main) run under merge_t10 -- a taxonomy-policy mismatch that
-confounded the comparison. This version compares against the real
-TaxPro-CL-main checkpoint instead (same merge_t10 policy, and identical
-to A2-V3 in every other hyperparameter), which is a controlled comparison.
+Inference only; no retraining.
 """
 from __future__ import annotations
 import json, logging, sys
@@ -24,12 +18,12 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 from config_path.config_path import evaluation_protocol_dir
 from utility.utility_train.group_evaluator import load_targets
-from tests.Recommendation_system import inference as _inference_mod
-from tests.Recommendation_system.inference import compute_batch_order_and_rank
+from tools.ranking import inference as _inference_mod
+from tools.ranking.inference import compute_batch_order_and_rank
 
 
 def load_model(run_dir, device):
-    """Same as tests.Recommendation_system.inference.load_model, but strips
+    """Same as tools.ranking.inference.load_model, but strips
     prototype_bank.last_snapshot_epoch from the checkpoint before loading:
     this buffer was persistent=True when these variant checkpoints were
     saved and is persistent=False in the current model code
@@ -145,7 +139,7 @@ def main():
                   f"95% CI=[{stat['ci95_lo']:+.6f}, {stat['ci95_hi']:+.6f}] excludes_zero={stat['excludes_zero']}")
         results[variant_name] = variant_results
 
-    out = ROOT / "results" / "a3_variants_bootstrap.json"
+    out = ROOT / "results" / "leaf_variants_bootstrap.json"
     out.write_text(json.dumps(results, indent=2), encoding="utf-8")
     print("Saved to", out)
 

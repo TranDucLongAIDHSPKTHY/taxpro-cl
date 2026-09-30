@@ -1,13 +1,10 @@
-"""B1: NDCG@20 for the prototype-
-construction sensitivity variants (leaf_uniform, leave_one_out, rescue vs.
-TaxPro-CL-main), Amazon-Book, extending Section S14 (Table S14,
-Recall@20-only) to NDCG@20, mirroring b1_factorial_ndcg.py's treatment of
-the direction factorial. Same checkpoints (3 seeds: 0, 1, 42) and per-user
-pooling-across-seeds procedure as tools/analysis/b2_prototype_variant_overlap.py
-and the original Table S14 Recall@20 computation.
+"""NDCG@20 for the prototype-construction variants (leaf_uniform, leave_one_out,
+rescue vs. TaxPro-CL-main, Amazon-Book; Online Resource 1, Table S14c), the
+NDCG@20 companion of Table S14. Same checkpoints (seeds 0, 1, 42) and per-user
+pooling across seeds as tools/analysis/prototype_variants_overlap.py and the
+Table S14 Recall@20 computation.
 
-Inference only; no retraining; no new checkpoints created.
-"""
+Inference only; no retraining."""
 
 from __future__ import annotations
 
@@ -25,8 +22,8 @@ if str(ROOT) not in sys.path:
 
 from config_path.config_path import RESULT_DIR, evaluation_protocol_dir
 from utility.utility_train.group_evaluator import load_targets
-from tests.Recommendation_system.inference import compute_batch_order_and_rank
-from tools.analysis.b2_prototype_variant_overlap import (
+from tools.ranking.inference import compute_batch_order_and_rank
+from tools.analysis.prototype_variants_overlap import (
     BASE, MAIN_DIR_NAME, VARIANTS, SEEDS, K,
     load_model_dropping_stale_buffers,
 )
@@ -149,7 +146,7 @@ def main():
             results.append(stat)
             print(json.dumps(stat, indent=2))
 
-    output = RESULT_DIR / "b1_prototype_ndcg.json"
+    output = RESULT_DIR / "prototype_variants_ndcg.json"
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(results, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print("Saved {} rows to {}".format(len(results), output))

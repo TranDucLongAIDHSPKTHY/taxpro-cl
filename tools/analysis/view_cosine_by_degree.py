@@ -111,7 +111,7 @@ def parse_args(argv=None):
     parser.add_argument("--simgcl-run", type=Path, required=True)
     parser.add_argument("--dataset", required=True)
     parser.add_argument("--device", choices=("cpu", "cuda"), default="cpu")
-    parser.add_argument("--output", type=Path, default=ROOT / "results" / "a4_view_cosine_by_degree.json")
+    parser.add_argument("--output", type=Path, default=ROOT / "results" / "view_cosine_by_degree.json")
     return parser.parse_args(argv)
 
 

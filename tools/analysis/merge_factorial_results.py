@@ -1,18 +1,18 @@
 """Replace the Amazon-Book blocks of the older per-script result JSONs with the
-merge_t10 factorial results computed by a2_mergedt10_factorial_recompute.py,
+merge_t10 factorial results computed by factorial_amazon_book.py,
 so that every JSON cited by results/claim_evidence.csv agrees with the paper's
 Online Resource 1 tables (Yelp2018/Musical-Instruments/Arts-Crafts-and-Sewing
 blocks are left unchanged).
 
-Also replaces the Yelp2018 block of factorial_direction_bootstrap_full_FIXED.json with
-the temperature_user=0.15 result (factorial_direction_bootstrap_yelp_tempuser_fix.json).
+Also replaces the Yelp2018 block of factorial_direction_bootstrap.json with
+the temperature_user=0.15 result (factorial_direction_bootstrap_yelp.json).
 
-Rewrites, in results/: factorial_direction_bootstrap_full_FIXED.json,
+Rewrites, in results/: factorial_direction_bootstrap.json,
 factorial_interaction_bootstrap.json, warmstart_removal_bootstrap.json,
-b1_factorial_ndcg.json, b1_epsilon_ndcg.json.
+factorial_ndcg_bootstrap.json, epsilon_ndcg_bootstrap.json.
 
 Usage:
-    python -m tools.analysis.merge_a2_ab_into_result_jsons
+    python -m tools.analysis.merge_factorial_results
 """
 from __future__ import annotations
 
@@ -33,13 +33,13 @@ def dump(name, obj):
 
 
 def main() -> int:
-    a2 = load("a2_mergedt10_factorial_bootstrap.json")["comparisons"]
+    a2 = load("factorial_amazon_book.json")["comparisons"]
 
     def rec(name):
         return {g: a2[name]["recall"][g] for g in GROUPS}
 
     # 1. direction/epsilon-adaptivity (Recall@20)
-    fd = load("factorial_direction_bootstrap_full_FIXED.json")
+    fd = load("factorial_direction_bootstrap.json")
     fd["amazon-book"] = {
         "V1_vs_V0": rec("direction_fixed_eps__V1-V0"),
         "V3_vs_V2": rec("direction_adaptive_eps__V3-V2"),
@@ -47,8 +47,8 @@ def main() -> int:
         "V3_vs_V1": rec("eps_taxonomy_dir__V3-V1"),
     }
     # Yelp2018 rows: the checkpoints trained with temperature_user=0.15 (the main configuration's value)
-    fd["yelp2018"] = load("factorial_direction_bootstrap_yelp_tempuser_fix.json")["yelp2018"]
-    dump("factorial_direction_bootstrap_full_FIXED.json", fd)
+    fd["yelp2018"] = load("factorial_direction_bootstrap_yelp.json")["yelp2018"]
+    dump("factorial_direction_bootstrap.json", fd)
 
     # 2. interaction
     fi = load("factorial_interaction_bootstrap.json")
@@ -80,10 +80,10 @@ def main() -> int:
                 ab.append(st)
         return ab + rows
 
-    dump("b1_factorial_ndcg.json", ndcg_rows(load("b1_factorial_ndcg.json"), [
+    dump("factorial_ndcg_bootstrap.json", ndcg_rows(load("factorial_ndcg_bootstrap.json"), [
         ("V1-V0", "direction_fixed_epsilon", "direction_fixed_eps__V1-V0"),
         ("V3-V2", "direction_adaptive_epsilon", "direction_adaptive_eps__V3-V2")]))
-    dump("b1_epsilon_ndcg.json", ndcg_rows(load("b1_epsilon_ndcg.json"), [
+    dump("epsilon_ndcg_bootstrap.json", ndcg_rows(load("epsilon_ndcg_bootstrap.json"), [
         ("V2-V0", "epsilon_adaptivity_random_direction", "eps_random_dir__V2-V0"),
         ("V3-V1", "epsilon_adaptivity_taxonomy_direction", "eps_taxonomy_dir__V3-V1")]))
     print("Amazon-Book blocks replaced in 5 JSON files")

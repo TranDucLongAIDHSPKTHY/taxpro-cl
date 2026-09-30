@@ -3,8 +3,8 @@
 # trained by this script: A2-V3-warm20, an independent run of the main
 # configuration made separately on a second machine (ESM Table S23), serves as
 # V3; its test metrics are within 0.26% of the TaxPro-CL-main checkpoint's.
-# Output goes to NEW directories (A2-V{0,1,2}-mergedt10), so earlier runs are
-# never overwritten.
+# Outputs go to their own directories (A2-V{0,1,2}-mergedt10), so existing runs
+# are never overwritten.
 
 $ErrorActionPreference = "Stop"
 $logFile = "results/amazonbook_factorial_mergedt10_progress.log"
@@ -20,7 +20,7 @@ $variants = @(
   @{ id="A2-V2-mergedt10"; direction="random";   adaptive="true"  }
 )
 
-Log "START amazon-book factorial re-run, taxonomy_policy=merge_t10, 3 variants x 3 seeds = 9 runs (V3 reused from TaxPro-CL-main, not re-run)"
+Log "START amazon-book factorial, taxonomy_policy=merge_t10, 3 variants x 3 seeds = 9 runs (V3 = A2-V3-warm20, trained separately)"
 
 foreach ($v in $variants) {
   foreach ($seed in 42,0,1) {
@@ -51,4 +51,4 @@ foreach ($v in $variants) {
   }
 }
 
-Log "ALL DONE: amazon-book factorial re-run with taxonomy_policy=merge_t10"
+Log "ALL DONE: amazon-book factorial, taxonomy_policy=merge_t10"

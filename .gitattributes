@@ -1,0 +1,13 @@
+# Hash-verified data artifacts: stored and checked out byte for byte on every
+# platform (no line-ending conversion), so their SHA256 values match the split
+# and protocol manifests.
+dataset_verify/** -text
+preprocessed/** -text
+metadata/taxonomy_variants/** -text
+
+# Analysis outputs (no recorded hashes): always stored and checked out with LF,
+# even when a script rewrites them with CRLF on Windows.
+results/*.csv text eol=lf
+results/*.json text eol=lf
+results/*.npz binary
+results/*.pdf binary

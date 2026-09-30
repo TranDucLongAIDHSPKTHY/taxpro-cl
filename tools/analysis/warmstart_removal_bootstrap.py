@@ -1,14 +1,11 @@
 """Per-user bootstrap CI for the warm-start-removal companion check (main
 paper Section 5.4, RQ5 factorial): does removing warm_start_epochs entirely
 (-> 0) change Recall@20, under both the random-direction (V0) and
-taxonomy-direction (V3) controls, Amazon-Book, 3 seeds?
+taxonomy-direction (V3) controls, Amazon-Book, 3 seeds? (Online Resource 1,
+Table S20.)
 
-Previously only reported as a raw % point-estimate change (+18.90% random,
-+21.38% taxonomy) with no per-user CI.
-Each user's diff is averaged across the 3 seed pairs it appears in BEFORE
-bootstrapping, matching tools/analysis/seed_matched_bootstrap.py's
-methodology (and the A2 fix applied to the other factorial-adjacent
-scripts).
+Each user's difference is averaged across the 3 seed pairs in which the user
+appears before bootstrapping, as in tools/analysis/seed_matched_bootstrap.py.
 """
 from __future__ import annotations
 import json, logging, sys
@@ -21,7 +18,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 from config_path.config_path import evaluation_protocol_dir
 from utility.utility_train.group_evaluator import load_targets
-from tests.Recommendation_system.inference import load_model, compute_batch_order_and_rank
+from tools.ranking.inference import load_model, compute_batch_order_and_rank
 
 DATASET = "amazon-book"
 SEEDS = ["42", "0", "1"]

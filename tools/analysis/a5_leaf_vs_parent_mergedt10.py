@@ -35,10 +35,10 @@ if str(ROOT) not in sys.path:
 
 from config_path.config_path import evaluation_protocol_dir
 from utility.utility_train.group_evaluator import load_targets
-from tools.analysis.a2_mergedt10_factorial_recompute import (
+from tools.analysis.factorial_amazon_book import (
     GROUPS, N_BOOT, bootstrap, per_user_metrics,
 )
-from tools.analysis.b2_prototype_variant_overlap import (
+from tools.analysis.prototype_variants_overlap import (
     MAIN_DIR_NAME, load_model_dropping_stale_buffers, score_pair,
 )
 

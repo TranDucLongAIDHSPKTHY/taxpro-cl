@@ -5,7 +5,7 @@ Additive companion to prepare_metadata.py: that script's "amazon" domain is
 wired to a single global dataset (AMAZON_DATASET_NAME = "amazon-book") via
 config_path.py, with no per-dataset parameterization -- running it as-is
 for arts-crafts-and-sewing would overwrite metadata/item2category_amazon.json
-(Books' locked data). This file avoids that entirely by importing only the
+(the shipped Amazon-Book metadata). This file avoids that entirely by importing only the
 pure, already-category-agnostic pieces (_parse_amazon_record,
 _normalize_amazon_record, _store_candidate, _select_candidate, merge_domain,
 read_item_mapping, write_json_atomic) and re-implementing just the loop that

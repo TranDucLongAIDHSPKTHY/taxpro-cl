@@ -1,15 +1,13 @@
-"""B1: NDCG@20 for the RQ5 direction-by-magnitude
-factorial (V0-V3), extending tools/analysis/factorial_direction_bootstrap.py
-(which reports Recall@20 only, Table 11/S16) to NDCG@20 -- main paper
-Section 5.4 states its factorial evidence is Recall@20-only; Online
-Resource 1 Section S21 reports NDCG@20 for the six main-comparison methods
-but not for the internal V0-V3 factorial checkpoints. This script closes
-that specific gap: same checkpoints, same per-user pooling-across-seeds
-procedure, same bootstrap machinery as factorial_direction_bootstrap.py,
-computing NDCG@20 (main paper Eq. for NDCG@K) instead of Recall@20.
+"""NDCG@20 for the RQ5 direction contrasts (V1-V0, V3-V2; Online Resource 1,
+Table S13b), the NDCG@20 companion of factorial_direction_bootstrap.py
+(Recall@20, Table S13). Same checkpoints, per-user pooling across seeds, and
+bootstrap; NDCG@20 as defined in the main paper (Eq. 9).
 
-Inference only; no retraining; no new checkpoints created.
-"""
+Usage:
+    python -m tools.analysis.factorial_ndcg_bootstrap
+    python -m tools.analysis.factorial_ndcg_bootstrap --datasets yelp2018 --output results/factorial_ndcg_bootstrap_yelp.json
+
+Inference only; no retraining."""
 
 from __future__ import annotations
 
@@ -28,7 +26,7 @@ if str(ROOT) not in sys.path:
 
 from config_path.config_path import RESULT_DIR, evaluation_protocol_dir
 from utility.utility_train.group_evaluator import load_targets
-from tests.Recommendation_system.inference import load_model, compute_batch_order_and_rank
+from tools.ranking.inference import load_model, compute_batch_order_and_rank
 from tools.analysis.factorial_direction_bootstrap import DATASET_DIRS, SEEDS, K, BATCH_SIZE
 
 GROUPS = ["near_cold", "long_tail"]
@@ -100,7 +98,7 @@ def main(argv=None):
     parser.add_argument("--device", choices=("cpu", "cuda"), default="cuda" if torch.cuda.is_available() else "cpu")
     parser.add_argument("--n-boot", type=int, default=N_BOOT)
     parser.add_argument("--seed", type=int, default=42)
-    parser.add_argument("--output", type=Path, default=RESULT_DIR / "b1_factorial_ndcg.json")
+    parser.add_argument("--output", type=Path, default=RESULT_DIR / "factorial_ndcg_bootstrap.json")
     args = parser.parse_args(argv)
 
     device = torch.device(args.device)

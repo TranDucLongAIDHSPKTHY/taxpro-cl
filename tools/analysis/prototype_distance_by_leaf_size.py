@@ -1,5 +1,10 @@
-"""Relative distance between a leaf prototype and its items' embeddings, by leaf size
-(Online Resource 1, Table S16; main paper Sections 4.1 and 5.5).
+"""Relative distance between a leaf prototype and its items' layer-0 embeddings, by leaf size.
+
+Superseded for Online Resource 1, Table S16 by
+tools/analysis/prototype_distance_by_space.py: the layer-0 lookup used here
+belongs neither to the space the prototype bank is built from (layer-averaged
+propagated embedding) nor to the space Eq. (1) uses (per-layer embedding), so
+its distances mix embedding spaces. Kept for the "Layer 0 (lookup)" row of S16.
 
 For each dataset's main TaxPro-CL checkpoint (all three training seeds, or the one
 given with --seed), computes for every
@@ -9,13 +14,13 @@ trained EMA prototype (model.prototype_bank.prototypes) and e_i the item's ego
 leaf (1, 2, 3-10, 11-100, 101+) and reports the median per group.
 
 Inference only; needs the trained checkpoint, which is selected exactly as by the
-other analysis scripts (tests.Recommendation_system.checkpoint_selection).
+other analysis scripts (tools.ranking.checkpoint_selection).
 
 Usage:
     python -m tools.analysis.prototype_distance_by_leaf_size [--seed 42] [--device cpu]
 
-Table S16 of Online Resource 1 lists one checkpoint per dataset; the medians of
-the three seeds differ by at most 0.011 (see the "max_seed_spread" field).
+Table S16 of Online Resource 1 reports three-seed means; the "max_seed_spread"
+field gives the largest seed-to-seed spread of this script's medians.
 """
 from __future__ import annotations
 
@@ -31,8 +36,8 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from tests.Recommendation_system import checkpoint_selection  # noqa: E402
-from tools.analysis.b2_prototype_variant_overlap import load_model_dropping_stale_buffers  # noqa: E402
+from tools.ranking import checkpoint_selection  # noqa: E402
+from tools.analysis.prototype_variants_overlap import load_model_dropping_stale_buffers  # noqa: E402
 
 DATASETS = ("amazon-book", "yelp2018", "musical-instruments", "arts-crafts-and-sewing")
 BUCKETS = (("1", 1, 1), ("2", 2, 2), ("3-10", 3, 10), ("11-100", 11, 100), ("101+", 101, 10 ** 9))

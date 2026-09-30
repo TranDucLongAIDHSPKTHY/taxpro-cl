@@ -1,8 +1,40 @@
-"""Calibration checks for the multiplicity-corrected inference of Table 11."""
+"""Calibration checks for the multiplicity-corrected inference of Table 11 and
+of the RQ5 factorial (Online Resource 1, Tables S13e and S26)."""
+
+import itertools
 
 import numpy as np
 
 from tools.analysis import a2_multiplicity_correction as mc
+from tools.analysis import factorial_multiplicity as fm
+
+
+def _exact_two_sided_p(values):
+    """Exact sign-flip p-value by enumerating all 2^n sign patterns."""
+    v = np.asarray(values, dtype=np.float64)
+    observed = abs(v.sum())
+    hits = sum(abs(np.dot(signs, v)) >= observed - 1e-12
+               for signs in itertools.product((-1.0, 1.0), repeat=len(v)))
+    return hits / 2 ** len(v)
+
+
+def test_factorial_sign_flip_matches_exact_enumeration():
+    # small samples: every sign pattern can be enumerated, so the Monte Carlo
+    # p-value must agree with the exact one up to Monte Carlo error
+    data = np.random.default_rng(7)
+    cases = [
+        [0.0] * 10,                                   # all differences zero: p = 1
+        list(data.normal(0.8, 1.0, 12)),              # shifted
+        list(data.normal(0.0, 1.0, 12)),              # no shift
+        [0.1, -0.1, 0.2, -0.2, 0.3, 0.05, 0.0, 0.0, 0.15, -0.05, 0.25, 0.1],  # ties and zeros
+    ]
+    n_perm = 20_000
+    for values in cases:
+        exact = _exact_two_sided_p(values)
+        monte_carlo = fm.sign_flip_pvalue(values, n_perm, np.random.default_rng(42))
+        se = np.sqrt(max(exact * (1 - exact), 1.0 / n_perm) / n_perm)
+        assert abs(monte_carlo - exact) < 5 * se + 1.0 / n_perm
+        assert monte_carlo >= 1.0 / (n_perm + 1)
 
 
 def test_sign_flip_is_calibrated_under_the_null():

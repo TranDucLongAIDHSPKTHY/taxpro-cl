@@ -1,0 +1,25 @@
+dataset,rule_id,config_id,is_main_configuration,configuration,test_near_cold_pct_vs_simgcl,test_long_tail_pct_vs_simgcl,test_overall_pct_vs_simgcl,rank_of_six_near_cold,rank_of_six_long_tail,rank_of_six_overall
+amazon-book,overall,ablation-A4-temperature0.2,False,temperature=0.2,-40.95238095238095,-19.777486052121894,-4.702048726376917,4,3,3
+yelp2018,overall,A2-V3,False,temperature_user=0.2,-25.0,-21.297400389139742,-4.185193785740237,3,2,3
+musical-instruments,overall,taxpro-cl-FINAL-no_merge-temp0.15-gammacold5.0,True,main configuration,0.488485694347518,10.890885688906105,-2.760741417804502,1,1,6
+arts-crafts-and-sewing,overall,taxpro-cl-FINAL-no_merge-temp0.125-gammacold1.5-sameleaf0,True,main configuration,5.981308411214936,10.02495240208303,-3.8298571027950867,1,3,6
+amazon-book,lt,A2-V3-nowarm,False,warm_start_epochs=0.0,37.1269841269841,40.01704955484791,-6.176747819261196,1,1,3
+yelp2018,lt,taxpro-cl-FINAL-no_merge-temp0.125-tempuser0.15-gammacold1.5,True,main configuration,106.25,18.98134232703097,-5.340485984403365,1,1,3
+musical-instruments,lt,taxpro-cl-FINAL-no_merge-temp0.15-gammacold5.0,True,main configuration,0.488485694347518,10.890885688906105,-2.760741417804502,1,1,6
+arts-crafts-and-sewing,lt,taxpro-cl-FINAL-no_merge-temp0.125-gammacold1.5-sameleaf0,True,main configuration,5.981308411214936,10.02495240208303,-3.8298571027950867,1,3,6
+amazon-book,nc,A2-V3-nowarm,False,warm_start_epochs=0.0,37.1269841269841,40.01704955484791,-6.176747819261196,1,1,3
+yelp2018,nc,taxpro-cl-FINAL-no_merge-temp0.125-tempuser0.15-gammacold1.5,True,main configuration,106.25,18.98134232703097,-5.340485984403365,1,1,3
+musical-instruments,nc,taxpro-cl-FINAL-no_merge-temp0.15-gammacold5.0,True,main configuration,0.488485694347518,10.890885688906105,-2.760741417804502,1,1,6
+arts-crafts-and-sewing,nc,taxpro-cl-FINAL-no_merge-temp0.125-gammacold1.5-sameleaf0,True,main configuration,5.981308411214936,10.02495240208303,-3.8298571027950867,1,3,6
+amazon-book,lt_within_1,ablation-A3-epsilon_max0.4,False,epsilon_max=0.4,33.412698412698404,16.28992410280643,-3.551246466369906,1,1,3
+yelp2018,lt_within_1,taxpro-cl-FINAL-no_merge-temp0.125-tempuser0.15-gammacold1.5,True,main configuration,106.25,18.98134232703097,-5.340485984403365,1,1,3
+musical-instruments,lt_within_1,taxpro-cl-FINAL-no_merge-temp0.15-gammacold5.0,True,main configuration,0.488485694347518,10.890885688906105,-2.760741417804502,1,1,6
+arts-crafts-and-sewing,lt_within_1,taxpro-cl-FINAL-no_merge-temp0.125-gammacold1.5-sameleaf0,True,main configuration,5.981308411214936,10.02495240208303,-3.8298571027950867,1,3,6
+amazon-book,lt_within_2,ablation-A3-epsilon_max0.4,False,epsilon_max=0.4,33.412698412698404,16.28992410280643,-3.551246466369906,1,1,3
+yelp2018,lt_within_2,taxpro-cl-FINAL-no_merge-temp0.125-tempuser0.15-gammacold1.5,True,main configuration,106.25,18.98134232703097,-5.340485984403365,1,1,3
+musical-instruments,lt_within_2,taxpro-cl-FINAL-no_merge-temp0.15-gammacold5.0,True,main configuration,0.488485694347518,10.890885688906105,-2.760741417804502,1,1,6
+arts-crafts-and-sewing,lt_within_2,taxpro-cl-FINAL-no_merge-temp0.125-gammacold1.5-sameleaf0,True,main configuration,5.981308411214936,10.02495240208303,-3.8298571027950867,1,3,6
+amazon-book,lt_within_3,A2-V3-nowarm,False,warm_start_epochs=0.0,37.1269841269841,40.01704955484791,-6.176747819261196,1,1,3
+yelp2018,lt_within_3,taxpro-cl-FINAL-no_merge-temp0.125-tempuser0.15-gammacold1.5,True,main configuration,106.25,18.98134232703097,-5.340485984403365,1,1,3
+musical-instruments,lt_within_3,taxpro-cl-FINAL-no_merge-temp0.15-gammacold5.0,True,main configuration,0.488485694347518,10.890885688906105,-2.760741417804502,1,1,6
+arts-crafts-and-sewing,lt_within_3,taxpro-cl-FINAL-no_merge-temp0.125-gammacold1.5-sameleaf0,True,main configuration,5.981308411214936,10.02495240208303,-3.8298571027950867,1,3,6

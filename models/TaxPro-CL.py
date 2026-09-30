@@ -120,8 +120,7 @@ class TaxProCLImproved(nn.Module):
     (Sec 3.4/4.4), not "item-only".
 
     Self-contained: the base construction, `initialize_prototypes`,
-    `get_rating_for_test` and `checkpoint_metadata` logic live in this class
-    (git history keeps the earlier base class it was inlined from)."""
+    `get_rating_for_test` and `checkpoint_metadata` logic live in this class."""
 
     def __init__(self, config, dataset, device):
         super().__init__()
@@ -143,10 +142,11 @@ class TaxProCLImproved(nn.Module):
         self.prototype_init_scope = str(config.get("prototype_init_scope", "all_valid"))
         self.mixture_alpha = float(config.get("mixture_alpha", 0.5))
         self.symmetric_info_nce = _as_bool(config["symmetric_info_nce"])
-        # Three sensitivity-check flags for the prototype-construction ablation
-        # ("unique-item EMA"/"leave-one-out" variants, plus an asymmetric-view
-        # variant), each defaulting to the prior behavior, so every earlier
-        # run's config stays byte-for-byte reproducible when none are set.
+        # Three sensitivity-check flags for the prototype-construction variants
+        # (leaf_uniform, leave_one_out, and the asymmetric-view "rescue"
+        # variant; Online Resource 1, Section S14). Each defaults to the main
+        # configuration's behavior, so configurations that do not set them are
+        # unaffected.
         self.prototype_weighting = str(config.get("prototype_weighting", "interaction"))
         self.prototype_leave_one_out = _as_bool(config.get("prototype_leave_one_out", False))
         self.asymmetric_view_direction = _as_bool(config.get("asymmetric_view_direction", False))
@@ -213,17 +213,13 @@ class TaxProCLImproved(nn.Module):
         self.register_buffer("valid_taxonomy_mask", tensors["valid_taxonomy_mask"])
         self.register_buffer("train_observed_mask", tensors["train_observed_mask"])
         self.register_buffer("valid_train_mask", tensors["valid_train_mask"])
-        # A6 ablation ("EMA on/off; warm-mean vs all-item"):
-        # tracks which items actually appeared as a positive sample during the
-        # warm_start window, so initialize_prototypes() can optionally average
-        # only those ("warm_observed") instead of every valid-taxonomy item
-        # regardless of when it was seen ("all_valid", the pre-existing/default
-        # behavior -- unchanged, every prior run stays byte-identical).
-        # persistent=False: pure training-time tracking, always starts at
-        # all-False and gets rebuilt from scratch during warm_start -- must
-        # NOT be part of state_dict(), otherwise every checkpoint saved after
-        # this buffer was added would require it, breaking load_state_dict()
-        # for any older checkpoint trained before this buffer existed.
+        # prototype_init_scope="warm_observed" support: tracks which items
+        # appeared as a positive during the warm-start window, so that
+        # initialize_prototypes() can average only those instead of every
+        # valid-taxonomy item ("all_valid", the default used in every reported
+        # result). persistent=False: training-time state rebuilt during the
+        # warm-start, kept out of state_dict() so that checkpoints saved
+        # without this buffer still load.
         self.register_buffer(
             "warm_observed_mask",
             torch.zeros(dataset.num_items, dtype=torch.bool),
@@ -319,11 +315,9 @@ class TaxProCLImproved(nn.Module):
         if self.ssl_lambda_user < 0.0:
             raise ValueError("ssl_lambda_user must be non-negative")
 
-        # Decoupled from the item-side `temperature` so item-side sharpening
-        # (validated below) does not silently drag the user-side SSL loss away
-        # from SimGCL's own tuned value. Defaults to 0.2 (SimGCL's own
-        # temperature), which keeps configurations that predate this option
-        # reproducible.
+        # Separate from the item-side `temperature`, so the two InfoNCE terms
+        # can use different temperatures. Defaults to 0.2 (SimGCL's
+        # temperature), so configurations that do not set it are unaffected.
         self.temperature_user = float(config.get("temperature_user", 0.2))
         if self.temperature_user <= 0.0:
             raise ValueError("temperature_user must be positive")
@@ -382,10 +376,9 @@ class TaxProCLImproved(nn.Module):
     def aggregate(self, perturbed=False, view_id=None):
         """SimGCL-style aggregation: layer-0 excluded from the mean, each of
         GCN_layer propagation steps optionally perturbed independently.
-        Unperturbed calls (perturbed=False, the default) are byte-identical
-        in structure to SimGCL's clean pass and are used for BPR, prototype
-        initialization and evaluation -- exactly like the locked baseline's
-        single aggregate() was used for everything.
+        Unperturbed calls (perturbed=False, the default) have the same
+        structure as SimGCL's clean pass and are used for BPR, prototype
+        initialization and evaluation.
 
         view_id (used with asymmetric_view_direction): identifies
         which of the two perturbed passes this call is (0 or 1) so
@@ -413,16 +406,14 @@ class TaxProCLImproved(nn.Module):
         )
 
     def _perturb_users(self, all_embedding):
-        """SimGCL-identical isotropic noise
-        (`sign(e) * normalize(noise) * epsilon`, undivided per layer, exactly
-        matching models/SimGCL.py) applied only to the user slice. Users
-        carry no taxonomy attribute, so no taxonomy-derived direction exists
-        for them -- this is a separate, additive branch that recovers the
-        user-side half of SimGCL's SSL signal (SimGCL sums user_ssl_loss +
-        item_ssl_loss; TaxPro-CL previously had zero user-side term). Does
-        not touch the item taxonomy augmenter, which stays 100%
-        taxonomy-derived. Gated behind use_user_ssl (default False) so every
-        prior run's config stays byte-for-byte reproducible."""
+        """SimGCL's sign-aligned random perturbation
+        (`sign(e) * normalize(noise) * epsilon_user`, not divided by the layer
+        count, as in models/SimGCL.py), applied to the user slice only. Users
+        have no taxonomy attribute, so this branch supplies the user-side view
+        of SimGCL's two-sided InfoNCE (SimGCL sums user_ssl_loss +
+        item_ssl_loss); the item branch is unaffected. Enabled by use_user_ssl
+        (False in code, true in configure/TaxPro-CL.txt and in every reported
+        configuration)."""
         users, items = torch.split(
             all_embedding, [self.dataset.num_users, self.dataset.num_items]
         )
@@ -433,23 +424,19 @@ class TaxProCLImproved(nn.Module):
         return torch.cat([users, items])
 
     def _perturb_items(self, all_embedding, gcn_layers, view_id=None):
-        """Taxonomy-direction perturbation applied to the item slice of one
-        GCN layer's output. epsilon_max is divided by gcn_layers so the
-        cumulative displacement across all layers stays on the same scale
-        as the single-shot v1/v2 design (mitigates the over-smoothing risk
-        the source PDF itself flags for repeated same-direction pushes).
+        """Taxonomy-direction perturbation of the item slice of one
+        propagation layer's output (Eqs. 1-2 of the paper). epsilon_max is
+        divided by gcn_layers, so the nominal per-layer magnitudes sum to
+        epsilon_max over the L layers.
 
         view_id + asymmetric_view_direction: with
         augmentation_direction="taxonomy" (the main configuration), both
-        perturbed passes previously received the SAME deterministic
-        direction (Eq. 1), differing only in the scalar epsilon -- near-
-        colinear views, near-zero InfoNCE positive gradient (see A4
-        analysis). When asymmetric_view_direction=True, view 1 is forced to
-        the random/isotropic direction (same formula as
-        augmentation_direction="random" below) regardless of the configured
-        augmentation_direction, guaranteeing non-colinear views by
-        construction rather than by noisy isotropic_blend mixing (which was
-        tried and made Amazon-Book worse, not better)."""
+        perturbed passes use the same deterministic direction (Eq. 1) within
+        a training step and differ only in the sampled magnitude. With
+        asymmetric_view_direction=True (part of the "rescue" sensitivity
+        variant, Online Resource 1, Section S14), view 1 uses the random
+        direction of augmentation_direction="random" below instead, so the
+        two views are not colinear by construction."""
         users, items = torch.split(
             all_embedding, [self.dataset.num_users, self.dataset.num_items]
         )
@@ -457,14 +444,12 @@ class TaxProCLImproved(nn.Module):
         if self.asymmetric_view_direction and view_id == 1:
             effective_direction = "random"
         if effective_direction == "random":
-            # A2 control: a genuine isotropic random direction, independent
-            # of taxonomy/prototype -- reuses
-            # the exact SimGCL-identical recipe already used for
-            # isotropic_blend (sign(e) * normalize(noise), fresh per layer
-            # per view) instead of the prototype-relative direction below.
-            # valid_mask stays self.valid_train_mask so V0/V2 perturb the
-            # same item population as V1/V3 (Eq. (1) taxonomy variants);
-            # only the direction formula differs, isolating that one factor.
+            # Random-direction control (factorial variants V0/V2): SimGCL's
+            # sign-aligned random direction, sign(e) * normalize(noise), drawn
+            # fresh per layer and view, instead of the prototype-relative
+            # direction below. valid_mask stays self.valid_train_mask, so
+            # V0/V2 perturb the same items as V1/V3 and only the direction
+            # formula differs.
             noise = torch.rand_like(items)
             direction = torch.sign(items) * torch.nn.functional.normalize(
                 noise, dim=-1
@@ -473,15 +458,11 @@ class TaxProCLImproved(nn.Module):
         else:
             safe_leaf = self.item_to_leaf_id.clamp_min(0).long()
             if self.direction_source == "peer":
-                # peer variant: stochastic same-leaf peer target instead of the fixed EMA
-                # prototype -- independently resampled at every (layer, view)
-                # call, so the two views get genuinely different directions, not
-                # just different magnitudes along one shared axis. Still 100%
-                # taxonomy-derived (peer pool is leaf-membership only) and still
-                # single-level leaf taxonomy -- no parent/multi-level signal, no
-                # loss-term change, no gating: a different concrete
-                # instantiation of the same "taxonomy-guided view generator"
-                # mechanism, not a different one.
+                # direction_source="peer" (not used in the paper): a random
+                # same-leaf item replaces the EMA prototype as the target,
+                # resampled at every (layer, view) call, so the two views get
+                # different directions. The target is still defined by leaf
+                # membership only.
                 group_size = self.leaf_peer_group_size
                 safe_group_size = group_size.clamp_min(2)
                 offset = torch.randint(
@@ -506,16 +487,14 @@ class TaxProCLImproved(nn.Module):
             else:
                 target_prototype = self.prototype_bank.prototypes[safe_leaf]
                 if self.prototype_leave_one_out:
-                    # A3 "leave-one-out" variant: p_l is a
-                    # mean over N_l valid items in the leaf (support, fixed at
-                    # init -- see PrototypeBank.initialize); an item with a
-                    # small leaf can dominate its own prototype (A3 measured
-                    # this directly: leaf-size-1/2 items have median
-                    # ||p_l - e_i|| of 0.09-0.15 vs 1.5-2.4 for large leaves,
-                    # i.e. near self-reference). Closed-form leave-one-out:
+                    # leave_one_out variant (Online Resource 1, Section S14):
+                    # p_l averages the N_l valid items of the leaf (support
+                    # fixed at initialization, see PrototypeBank.initialize),
+                    # so an item in a small leaf can dominate its own
+                    # prototype. Closed-form leave-one-out:
                     # p_l^(-i) = (N_l * p_l - e_i) / (N_l - 1). Leaves with
-                    # N_l < 2 have no leave-one-out target at all; those items
-                    # are excluded via valid_mask below, not clamped here.
+                    # N_l < 2 have no leave-one-out target; those items are
+                    # excluded via valid_mask below, not clamped here.
                     leaf_support = self.prototype_bank.support[safe_leaf].to(
                         items.dtype
                     ).unsqueeze(1)
@@ -527,10 +506,9 @@ class TaxProCLImproved(nn.Module):
                     target_prototype - items, self.delta
                 )
             if self.prototype_mode == "mixture":
-                # Fixed convex mixture of leaf and parent prototype directions, mirroring
-                # the locked baseline's create_mixture_item_views() formula exactly
-                # -- alpha * d_leaf + (1-alpha) * d_parent, each normalized before
-                # blending. Still 100% taxonomy-derived, no isotropic component.
+                # Fixed convex mixture of leaf and parent prototype directions:
+                # alpha * d_leaf + (1-alpha) * d_parent, each normalized before
+                # blending; no random component.
                 safe_parent = self.item_to_parent_id.clamp_min(0).long()
                 parent_direction = _normalized_direction(
                     self.parent_prototype_bank.prototypes[safe_parent] - items, self.delta
@@ -541,14 +519,10 @@ class TaxProCLImproved(nn.Module):
                 )
                 valid_mask = self.valid_train_mask & self.valid_parent_train_mask
             elif self.prototype_mode == "parent":
-                # A5 ablation ("leaf vs parent granularity"):
-                # pure parent-level direction, no leaf blending. Mathematically
-                # identical to prototype_mode=mixture with mixture_alpha=0.0
-                # (0*leaf + 1*parent = parent) -- that combination was validated
-                # first (see ablation-A5-mixture-alpha0.0 run history) before this
-                # explicit, self-documenting mode was added so config_resolved.json
-                # reads "prototype_mode": "parent" directly instead of requiring a
-                # reader to know the mixture_alpha=0.0 equivalence.
+                # A5 (leaf vs. parent granularity): pure parent-level
+                # direction. Mathematically identical to prototype_mode=mixture
+                # with mixture_alpha=0.0; the explicit mode makes
+                # config_resolved.json state the granularity directly.
                 safe_parent = self.item_to_parent_id.clamp_min(0).long()
                 direction = _normalized_direction(
                     self.parent_prototype_bank.prototypes[safe_parent] - items, self.delta
@@ -567,22 +541,14 @@ class TaxProCLImproved(nn.Module):
                 # neighboring leaf's item from the sort-order fallback.
                 valid_mask = valid_mask & (self.leaf_peer_group_size >= 2)
         if self.isotropic_blend > 0.0:
-            # Mitigation for the two views becoming too close to collinear:
-            # blends a small SimGCL-identical isotropic component (same
-            # sign(e)*normalize(noise) recipe as _perturb_users/SimGCL.py,
-            # drawn fresh per layer per view call) into the *unit direction*,
-            # not added on top of it -- so the existing epsilon budget
-            # (adaptive-epsilon, per-layer division, etc.) is untouched and
-            # only the direction's composition changes. Only meaningfully
-            # needed for direction_source="prototype" (the fixed-target case
-            # that produces near-colinear views, cos~=0.925 between the two
-            # views with this mechanism); left general/orthogonal rather than
-            # special-cased so it composes with "peer" too if ever wanted.
-            # Explicitly NOT "100% taxonomy-derived" on the item side once
-            # isotropic_blend>0 -- a deliberate, disclosed departure from that
-            # standing constraint, gated behind isotropic_blend defaulting to
-            # 0.0 so every prior run's config stays byte-for-byte
-            # reproducible.
+            # isotropic_blend (sensitivity check, Online Resource 1, Section
+            # S8): mixes SimGCL's sign-aligned random component,
+            # sign(e) * normalize(noise), drawn fresh per layer and view, into
+            # the *unit direction* before the magnitude is applied, so the
+            # epsilon budget (adaptive scale, per-layer division) is unchanged
+            # and only the direction's composition changes. With
+            # isotropic_blend > 0 the item direction is no longer purely
+            # taxonomy-derived; the default 0.0 is the main configuration.
             noise = torch.rand_like(items)
             isotropic_direction = torch.sign(items) * torch.nn.functional.normalize(
                 noise, dim=-1
@@ -679,11 +645,10 @@ class TaxProCLImproved(nn.Module):
             need_perturbed_pass = valid_items.numel() >= 1 or self.use_user_ssl
             if need_perturbed_pass:
                 # Two independent perturbed passes through the full encoder,
-                # exactly mirroring SimGCL's forward(): aggregate(True) is
-                # called twice, each drawing fresh randomness at every layer.
-                # Same two passes serve both the item taxonomy CL view (v3-v7)
-                # and, when enabled, the v9 user-side SSL view -- no extra
-                # forward cost for turning use_user_ssl on.
+                # as in SimGCL's forward(): aggregate(True) is called twice,
+                # each drawing fresh randomness at every layer. The same two
+                # passes provide the item-side views and, when use_user_ssl is
+                # on, the user-side views.
                 user_embeddings_a, item_embeddings_a = self.aggregate(perturbed=True, view_id=0)
                 user_embeddings_b, item_embeddings_b = self.aggregate(perturbed=True, view_id=1)
 
@@ -699,14 +664,10 @@ class TaxProCLImproved(nn.Module):
                         (displacement_a.norm(dim=1), displacement_b.norm(dim=1))
                     )
                     identical_views = torch.all(view_a == view_b, dim=1)
-                    # Empirical stand-in for a "cos(view A, view B)"
-                    # diagnostic: with per-layer perturbation there
-                    # is no longer one direction vector to compare, so this
-                    # compares the two views' NET displacement from the
-                    # clean embedding instead. High mean here (~0.925 in the
-                    # near-colinear case) means the two views are near-
-                    # colinear -- a weak-positive-pull failure mode;
-                    # isotropic_blend>0 is meant to push this down.
+                    # Diagnostic: cosine between the two views' net
+                    # displacements from the clean embedding (per-layer
+                    # perturbation has no single direction vector to
+                    # compare). Values near 1 mean nearly colinear views.
                     nonzero_displacement = (
                         (displacement_a.norm(dim=1) > self.delta)
                         & (displacement_b.norm(dim=1) > self.delta)
@@ -730,9 +691,8 @@ class TaxProCLImproved(nn.Module):
                             "augmentation_norm_max": float(
                                 displacement.detach().max().item()
                             ),
-                            # No single direction vector to report any more --
-                            # direction is recomputed independently at each of
-                            # the GCN_layer perturbation points.
+                            # No single direction vector exists: the direction
+                            # is recomputed at each perturbed layer.
                             "augmentation_direction_cosine_min": None,
                             "identical_view_fraction": float(
                                 identical_views.float().mean().detach().item()
@@ -846,14 +806,11 @@ class TaxProCLImproved(nn.Module):
         return metadata
 
     def effective_config(self):
-        # Readable, filtered view of the config that actually drives this run's
-        # behavior -- filters out only mode-gated fields that are dead weight
-        # for the current settings (e.g. mixture_alpha when prototype_mode !=
-        # "mixture"), which makes reading a training.log harder than it needs
-        # to be once a config is locked in for ablations. Infra/always-used
-        # parameters (batch size, learning rate, worker count, ...) are NOT
-        # dead weight -- they are genuinely read every run -- so they stay
-        # here too instead of being silently dropped from the log.
+        # Filtered view of the configuration that drives this run, written to
+        # training.log: mode-gated fields that are inactive for the current
+        # settings (e.g. mixture_alpha when prototype_mode != "mixture") are
+        # left out; parameters read on every run (batch size, learning rate,
+        # worker count, ...) are always included.
         config = {
             "dataset_path": str(self.config["dataset_path"]),
             "evaluation_protocol_path": str(self.config["evaluation_protocol_path"]),

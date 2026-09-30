@@ -4,7 +4,7 @@ file's Data-availability declaration ("the runs underlying Table 7 (deltas)")
 covers all of Table 7's method blocks, not only the SimGCL block.
 
 Pure export/re-analysis: no retraining, no re-inference. Sources:
-- results/week6/mid_tail_degree6_10.json for near_cold/long_tail
+- results/mid_tail_degree6_10.json for near_cold/long_tail
   (already the official checkpoint-resolved per-seed source used by
   tools/analysis/main_results_table.py for Table S1/Table 7).
 - each of those same checkpoints' own final_test_group_metrics.json for
@@ -17,7 +17,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-MID_TAIL_FILE = ROOT / "results" / "week6" / "mid_tail_degree6_10.json"
+MID_TAIL_FILE = ROOT / "results" / "mid_tail_degree6_10.json"
 METRICS_SEED_CSV = ROOT / "results" / "metrics_seed.csv"
 
 DATASETS = ["amazon-book", "yelp2018", "musical-instruments", "arts-crafts-and-sewing"]

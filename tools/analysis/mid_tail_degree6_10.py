@@ -16,7 +16,7 @@ this module asserts that per user before evaluating anything.
 Nothing is retrained. Per-user full-catalog rankings are not persisted by the
 training pipeline (only aggregated final_test_group_metrics.json is), so they
 are regenerated with one inference pass per checkpoint, reusing
-tests/Recommendation_system/inference.py's checkpoint loader and scorer
+tools/ranking/inference.py's checkpoint loader and scorer
 unchanged. The same regenerated rankings are also scored against the existing
 near_cold/long_tail targets and diffed against each run's own on-disk
 final_test_group_metrics.json; a large diff there means the inference-reuse
@@ -51,7 +51,7 @@ from config_path.config_path import (
     evaluation_protocol_dir,
     relative_to_project,
 )
-from tests.Recommendation_system import checkpoint_selection, inference
+from tools.ranking import checkpoint_selection, inference
 from utility.utility_train.group_evaluator import evaluate_target_slice
 
 logger = logging.getLogger("mid_tail")
@@ -92,7 +92,7 @@ KS = (10, 20)
 # round-tripping of float64.
 CROSS_CHECK_TOLERANCE = 1e-12
 
-OUTPUT_PATH = RESULT_DIR / "week6" / "mid_tail_degree6_10.json"
+OUTPUT_PATH = RESULT_DIR / "mid_tail_degree6_10.json"
 
 
 # --------------------------------------------------------------------------
@@ -238,7 +238,7 @@ def compute_rankings(model, dataset, device, users, batch_size, max_k):
     ~1e-5 level, which would blunt the cross-check. The genuinely hard,
     model-class-specific part -- loading a checkpoint for any of the six
     architectures -- is still reused unchanged from
-    tests.Recommendation_system.inference.load_model.
+    tools.ranking.inference.load_model.
     """
     rankings = {}
     total = len(users)

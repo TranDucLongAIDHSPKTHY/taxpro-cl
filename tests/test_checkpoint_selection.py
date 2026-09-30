@@ -5,8 +5,8 @@ import json
 
 import pytest
 
-from tests.Recommendation_system import checkpoint_selection as cs
-from tests.Recommendation_system import config
+from tools.ranking import checkpoint_selection as cs
+from tools.ranking import config
 
 
 def _make_run(root, relative, selection_value):

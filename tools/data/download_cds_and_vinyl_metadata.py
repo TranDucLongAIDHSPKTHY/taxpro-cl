@@ -6,8 +6,7 @@ Mirrors download.py's download_metadata loop over AMAZON_METADATA_URLS
 (the Books-only alias that function is hardwired to), parameterized instead
 by AMAZON_CATEGORY_METADATA_URLS[CDS_AND_VINYL_DATASET_NAME] -- the same
 extension point build_arts_crafts_and_sewing_metadata.py /
-build_musical_instruments_metadata.py rely on. Zero lines of download.py
-are modified.
+build_musical_instruments_metadata.py rely on.
 """
 from __future__ import annotations
 

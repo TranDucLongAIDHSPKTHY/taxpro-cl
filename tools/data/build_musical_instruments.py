@@ -1,27 +1,18 @@
-"""Build the musical-instruments dataset (third dataset candidate, after
-video-games was rejected for having too thin a taxonomy -- median 1 item per
-leaf category) from raw Amazon 5-core reviews.
+"""Build the musical-instruments dataset (Protocol B) from the McAuley Lab Amazon Review
+Data (2018) 5-core file Musical_Instruments_5.json, downloaded and decompressed manually
+and passed with --reviews-file (see README, Data Bootstrap).
 
-Self-contained, additive-only companion to build_splits.py: this file exists
-specifically so amazon-book/yelp2018's pipeline files never need to be
-touched. It imports and reuses build_splits.py's pure helper functions
-(iterative_k_core, sha256_file, the atomic-write helpers) instead of
-duplicating them, but owns its own dataset name, paths, and split ratio --
-none of which build_splits.py's DATASETS tuple / hardcoded 0.1
-validation_ratio could express without editing that shared file.
+Companion to build_splits.py, which handles the pre-split amazon-book and
+yelp2018 files: it reuses build_splits.py's helpers (iterative_k_core,
+sha256_file, the atomic-write helpers) and adds this dataset's name, paths and
+split ratio. Pipeline: deduplicate (user, item) pairs, remap IDs, re-verify
+the 5-core property with iterative_k_core, then one deterministic per-user
+70/10/20 shuffle-split (one seeded RNG over users in sorted order; split seed
+42). There is no second k-core pass after the split.
 
-Pipeline (same policy as build_video_games.py before it): download the
-5-core Musical_Instruments review file directly from McAuley Lab (5-core
-filtering already applied upstream), verify 5-core holds after our own ID
-remap, then do ONE deterministic per-user 70/10/20 shuffle-split (single
-seeded RNG reused across users, sorted-user iteration order -- same "one RNG
-per dataset" policy build_splits.py documents for its own validation carve).
-No second k-core re-filter pass after the split.
-
-Outputs, mirroring the amazon-book/yelp2018/video-games two-stage convention:
+Outputs:
     dataset/musical-instruments/{train,test,item_list,user_list}.txt
-    dataset_verify/musical-instruments/{train,validation,test}.txt + split_manifest.json
-"""
+    dataset_verify/musical-instruments/{train,validation,test}.txt + split_manifest.json"""
 
 from __future__ import annotations
 

@@ -23,6 +23,12 @@ results/*
 !results/statistical_tests_*.csv
 # Per-user differences behind the sign-flip p-values of Online Resource 1, Table S26.
 !results/a2_multiplicity_peruser_diffs.npz
+# Evidence CSVs cited by Online Resource 1 (Tables S13e, S13g-S13h, S35-S35c);
+# results/README.md lists them.
+!results/factorial_pvalues.csv
+!results/s35_*.csv
+!results/yelp_factorial_hits.csv
+!results/yelp_lt_decomposition.csv
 # Pre-registered confirmatory evaluation (docs/confirmatory_protocol.md):
 # screening outputs, the frozen selection file and, later, sealed-test results.
 !results/confirmatory/

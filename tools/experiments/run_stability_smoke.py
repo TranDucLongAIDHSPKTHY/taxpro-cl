@@ -35,7 +35,7 @@ def parse_args(argv=None):
     parser.add_argument(
         "--output",
         type=Path,
-        default=ROOT / "results" / "smoke_stability" / "week5_smoke.json",
+        default=ROOT / "results" / "smoke_stability" / "stability_smoke.json",
     )
     return parser.parse_args(argv)
 

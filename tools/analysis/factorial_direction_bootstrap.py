@@ -54,7 +54,7 @@ if str(ROOT) not in sys.path:
 
 from config_path.config_path import RESULT_DIR, evaluation_protocol_dir
 from utility.utility_train.group_evaluator import load_targets
-from tests.Recommendation_system.inference import load_model, compute_batch_order_and_rank
+from tools.ranking.inference import load_model, compute_batch_order_and_rank
 
 SEEDS = ["42", "0", "1"]
 GROUPS = ["near_cold", "long_tail", "overall", "warm"]
@@ -144,8 +144,8 @@ def pool_diffs_across_seeds(pooled_by_user):
 
     Worked example: user 1 has
     per-seed diffs [1, 1, 1], user 2 has [-1, -1, -1]. Pooling naively by
-    appending every (user, seed) pair into one flat list -- the bug this
-    function fixes -- would treat that as 6 independent observations,
+    appending every (user, seed) pair into one flat list -- which this
+    function avoids -- would treat that as 6 independent observations,
     3 of value +1 and 3 of value -1. Pooling correctly per user first
     collapses it to exactly 2 observations, +1 and -1 (see
     tests/test_factorial_direction_bootstrap.py).

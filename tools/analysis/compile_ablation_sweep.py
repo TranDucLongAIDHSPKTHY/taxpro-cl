@@ -22,7 +22,7 @@ def parse_args(argv=None):
     parser.add_argument(
         "--log-root", type=Path, default=ROOT / "log" / "p0" / "taxprocl"
     )
-    parser.add_argument("--output-dir", type=Path, default=ROOT / "results" / "week6")
+    parser.add_argument("--output-dir", type=Path, default=ROOT / "results")
     return parser.parse_args(argv)
 
 
@@ -202,8 +202,8 @@ def main(argv=None):
         "augmentation_direction", "run_type", "group", "metric", "k", "n_seeds",
         "mean", "std", "complete_three_seeds",
     )
-    write_csv(args.output_dir / "week6_raw_results.csv", raw, raw_fields)
-    write_csv(args.output_dir / "week6_summary_results.csv", summary, summary_fields)
+    write_csv(args.output_dir / "ablation_raw_results.csv", raw, raw_fields)
+    write_csv(args.output_dir / "ablation_summary_results.csv", summary, summary_fields)
     support_fields = (
         "study", "config_id", "dataset", "seed", "taxonomy_policy",
         "taxonomy_granularity", "epsilon_max", "temperature",
@@ -211,12 +211,12 @@ def main(argv=None):
         *SUPPORT_FIELDS, "artifact_path",
     )
     write_csv(
-        args.output_dir / "week6_support_counts.csv",
+        args.output_dir / "ablation_support_counts.csv",
         supports,
         support_fields,
     )
     write_csv(
-        args.output_dir / "week6_incomplete_runs.csv",
+        args.output_dir / "ablation_incomplete_runs.csv",
         incomplete,
         ("artifact_path", "reason"),
     )

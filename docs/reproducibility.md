@@ -4,7 +4,7 @@
 
 A machine without a GPU is enough for code changes, CPU unit tests, metadata
 preparation, validation, and result compilation. The paper's training runs used
-two environments, recorded per run in `environment.json` and tabulated in the
+three environments, identified per run from its `training.log` and tabulated in the
 paper's Online Resource 1 (Table S23):
 
 - Environment A (most runs): Windows 10, Intel Core i5 12th generation CPU,
@@ -12,10 +12,14 @@ paper's Online Resource 1 (Table S23):
   CUDA 12.1 (the versions pinned in `requirements.txt`).
 - Environment B (a subset of the Amazon-Book runs): Linux, NVIDIA RTX 3090 Ti,
   Python 3.10.20, PyTorch 2.6.0+cu124, CUDA 12.4.
+- Environment C (part of the CDs-and-Vinyl comparison of Online Resource 1,
+  Section S30 only): a cloud notebook with an NVIDIA Tesla T4, Python 3.13.15,
+  PyTorch 2.11.0+cu130.
 
 Hyperparameters, seeds, data splits, and evaluation code are identical across
-the two; results agree to floating-point differences (Online Resource 1,
-Section S23).
+environments. An independent run of the Amazon-Book main configuration on
+Environment B agrees with the Environment A run to within 0.26% on every
+reported group metric (Online Resource 1, Section S23).
 
 ## Determinism
 
@@ -74,7 +78,7 @@ Seeds fix the Python, NumPy and PyTorch random number generators. PyTorch's
 deterministic-algorithm mode and the cuDNN deterministic flag are not enabled,
 so runs are not expected to be bitwise reproducible across GPUs, operating
 systems or library versions; the reported means and spreads come from three
-seeds on two documented environments. Set `TAXPRO_OUTPUT_ROOT` to an empty
+seeds on the documented environments. Set `TAXPRO_OUTPUT_ROOT` to an empty
 directory to keep a reproduction run apart from any existing `log/` tree; the
 checkpoint resolver additionally ignores exploratory `A7-*` families and fails
 on an unpinned choice between several canonical families.

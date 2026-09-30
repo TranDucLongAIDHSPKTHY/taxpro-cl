@@ -3,7 +3,7 @@ the train-time degree
 definition (used everywhere else in the paper) AND the pre-split pool
 degree definition (train+validation for Protocol A; train+validation+test
 for Protocol B) -- i.e. "intrinsically" sparse items, excluding the
-split-carve artifact documented in Online Resource 1 Table S24.
+split-carve artifact documented in Online Resource 1 Table S21.
 
 Reuses the exact same checkpoints, evaluation protocol, and bootstrap
 procedure as tools/analysis/seed_matched_bootstrap.py (which produced
@@ -12,7 +12,7 @@ only -- no retraining.
 
 Sanity check: this script also reports, per dataset, the artifact rate it
 computes independently (items in train-degree Near-Cold whose pool degree
-is >5), which must match Online Resource 1 Table S24's published
+is >5), which must match Online Resource 1 Table S21's published
 percentages before its bootstrap output can be trusted.
 """
 from __future__ import annotations
@@ -26,7 +26,7 @@ import numpy as np
 import torch
 
 from config_path.config_path import evaluation_protocol_dir, verified_dataset_dir
-from tests.Recommendation_system import inference
+from tools.ranking import inference
 from utility.utility_train.group_evaluator import load_targets
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -41,7 +41,7 @@ PROTOCOL_B = {"musical-instruments", "arts-crafts-and-sewing"}
 
 DATASETS = ["amazon-book", "yelp2018", "musical-instruments", "arts-crafts-and-sewing"]
 
-# Published Table S24 artifact rates (train-degree Near-Cold items whose
+# Published Table S21 artifact rates (train-degree Near-Cold items whose
 # pool degree > 5), used only as a sanity check on this script's own
 # independently-computed item-degree counts.
 PUBLISHED_ARTIFACT_RATE = {
@@ -95,7 +95,7 @@ def intrinsic_item_sets(train_degree, pool_degree):
 
 
 def artifact_rate_check(train_degree, pool_degree):
-    """Independent recomputation of the Table S24 Near-Cold artifact rate."""
+    """Independent recomputation of the Table S21 Near-Cold artifact rate."""
     near_cold_items = [item for item, deg in train_degree.items() if 1 <= deg <= 5]
     if not near_cold_items:
         return None
@@ -258,7 +258,7 @@ def parse_args(argv=None):
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--batch-size", type=int, default=256)
     parser.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
-    parser.add_argument("--output", type=Path, default=ROOT / "results" / "a1_intrinsic_sparsity_bootstrap.json")
+    parser.add_argument("--output", type=Path, default=ROOT / "results" / "intrinsic_sparsity_bootstrap.json")
     return parser.parse_args(argv)
 
 

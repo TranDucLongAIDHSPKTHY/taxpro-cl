@@ -1,14 +1,17 @@
 """Bootstrap 95% CI on per-user paired Recall@20 difference (TaxPro-CL vs a
 baseline), for Near-Cold and Long-Tail, built directly from
-tests/Recommendation_system/result/ranking_details.csv (already-computed
-live inference from checkpoints -- no retraining needed). This is the
-paper's primary statistical-significance evidence (Section 5.3): it has far
+tools/ranking/result/ranking_details.csv (already-computed
+live inference from checkpoints -- no retraining needed). It has far
 higher power than the n=3 paired-seed Wilcoxon test (tools/analysis/
 statistics.py) since it resamples thousands of users instead of 3 seeds, and
 it covers every dataset regardless of whether per-seed training logs still
 exist on disk.
 
-Scope note (see the paper's Section 5.3/5.4 for the full disclosure): this
+Superseded for main paper Table 11 by tools/analysis/seed_matched_bootstrap.py,
+which pairs same-seed checkpoints (42-42, 0-0, 1-1); this earlier version is
+kept for reference only.
+
+Scope note (main paper Section 5.6): this
 CI is checkpoint-conditional. Each model contributes exactly one checkpoint
 (its best-validation checkpoint among the seeds trained), not necessarily
 matching seeds across models, so the interval measures per-user sampling
@@ -34,7 +37,7 @@ def parse_args(argv=None):
     parser.add_argument(
         "--input",
         type=Path,
-        default=ROOT / "tests" / "Recommendation_system" / "result" / "ranking_details.csv",
+        default=ROOT / "tools" / "ranking" / "result" / "ranking_details.csv",
     )
     parser.add_argument("--baseline", default="SimGCL", help="Baseline column value to filter on")
     parser.add_argument("--k", type=int, default=20)
@@ -43,7 +46,7 @@ def parse_args(argv=None):
     parser.add_argument(
         "--output",
         type=Path,
-        default=ROOT / "results" / "week6" / "bootstrap_ci_per_user.json",
+        default=ROOT / "results" / "bootstrap_ci_per_user.json",
     )
     return parser.parse_args(argv)
 

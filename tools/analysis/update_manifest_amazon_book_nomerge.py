@@ -1,15 +1,12 @@
-"""GVHD V6 review, point A1: the Amazon-Book no_merge V0-V3 factorial
-(log/p0/taxprocl/amazon-book/A2-V{0,1,2,3}) was marked "NOT REPORTED ...
-superseded by the merge_t10 runs" in results_manifest.csv when the
-manuscript body dropped it. It is restored in V63 (Online Resource 1,
-Tables S13c-S13e), so this script updates those 12 rows' used_in_tables
-field in place -- no rows added or removed, no other field touched.
+"""Set the used_in_tables field of the 12 Amazon-Book no_merge V0-V3 rows
+(log/p0/taxprocl/amazon-book/A2-V{0,1,2,3}) in results/results_manifest.csv
+to the Online Resource 1 tables that report them (Tables S13c-S13e). Only that
+field of those rows is changed; no rows are added or removed.
 
-Idempotent: running it again on an already-updated manifest is a no-op.
+Idempotent: running it again on an updated manifest is a no-op.
 
 Usage:
-    python -m tools.analysis.update_manifest_a1_nomerge_restored
-"""
+    python -m tools.analysis.update_manifest_amazon_book_nomerge"""
 from __future__ import annotations
 
 import csv

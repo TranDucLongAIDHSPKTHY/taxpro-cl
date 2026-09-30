@@ -5,8 +5,9 @@
 TaxPro-CL is a research codebase for studying taxonomy-aware item
 perturbations in graph collaborative filtering. The method augments a LightGCN
 encoder with train-locked taxonomy guidance and an item-level InfoNCE objective
-to improve representation learning while preserving a strict validation-first
-evaluation protocol.
+to improve representation learning for sparsely observed items, with
+validation-based checkpoint selection and a single full-catalog test
+evaluation per run.
 
 ## Overview
 
@@ -29,23 +30,25 @@ This implementation provides:
   variant, referred to as "SGL-ED" in the paper), SimGCL, NCL, and XSimGCL. The
   paper's main comparison table (6 models) uses LightGCN, SGL-ED, SimGCL,
   XSimGCL, NCL, and TaxPro-CL, each with 3 seeds (42, 0, 1) on all 4 datasets,
-  completed 2026-09-05. LightGCL is discussed in the paper's Related Work as a
-  literature comparison only (Table 1) and was never part of this repository's
-  experimental scope.
+  completed 2026-09-05. LightGCL appears in the paper only as a literature
+  comparison (Related Work, Table 1) and is not implemented in this repository.
 - Overall and groupwise evaluation for Near-cold, Long-tail, and Warm items.
-- Checkpoint selection on validation Recall@20 Overall, followed by a single
-  full-catalog test evaluation (test data is never used to pick a taxonomy
-  policy, hyperparameter, epoch, or checkpoint).
+- Checkpoint selection and early stopping on validation Overall Recall@20,
+  followed by a single full-catalog test evaluation. The test split plays no
+  role in epoch or checkpoint selection. As the paper discloses (Section 4.3,
+  Limitation 10), TaxPro-CL's configuration and taxonomy policies were chosen
+  during development with test-split metrics in view.
 - Experiment runners for policy screening, main multi-seed runs, and the
   A1-A7 ablation and sensitivity checks.
 
 ## Installation
 
-Requires Python 3.10. The paper's runs used two environments (recorded per run
-in `environment.json` and summarized in Online Resource 1, Table S23): most
+Requires Python 3.10. The paper's runs used two local environments (identified per run
+from its `training.log` and summarized in Online Resource 1, Table S23): most
 runs Python 3.10.0 / PyTorch 2.1.0+cu121 / Windows 10 / RTX 4060 Ti (the
 versions pinned in `requirements.txt`), and a subset of the Amazon-Book runs
-Python 3.10.20 / PyTorch 2.6.0+cu124 / Linux / RTX 3090 Ti. From a fresh clone:
+Python 3.10.20 / PyTorch 2.6.0+cu124 / Linux / RTX 3090 Ti; part of the
+CDs-and-Vinyl comparison (Online Resource 1, Section S30) ran on a cloud notebook. From a fresh clone:
 
 ```powershell
 python -m venv .venv
@@ -90,10 +93,11 @@ Outputs); delete it afterwards, it is not a paper result.
 
 This repository implements the six-model main comparison, the A1-A6
 ablation and sensitivity checks, and the RQ5 direction-by-magnitude factorial
-reported in the paper. A7, the supplementary comparable-budget grid, is an
-exploratory extra outside the paper's evidentiary claims and was incomplete at
-the time of writing (see `tools/experiments/run_a7_full_grid.py`). This
-repository does **not** implement sibling loss, gating, or multi-level
+reported in the paper, the A7 comparable-budget grid for SimGCL and XSimGCL
+(complete on all four datasets; the NCL part was not completed and is not
+reported), and the pre-registered held-out evaluation on Office-Products
+(`docs/confirmatory_protocol.md`; see Pre-Registered Held-Out Evaluation below).
+This repository does **not** implement sibling loss, gating, or multi-level
 prototype memory; the taxonomy-guided direction and degree-adaptive magnitude
 described in the paper's Method section are the full extent of the mechanism
 evaluated here.
@@ -124,18 +128,20 @@ downstream group/evaluation logic. All 4 datasets use split seed 42.
 The immutable model-ready splits are stored in `dataset_verify/`. Item groups
 are defined exclusively from training degree:
 
-| Group     | Definition                         |
-| --------- | ---------------------------------- |
-| Near-cold | 1-5 training interactions          |
-| Long-tail | 1-10 training interactions         |
-| Warm      | More than 10 training interactions |
+| Group            | Definition                         |
+| ---------------- | ---------------------------------- |
+| Strict-Cold (SC) | 0 training interactions            |
+| Near-Cold (NC)   | 1-5 training interactions          |
+| Mid-Tail (MT)    | 6-10 training interactions         |
+| Long-Tail (LT)   | 1-10 training interactions (NC + MT) |
+| Warm (Wm)        | More than 10 training interactions |
+| Overall          | SC + LT + Wm                       |
 
-Near-cold is a subset of Long-tail; Long-tail and Warm are disjoint and
-together cover every item with at least one test interaction (their union is
-what the paper reports as "Overall"). All group metrics retain the complete
-item catalog and restrict only the relevant target positives for the group.
-Test data must not be used to select taxonomy policy, hyperparameters, epochs,
-or checkpoints.
+Near-Cold is a subset of Long-Tail. Overall covers every item with at least
+one test interaction, including Strict-Cold items, which the item-side
+mechanism cannot steer (zero direction). All group metrics rank the complete
+item catalog and restrict only which test positives count for the group.
+The code never uses test metrics to choose an epoch or a checkpoint.
 
 ## Models
 
@@ -218,8 +224,9 @@ covered); A5 compares the default leaf-level taxonomy prototype against a
 parent-level one. A3-A5 run on Amazon-Book only. A6 (same-leaf soft-positive
 weight, Arts-Crafts-and-Sewing) is listed above under TaxPro-CL main results,
 since it is a one-flag variant of that dataset's main command. A7
-(comparable-budget SimGCL/XSimGCL/NCL grid, supplementary to the paper's
-default-hyperparameter scope) is a long-running orchestrator rather than a
+(comparable-budget SimGCL/XSimGCL grid on the four datasets, temperature
+{0.05, 0.10, 0.15, 0.20} x epsilon {0.05, 0.10, 0.20}, 3 seeds; the NCL grid was
+not completed and is not reported) is a long-running orchestrator rather than a
 single command: `python -m tools.experiments.run_a7_full_grid` runs the whole
 grid (idempotent; completed cells are skipped and interrupted cells resume from
 `last_model.pt`), and `python -m tools.experiments.run_a7_simgcl_amazonbook_remaining`
@@ -248,6 +255,37 @@ python main.py --model TaxPro-CL --dataset amazon-book --temperature 0.20 --seed
 python main.py --model TaxPro-CL --dataset amazon-book --prototype_mode parent --seeds 42 0 1
 ```
 
+### Pre-Registered Held-Out Evaluation (Office-Products)
+
+The protocol `docs/confirmatory_protocol.md` was frozen before the data of the
+new dataset were built; its SHA-256 and those of its two logged deviations are in
+`docs/confirmatory_protocol*.sha256`. Every run of this evaluation is trained with
+`TAXPRO_DEFER_TEST=1`, so no test metric is computed during training; the test
+split is opened once, after the validation-only selections are frozen in
+`results/confirmatory/confirmatory_selection.json`.
+
+```powershell
+# 1. Screening (data statistics only, no model) and data build (Protocol B)
+python -m tools.data.screen_confirmatory_candidates Office_Products_5.json.gz --out screening_office_products.json
+python -m tools.data.build_office_products --reviews-file <path-to-decompressed-Office_Products_5.json>
+python -m tools.data.download_office_products_metadata
+python -m tools.data.build_office_products_metadata
+python -m tools.data.build_office_products_taxonomy
+
+# 2. Validation-only selection (policy, TaxPro-CL grid, SimGCL grid), factorial
+#    controls, and default baselines; writes confirmatory_selection.json + SHA-256
+python -m tools.experiments.run_confirmatory --dataset office-products
+
+# 3. Open the test split once for the selected runs
+python -m tools.experiments.evaluate_sealed_test --selection results/confirmatory/confirmatory_selection.json
+
+# 4. Analyses (Table 12; Online Resource 1, Section S36)
+python -m tools.analysis.confirmatory_analysis --dataset office-products
+python -m tools.analysis.confirmatory_six_methods --dataset office-products
+python -m tools.analysis.confirmatory_peruser --dataset office-products
+python -m tools.analysis.update_manifest_confirmatory
+```
+
 ## Main Results (Recall@20, Mean±Std over 3 seeds: 42, 0, 1)
 
 Current comparison: 6 models x 4 datasets (baselines LightGCN, SGL-ED, SimGCL,
@@ -268,16 +306,16 @@ hyperparameters + --training_epochs 200, no per-dataset tuning sweep).
 | **NCL** | 0.0008±0.0001 | 0.0000±0.0000 | 0.0013±0.0004 | 0.0082±0.0004 | 0.0030±0.0001 | 0.0009±0.0001 | 0.0057±0.0011 | 0.0170±0.0011 |
 | **TaxPro-CL** | **0.0037±0.0001** | **0.0004±0.0001** | **0.0085±0.0002** | **0.0113±0.0007** | **0.0059±0.0001** | **0.0033±0.0001** | **0.0165±0.0004** | 0.0221±0.0005 |
 
-#### Overall (Ov) and Warm (Wm)
+#### Warm (Wm) and Overall
 
-| Model | Amazon-Book (Ov) | Yelp2018 (Ov) | Musical-Instruments (Ov) | Arts-Crafts-and-Sewing (Ov) | Amazon-Book (Wm) | Yelp2018 (Wm) | Musical-Instruments (Wm) | Arts-Crafts-and-Sewing (Wm) |
+| Model | Amazon-Book (Wm) | Yelp2018 (Wm) | Musical-Instruments (Wm) | Arts-Crafts-and-Sewing (Wm) | Amazon-Book (Overall) | Yelp2018 (Overall) | Musical-Instruments (Overall) | Arts-Crafts-and-Sewing (Overall) |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **LightGCN** | 0.0402±0.0002 | 0.0620±0.0002 | 0.1860±0.0004 | 0.1776±0.0008 | 0.0529±0.0002 | 0.0726±0.0002 | 0.2448±0.0005 | 0.2381±0.0014 |
-| **SGL-ED** | 0.0438±0.0006 | 0.0662±0.0002 | 0.1867±0.0014 | **0.1898±0.0007** | 0.0574±0.0007 | 0.0778±0.0002 | 0.2458±0.0017 | **0.2554±0.0010** |
-| **SimGCL** | **0.0472±0.0005** | 0.0708±0.0005 | 0.1811±0.0005 | 0.1750±0.0009 | **0.0608±0.0007** | 0.0826±0.0006 | 0.2378±0.0006 | 0.2356±0.0010 |
-| **XSimGCL** | 0.0472±0.0003 | **0.0711±0.0004** | **0.1957±0.0005** | 0.1848±0.0004 | 0.0606±0.0005 | **0.0831±0.0006** | **0.2604±0.0010** | 0.2518±0.0006 |
-| **NCL** | 0.0409±0.0002 | 0.0660±0.0004 | 0.1888±0.0004 | 0.1737±0.0012 | 0.0532±0.0003 | 0.0770±0.0005 | 0.2523±0.0007 | 0.2348±0.0022 |
-| **TaxPro-CL** | 0.0457±0.0003 | 0.0670±0.0004 | 0.1761±0.0012 | 0.1683±0.0011 | 0.0587±0.0004 | 0.0781±0.0004 | 0.2301±0.0018 | 0.2246±0.0015 |
+| **LightGCN** | 0.0529±0.0002 | 0.0726±0.0002 | 0.2448±0.0005 | 0.2381±0.0014 | 0.0402±0.0002 | 0.0620±0.0002 | 0.1860±0.0004 | 0.1776±0.0008 |
+| **SGL-ED** | 0.0574±0.0007 | 0.0778±0.0002 | 0.2458±0.0017 | **0.2554±0.0010** | 0.0438±0.0006 | 0.0662±0.0002 | 0.1867±0.0014 | **0.1898±0.0007** |
+| **SimGCL** | **0.0608±0.0007** | 0.0826±0.0006 | 0.2378±0.0006 | 0.2356±0.0010 | **0.0472±0.0005** | 0.0708±0.0005 | 0.1811±0.0005 | 0.1750±0.0009 |
+| **XSimGCL** | 0.0606±0.0005 | **0.0831±0.0006** | **0.2604±0.0010** | 0.2518±0.0006 | 0.0472±0.0003 | **0.0711±0.0004** | **0.1957±0.0005** | 0.1848±0.0004 |
+| **NCL** | 0.0532±0.0003 | 0.0770±0.0005 | 0.2523±0.0007 | 0.2348±0.0022 | 0.0409±0.0002 | 0.0660±0.0004 | 0.1888±0.0004 | 0.1737±0.0012 |
+| **TaxPro-CL** | 0.0587±0.0004 | 0.0781±0.0004 | 0.2301±0.0018 | 0.2246±0.0015 | 0.0457±0.0003 | 0.0670±0.0004 | 0.1761±0.0012 | 0.1683±0.0011 |
 
 Source: `log/p0/baseline/<model>/<dataset>/` and `log/p0/taxprocl/<dataset>/`
 (`final_test_group_metrics.json` per seed). Run
@@ -299,21 +337,34 @@ entry points are:
 
 | Paper item | Script (`python -m tools.analysis.<name>`) |
 | --- | --- |
-| Main results tables, Online Resource 1 Table S1 | `mid_tail_degree6_10`, then `main_results_table` |
-| Table 11 (per-user bootstrap TaxPro-CL vs. SimGCL), Table S6 | `seed_matched_bootstrap` |
-| Multiplicity-corrected inference (Table S26: sign-flip randomization test, Holm-Bonferroni) | `a2_multiplicity_correction` |
-| Re-check restricted to pool-confirmed sparse items (Table S25) | `intrinsic_sparsity_bootstrap` |
-| RQ5 factorial: direction, epsilon-adaptivity, interaction, warm-start removal (Tables 8-9, S13, S17, S19, S20, S27; Figure 2) | Amazon-Book: `a2_mergedt10_factorial_recompute`; other datasets: `factorial_direction_bootstrap`, `factorial_interaction_bootstrap`, `warmstart_removal_bootstrap`; NDCG@20 companions: `b1_factorial_ndcg`, `b1_epsilon_ndcg`; figure: `regenerate_fig3_factorial_forest` |
-| Amazon-Book `no_merge` policy-sensitivity check + Holm-Bonferroni for the RQ5 factorial (Tables S13c-S13e, V63) | `a1a2_factorial_multiplicity` |
-| Prototype-construction variants (Tables 10, S14, S14b, S14c) | `leaf_variants_bootstrap`, `rescue_vs_variants_bootstrap`, `b1_prototype_ndcg`, `b2_prototype_variant_overlap` |
-| A5 leaf vs. parent, policy-matched (Tables S7, S7b) | `a5_leaf_vs_parent_mergedt10` |
-| Leaf-size distribution (Table S15), prototype-to-embedding distance (Table S16), degree transition (Table S21) | `leaf_size_distribution`, `prototype_distance_by_leaf_size`, `degree_transition` |
+| Main results (Tables 7, S1; Figure 1), NDCG@20 table (Table S18) | `mid_tail_degree6_10`, then `main_results_table`; figure: `plot_main_figures` |
+| Table 11 (per-user bootstrap, TaxPro-CL vs. SimGCL), Table S6 | `seed_matched_bootstrap` |
+| Multiplicity-corrected inference for Table 11 (Table S26) | `a2_multiplicity_correction` |
 | Wilcoxon tests with Holm correction (Table S5) | `compile_ablation_sweep`, then `statistics` |
-| Figure 1 (Near-Cold/Long-Tail bars) and Online Resource 1 Figure S2 (Pareto view) | `plot_main_figures` (after `main_results_table` and `beyond_accuracy`) |
-| Beyond-accuracy diagnostics (Table S10) | `beyond_accuracy` |
+| Taxonomy-policy sweep, validation and test (Table S3; CDs-and-Vinyl Table S30d) | `policy_sweep_splits` |
+| RQ5 factorial: direction and epsilon-adaptivity (Tables 8, 9, S13, S17, S19), interaction (Table S27), warm-start removal (Table S20); Figure 2 | `factorial_direction_bootstrap` (all datasets; Yelp2018 with `--datasets yelp2018`), `factorial_amazon_book` (Amazon-Book, `merge_t10`), `factorial_interaction_bootstrap`, `warmstart_removal_bootstrap`, `merge_factorial_results`; figure: `regenerate_fig3_factorial_forest` |
+| RQ5 NDCG@20 companions (Tables S13b, S17b) | `factorial_ndcg_bootstrap`, `epsilon_ndcg_bootstrap` |
+| Amazon-Book `no_merge` factorial and Holm-Bonferroni families (Tables S13c-S13e) | `factorial_multiplicity`, `factorial_holm_table` |
+| Distinctness of the factorial checkpoints (Table S13f) | `results_manifest.csv` (checkpoint hashes) and each run's `final_test_group_metrics.json` |
+| V3 replaced by the Environment-A main checkpoint (Table S23b) | `factorial_v3main_substitution` |
+| Gap decomposition through V0 and contrasts as % of the control (Tables S32, S33) | `factorial_decomposition_summary` |
+| Prototype-construction variants (Tables 10, S14, S14b, S14c) | `leaf_variants_bootstrap`, `rescue_vs_variants_bootstrap`, `prototype_variants_overlap`, `prototype_variants_ndcg` |
+| A5 leaf vs. parent, policy-matched (Tables S7, S7b) | `a5_leaf_vs_parent_mergedt10` |
+| Leaf-size distribution (Table S15), prototype-to-embedding distance (Table S16), degree transition (Table S21) | `leaf_size_distribution`, `prototype_distance_by_space`, `degree_transition` |
+| Re-check under both degree definitions (Table S25) | `intrinsic_sparsity_bootstrap` |
+| Beyond-accuracy diagnostics (Table S10, Figure S2) | `beyond_accuracy`; figure: `plot_main_figures` |
 | Item-level rank audit (Tables S11, S12) | `rank_audit_seed_matched` |
 | View cosine (Table S22), realized displacement (Table S29) | `view_cosine_by_degree`, `realized_perturbation_norm` |
-| A7 grid status | `b2_interim_matched_budget` |
+| Strict-Cold audit (Table S34) | `strict_cold_audit` |
+| CDs-and-Vinyl comparison (Tables S30b, S30c) | `cds_and_vinyl_summary`, `update_manifest_cds_and_vinyl` |
+| Full p-value vector of the factorial (Table S13e) | `export_factorial_pvalues` |
+| Yelp2018 per-user hit decomposition (Table 8 note a; Tables S13g, S13h) | `yelp_factorial_hits` |
+| A7 comparable-budget grid (Section 5.3; Tables S24-S24e) | `a7_tuned_comparison` |
+| Validation-only re-selection of the configuration (Tables S35-S35c) | `validation_reselection_audit`, then `s35_export` |
+| Pre-registered held-out evaluation (Table 12; Tables S36-S36d) | `confirmatory_analysis`, `confirmatory_six_methods`, `confirmatory_peruser` |
+
+`results/README.md` lists every shipped result file with the script that
+writes it and the manuscript item it supports.
 
 Approximate cost of the training runs on one RTX 4060 Ti: a TaxPro-CL run on
 Amazon-Book takes about 3.5 hours per seed; the smaller datasets and the
@@ -340,10 +391,11 @@ TaxPro-CL/
 │   ├── protocol/              Protocol builders and gate validation
 │   ├── experiments/           Baseline, TaxPro-CL, ablation, A7 runners
 │   ├── analysis/              Bootstrap statistics, tables, figures, evidence
+│   ├── ranking/               Checkpoint loading, full-catalog ranking, rank comparison
 │   └── repository/            Preflight check
-├── tests/                     Unit tests and the rank-comparison pipeline
-├── results/                   Shipped audit trail: run/claim manifests, small
-│                              bootstrap outputs cited by the paper
+├── tests/                     Unit tests (python -m pytest)
+├── results/                   Shipped audit trail: run/claim manifests and the
+│                              analysis outputs cited by the paper (results/README.md)
 ├── docs/                      Data, model, and reproducibility notes
 ├── requirements.txt           Python dependencies
 ├── CITATION.cff, LICENSE
@@ -383,8 +435,7 @@ Direct `main.py` TaxProCL runs are isolated by dataset, taxonomy policy, seed,
 and effective configuration hash. This prevents one policy or hyperparameter
 setting from overwriting another run.
 
-See [`tools/README.md`](tools/README.md) for the complete command catalog and
-the migration table from the former flat tool layout.
+See [`tools/README.md`](tools/README.md) for the complete command catalog.
 
 ## CPU And GPU Execution
 
@@ -506,6 +557,12 @@ download step before the rest of the pipeline can run:
 After this, both datasets have the same `dataset_verify/<dataset>/` and
 `metadata/taxonomy_variants/<dataset>/` artifacts as `amazon-book`/`yelp2018`,
 and the Run Commands above work identically.
+
+CDs-and-Vinyl, used only in Online Resource 1, Section S30, follows the same
+steps with `CDs_and_Vinyl_5.json`: `python -m tools.data.build_cds_and_vinyl
+--reviews-file <path>`, `python -m tools.data.download_cds_and_vinyl_metadata`,
+`python -m tools.data.build_cds_and_vinyl_metadata`, and
+`python -m tools.data.build_cds_and_vinyl_taxonomy`.
 
 ## Expected Run Outputs
 

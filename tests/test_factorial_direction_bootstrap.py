@@ -41,8 +41,7 @@ class PoolDiffsAcrossSeedsTests(unittest.TestCase):
     def test_bootstrap_sample_size_matches_unique_users_not_user_seed_rows(self):
         """End-to-end: n_users reported by bootstrap() must equal the
         number of unique users (e.g. Amazon-Book/Near-Cold = 13,238, not the
-        3x-inflated 39,714 that a per-(user, seed)-row sampling bug
-        previously produced).
+        3x-inflated 39,714 that per-(user, seed)-row sampling would give).
         """
         pooled_by_user = {"user_{}".format(i): [1.0, 1.0, 1.0] for i in range(13238)}
         diffs = pool_diffs_across_seeds(pooled_by_user)

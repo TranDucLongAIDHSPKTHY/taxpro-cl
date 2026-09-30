@@ -1,15 +1,14 @@
-"""B2 : direct top-20 set/order overlap for the
+"""Direct top-20 set/order overlap for the
 prototype-construction variants (leaf_uniform, leave_one_out, rescue) against
 TaxPro-CL-main on Amazon-Book, seed-matched (0, 1, 42).
 
-Section 5.5 / Online Resource 1 Table S17 report per-user Recall@20 equality
+Section 5.5 / Online Resource 1 Table S14 report per-user Recall@20 equality
 (or near-equality) between each variant and TaxPro-CL-main, but Recall@20
 equality does not by itself establish that the two checkpoints recommend the
 same top-20 *set* per user, let alone the same order -- two models can share
 a Recall@20 count while disagreeing on which items fill the list. This
-script measures that directly, mirroring the methodology already used for
-the A5 granularity comparison (Section 5.5, Online Resource 1 Section S7:
-"98.74% of top-20 items on average, 76% of users identical top-20 sets").
+script measures that directly (Online Resource 1, Table S14b), with the
+same overlap measures as the A5 granularity comparison (Section S7).
 
 Inference only; no retraining. Checkpoints:
   log/p0/taxprocl/amazon-book/proto-leafuniform/seed{0,1,42}
@@ -32,7 +31,7 @@ if str(ROOT) not in sys.path:
 
 from config_path.config_path import evaluation_protocol_dir
 from utility.utility_train.group_evaluator import load_targets
-from tests.Recommendation_system import inference
+from tools.ranking import inference
 
 
 def load_model_dropping_stale_buffers(run_dir, device):
@@ -161,7 +160,7 @@ def main():
             print(json.dumps(row, indent=2))
         results[variant_name] = per_seed
 
-    out_path = ROOT / "results" / "b2_prototype_variant_overlap.json"
+    out_path = ROOT / "results" / "prototype_variants_overlap.json"
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(results, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print("Saved to {}".format(out_path))
