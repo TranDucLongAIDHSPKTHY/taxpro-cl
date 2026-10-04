@@ -1,4 +1,4 @@
-"""Analysis of the pre-registered confirmatory evaluation (docs/confirmatory_protocol.md,
+"""Analysis of the prospectively specified held-out evaluation (docs/confirmatory_protocol.md,
 Sections 7-8 and Deviation 2), run once after the sealed test split was opened.
 
 Per-user test Recall@20 (and NDCG@20) differences, averaged over the three seed-matched

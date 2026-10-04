@@ -6,7 +6,7 @@ written by the script listed next to it (`python -m tools.analysis.<script>`);
 files and to the runs in `results_manifest.csv`. Trained checkpoints are not
 shipped: the inference-only scripts re-read them from `log/` after the training
 commands of the top-level README have been run. Table numbers refer to the main
-paper (Tables 1-12, Figures 1-2) and to Online Resource 1 (Tables S1-S36d).
+paper (Tables 1-12, Figures 1-2) and to Online Resource 1 (Tables S1-S36e).
 
 ## Audit trail
 
@@ -78,7 +78,7 @@ paper (Tables 1-12, Figures 1-2) and to Online Resource 1 (Tables S1-S36d).
 | `yelp_factorial_hits.csv`, `yelp_factorial_hits_summary.json` | Table S13g and Table 8 note a (Yelp2018 per-user Near-Cold/Mid-Tail hits of V0-V3, checked against the evaluator) | `yelp_factorial_hits` |
 | `yelp_lt_decomposition.csv` | Tables S13g-S13h (per variant and seed: H, J, S, N, C_NC, C_MT; checkpoint, configuration, and split hashes) | `yelp_factorial_hits` |
 
-## Pre-registered held-out evaluation (`confirmatory/`)
+## Prospectively specified held-out evaluation (`confirmatory/`)
 
 Protocol: `docs/confirmatory_protocol.md` (hashes in `docs/confirmatory_protocol*.sha256`).
 
@@ -86,6 +86,6 @@ Protocol: `docs/confirmatory_protocol.md` (hashes in `docs/confirmatory_protocol
 | --- | --- | --- |
 | `screening_*.json` | Section S35 (screening of Digital_Music, Prime_Pantry, Office_Products) | `tools.data.screen_confirmatory_candidates`; taxonomy files from the metadata/taxonomy build |
 | `confirmatory_selection.json`, `.sha256` | Table S36 (validation-only selection, frozen before the test split was opened) | `tools.experiments.run_confirmatory` |
-| `confirmatory_analysis_office-products.json` | Table 12, Tables S36b-S36c | `tools.analysis.confirmatory_analysis` |
+| `confirmatory_analysis_office-products.json` | Table 12, Tables S36b-S36c, Section S36 | `tools.analysis.confirmatory_analysis` |
 | `six_methods_office-products.json` | Table S36b, top block (six methods, rank of six; descriptive) | `tools.analysis.confirmatory_six_methods` |
 | `peruser_office-products.csv.gz` | Per-user test Recall@20/NDCG@20 of every Near-Cold and Long-Tail user behind Table 12 and Table S36c | `tools.analysis.confirmatory_peruser` |

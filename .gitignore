@@ -29,7 +29,7 @@ results/*
 !results/s35_*.csv
 !results/yelp_factorial_hits.csv
 !results/yelp_lt_decomposition.csv
-# Pre-registered confirmatory evaluation (docs/confirmatory_protocol.md):
+# Prospectively specified held-out evaluation (docs/confirmatory_protocol.md):
 # screening outputs, the frozen selection file and, later, sealed-test results.
 !results/confirmatory/
 # ... except superseded outputs that no table cites.

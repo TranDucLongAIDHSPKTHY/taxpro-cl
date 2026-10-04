@@ -42,8 +42,8 @@ This implementation provides:
   Limitation 10), TaxPro-CL's configuration and taxonomy policies were chosen
   during development with test-split metrics in view.
 - Experiment runners for policy screening, main multi-seed runs, the A1-A7
-  ablation and sensitivity checks, the V0-V3 factorial, and the pre-registered
-  held-out evaluation.
+  ablation and sensitivity checks, the V0-V3 factorial, and the prospectively
+  specified held-out evaluation.
 
 ## Installation
 
@@ -99,8 +99,8 @@ This repository implements the six-model main comparison, the A1-A6
 ablation and sensitivity checks, and the RQ5 direction-by-magnitude factorial
 reported in the paper, the A7 comparable-budget grid for SimGCL and XSimGCL
 (complete on all four datasets; the NCL part was not completed and is not
-reported), and the pre-registered held-out evaluation on Office-Products
-(`docs/confirmatory_protocol.md`; see Pre-Registered Held-Out Evaluation below).
+reported), and the prospectively specified held-out evaluation on Office-Products
+(`docs/confirmatory_protocol.md`; see Prospectively Specified Held-Out Evaluation below).
 This repository does **not** implement sibling loss, gating, or multi-level
 prototype memory; the taxonomy-guided direction and degree-adaptive magnitude
 described in the paper's Method section are the full extent of the mechanism
@@ -117,7 +117,7 @@ held-out fifth dataset and an excluded candidate are listed below them:
 | `yelp2018`               | Yelp     | Business recommendation with multi-label category metadata |
 | `musical-instruments`    | Amazon   | Product recommendation, Musical Instruments category       |
 | `arts-crafts-and-sewing` | Amazon   | Product recommendation, Arts/Crafts/Sewing category        |
-| `office-products`        | Amazon   | Pre-registered held-out evaluation (Table 12)              |
+| `office-products`        | Amazon   | Prospectively specified held-out evaluation (Table 12)     |
 | `cds-and-vinyl`          | Amazon   | Excluded candidate, reported in Online Resource 1, S30     |
 
 `amazon-book` and `yelp2018` reuse the canonical splits established by
@@ -263,14 +263,17 @@ python main.py --model TaxPro-CL --dataset amazon-book --temperature 0.20 --seed
 python main.py --model TaxPro-CL --dataset amazon-book --prototype_mode parent --seeds 42 0 1
 ```
 
-### Pre-Registered Held-Out Evaluation (Office-Products)
+### Prospectively Specified Held-Out Evaluation (Office-Products)
 
 The protocol `docs/confirmatory_protocol.md` was frozen before the data of the
 new dataset were built; its SHA-256 and those of its two logged deviations are in
-`docs/confirmatory_protocol*.sha256`. Every run of this evaluation is trained with
-`TAXPRO_DEFER_TEST=1`, so no test metric is computed during training; the test
-split is opened once, after the validation-only selections are frozen in
-`results/confirmatory/confirmatory_selection.json`.
+`docs/confirmatory_protocol*.sha256`. These files were first published, with the
+frozen selections, in commit 1379271 (2026-09-28), after training and before any
+test evaluation; no third-party registration was made. Every run of this
+evaluation is trained with `TAXPRO_DEFER_TEST=1`, so no test metric is computed
+during training; each run's test metrics are computed once, after the
+validation-only selections are frozen in `results/confirmatory/confirmatory_selection.json`
+(timeline: Online Resource 1, Table S36e).
 
 ```powershell
 # 1. Screening (data statistics only, no model) and data build (Protocol B)
@@ -369,7 +372,7 @@ entry points are:
 | Yelp2018 per-user hit decomposition (Table 8 note a; Tables S13g, S13h) | `yelp_factorial_hits` |
 | A7 comparable-budget grid (Section 5.3; Tables S24-S24e) | `a7_tuned_comparison` |
 | Validation-only re-selection of the configuration (Tables S35-S35c) | `validation_reselection_audit`, then `s35_export` |
-| Pre-registered held-out evaluation (Table 12; Tables S36-S36d) | `confirmatory_analysis`, `confirmatory_six_methods`, `confirmatory_peruser` |
+| Prospectively specified held-out evaluation (Table 12; Tables S36-S36e) | `confirmatory_analysis`, `confirmatory_six_methods`, `confirmatory_peruser` |
 
 `results/README.md` lists every shipped result file with the script that
 writes it and the manuscript item it supports.
