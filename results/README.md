@@ -32,6 +32,8 @@ paper (Tables 1-12, Figures 1-2) and to Online Resource 1 (Tables S1-S36e).
 | `harmonic_mean_3seed.json` | "H (3-seed mean)" column of Tables S10-S10d | computed from Table S1 values |
 | `rank_audit_seed_matched.json` | Tables S11, S12 | `rank_audit_seed_matched` |
 | `strict_cold_audit.json` | Table S34, Limitation 3 | `strict_cold_audit` |
+| `group_composition.json` | Table S21b (composition of the train-degree groups, all five datasets) | `group_composition` |
+| `taxonomy_linkage_audit.json` | Table S28c (cross-release audit of the item-to-category linkage) | `taxonomy_linkage_audit` |
 
 ## RQ5 factorial and prototype analyses
 
@@ -55,7 +57,7 @@ paper (Tables 1-12, Figures 1-2) and to Online Resource 1 (Tables S1-S36e).
 | `prototype_variants_overlap.json` | Table S14b | `prototype_variants_overlap` |
 | `prototype_variants_ndcg.json` | Table S14c | `prototype_variants_ndcg` |
 | `a5_leaf_vs_parent_mergedt10.json` | Tables S7, S7b (A5) | `a5_leaf_vs_parent_mergedt10` |
-| `leaf_size_distribution.json` | Table S15 | `leaf_size_distribution` |
+| `leaf_size_distribution.json` | Table S15 (including the held-out Office-Products row) | `leaf_size_distribution` |
 | `prototype_distance_by_space.json` | Table S16 | `prototype_distance_by_space` |
 | `prototype_distance_by_leaf_size.json` | Table S16, "Layer 0 (lookup)" rows | `prototype_distance_by_leaf_size` |
 | `view_cosine_seed{42,0,1}.json`, `view_cosine_by_degree_allseeds.json` | Table S22 (per seed, and mean over seeds) | `view_cosine_by_degree` |
@@ -89,3 +91,4 @@ Protocol: `docs/confirmatory_protocol.md` (hashes in `docs/confirmatory_protocol
 | `confirmatory_analysis_office-products.json` | Table 12, Tables S36b-S36c, Section S36 | `tools.analysis.confirmatory_analysis` |
 | `six_methods_office-products.json` | Table S36b, top block (six methods, rank of six; descriptive) | `tools.analysis.confirmatory_six_methods` |
 | `peruser_office-products.csv.gz` | Per-user test Recall@20/NDCG@20 of every Near-Cold and Long-Tail user behind Table 12 and Table S36c | `tools.analysis.confirmatory_peruser` |
+| `intrinsic_sparsity_office-products.json` | Table S36f (held-out comparison for items sparse under both degree definitions; added after the test split was opened, not part of the protocol) | `tools.analysis.office_intrinsic_sparsity` |

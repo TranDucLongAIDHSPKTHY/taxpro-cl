@@ -46,5 +46,17 @@
     "pct_leaves_1_2": 50.3448275862069,
     "items_in_leaves_1_2": 1199,
     "pct_items_in_leaves_1_2": 5.363213455000895
+  },
+  {
+    "dataset": "office-products",
+    "policy": "no_merge",
+    "total_items_catalog": 27965,
+    "total_valid_items": 27443,
+    "n_leaves": 2036,
+    "median_leaf_size": 2.0,
+    "n_leaves_1_2": 1104,
+    "pct_leaves_1_2": 54.223968565815326,
+    "items_in_leaves_1_2": 1407,
+    "pct_items_in_leaves_1_2": 5.126990489377984
   }
 ]

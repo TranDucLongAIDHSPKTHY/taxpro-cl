@@ -20,12 +20,13 @@ import statistics
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-DATASETS = ("amazon-book", "yelp2018", "musical-instruments", "arts-crafts-and-sewing")
+DATASETS = ("amazon-book", "yelp2018", "musical-instruments", "arts-crafts-and-sewing", "office-products")
 POLICY = {
     "amazon-book": "merge_t10",
     "yelp2018": "no_merge",
     "musical-instruments": "no_merge",
     "arts-crafts-and-sewing": "no_merge",
+    "office-products": "no_merge",  # held-out dataset; policy selected on validation (Section S36)
 }
 
 
@@ -62,7 +63,7 @@ def main() -> int:
               f"1-2 item leaves={row['n_leaves_1_2']}/{row['n_leaves']} ({row['pct_leaves_1_2']:.2f}%) "
               f"items in them={row['items_in_leaves_1_2']} ({row['pct_items_in_leaves_1_2']:.2f}% of valid items)")
     out = ROOT / "results" / "leaf_size_distribution.json"
-    out.write_text(json.dumps(results, indent=2) + "\n", encoding="utf-8")
+    out.write_text(json.dumps(results, indent=2) + "\n", encoding="utf-8", newline="")
     print("Saved to", out)
     return 0
 

@@ -1,0 +1,170 @@
+{
+ "arts-crafts-and-sewing": {
+  "dataset": "arts-crafts-and-sewing",
+  "items": 22931,
+  "missing_source_files": [],
+  "items_found_2014": 10519,
+  "items_with_duplicate_rows_2014": 0,
+  "items_found_2018": 22855,
+  "items_with_duplicate_rows_2018": 152,
+  "items_found_2023": 13568,
+  "items_with_duplicate_rows_2023": 0,
+  "identifier_collisions": 0,
+  "release_pairs": {
+   "2014_vs_2018": {
+    "n": 10477,
+    "identical_deepest_path": 916,
+    "identical_leaf": 5710,
+    "prefix_consistent": 1678,
+    "same_first_level": 1693
+   },
+   "2014_vs_2023": {
+    "n": 6714,
+    "identical_deepest_path": 397,
+    "identical_leaf": 3283,
+    "prefix_consistent": 799,
+    "same_first_level": 879
+   },
+   "2018_vs_2023": {
+    "n": 13527,
+    "identical_deepest_path": 9400,
+    "identical_leaf": 10940,
+    "prefix_consistent": 10368,
+    "same_first_level": 10832
+   }
+  },
+  "selected_vs_other_releases": {
+   "n": 24028,
+   "identical_deepest_path": 9884,
+   "identical_leaf": 16100,
+   "prefix_consistent": 11592,
+   "same_first_level": 12141
+  }
+ },
+ "office-products": {
+  "dataset": "office-products",
+  "items": 27965,
+  "missing_source_files": [],
+  "items_found_2014": 12873,
+  "items_with_duplicate_rows_2014": 0,
+  "items_found_2018": 27932,
+  "items_with_duplicate_rows_2018": 1994,
+  "items_found_2023": 15321,
+  "items_with_duplicate_rows_2023": 0,
+  "identifier_collisions": 0,
+  "release_pairs": {
+   "2014_vs_2018": {
+    "n": 12847,
+    "identical_deepest_path": 6011,
+    "identical_leaf": 8266,
+    "prefix_consistent": 6961,
+    "same_first_level": 9425
+   },
+   "2014_vs_2023": {
+    "n": 7713,
+    "identical_deepest_path": 2431,
+    "identical_leaf": 3687,
+    "prefix_consistent": 2976,
+    "same_first_level": 4275
+   },
+   "2018_vs_2023": {
+    "n": 15304,
+    "identical_deepest_path": 8495,
+    "identical_leaf": 9810,
+    "prefix_consistent": 10302,
+    "same_first_level": 11675
+   }
+  },
+  "selected_vs_other_releases": {
+   "n": 28166,
+   "identical_deepest_path": 13379,
+   "identical_leaf": 16975,
+   "prefix_consistent": 16096,
+   "same_first_level": 19967
+  }
+ },
+ "musical-instruments": {
+  "dataset": "musical-instruments",
+  "items": 10620,
+  "missing_source_files": [],
+  "items_found_2014": 6718,
+  "items_with_duplicate_rows_2014": 0,
+  "items_found_2018": 10611,
+  "items_with_duplicate_rows_2018": 1654,
+  "items_found_2023": 5854,
+  "items_with_duplicate_rows_2023": 0,
+  "identifier_collisions": 0,
+  "release_pairs": {
+   "2014_vs_2018": {
+    "n": 6711,
+    "identical_deepest_path": 4320,
+    "identical_leaf": 4700,
+    "prefix_consistent": 4970,
+    "same_first_level": 5724
+   },
+   "2014_vs_2023": {
+    "n": 3797,
+    "identical_deepest_path": 1704,
+    "identical_leaf": 2331,
+    "prefix_consistent": 2085,
+    "same_first_level": 3064
+   },
+   "2018_vs_2023": {
+    "n": 5848,
+    "identical_deepest_path": 3625,
+    "identical_leaf": 4398,
+    "prefix_consistent": 4225,
+    "same_first_level": 5027
+   }
+  },
+  "selected_vs_other_releases": {
+   "n": 12563,
+   "identical_deepest_path": 7269,
+   "identical_leaf": 8661,
+   "prefix_consistent": 8593,
+   "same_first_level": 10545
+  }
+ },
+ "amazon-book": {
+  "dataset": "amazon-book",
+  "items": 91599,
+  "missing_source_files": [],
+  "items_found_2014": 91599,
+  "items_with_duplicate_rows_2014": 0,
+  "items_found_2018": 56003,
+  "items_with_duplicate_rows_2018": 0,
+  "items_found_2023": 69162,
+  "items_with_duplicate_rows_2023": 0,
+  "identifier_collisions": 0,
+  "release_pairs": {
+   "2014_vs_2018": {
+    "n": 56003,
+    "identical_deepest_path": 383,
+    "identical_leaf": 396,
+    "prefix_consistent": 54966,
+    "same_first_level": 3
+   },
+   "2014_vs_2023": {
+    "n": 69162,
+    "identical_deepest_path": 1092,
+    "identical_leaf": 1110,
+    "prefix_consistent": 67813,
+    "same_first_level": 9
+   },
+   "2018_vs_2023": {
+    "n": 53030,
+    "identical_deepest_path": 42994,
+    "identical_leaf": 43355,
+    "prefix_consistent": 44034,
+    "same_first_level": 46281
+   }
+  },
+  "selected_vs_other_releases": {
+   "n": 125165,
+   "identical_deepest_path": 42689,
+   "identical_leaf": 43075,
+   "prefix_consistent": 113804,
+   "same_first_level": 45487
+  }
+ }
+}

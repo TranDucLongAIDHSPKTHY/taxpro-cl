@@ -1,0 +1,177 @@
+{
+ "amazon-book": {
+  "items_with_train_interactions": 88416,
+  "test_positives": 603378,
+  "test_users": 52639,
+  "groups": {
+   "NC": {
+    "items": 2363,
+    "item_share_of_trained": 0.02672593195801665,
+    "test_positives": 21296,
+    "positive_share": 0.03529462459685305,
+    "eligible_users": 13238
+   },
+   "MT": {
+    "items": 24973,
+    "item_share_of_trained": 0.28244887803112556,
+    "test_positives": 90846,
+    "positive_share": 0.15056233405924643,
+    "eligible_users": 33808
+   },
+   "LT": {
+    "items": 27336,
+    "item_share_of_trained": 0.30917480998914226,
+    "test_positives": 112142,
+    "positive_share": 0.1858569586560995,
+    "eligible_users": 36609
+   },
+   "Wm": {
+    "items": 61080,
+    "item_share_of_trained": 0.6908251900108577,
+    "test_positives": 442510,
+    "positive_share": 0.7333876939497297,
+    "eligible_users": 52123
+   }
+  }
+ },
+ "yelp2018": {
+  "items_with_train_interactions": 37381,
+  "test_positives": 324147,
+  "test_users": 31668,
+  "groups": {
+   "NC": {
+    "items": 976,
+    "item_share_of_trained": 0.026109520879591237,
+    "test_positives": 6528,
+    "positive_share": 0.020139011004266582,
+    "eligible_users": 5217
+   },
+   "MT": {
+    "items": 9683,
+    "item_share_of_trained": 0.2590353388084856,
+    "test_positives": 34841,
+    "positive_share": 0.10748518419112316,
+    "eligible_users": 17297
+   },
+   "LT": {
+    "items": 10659,
+    "item_share_of_trained": 0.28514485968807685,
+    "test_positives": 41369,
+    "positive_share": 0.12762419519538976,
+    "eligible_users": 18907
+   },
+   "Wm": {
+    "items": 26722,
+    "item_share_of_trained": 0.7148551403119232,
+    "test_positives": 275460,
+    "positive_share": 0.8497996279465798,
+    "eligible_users": 31661
+   }
+  }
+ },
+ "musical-instruments": {
+  "items_with_train_interactions": 9927,
+  "test_positives": 38401,
+  "test_users": 24780,
+  "groups": {
+   "NC": {
+    "items": 3769,
+    "item_share_of_trained": 0.37967160269970784,
+    "test_positives": 5306,
+    "positive_share": 0.1381734850654931,
+    "eligible_users": 4728
+   },
+   "MT": {
+    "items": 3023,
+    "item_share_of_trained": 0.3045230180316309,
+    "test_positives": 5374,
+    "positive_share": 0.13994427228457593,
+    "eligible_users": 4817
+   },
+   "LT": {
+    "items": 6792,
+    "item_share_of_trained": 0.6841946207313387,
+    "test_positives": 10680,
+    "positive_share": 0.278117757350069,
+    "eligible_users": 8816
+   },
+   "Wm": {
+    "items": 3135,
+    "item_share_of_trained": 0.3158053792686612,
+    "test_positives": 27710,
+    "positive_share": 0.7215957917762559,
+    "eligible_users": 19545
+   }
+  }
+ },
+ "arts-crafts-and-sewing": {
+  "items_with_train_interactions": 21039,
+  "test_positives": 73671,
+  "test_users": 45346,
+  "groups": {
+   "NC": {
+    "items": 8005,
+    "item_share_of_trained": 0.3804838633014877,
+    "test_positives": 11286,
+    "positive_share": 0.15319460846194569,
+    "eligible_users": 9765
+   },
+   "MT": {
+    "items": 6347,
+    "item_share_of_trained": 0.3016778363990684,
+    "test_positives": 11274,
+    "positive_share": 0.15303172211589364,
+    "eligible_users": 9852
+   },
+   "LT": {
+    "items": 14352,
+    "item_share_of_trained": 0.6821616997005561,
+    "test_positives": 22560,
+    "positive_share": 0.3062263305778393,
+    "eligible_users": 17815
+   },
+   "Wm": {
+    "items": 6687,
+    "item_share_of_trained": 0.3178383002994439,
+    "test_positives": 51071,
+    "positive_share": 0.6932307149353205,
+    "eligible_users": 35000
+   }
+  }
+ },
+ "office-products": {
+  "items_with_train_interactions": 25888,
+  "test_positives": 125315,
+  "test_users": 86713,
+  "groups": {
+   "NC": {
+    "items": 8365,
+    "item_share_of_trained": 0.3231226823238566,
+    "test_positives": 11829,
+    "positive_share": 0.09439412680046283,
+    "eligible_users": 11203
+   },
+   "MT": {
+    "items": 7292,
+    "item_share_of_trained": 0.28167490729295425,
+    "test_positives": 12756,
+    "positive_share": 0.10179148545664925,
+    "eligible_users": 12042
+   },
+   "LT": {
+    "items": 15657,
+    "item_share_of_trained": 0.6047975896168108,
+    "test_positives": 24585,
+    "positive_share": 0.1961856122571121,
+    "eligible_users": 22202
+   },
+   "Wm": {
+    "items": 10231,
+    "item_share_of_trained": 0.3952024103831891,
+    "test_positives": 100702,
+    "positive_share": 0.803590950803974,
+    "eligible_users": 72631
+   }
+  }
+ }
+}
