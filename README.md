@@ -628,11 +628,11 @@ The entry below uses placeholder author names; the full reference (and
 ```bibtex
 @unpublished{taxprocl2026,
   title  = {TaxPro-CL: Taxonomy-Guided Perturbation for Sparse-Item
-            Recommendation in Graph Contrastive Learning -- A Controlled
+            Recommendation in Graph Contrastive Learning - A Controlled
             Ablation Study},
   author = {Author 1 and Author 2 and Author 3 and Author 4},
   year   = {2026},
-  note   = {Manuscript; code and results: release v1.1-jiis}
+  note   = {Manuscript; code and results: release v1.2-jiis}
 }
 ```
 
