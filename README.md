@@ -202,27 +202,18 @@ keeps the file's default.
 ```powershell
 python main.py --model TaxPro-CL --dataset amazon-book --seeds 42 0 1
 
-python main.py --model TaxPro-CL --dataset yelp2018 ^
-  --taxonomy_policy no_merge --temperature 0.125 --temperature_user 0.15 ^
-  --seeds 42 0 1
+python main.py --model TaxPro-CL --dataset yelp2018 --taxonomy_policy no_merge --temperature 0.125 --temperature_user 0.15 --seeds 42 0 1
 
-python main.py --model TaxPro-CL --dataset musical-instruments ^
-  --taxonomy_policy no_merge --temperature 0.15 --gamma_cold 5.0 ^
-  --seeds 42 0 1
+python main.py --model TaxPro-CL --dataset musical-instruments --taxonomy_policy no_merge --temperature 0.15 --gamma_cold 5.0 --seeds 42 0 1
 
-python main.py --model TaxPro-CL --dataset arts-crafts-and-sewing ^
-  --taxonomy_policy no_merge --temperature 0.125 ^
-  --seeds 42 0 1
+python main.py --model TaxPro-CL --dataset arts-crafts-and-sewing --taxonomy_policy no_merge --temperature 0.125 --seeds 42 0 1
 
 # same_leaf_weight=0.4 (A6 ablation, NOT the main config) -- only run this
 # to reproduce the A6 sensitivity check, not the paper's headline numbers:
-python main.py --model TaxPro-CL --dataset arts-crafts-and-sewing ^
-  --taxonomy_policy no_merge --temperature 0.125 --same_leaf_weight 0.4 ^
-  --seeds 42 0 1
+python main.py --model TaxPro-CL --dataset arts-crafts-and-sewing --taxonomy_policy no_merge --temperature 0.125 --same_leaf_weight 0.4 --seeds 42 0 1
 ```
 
-(`^` is the PowerShell/cmd line-continuation character; on a single line, drop
-the `^` and join the arguments with spaces.)
+Each command is a single line, so it runs unchanged in PowerShell, cmd, or bash.
 
 ### Ablations A3-A7
 
