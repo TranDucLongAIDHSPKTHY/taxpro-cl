@@ -47,30 +47,42 @@ def _style(ax):
     ax.set_axisbelow(True)
 
 
+def _value_label(v):
+    return f"{v:.1f}" if v >= 10 else f"{v:.2f}"
+
+
 def figure_bars(out_path):
+    # Drawn at the printed width (31 pc = 5.15 in, the journal's text width), so the font sizes below are the printed
+    # sizes. Methods are identified by shade, hatch, and the legend; each bar carries its mean, and every panel keeps its
+    # own vertical scale (stated in the caption).
     table = json.loads(MAIN_TABLE.read_text(encoding="utf-8"))
-    fig, axes = plt.subplots(2, 4, figsize=(9.72, 5.72))
+    titles = ["(a) Amazon-Book", "(b) Yelp2018", "(c) Musical-\nInstruments", "(d) Arts-Crafts-\nand-Sewing"]
+    fig, axes = plt.subplots(2, 4, figsize=(5.15, 3.0))
     for row, (group, label) in enumerate((("near_cold", "Near-Cold"), ("long_tail", "Long-Tail"))):
         for col, dataset in enumerate(DATASETS):
             ax = axes[row][col]
             means = [table[dataset][m][group]["recall20_mean"] * SCALE for m in METHODS]
             stds = [table[dataset][m][group]["recall20_std"] * SCALE for m in METHODS]
-            ax.bar(range(len(METHODS)), means, yerr=stds, color=SHADES, edgecolor="black",
-                   linewidth=0.7, error_kw={"elinewidth": 0.9, "capsize": 2, "capthick": 0.9})
+            ax.bar(range(len(METHODS)), means, yerr=stds, color=SHADES, edgecolor="black", width=0.78,
+                   linewidth=0.5, error_kw={"elinewidth": 0.6, "capsize": 1.2, "capthick": 0.6})
             for patch, hatch in zip(ax.patches, HATCHES):
                 patch.set_hatch(hatch)
-            ax.set_xticks(range(len(METHODS)))
-            ax.set_xticklabels(METHODS, rotation=45, ha="right", fontsize=8)
-            ax.tick_params(axis="y", labelsize=8)
+            top = max(m + s for m, s in zip(means, stds))
+            for i, (m, s) in enumerate(zip(means, stds)):
+                ax.text(i, m + s + 0.02 * top, _value_label(m), rotation=90, ha="center", va="bottom", fontsize=5.5)
+            ax.set_ylim(0, top * 1.42 if top > 0 else 1)
+            ax.set_xticks([])
+            ax.tick_params(axis="y", labelsize=6.5, length=2, pad=1.5)
             _style(ax)
             if row == 0:
-                ax.set_title(TITLES[col], fontsize=10, fontweight="bold")
+                ax.set_title(titles[col], fontsize=7.5, fontweight="bold", pad=3)
             if col == 0:
-                ax.set_ylabel(label + "\nRecall@20 (×10$^{-3}$)", fontsize=9)
-    handles = [Patch(facecolor=c, edgecolor="black", hatch=h, label=m)
+                ax.set_ylabel(label + "\nRecall@20 (×10$^{3}$)", fontsize=7)
+    handles = [Patch(facecolor=c, edgecolor="black", hatch=h, label=m, linewidth=0.5)
                for c, h, m in zip(SHADES, HATCHES, METHODS)]
-    fig.legend(handles=handles, loc="lower center", ncol=len(METHODS), frameon=False, fontsize=9)
-    fig.tight_layout(rect=(0, 0.06, 1, 1))
+    fig.legend(handles=handles, loc="lower center", ncol=len(METHODS), frameon=False, fontsize=6.5,
+               handlelength=1.6, columnspacing=0.9, handletextpad=0.4)
+    fig.tight_layout(rect=(0, 0.06, 1, 1), h_pad=0.6, w_pad=0.5)
     fig.savefig(out_path)
     plt.close(fig)
 
