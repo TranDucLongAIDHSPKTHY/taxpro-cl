@@ -15,7 +15,7 @@ authors:
   - family-names: "Nguyen"
     given-names: "Van Hau"
     affiliation: "Hung Yen University of Technology and Engineering"
-version: "v1.3-jiis"
+version: "v1.4-jiis"
 date-released: 2026-10-06
 license: MIT
 repository-code: "https://github.com/TranDucLongAIDHSPKTHY/taxpro-cl"
