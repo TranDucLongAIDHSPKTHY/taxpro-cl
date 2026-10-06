@@ -3,14 +3,14 @@ message: "If you use this software, please cite the TaxPro-CL paper and this rep
 title: "TaxPro-CL: Taxonomy-Guided Perturbation for Sparse-Item Recommendation in Graph Contrastive Learning"
 type: software
 authors:
-  - family-names: "1"
-    given-names: "Author"
-  - family-names: "2"
-    given-names: "Author"
-  - family-names: "3"
-    given-names: "Author"
-  - family-names: "4"
-    given-names: "Author"
+  - family-names: "Tran"
+    given-names: "Thi Phuong"
+  - family-names: "Tran"
+    given-names: "Duc Long"
+  - family-names: "Pham"
+    given-names: "Minh Chuan"
+  - family-names: "Nguyen"
+    given-names: "Van Hau"
 version: "v1.3-jiis"
 date-released: 2026-10-06
 license: MIT
