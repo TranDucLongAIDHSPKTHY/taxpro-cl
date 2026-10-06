@@ -632,7 +632,7 @@ The entry below uses placeholder author names; the full reference (and
             Ablation Study},
   author = {Author 1 and Author 2 and Author 3 and Author 4},
   year   = {2026},
-  note   = {Manuscript; code and results: release v1.0-jiis}
+  note   = {Manuscript; code and results: release v1.1-jiis}
 }
 ```
 
