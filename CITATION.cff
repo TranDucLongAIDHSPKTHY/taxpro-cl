@@ -5,12 +5,16 @@ type: software
 authors:
   - family-names: "Tran"
     given-names: "Thi Phuong"
+    affiliation: "Hung Yen University of Technology and Engineering"
   - family-names: "Tran"
     given-names: "Duc Long"
+    affiliation: "Hung Yen University of Technology and Engineering"
   - family-names: "Pham"
     given-names: "Minh Chuan"
+    affiliation: "Hung Yen University of Technology and Engineering"
   - family-names: "Nguyen"
     given-names: "Van Hau"
+    affiliation: "Hung Yen University of Technology and Engineering"
 version: "v1.3-jiis"
 date-released: 2026-10-06
 license: MIT
