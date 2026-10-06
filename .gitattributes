@@ -4,6 +4,11 @@
 dataset_verify/** -text
 preprocessed/** -text
 metadata/taxonomy_variants/** -text
+# Prospectively specified evaluation: the protocol and the frozen selection
+# file, whose SHA-256 values are recorded in docs/confirmatory_protocol*.sha256
+# and results/confirmatory/confirmatory_selection.sha256.
+docs/confirmatory_protocol.md -text
+results/confirmatory/confirmatory_selection.json -text
 
 # Analysis outputs (no recorded hashes): always stored and checked out with LF,
 # even when a script rewrites them with CRLF on Windows.
