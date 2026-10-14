@@ -1,5 +1,5 @@
 """Pool-to-train degree-bucket transition of the evaluated items
-(Online Resource 1, Table S21; main paper Section 4.3.1).
+(Online Resource 1, Table S21; main paper Section 4.2).
 
 For every dataset, takes the items present in the pre-split pool (pool degree
 >= 1), assigns each to the bucket of its train-time degree (Strict-Cold 0,

@@ -32,10 +32,10 @@ RUNS = {
     "A2-V3-nowarm": "V3-nowarm",
 }
 USED_IN = {
-    "V0-mergedt10": "Table 8; Table 9; Figure 2; Online Resource 1 Tables S13/S13b/S17/S17b/S19/S20/S27 (Amazon-Book, merge_t10)",
-    "V1-mergedt10": "Table 8; Table 9; Figure 2; Online Resource 1 Tables S13/S13b/S17/S17b/S19/S27 (Amazon-Book, merge_t10)",
-    "V2-mergedt10": "Table 8; Table 9; Figure 2; Online Resource 1 Tables S13/S13b/S17/S17b/S19/S27 (Amazon-Book, merge_t10)",
-    "V3-warm20": "Table 8; Table 9; Figure 2; Online Resource 1 Tables S13/S13b/S17/S17b/S19/S20/S27 (Amazon-Book V3: independent run of the main configuration; see Section S23)",
+    "V0-mergedt10": "Figure 1; Online Resource 1 Tables S13/S13b/S13e/S17/S17b/S19/S20/S27 (Amazon-Book, merge_t10)",
+    "V1-mergedt10": "Figure 1; Online Resource 1 Tables S13/S13b/S13e/S17/S17b/S19/S27 (Amazon-Book, merge_t10)",
+    "V2-mergedt10": "Figure 1; Online Resource 1 Tables S13/S13b/S13e/S17/S17b/S19/S27 (Amazon-Book, merge_t10)",
+    "V3-warm20": "Figure 1; Online Resource 1 Tables S13/S13b/S13e/S17/S17b/S19/S20/S27 (Amazon-Book V3: independent run of the main configuration; see Section S23)",
     "V0-nowarm": "Online Resource 1 Table S20 (warm-start removal, random direction)",
     "V3-nowarm": "Online Resource 1 Table S20 (warm-start removal, taxonomy direction)",
 }

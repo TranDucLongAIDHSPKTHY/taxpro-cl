@@ -1,4 +1,4 @@
-"""Main results table (main paper Section 5.1 and Table 7; Online Resource 1, Tables S1 and S18):
+"""Main results table (main paper Section 5.2.1 and Table 3; Online Resource 1, Tables S1 and S18):
 Recall@20 mean+-std over 3 seeds, all six methods x four datasets x five
 evaluation groups (Near-Cold, Mid-Tail, Long-Tail, Overall, Warm).
 

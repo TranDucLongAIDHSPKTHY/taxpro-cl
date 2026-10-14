@@ -1,5 +1,5 @@
 """Strict-Cold audit of the Protocol A main-comparison checkpoints
-(Online Resource 1, Section S34; main paper Limitation 3 and Table 5).
+(Online Resource 1, Section S34; main paper Sections 4.2 and 6.3).
 
 Strict-Cold items (train degree 0) are isolated in the training graph. Under
 layer-0-excluding pooling (SimGCL, XSimGCL, TaxPro-CL) their propagated

@@ -1,6 +1,6 @@
 """Held-out (Office-Products) re-analysis of the primary comparison restricted to items sparse under both degree
 definitions (train-time degree and pool degree over train+validation+test, Protocol B), the definition of Online
-Resource 1, Table S25. Same checkpoints as main paper Table 12 (selected TaxPro-CL against the rule-R and default
+Resource 1, Table S25. Same checkpoints as main paper Table 4 (selected TaxPro-CL against the rule-R and default
 SimGCL, three seed-matched pairs); per-user Recall@20 differences are averaged over the seed pairs, then
 resampled over users (bootstrap, 2,000 resamples, seed 42) and tested with the paired sign-flip test (10^5 sign
 assignments, seed 42). Analysis after the test split was opened; not part of the prospectively specified protocol.

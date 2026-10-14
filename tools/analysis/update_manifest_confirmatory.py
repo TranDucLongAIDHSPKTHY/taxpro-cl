@@ -1,5 +1,5 @@
 """Add the held-out (Office-Products) runs whose test split was opened to results_manifest.csv
-and their per-seed test metrics to metrics_seed.csv (main paper Table 12; Online Resource 1,
+and their per-seed test metrics to metrics_seed.csv (main paper Table 4; Online Resource 1,
 Section S36). Idempotent: rows already present (same run_id) are replaced, never duplicated.
 
 Runs: the selected TaxPro-CL cell, the factorial controls V0-V2, the SimGCL cells selected by
@@ -33,10 +33,10 @@ def runs():
     sel = json.loads((BASE / "confirmatory_selection.json").read_text(encoding="utf-8"))
     pol, tax = sel["step1_policy"]["selected"], sel["step2_taxpro"]["selected"]
     sim = sel["step3_tuned_simgcl"]
-    tables = "Table 12; Online Resource 1 Tables S36-S36c (held-out evaluation)"
+    tables = "Table 4; Online Resource 1 Tables S36-S36c (held-out evaluation)"
     out = [("TaxPro-CL", "HO-TaxPro-CL-selected", BASE / "TaxPro-CL" / f"step2-{pol}-{tax}", tables)]
     for v in ("V0", "V1", "V2"):
-        out.append(("TaxPro-CL", f"HO-{v}", BASE / "TaxPro-CL" / f"step4-{v}-{pol}-{tax}", "Online Resource 1 Tables S36b-S36c"))
+        out.append(("TaxPro-CL", f"HO-{v}", BASE / "TaxPro-CL" / f"step4-{v}-{pol}-{tax}", "Figure 1; Online Resource 1 Tables S36b-S36c"))
     out += [("SimGCL", "HO-SimGCL-tuned-R", BASE / "SimGCL" / f"grid-{sim['selected']}", tables),
             ("SimGCL", "HO-SimGCL-tuned-Ov", BASE / "SimGCL" / f"grid-{sim['selected_rule_ov_sensitivity']}", tables),
             ("SimGCL", "HO-SimGCL-default", BASE / "SimGCL" / f"grid-{sim['default_cell']}", tables)]

@@ -186,11 +186,11 @@ def main():
     for row in manifest_rows:
         tables = []
         if row["variant"] == "TaxPro-CL-main":
-            tables = ["Table S1", "Table 7 (deltas)", "Table 11 (bootstrap)"]
+            tables = ["Table S1", "Table 3 (deltas)", "Tables S26/S26b (bootstrap)"]
         elif row["variant"] == "SimGCL-main":
-            tables = ["Table S1", "Table 7 (deltas)", "Table 11 (bootstrap)"]
+            tables = ["Table S1", "Table 3 (deltas)", "Tables S26/S26b (bootstrap)"]
         elif row["variant"] in ("V0", "V1", "V2", "V3"):
-            tables = ["Table 8", "Table 9", "Figure 2", "Online Resource 1 Tables S13/S13b/S17/S17b/S19/S27"]
+            tables = ["Figure 1", "Online Resource 1 Tables S13/S13b/S13e/S17/S17b/S19/S27"]
         row["used_in_tables"] = "; ".join(tables)
         if row["variant"] == "V3":
             is_same = row["checkpoint_sha256_best_validation_model"] in main_ckpt_hash_by_dataset.get(row["dataset"], set())

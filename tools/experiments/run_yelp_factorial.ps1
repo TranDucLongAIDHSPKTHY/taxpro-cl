@@ -1,5 +1,5 @@
-# Train the Yelp2018 V0-V3 factorial (RQ5) with temperature_user=0.15, the main
-# configuration's value (main paper Table 6), so that V3 has the configuration
+# Train the Yelp2018 V0-V3 factorial (RQ1) with temperature_user=0.15, the main
+# configuration's value (main paper Table 2), so that V3 has the configuration
 # of the TaxPro-CL-main result. Idempotent: completed seeds are skipped.
 # Outputs: log/p0/taxprocl/yelp2018/A2-V{0-3}-tempuser0.15/seed{42,0,1}.
 

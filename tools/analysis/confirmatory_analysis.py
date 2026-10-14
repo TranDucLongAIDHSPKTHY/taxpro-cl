@@ -2,7 +2,7 @@
 Sections 7-8 and Deviation 2), run once after the sealed test split was opened.
 
 Per-user test Recall@20 (and NDCG@20) differences, averaged over the three seed-matched
-pairs before resampling (as main paper Table 11); two-sided paired sign-flip test (10^5
+pairs before resampling (as Online Resource 1, Table S26b); two-sided paired sign-flip test (10^5
 sign assignments, generator seed 42); percentile bootstrap (2,000 resamples, seed 42).
 
   P1          Long-Tail Recall@20, selected TaxPro-CL minus tuned SimGCL (rule R), alone

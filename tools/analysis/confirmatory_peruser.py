@@ -1,5 +1,5 @@
 """Per-user test metrics of the held-out evaluation (docs/confirmatory_protocol.md; main paper
-Table 12; Online Resource 1, Section S36): Recall@20 and NDCG@20 of every Near-Cold and Long-Tail user for each run whose
+Table 4; Online Resource 1, Section S36): Recall@20 and NDCG@20 of every Near-Cold and Long-Tail user for each run whose
 test split was opened for the analysis (selected TaxPro-CL, V0-V2, SimGCL rule R / rule Ov / default),
 three seeds. Recomputed from the saved checkpoints with the evaluator's ranking; the per-run group means
 are checked against final_test_group_metrics.json.

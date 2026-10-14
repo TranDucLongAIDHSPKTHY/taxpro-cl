@@ -39,7 +39,7 @@ COMMON = {"dataset_path": "./dataset_verify/",
           "evaluation_protocol_path": "./preprocessed/evaluation_protocol/split_seed_42/",
           "top_K": "[10, 20]", "selection_K": "20", "embedding_size": "64", "num_worker": "4",
           "learn_rate": "0.001", "reg_lambda": "0.0001", "GCN_layer": "3", "sparsity_test": "0"}
-# Section 5: the final ACS configuration (manuscript Table 6); checked against the ACS
+# Section 5: the final ACS configuration (manuscript Table 2); checked against the ACS
 # main-run manifest at start-up.
 TAXPRO_BASE = {**COMMON, "training_epochs": "200", "early_stopping": "20", "interval": "1", "batch_size": "2048",
                "test_batch_size": "2048", "warm_start_epochs": "20", "mu": "0.9", "epsilon_max": "0.2",
@@ -50,7 +50,7 @@ TAXPRO_BASE = {**COMMON, "training_epochs": "200", "early_stopping": "20", "inte
                "gamma_cold": "1.5", "gamma_warm": "1.0", "same_leaf_weight": "0.0", "degree_near_cold_max": "5",
                "degree_long_tail_max": "10", "use_user_ssl": "true", "epsilon_user": "0.05",
                "ssl_lambda_user": "0.5", "temperature_user": "0.2", "isotropic_blend": "0.0"}
-# Framework defaults with the training budgets of manuscript Table 5 (as run on ACS).
+# Framework defaults with the training budgets of manuscript Section 4.2 (as run on ACS).
 BASELINES = {
     "SimGCL": {**COMMON, "training_epochs": "200", "early_stopping": "20", "interval": "1", "batch_size": "2048",
                "test_batch_size": "2048", "ssl_lambda": "0.5", "temperature": "0.2", "epsilon": "0.05"},

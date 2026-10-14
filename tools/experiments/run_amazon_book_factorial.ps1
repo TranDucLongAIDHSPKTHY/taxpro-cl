@@ -1,4 +1,4 @@
-# Run V0/V1/V2 of the Amazon-Book direction-by-magnitude factorial (RQ5) under
+# Run V0/V1/V2 of the Amazon-Book direction-by-magnitude factorial (RQ1) under
 # taxonomy_policy=merge_t10 (the main configuration's policy). V3 is not
 # trained by this script: A2-V3-warm20, an independent run of the main
 # configuration made separately on a second machine (ESM Table S23), serves as

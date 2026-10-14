@@ -1,5 +1,5 @@
 """Leaf-size distribution of each dataset's selected taxonomy policy
-(Online Resource 1, Table S15; main paper Section 4.1 and Table 3).
+(Online Resource 1, Table S15; main paper Section 4.1 and Table 2).
 
 For every dataset, reads metadata/taxonomy_variants/<dataset>/<policy>/item_to_leaf.json
 (policy = the one selected for the paper, tools.experiments.run_taxpro.PAPER_TAXONOMY_POLICY),

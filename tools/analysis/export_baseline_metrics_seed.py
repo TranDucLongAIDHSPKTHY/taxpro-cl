@@ -1,12 +1,12 @@
 """Appends LightGCN/SGL-ED/XSimGCL/NCL per-seed Recall@10/20, NDCG@10/20 rows
 (near_cold, long_tail, overall, warm) to results/metrics_seed.csv, so the
-file's Data-availability declaration ("the runs underlying Table 7 (deltas)")
-covers all of Table 7's method blocks, not only the SimGCL block.
+file covers every method of the main comparison (main paper Table 3 and
+Online Resource 1, Table S1), not only the SimGCL block.
 
 Pure export/re-analysis: no retraining, no re-inference. Sources:
 - results/mid_tail_degree6_10.json for near_cold/long_tail
   (already the official checkpoint-resolved per-seed source used by
-  tools/analysis/main_results_table.py for Table S1/Table 7).
+  tools/analysis/main_results_table.py for Table S1/Table 3).
 - each of those same checkpoints' own final_test_group_metrics.json for
   overall/warm (same convention main_results_table.py itself documents).
 """

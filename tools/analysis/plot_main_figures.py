@@ -1,7 +1,7 @@
 """Regenerate the two result figures that summarize the main comparison.
 
-Figure 1 of the main paper (file Fig2.pdf: Near-Cold / Long-Tail Recall@20 bars,
-three-seed mean +- 1 sample SD) reads results/main_results_table.json.
+File Fig2.pdf (Near-Cold / Long-Tail Recall@20 bars, three-seed mean +- 1 sample SD;
+the values of Online Resource 1, Table S1) reads results/main_results_table.json.
 
 Figure S2 of Online Resource 1 (file Fig4.pdf: Pareto view of Overall vs.
 Long-Tail Recall@20) reads results/beyond_accuracy.json, i.e. one representative checkpoint per

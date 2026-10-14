@@ -3,7 +3,7 @@
 Superseded for Online Resource 1, Table S16 by
 tools/analysis/prototype_distance_by_space.py: the layer-0 lookup used here
 belongs neither to the space the prototype bank is built from (layer-averaged
-propagated embedding) nor to the space Eq. (1) uses (per-layer embedding), so
+propagated embedding) nor to the space Eq. (6) uses (per-layer embedding), so
 its distances mix embedding spaces. Kept for the "Layer 0 (lookup)" row of S16.
 
 For each dataset's main TaxPro-CL checkpoint (all three training seeds, or the one

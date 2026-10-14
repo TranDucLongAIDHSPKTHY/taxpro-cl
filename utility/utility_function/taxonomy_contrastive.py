@@ -146,8 +146,8 @@ class PrototypeBank(nn.Module):
         variant, Online Resource 1, Section S14): unlike ema_update above
         (which pulls p_l toward the items that are positives in *this*
         batch, so an item that is a positive in more batches gets more pulls
-        and p_l becomes an interaction-frequency-weighted centroid; main
-        paper, Section 5.5), this recomputes p_l's EMA target as the
+        so p_l is frequency-influenced rather than an equal-item leaf mean;
+        main paper, Section 3.3), this recomputes p_l's EMA target as the
         UNWEIGHTED mean over every valid item currently in that leaf,
         regardless of whether it was a positive this batch. Runs at most
         once per epoch (self.last_snapshot_epoch) because it touches the

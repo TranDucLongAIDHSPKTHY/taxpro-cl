@@ -1,7 +1,7 @@
-"""Per-user hit decomposition of the Yelp2018 factorial (main paper Table 8, footnote a; Online
+"""Per-user hit decomposition of the Yelp2018 factorial (main paper Section 5.1.1; Online
 Resource 1, Tables S13g-S13h).
 
-For every variant V0-V3 (temperature_user=0.15 runs, the ones behind Table 8) and seed,
+For every variant V0-V3 (temperature_user=0.15 runs, the ones behind Tables S13 and S17) and seed,
 re-scores the saved best-validation checkpoint on the test split with the same full-catalog
 ranking and train/validation filtering as the evaluator, and exports per user:
   t_NC, t_MT  number of the user's test positives in the Near-Cold / Mid-Tail item group

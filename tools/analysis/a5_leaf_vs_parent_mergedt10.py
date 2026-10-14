@@ -11,7 +11,7 @@ Recall@20 and NDCG@20 per user for Near-Cold / Long-Tail / Overall / Warm, and
 the top-20 overlap between the two checkpoints over the Overall-eligible
 users. The parent-minus-leaf difference is averaged per user across the three
 seeds before bootstrap-resampling users (5000 resamples, percentile method,
-seed 42), the procedure used for the RQ5 factorial.
+seed 42), the procedure used for the RQ1 factorial.
 
 Inference only; no retraining.
 

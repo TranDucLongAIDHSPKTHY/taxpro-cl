@@ -1,7 +1,7 @@
 """Per-user Recall@20 bootstrap CI for the "rescue" prototype-construction
 variant against TaxPro-CL-main (Amazon-Book, both under merge_t10; Online
 Resource 1, Table S14). Same method as tools/analysis/seed_matched_bootstrap.py
-(Table 11): seed-matched checkpoint pairs (42-42, 0-0, 1-1), each user's
+(Online Resource 1, Table S26b): seed-matched checkpoint pairs (42-42, 0-0, 1-1), each user's
 difference averaged over the seed pairs in which the user appears, then users
 resampled, so every user contributes one value.
 

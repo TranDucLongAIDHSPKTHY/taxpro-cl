@@ -2,7 +2,7 @@
 prototype-construction variants (leaf_uniform, leave_one_out, rescue) against
 TaxPro-CL-main on Amazon-Book, seed-matched (0, 1, 42).
 
-Section 5.5 / Online Resource 1 Table S14 report per-user Recall@20 equality
+Main paper Section 5.3 / Online Resource 1 Table S14 report per-user Recall@20 equality
 (or near-equality) between each variant and TaxPro-CL-main, but Recall@20
 equality does not by itself establish that the two checkpoints recommend the
 same top-20 *set* per user, let alone the same order -- two models can share

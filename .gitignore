@@ -19,6 +19,8 @@ results/*
 # results/README.md lists each file and the script that writes it.
 !results/*.json
 !results/*.tex
+!results/Fig1.pdf
+!results/figure1_factorial_contrasts.csv
 !results/Fig3.pdf
 !results/statistical_tests_*.csv
 # Per-user differences behind the sign-flip p-values of Online Resource 1, Table S26.

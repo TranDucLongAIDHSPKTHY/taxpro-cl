@@ -1,12 +1,12 @@
-"""RQ5 factorial: (1) the Amazon-Book V0-V3 factorial under taxonomy_policy=
+"""RQ1 factorial: (1) the Amazon-Book V0-V3 factorial under taxonomy_policy=
 no_merge, a policy-sensitivity check next to the main merge_t10 factorial
 (Online Resource 1, Tables S13c-S13d), and (2) multiplicity correction of the
 direction and epsilon-adaptivity factorial cells with the same paired
-sign-flip test and Holm-Bonferroni procedure applied to Table 11
+sign-flip test and Holm-Bonferroni procedure applied to Table S26
 (tools/analysis/a2_multiplicity_correction.py; Online Resource 1, Table S13e).
 
 Inference only: it re-scores the checkpoints used by
-factorial_direction_bootstrap.py (Tables S13, S17, S19, Figure 2) and
+factorial_direction_bootstrap.py (Tables S13, S17, S19, Figure 1) and
 factorial_amazon_book.py, plus the Amazon-Book no_merge V0-V3 checkpoints
 (log/p0/taxprocl/amazon-book/A2-V{0,1,2,3}; 3 seeds; taxonomy_policy=no_merge
 in config_resolved.json; all four trained in Environment A). It does not
@@ -32,9 +32,9 @@ Recall@20 and NDCG@20 for near_cold/long_tail/overall/warm, then:
     and seeds, but that is a property of the data, not the reason for the
     max rule);
   - Holm-Bonferroni (alpha=0.05) across the 8 dataset x group (near_cold,
-    long_tail only -- the same family structure as Table 11/S26) combined
+    long_tail only -- the same family structure as Table S26) combined
     p-values, separately for direction and epsilon-adaptivity, on Recall@20
-    (the metric Table 11/the Abstract's headline claim uses) and, as a
+    (the primary metric of the main paper) and, as a
     secondary check, on NDCG@20.
 
 Usage:
@@ -62,7 +62,7 @@ from tools.ranking.inference import load_model, compute_batch_order_and_rank
 
 SEEDS = ["42", "0", "1"]
 GROUPS = ["near_cold", "long_tail", "overall", "warm"]
-HOLM_GROUPS = ["near_cold", "long_tail"]  # Table 11 / S26's family structure
+HOLM_GROUPS = ["near_cold", "long_tail"]  # Table S26's family structure
 K = 20
 BATCH_SIZE = 256
 N_BOOT = 5000
@@ -71,7 +71,7 @@ N_PERM_PRECISION = 1_000_000
 PRECISION_SEED = 123
 
 # Checkpoint sets. "current" = the checkpoints behind Tables S13/S17/S19 and
-# Figure 2 (factorial_direction_bootstrap.py's DATASET_DIRS, reproduced
+# Figure 1 (factorial_direction_bootstrap.py's DATASET_DIRS, reproduced
 # verbatim so this script's "current" numbers must match the published ones).
 # "nomerge" is Amazon-Book only: the V0-V3 runs under taxonomy_policy=no_merge
 # (policy-sensitivity check, Online Resource 1, Tables S13c-S13d).

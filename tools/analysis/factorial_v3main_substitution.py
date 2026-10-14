@@ -1,5 +1,5 @@
 """Environment check for the Amazon-Book factorial (Online Resource 1, Table S23b;
-main paper Section 5.4).
+main paper Sections 4.2 and 6.3).
 
 V0-V2 (merge_t10) ran on Environment A, V3 (A2-V3-warm20) on Environment B.
 This replaces V3 with the Environment-A main checkpoint (TaxPro-CL-main) and

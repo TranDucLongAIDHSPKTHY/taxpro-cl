@@ -1,5 +1,5 @@
 """Per-user bootstrap CI for the warm-start-removal companion check (main
-paper Section 5.4, RQ5 factorial): does removing warm_start_epochs entirely
+paper Section 5.3, RQ3): does removing warm_start_epochs entirely
 (-> 0) change Recall@20, under both the random-direction (V0) and
 taxonomy-direction (V3) controls, Amazon-Book, 3 seeds? (Online Resource 1,
 Table S20.)

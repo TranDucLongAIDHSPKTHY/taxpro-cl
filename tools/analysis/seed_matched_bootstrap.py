@@ -154,7 +154,7 @@ def _git_commit():
 
 
 def _build_metadata(args):
-    """Self-describing run record so Table 12 can be audited from the JSON
+    """Self-describing run record so Table S26b can be audited from the JSON
     alone, without reverse-engineering seed_index against metric files."""
     import datetime
 

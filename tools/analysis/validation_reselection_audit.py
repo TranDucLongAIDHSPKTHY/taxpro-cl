@@ -1,5 +1,5 @@
 """Retrospective validation-only re-selection of the TaxPro-CL configuration
-(Online Resource 1, Section S35; main paper Section 4.3 and Limitation 10).
+(Online Resource 1, Section S35; main paper Sections 4.2 and 6.3).
 
 TaxPro-CL's configuration was chosen during development with test-split metrics in
 view. This script asks, over the runs that were retained, which configuration a rule
@@ -8,7 +8,7 @@ configuration scores on the test split relative to the five baselines.
 
 Candidates (per dataset): every retained TaxPro-CL run family with all three training
 seeds (0, 1, 42) whose resolved configuration equals the dataset's main configuration
-except in the hyperparameters that were tuned (main paper Table 4: temperature,
+except in the hyperparameters that were tuned (main paper Table 2: temperature,
 temperature_user, epsilon_max, gamma_cold, gamma_warm, warm_start_epochs,
 taxonomy_policy). This keeps the method as specified in main paper Section 3 and
 excludes the factorial controls, component variants (parent prototype, isotropic blend,

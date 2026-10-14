@@ -1,6 +1,7 @@
-"""Regenerate the factorial forest plot (main paper Figure 2): per-user bootstrap
-95% CIs for both RQ5 conditional-effect comparisons, Near-Cold and Long-Tail, all
-four datasets. Reads results/factorial_direction_bootstrap.json (the Amazon-Book
+"""Factorial forest plot of the four development datasets only (Fig3.pdf): per-user
+bootstrap 95% CIs for both RQ1 conditional-effect comparisons, Near-Cold and
+Long-Tail. Main paper Figure 1, which adds the Office-Products contrasts, is drawn
+by tools/analysis/plot_figure1_factorial_forest.py. Reads results/factorial_direction_bootstrap.json (the Amazon-Book
 block holds the merge_t10 factorial; see tools/analysis/merge_factorial_results.py)
 and takes the Yelp2018 block from results/factorial_direction_bootstrap_yelp.json
 (V0-V3 trained with temperature_user=0.15, the main configuration's value).

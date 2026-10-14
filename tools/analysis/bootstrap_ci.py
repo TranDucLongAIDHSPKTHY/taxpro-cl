@@ -7,11 +7,11 @@ statistics.py) since it resamples thousands of users instead of 3 seeds, and
 it covers every dataset regardless of whether per-seed training logs still
 exist on disk.
 
-Superseded for main paper Table 11 by tools/analysis/seed_matched_bootstrap.py,
+Superseded for Online Resource 1, Table S26b, by tools/analysis/seed_matched_bootstrap.py,
 which pairs same-seed checkpoints (42-42, 0-0, 1-1); this earlier version is
 kept for reference only.
 
-Scope note (main paper Section 5.6): this
+Scope note (main paper Section 4.3): this
 CI is checkpoint-conditional. Each model contributes exactly one checkpoint
 (its best-validation checkpoint among the seeds trained), not necessarily
 matching seeds across models, so the interval measures per-user sampling

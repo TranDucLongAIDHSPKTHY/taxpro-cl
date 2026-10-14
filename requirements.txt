@@ -3,6 +3,9 @@ scipy==1.11.4
 torch==2.1.0
 tqdm==4.66.5
 pytest==8.3.5
-# Only for the figure scripts tools/analysis/regenerate_fig3_*.py:
+# Only for the figure scripts (tools/analysis/plot_figure1_factorial_forest.py,
+# regenerate_fig3_factorial_forest.py, plot_main_figures.py); PyMuPDF places the
+# two Figure 1 panels side by side:
 matplotlib==3.10.9
+PyMuPDF==1.28.2
 # NCL full training additionally requires a CUDA-compatible FAISS-GPU build.

@@ -1,4 +1,4 @@
-"""NDCG@20 for the RQ5 epsilon-adaptivity contrasts (V2-V0, V3-V1; Online
+"""NDCG@20 for the RQ1 epsilon-adaptivity contrasts (V2-V0, V3-V1; Online
 Resource 1, Table S17b), the NDCG@20 companion of Table S17. Same checkpoints,
 per-user pooling across seeds, and bootstrap as factorial_ndcg_bootstrap.py,
 which covers the direction contrasts (Table S13b). Yelp2018 uses the V0-V3

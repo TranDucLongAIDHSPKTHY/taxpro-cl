@@ -6,12 +6,12 @@ regularizer) and two independent perturbed passes (InfoNCE), with the mean of
 the propagated layers 1..L (layer 0 excluded) as the embedding. It changes the
 item-side perturbation:
 
-- **Direction (Eq. 1):** inside every propagation layer, an item moves toward
+- **Direction (Eq. 6):** inside every propagation layer, an item moves toward
   the exponential-moving-average prototype of its taxonomy leaf,
   `(p_l - e_i) / (||p_l - e_i|| + delta)`, instead of SimGCL's sign-aligned
   random direction. Prototypes are updated from the clean embeddings of the
-  batch's positive items (no gradient) before the two perturbed passes.
-- **Magnitude (Eq. 2):** `epsilon_i ~ U(0, epsilon_max / L * s(deg_i))`, with a
+  batch's distinct positive items (no gradient) before the two perturbed passes.
+- **Magnitude (Eq. 7):** `epsilon_i ~ U(0, epsilon_max / L * s(deg_i))`, with a
   step function `s` of the train-time degree (`gamma_cold` for degree 1-5,
   1 for 6-10, `gamma_warm` above 10).
 - **Users:** SimGCL's sign-aligned random perturbation with `epsilon_user`, and

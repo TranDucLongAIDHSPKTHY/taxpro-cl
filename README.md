@@ -10,6 +10,12 @@ leaf, with a magnitude scaled by its training degree. Every run uses
 validation-based checkpoint selection and a single full-catalog test
 evaluation.
 
+This repository accompanies the article "Evaluating the Added Value of
+Taxonomy-Guided Perturbation in Graph Contrastive Recommendation: A Controlled
+Study" (see Citation). The article calls the TaxPro-CL configuration the
+*complete configuration* and keeps the run identifiers used here (V0-V3 for the
+factorial arms, A1-A7 for the comparisons and sensitivity checks).
+
 ## Overview
 
 Long-tail recommendation is difficult because low-degree items have limited
@@ -30,16 +36,16 @@ This implementation provides:
   `merge_t15`.
 - Baselines runnable through this same entry point: LightGCN, SGL (edge-dropout
   variant, referred to as "SGL-ED" in the paper), SimGCL, NCL, and XSimGCL. The
-  paper's main comparison table (6 models) uses LightGCN, SGL-ED, SimGCL,
-  XSimGCL, NCL, and TaxPro-CL, each with 3 seeds (42, 0, 1) on all 4 datasets,
-  completed 2026-09-05. LightGCL appears in the paper only as a literature
-  comparison (Related Work, Table 1) and is not implemented in this repository.
+  paper's six-method comparison (Online Resource 1, Table S1) uses LightGCN,
+  SGL-ED, SimGCL, XSimGCL, NCL, and TaxPro-CL, each with 3 seeds (42, 0, 1) on all 4 datasets,
+  completed 2026-09-05. LightGCL appears in the paper only as related work
+  (Section 2) and is not implemented in this repository.
 - Overall and groupwise evaluation for Strict-Cold, Near-Cold, Mid-Tail,
   Long-Tail, and Warm items.
 - Checkpoint selection and early stopping on validation Overall Recall@20,
   followed by a single full-catalog test evaluation. The test split plays no
-  role in epoch or checkpoint selection. As the paper discloses (Section 4.3,
-  Limitation 10), TaxPro-CL's configuration and taxonomy policies were chosen
+  role in epoch or checkpoint selection. As the paper discloses (Sections 4.1-4.2
+  and 6.3), TaxPro-CL's configuration and taxonomy policies were chosen
   during development with test-split metrics in view.
 - Experiment runners for policy screening, main multi-seed runs, the A1-A7
   ablation and sensitivity checks, the V0-V3 factorial, and the prospectively
@@ -96,8 +102,8 @@ Outputs); delete it afterwards, it is not a paper result.
 ## Scope
 
 This repository implements the six-model main comparison, the A1-A6
-ablation and sensitivity checks, and the RQ5 direction-by-magnitude factorial
-reported in the paper, the A7 comparable-budget grid for SimGCL and XSimGCL
+ablation and sensitivity checks, and the RQ1 direction-by-magnitude factorial
+(V0-V3) reported in the paper, the A7 comparable-budget grid for SimGCL and XSimGCL
 (complete on all four datasets; the NCL part was not completed and is not
 reported), and the prospectively specified held-out evaluation on Office-Products
 (`docs/confirmatory_protocol.md`; see Prospectively Specified Held-Out Evaluation below).
@@ -117,7 +123,7 @@ held-out fifth dataset and an excluded candidate are listed below them:
 | `yelp2018`               | Yelp     | Business recommendation with multi-label category metadata |
 | `musical-instruments`    | Amazon   | Product recommendation, Musical Instruments category       |
 | `arts-crafts-and-sewing` | Amazon   | Product recommendation, Arts/Crafts/Sewing category        |
-| `office-products`        | Amazon   | Prospectively specified held-out evaluation (Table 12)     |
+| `office-products`        | Amazon   | Prospectively specified held-out evaluation (Table 4)      |
 | `cds-and-vinyl`          | Amazon   | Excluded candidate, reported in Online Resource 1, S30     |
 
 `amazon-book` and `yelp2018` reuse the canonical splits established by
@@ -229,7 +235,7 @@ not completed and is not reported) is a long-running orchestrator rather than a
 single command: `python -m tools.experiments.run_a7_full_grid` runs the whole
 grid (idempotent; completed cells are skipped and interrupted cells resume from
 `last_model.pt`), and `python -m tools.experiments.run_a7_simgcl_amazonbook_remaining`
-finishes only the remaining SimGCL/Amazon-Book cells. The RQ5 2x2 factorial
+finishes only the remaining SimGCL/Amazon-Book cells. The RQ1 2x2 factorial
 (V0-V3) is documented in `tools/README.md`.
 
 ```powershell
@@ -281,7 +287,7 @@ python -m tools.experiments.run_confirmatory --dataset office-products
 # 3. Open the test split once for the selected runs
 python -m tools.experiments.evaluate_sealed_test --selection results/confirmatory/confirmatory_selection.json
 
-# 4. Analyses (Table 12; Online Resource 1, Section S36)
+# 4. Analyses (Table 4; Online Resource 1, Section S36)
 python -m tools.analysis.confirmatory_analysis --dataset office-products
 python -m tools.analysis.confirmatory_six_methods --dataset office-products
 python -m tools.analysis.confirmatory_peruser --dataset office-products
@@ -339,18 +345,18 @@ entry points are:
 
 | Paper item | Script (`python -m tools.analysis.<name>`) |
 | --- | --- |
-| Main results (Tables 7, S1; Figure 1), NDCG@20 table (Table S18) | `mid_tail_degree6_10`, then `main_results_table`; figure: `plot_main_figures` |
-| Table 11 (per-user bootstrap, TaxPro-CL vs. SimGCL), Table S6 | `seed_matched_bootstrap` |
-| Multiplicity-corrected inference for Table 11 (Table S26) | `a2_multiplicity_correction` |
+| Main results (Tables 3, S1), NDCG@20 table (Table S18) | `mid_tail_degree6_10`, then `main_results_table` |
+| Per-user bootstrap, TaxPro-CL vs. default SimGCL (Tables S26b, S6) | `seed_matched_bootstrap` |
+| Multiplicity-corrected inference for that comparison (Table S26) | `a2_multiplicity_correction` |
 | Wilcoxon tests with Holm correction (Table S5) | `compile_ablation_sweep`, then `statistics` |
 | Taxonomy-policy sweep, validation and test (Table S3; CDs-and-Vinyl Table S30d) | `policy_sweep_splits` |
-| RQ5 factorial: direction and epsilon-adaptivity (Tables 8, 9, S13, S17, S19), interaction (Table S27), warm-start removal (Table S20); Figure 2 | `factorial_direction_bootstrap` (all datasets; Yelp2018 with `--datasets yelp2018`), `factorial_amazon_book` (Amazon-Book, `merge_t10`), `factorial_interaction_bootstrap`, `warmstart_removal_bootstrap`, `merge_factorial_results`; figure: `regenerate_fig3_factorial_forest` |
-| RQ5 NDCG@20 companions (Tables S13b, S17b) | `factorial_ndcg_bootstrap`, `epsilon_ndcg_bootstrap` |
+| RQ1 factorial: direction and epsilon-adaptivity (Tables S13, S17, S19), interaction (Table S27), warm-start removal (Table S20); Figure 1 | `factorial_direction_bootstrap` (all datasets; Yelp2018 with `--datasets yelp2018`), `factorial_amazon_book` (Amazon-Book, `merge_t10`), `factorial_interaction_bootstrap`, `warmstart_removal_bootstrap`, `merge_factorial_results`; Figure 1 (with the Office-Products rows): `plot_figure1_factorial_forest` |
+| RQ1 NDCG@20 companions (Tables S13b, S17b) | `factorial_ndcg_bootstrap`, `epsilon_ndcg_bootstrap` |
 | Amazon-Book `no_merge` factorial and Holm-Bonferroni families (Tables S13c-S13e) | `factorial_multiplicity`, `factorial_holm_table` |
 | Distinctness of the factorial checkpoints (Table S13f) | `results_manifest.csv` (checkpoint hashes) and each run's `final_test_group_metrics.json` |
 | V3 replaced by the Environment-A main checkpoint (Table S23b) | `factorial_v3main_substitution` |
 | Gap decomposition through V0 and contrasts as % of the control (Tables S32, S33) | `factorial_decomposition_summary` |
-| Prototype-construction variants (Tables 10, S14, S14b, S14c) | `leaf_variants_bootstrap`, `rescue_vs_variants_bootstrap`, `prototype_variants_overlap`, `prototype_variants_ndcg` |
+| Prototype-construction variants (Tables S14, S14b, S14c) | `leaf_variants_bootstrap`, `rescue_vs_variants_bootstrap`, `prototype_variants_overlap`, `prototype_variants_ndcg` |
 | A5 leaf vs. parent, policy-matched (Tables S7, S7b) | `a5_leaf_vs_parent_mergedt10` |
 | Leaf-size distribution (Table S15), prototype-to-embedding distance (Table S16), degree transition (Table S21) | `leaf_size_distribution`, `prototype_distance_by_space`, `degree_transition` |
 | Re-check under both degree definitions (Table S25) | `intrinsic_sparsity_bootstrap` |
@@ -360,10 +366,10 @@ entry points are:
 | Strict-Cold audit (Table S34) | `strict_cold_audit` |
 | CDs-and-Vinyl comparison (Tables S30b, S30c) | `cds_and_vinyl_summary`, `update_manifest_cds_and_vinyl` |
 | Full p-value vector of the factorial (Table S13e) | `export_factorial_pvalues` |
-| Yelp2018 per-user hit decomposition (Table 8 note a; Tables S13g, S13h) | `yelp_factorial_hits` |
-| A7 comparable-budget grid (Section 5.3; Tables S24-S24e) | `a7_tuned_comparison` |
+| Yelp2018 per-user hit decomposition (Tables S13g, S13h) | `yelp_factorial_hits` |
+| A7 comparable-budget grid (Table 3; Tables S24-S24e) | `a7_tuned_comparison` |
 | Validation-only re-selection of the configuration (Tables S35-S35c) | `validation_reselection_audit`, then `s35_export` |
-| Prospectively specified held-out evaluation (Table 12; Tables S36-S36e) | `confirmatory_analysis`, `confirmatory_six_methods`, `confirmatory_peruser` |
+| Prospectively specified held-out evaluation (Table 4; Tables S36-S36e) | `confirmatory_analysis`, `confirmatory_six_methods`, `confirmatory_peruser` |
 
 `results/README.md` lists every shipped result file with the script that
 writes it and the manuscript item it supports.
@@ -627,13 +633,12 @@ published.
 
 ```bibtex
 @unpublished{taxprocl2026,
-  title  = {TaxPro-CL: Taxonomy-Guided Perturbation for Sparse-Item
-            Recommendation in Graph Contrastive Learning - A Controlled
-            Ablation Study},
+  title  = {Evaluating the Added Value of Taxonomy-Guided Perturbation
+            in Graph Contrastive Recommendation: A Controlled Study},
   author = {Tran, Thi Phuong and Tran, Duc Long and Pham, Minh Chuan and
             Nguyen, Van Hau},
   year   = {2026},
-  note   = {Manuscript; code and results: release v1.4-jiis}
+  note   = {Manuscript; code and results: tag v1.5-jiis}
 }
 ```
 

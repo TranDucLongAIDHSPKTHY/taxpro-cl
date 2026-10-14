@@ -1,5 +1,5 @@
-"""Calibration checks for the multiplicity-corrected inference of Table 11 and
-of the RQ5 factorial (Online Resource 1, Tables S13e and S26)."""
+"""Calibration checks for the multiplicity-corrected inference of the default-SimGCL
+comparison and of the RQ1 factorial (Online Resource 1, Tables S26 and S13e)."""
 
 import itertools
 

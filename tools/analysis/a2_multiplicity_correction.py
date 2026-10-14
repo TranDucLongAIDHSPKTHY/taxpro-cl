@@ -1,9 +1,9 @@
-"""Multiplicity-corrected re-analysis of Main Paper Table 11 (the 8-cell
-TaxPro-CL vs. SimGCL comparison that anchors the Abstract's headline claim).
+"""Multiplicity-corrected re-analysis of the 8-cell TaxPro-CL vs.
+default-SimGCL comparison (main paper Section 5.2.1; Online Resource 1, Tables S26 and S26b).
 
 Reuses the exact same checkpoints, evaluation protocol, and per-user diff
 computation as tools/analysis/seed_matched_bootstrap.py (which produced
-Table 11) and adds, per cell:
+Table S26b) and adds, per cell:
 
 - the percentile-bootstrap 95% CI (unchanged; a descriptive interval);
 - a paired sign-flip randomization p-value on the seed-averaged per-user

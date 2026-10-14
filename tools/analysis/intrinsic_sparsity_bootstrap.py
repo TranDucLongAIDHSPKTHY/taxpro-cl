@@ -7,7 +7,7 @@ split-carve artifact documented in Online Resource 1 Table S21.
 
 Reuses the exact same checkpoints, evaluation protocol, and bootstrap
 procedure as tools/analysis/seed_matched_bootstrap.py (which produced
-Main Paper Table 11); the only change is the target item set. Inference
+Online Resource 1, Table S26b); the only change is the target item set. Inference
 only -- no retraining.
 
 Sanity check: this script also reports, per dataset, the artifact rate it

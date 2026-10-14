@@ -23,7 +23,7 @@ METRICS = ROOT / "results" / "metrics_seed.csv"
 RUN_DIR = ROOT / "log" / "p0" / "taxprocl" / "amazon-book" / "ablation-A5-parent-mergedt10"
 LABEL = "A5-parent-mergedt10"
 SEEDS = (42, 0, 1)
-USED_IN = ("Online Resource 1 Table S7; Section 5.3 (A5); RQ4 (prototype_mode=parent vs. TaxPro-CL-main "
+USED_IN = ("Online Resource 1 Table S7; Section 5.3 (A5; RQ3) (prototype_mode=parent vs. TaxPro-CL-main "
            "prototype_mode=leaf, both taxonomy_policy=merge_t10)")
 
 

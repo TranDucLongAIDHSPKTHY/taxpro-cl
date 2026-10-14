@@ -1,5 +1,5 @@
-"""Extended Holm table for the RQ5 factorial (Online Resource 1, Table S13e;
-main paper Section 5.4).
+"""Extended Holm table for the RQ1 factorial (Online Resource 1, Table S13e;
+main paper Section 5.1.1).
 
 From results/factorial_multiplicity.json (no new inference), lists for
 each of the four 8-cell families (factor: direction, epsilon-adaptivity x

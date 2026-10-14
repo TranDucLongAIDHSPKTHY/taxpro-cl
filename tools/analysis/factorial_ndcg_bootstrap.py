@@ -1,7 +1,7 @@
-"""NDCG@20 for the RQ5 direction contrasts (V1-V0, V3-V2; Online Resource 1,
+"""NDCG@20 for the RQ1 direction contrasts (V1-V0, V3-V2; Online Resource 1,
 Table S13b), the NDCG@20 companion of factorial_direction_bootstrap.py
 (Recall@20, Table S13). Same checkpoints, per-user pooling across seeds, and
-bootstrap; NDCG@20 as defined in the main paper (Eq. 9).
+bootstrap; NDCG@20 as defined in the main paper (Section 4.2).
 
 Usage:
     python -m tools.analysis.factorial_ndcg_bootstrap

@@ -1,4 +1,4 @@
-"""Export the full p-value vector of the RQ5 factorial (main paper Section 5.4; Online Resource 1,
+"""Export the full p-value vector of the RQ1 factorial (main paper Section 5.1.1; Online Resource 1,
 Table S13e).
 
 For every checkpoint set (current: main-configuration policy; nomerge: AB under no_merge),

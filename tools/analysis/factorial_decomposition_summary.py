@@ -6,7 +6,7 @@ No model is trained or scored here; the script reads two stored files:
 
 (1) Decomposition of the SimGCL -> TaxPro-CL gap through the factorial's
     random-direction, fixed-epsilon control V0 (Recall@20, three-seed means):
-        step 1  SimGCL (default)  -> V0        (every difference of Table 2 except
+        step 1  SimGCL (default)  -> V0        (every difference of Table 1 except
                                                 the direction generator and
                                                 epsilon-adaptivity, bundled)
         step 2  V0 -> complete configuration   (direction + epsilon-adaptivity)

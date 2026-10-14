@@ -1,4 +1,4 @@
-"""TaxPro-CL against comparable-budget-tuned baselines (A7 grid; main paper Section 5.3,
+"""TaxPro-CL against comparable-budget-tuned baselines (A7 grid; main paper Section 5.2.1,
 Online Resource 1, Section S24).
 
 For every dataset whose grid is complete, the tuned cell is selected from validation
@@ -10,7 +10,7 @@ rules:
            after the overall-rule results had been viewed; a sensitivity check).
 The default-hyperparameter run (the main comparison's baseline) is one of the 12 cells.
 For each selected cell, Near-Cold and Long-Tail test Recall@20 are compared with the
-main TaxPro-CL checkpoints exactly as in main paper Table 11: seed-matched pairs,
+main TaxPro-CL checkpoints exactly as in Online Resource 1, Table S26b: seed-matched pairs,
 per-user differences averaged over the three pairs, percentile bootstrap (2,000
 resamples) and a two-sided paired sign-flip test (10^5 permutations, seed 42); Holm
 within the 8-cell family (4 datasets x {NC, LT}) of each rule.

@@ -4,7 +4,7 @@ results_manifest.csv and (re)export their per-seed metrics to metrics_seed.csv.
 results_manifest.csv originally covered only TaxPro-CL-main, SimGCL-main and the
 V0-V3 factorial runs, while metrics_seed.csv also held the four remaining
 baselines. This script closes that gap: every run behind the main comparison
-(Table S1, Table 7) now has a manifest row with its run directory, resolved
+(Table S1, Table 3) now has a manifest row with its run directory, resolved
 configuration hash, split hashes and best-validation checkpoint hash.
 
 The run families are read from results/mid_tail_degree6_10.json (the
@@ -37,7 +37,7 @@ ROOT = Path(__file__).resolve().parents[2]
 MANIFEST = ROOT / "results" / "results_manifest.csv"
 METRICS = ROOT / "results" / "metrics_seed.csv"
 DATASETS = ["amazon-book", "yelp2018", "musical-instruments", "arts-crafts-and-sewing"]
-USED_IN = "Table S1 (main comparison); Table 7 (deltas)"
+USED_IN = "Table S1 (main comparison); Table 3 (deltas)"
 
 
 def manifest_row(fields, method, dataset, seed_dir):

@@ -7,7 +7,7 @@ trained EMA prototype, for three choices of e_i:
   - "pooled": the clean mean over propagated layers 1..L -- the space the
     prototype bank is initialized and updated from;
   - "layer1".."layerL": the clean propagated embedding at each layer -- the
-    space in which Eq. (1) forms the direction;
+    space in which Eq. (6) forms the direction;
   - "ego": the layer-0 lookup embedding (what
     tools/analysis/prototype_distance_by_leaf_size.py reports; it belongs to
     neither space above).

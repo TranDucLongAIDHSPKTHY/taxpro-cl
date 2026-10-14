@@ -57,7 +57,7 @@ def parse_args(argv=None):
     parser.add_argument(
         "--taxonomy-policy", choices=POLICIES, default=None,
         help="Default: the policy selected for the dataset in the paper "
-             "(Table 3): merge_t10 for amazon-book, no_merge otherwise.",
+             "(Table 2): merge_t10 for amazon-book, no_merge otherwise.",
     )
     parser.add_argument(
         "--taxonomy-granularity", choices=("leaf", "parent"), default="leaf"
@@ -76,7 +76,7 @@ def parse_args(argv=None):
         "--use-adaptive-epsilon", choices=("true", "false"), default="true",
         help="Degree-adaptive (true, default) vs. fixed (false) perturbation "
              "magnitude. Together with --augmentation-direction, this is the "
-             "second factor of the RQ5 2x2 factorial (paper Section 5.4) -- "
+             "second factor of the RQ1 2x2 factorial (paper Section 4.3) -- "
              "see tools/README.md for the V0-V3 <-> (direction, epsilon) mapping.",
     )
     parser.add_argument("--gpu-id", type=int, default=0)

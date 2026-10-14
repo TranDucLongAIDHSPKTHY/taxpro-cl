@@ -1,4 +1,4 @@
-"""Amazon-Book direction-by-epsilon-adaptivity factorial (RQ5), recomputed
+"""Amazon-Book direction-by-epsilon-adaptivity factorial (RQ1), recomputed
 on the merge_t10 checkpoints (the main configuration's actual taxonomy
 policy), replacing the earlier no_merge V0-V3 checkpoints.
 

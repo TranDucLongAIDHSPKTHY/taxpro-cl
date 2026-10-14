@@ -55,7 +55,7 @@ def build_row(variant_label, seed, run_dir):
         "augmentation_direction": str(config.get("augmentation_direction", "")),
         "use_adaptive_epsilon": str(config.get("use_adaptive_epsilon", "")),
         "taxonomy_policy": str(config.get("taxonomy_policy", "")),
-        "used_in_tables": "Table 8; Table 9; Figure 2; Online Resource 1 Tables S13/S13b/S17/S17b/S19/S27 (Yelp2018 rows, trained with temperature_user=0.15)",
+        "used_in_tables": "Figure 1; Online Resource 1 Tables S13/S13b/S13e/S17/S17b/S19/S27 (Yelp2018 rows, trained with temperature_user=0.15)",
     })
     return row
 

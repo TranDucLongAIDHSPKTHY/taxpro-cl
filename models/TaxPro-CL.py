@@ -425,13 +425,13 @@ class TaxProCLImproved(nn.Module):
 
     def _perturb_items(self, all_embedding, gcn_layers, view_id=None):
         """Taxonomy-direction perturbation of the item slice of one
-        propagation layer's output (Eqs. 1-2 of the paper). epsilon_max is
+        propagation layer's output (Eqs. 6-7 of the paper). epsilon_max is
         divided by gcn_layers, so the nominal per-layer magnitudes sum to
         epsilon_max over the L layers.
 
         view_id + asymmetric_view_direction: with
         augmentation_direction="taxonomy" (the main configuration), both
-        perturbed passes use the same deterministic direction (Eq. 1) within
+        perturbed passes use the same deterministic direction (Eq. 6) within
         a training step and differ only in the sampled magnitude. With
         asymmetric_view_direction=True (part of the "rescue" sensitivity
         variant, Online Resource 1, Section S14), view 1 uses the random

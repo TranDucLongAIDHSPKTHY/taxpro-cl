@@ -1,6 +1,6 @@
 """Per-user bootstrap CI for the V0-V3 direction-by-magnitude factorial
-(manuscript Section 5.4 "Direction-by-magnitude factorial ablation (RQ5)",
-Table 11).
+(manuscript Section 5.1, RQ1, and Figure 1; Online Resource 1,
+Tables S13, S17, and S19).
 
 V0/V1/V2/V3 hold every hyperparameter fixed within a dataset except
 perturbation direction (random vs. taxonomy) and epsilon-adaptivity
@@ -25,7 +25,7 @@ internal variant pairs instead of TaxPro-CL vs. a baseline:
     V3-V1: epsilon-adaptivity's effect at taxonomy direction
 
 Requires the V0/V1/V2 runs to already exist (produced by the A2 factorial
-commands documented in the paper's Section 5.4 methodology); V3
+commands documented in tools/README.md; design: main paper Section 4.3); V3
 reuses each dataset's main-configuration checkpoint (same one
 checkpoint_selection.select_checkpoint("TaxPro-CL", dataset) resolves to
 for Yelp2018/Musical-Instruments/Arts-Crafts-and-Sewing, and the A2-V3
