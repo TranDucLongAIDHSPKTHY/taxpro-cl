@@ -23,8 +23,8 @@ authors:
     affiliation: "Faculty of Information Technology, Hung Yen University of Technology and Engineering"
     city: "Hung Yen"
     country: "VN"
-version: "v1.5-jiis"
-date-released: 2026-10-14
+version: "v1.6"
+date-released: 2026-10-21
 license: MIT
 repository-code: "https://github.com/TranDucLongAIDHSPKTHY/taxpro-cl"
 preferred-citation:
@@ -44,7 +44,7 @@ preferred-citation:
       given-names: "Van Hau"
       affiliation: "Faculty of Information Technology, Hung Yen University of Technology and Engineering"
   year: 2026
-  notes: "Manuscript; code and results: tag v1.5-jiis of this repository."
+  notes: "Manuscript; code and results: tag v1.6 of this repository."
 references:
   - type: article
     title: "Simplify to the Limit! Embedding-less Graph Collaborative Filtering for Recommender Systems"

@@ -638,7 +638,7 @@ published.
   author = {Tran, Thi Phuong and Tran, Duc Long and Pham, Minh Chuan and
             Nguyen, Van Hau},
   year   = {2026},
-  note   = {Manuscript; code and results: tag v1.5-jiis}
+  note   = {Manuscript; code and results: tag v1.6}
 }
 ```
 
