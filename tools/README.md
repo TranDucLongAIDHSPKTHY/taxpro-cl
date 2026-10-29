@@ -175,9 +175,9 @@ from each dataset's own "TaxPro-CL main results" run (README.md) instead of
 being trained separately -- 42 new training runs total, plus the 4 datasets'
 main-results runs (needed anyway, and already the V3 checkpoint for 2 of
 them). Once these exist, feed them to `tools.analysis.factorial_direction_bootstrap`
-(ESM Tables S13/S17/S19; direction and epsilon-adaptivity conditional effects, Near-Cold/Long-Tail and Overall/Warm) and `tools.analysis.factorial_interaction_bootstrap` (ESM Table S27).
+(Online Resource 1, Tables S13/S17/S19; direction and epsilon-adaptivity conditional effects, Near-Cold/Long-Tail and Overall/Warm) and `tools.analysis.factorial_interaction_bootstrap` (Online Resource 1, Table S27).
 
-The companion warm-start-removal check (ESM Table S20) trains `A2-V0-nowarm`
+The companion warm-start-removal check (Online Resource 1, Table S20) trains `A2-V0-nowarm`
 and `A2-V3-nowarm` with the corresponding Amazon-Book command above plus
 `--warm-start-epochs 0` and compares them with `A2-V0-mergedt10` and
 `A2-V3-warm20` (same taxonomy policy on both sides), Amazon-Book only.
@@ -192,11 +192,11 @@ and `A2-V3-nowarm` with the corresponding Amazon-Book command above plus
 | `tools.analysis.export_evidence` | Export a small checksummed evidence bundle |
 | `tools.analysis.bootstrap_ci` | Earlier TaxPro-CL-vs-baseline bootstrap CI on one best-validation checkpoint per model; superseded for Online Resource 1 Table S26b by `seed_matched_bootstrap` |
 | `tools.analysis.seed_matched_bootstrap` | Seed-matched (42-42/0-0/1-1) bootstrap CI, one baseline vs. TaxPro-CL, one dataset |
-| `tools.analysis.factorial_direction_bootstrap` | V0-V3 direction factorial bootstrap, all 4 datasets (paper Section 5.1.1, ESM Tables S13/S17/S19) |
-| `tools.analysis.factorial_interaction_bootstrap` | Direction x epsilon-adaptivity interaction, all 4 datasets (ESM Table S27) |
-| `tools.analysis.factorial_amazon_book` | Amazon-Book factorial under `merge_t10`: Recall@20 and NDCG@20, interaction, and the warm-start-removal pair in one pass (ESM Tables S13/S13b/S17/S17b/S19/S20/S27) |
-| `tools.analysis.factorial_multiplicity` | Amazon-Book `no_merge` policy-sensitivity check (both metrics, all groups) plus sign-flip/Holm-Bonferroni multiplicity correction of the direction and epsilon-adaptivity 8-cell families (GPU-vectorized bootstrap/sign-flip; ESM Tables S13c-S13e) |
-| `tools.analysis.update_manifest_amazon_book_nomerge` | Set the `used_in_tables` field of the Amazon-Book `no_merge` V0-V3 rows in `results/results_manifest.csv` (ESM Tables S13c-S13e) |
+| `tools.analysis.factorial_direction_bootstrap` | V0-V3 direction factorial bootstrap, all 4 datasets (paper Section 5.1.1; Online Resource 1, Tables S13/S17/S19) |
+| `tools.analysis.factorial_interaction_bootstrap` | Direction x epsilon-adaptivity interaction, all 4 datasets (Online Resource 1, Table S27) |
+| `tools.analysis.factorial_amazon_book` | Amazon-Book factorial under `merge_t10`: Recall@20 and NDCG@20, interaction, and the warm-start-removal pair in one pass (Online Resource 1, Tables S13/S13b/S17/S17b/S19/S20/S27) |
+| `tools.analysis.factorial_multiplicity` | Amazon-Book `no_merge` policy-sensitivity check (both metrics, all groups) plus sign-flip/Holm-Bonferroni multiplicity correction of the direction and epsilon-adaptivity 8-cell families (GPU-vectorized bootstrap/sign-flip; Online Resource 1, Tables S13c-S13e) |
+| `tools.analysis.update_manifest_amazon_book_nomerge` | Set the `used_in_tables` field of the Amazon-Book `no_merge` V0-V3 rows in `results/results_manifest.csv` (Online Resource 1, Tables S13c-S13e) |
 | `tools.analysis.plot_figure1_factorial_forest` | Figure 1 (factorial forest plot: 32 development and 8 Office-Products contrasts) from the factorial bootstrap JSONs and the held-out analysis JSON; also writes the 40 plotted values to `results/figure1_factorial_contrasts.csv` |
 | `tools.analysis.regenerate_fig3_factorial_forest` | Development-only forest plot (`Fig3.pdf`, 32 contrasts) from the bootstrap JSONs |
 | `tools.analysis.plot_main_figures` | Near-Cold/Long-Tail bar chart (`Fig2.pdf`, the values of Online Resource 1 Table S1, from `main_results_table.json`) and Online Resource 1 Figure S2 (`Fig4.pdf`, Overall vs. Long-Tail Pareto view, from `beyond_accuracy.json`) |
@@ -222,25 +222,25 @@ and `A2-V3-nowarm` with the corresponding Amazon-Book command above plus
 | `tools.analysis.main_results_table` | Full mean±std results table + LaTeX, all 6 methods x 4 datasets x 5 groups (paper Table 3; Online Resource 1, Tables S1, S18) |
 | `tools.analysis.rank_audit_seed_matched` | Seed-matched item-rank audit, one baseline vs. TaxPro-CL |
 | `tools.analysis.beyond_accuracy` | Coverage@20, Long-Tail share@20, avg. recommended popularity, all 6 methods x 4 datasets |
-| `tools.analysis.view_cosine_by_degree` | Cosine similarity between the two perturbed views, by degree group (paper Section 5.1.1, ESM Table S22) |
+| `tools.analysis.view_cosine_by_degree` | Cosine similarity between the two perturbed views, by degree group (paper Section 5.1.1; Online Resource 1, Table S22) |
 | `tools.analysis.rescue_vs_variants_bootstrap` | Bootstrap CI, a rescue/ablation variant vs. an A2 factorial variant (Amazon-Book) |
-| `tools.analysis.leaf_variants_bootstrap` | Bootstrap CI, prototype-construction variants (`leaf_uniform`/`leave_one_out`) vs. TaxPro-CL-main, Amazon-Book (ESM Table S14) |
-| `tools.analysis.warmstart_removal_bootstrap` | Bootstrap CI, `warm_start_epochs=0` vs. main config, both direction controls, Amazon-Book (ESM Table S20) |
-| `tools.analysis.a2_multiplicity_correction` | Paired sign-flip test and Holm-Bonferroni correction of the 8 cells of the default-SimGCL comparison (ESM Tables S26, S26b). Primary run: `--n-boot 100000 --save-diffs results/a2_multiplicity_peruser_diffs.npz --output results/a2_multiplicity_correction_signflip_100k.json`; precision re-run: `--n-boot 100000 --n-perm 1000000 --seed 123 --load-diffs results/a2_multiplicity_peruser_diffs.npz --output results/a2_multiplicity_correction_signflip_1M_seed123.json` |
-| `tools.analysis.factorial_ndcg_bootstrap` | NDCG@20 companion of the direction factorial (ESM Table S13b); `--datasets yelp2018 --output results/factorial_ndcg_bootstrap_yelp.json` for the Yelp2018 rows |
-| `tools.analysis.epsilon_ndcg_bootstrap` | NDCG@20 companion of the epsilon-adaptivity factorial (ESM Table S17b) |
+| `tools.analysis.leaf_variants_bootstrap` | Bootstrap CI, prototype-construction variants (`leaf_uniform`/`leave_one_out`) vs. TaxPro-CL-main, Amazon-Book (Online Resource 1, Table S14) |
+| `tools.analysis.warmstart_removal_bootstrap` | Bootstrap CI, `warm_start_epochs=0` vs. main config, both direction controls, Amazon-Book (Online Resource 1, Table S20) |
+| `tools.analysis.a2_multiplicity_correction` | Paired sign-flip test and Holm-Bonferroni correction of the 8 cells of the default-SimGCL comparison (Online Resource 1, Tables S26, S26b). Primary run: `--n-boot 100000 --save-diffs results/a2_multiplicity_peruser_diffs.npz --output results/a2_multiplicity_correction_signflip_100k.json`; precision re-run: `--n-boot 100000 --n-perm 1000000 --seed 123 --load-diffs results/a2_multiplicity_peruser_diffs.npz --output results/a2_multiplicity_correction_signflip_1M_seed123.json` |
+| `tools.analysis.factorial_ndcg_bootstrap` | NDCG@20 companion of the direction factorial (Online Resource 1, Table S13b); `--datasets yelp2018 --output results/factorial_ndcg_bootstrap_yelp.json` for the Yelp2018 rows |
+| `tools.analysis.epsilon_ndcg_bootstrap` | NDCG@20 companion of the epsilon-adaptivity factorial (Online Resource 1, Table S17b) |
 | `tools.analysis.merge_factorial_results` | Write the Amazon-Book `merge_t10` blocks (from `factorial_amazon_book`) and the Yelp2018 `temperature_user=0.15` block into the factorial result JSONs cited by `claim_evidence.csv` |
-| `tools.analysis.prototype_variants_overlap` | Top-20 set/order overlap of the prototype-construction variants with TaxPro-CL-main (ESM Table S14b) |
-| `tools.analysis.prototype_variants_ndcg` | NDCG@20 companion of the prototype-construction variants (ESM Table S14c) |
-| `tools.analysis.intrinsic_sparsity_bootstrap` | Re-analysis of the default-SimGCL comparison (ESM Table S26b) restricted to items sparse under both degree definitions (ESM Table S25) |
-| `tools.analysis.realized_perturbation_norm` | Realized perturbation displacement by degree group, TaxPro-CL vs. SimGCL (ESM Table S29) |
+| `tools.analysis.prototype_variants_overlap` | Top-20 set/order overlap of the prototype-construction variants with TaxPro-CL-main (Online Resource 1, Table S14b) |
+| `tools.analysis.prototype_variants_ndcg` | NDCG@20 companion of the prototype-construction variants (Online Resource 1, Table S14c) |
+| `tools.analysis.intrinsic_sparsity_bootstrap` | Re-analysis of the default-SimGCL comparison (Online Resource 1, Table S26b) restricted to items sparse under both degree definitions (Online Resource 1, Table S25) |
+| `tools.analysis.realized_perturbation_norm` | Realized perturbation displacement by degree group, TaxPro-CL vs. SimGCL (Online Resource 1, Table S29) |
 | `tools.analysis.a7_grid_status` | Partial A7 grid summary at the 2026-09-15 data cut-off (not used for any reported table; see `a7_tuned_comparison`) |
-| `tools.analysis.a7_tuned_comparison` | A7 grid: tuned cell per rule (validation Overall; rule R) and per-user statistics vs. TaxPro-CL (ESM Tables S24-S24e) |
-| `tools.analysis.s35_export` | Re-runs the validation-only re-selection and exports `s35_rules.csv`, `s35_candidates.csv`, `s35_results.csv`, `s35_overall_rule_cells.csv` (ESM Tables S35-S35c) |
-| `tools.analysis.yelp_factorial_hits` | Yelp2018 factorial per-user hit decomposition, checked against the evaluator and the manifest hashes (paper Section 5.1.1; ESM Tables S13g-S13h) |
-| `tools.analysis.export_factorial_pvalues` | Full p-value vector of the RQ1 factorial with Holm ranks and adjusted p (`results/factorial_pvalues.csv`; ESM Table S13e) |
-| `tools.analysis.confirmatory_analysis` | Held-out evaluation: primary endpoint, secondary Holm family, factorial, sensitivity (Table 4; ESM Section S36) |
-| `tools.analysis.confirmatory_six_methods` | Held-out evaluation: descriptive six-method comparison (ESM Table S36b) |
+| `tools.analysis.a7_tuned_comparison` | A7 grid: tuned cell per rule (validation Overall; rule R) and per-user statistics vs. TaxPro-CL (Online Resource 1, Tables S24-S24e) |
+| `tools.analysis.s35_export` | Re-runs the validation-only re-selection and exports `s35_rules.csv`, `s35_candidates.csv`, `s35_results.csv`, `s35_overall_rule_cells.csv` (Online Resource 1, Tables S35-S35c) |
+| `tools.analysis.yelp_factorial_hits` | Yelp2018 factorial per-user hit decomposition, checked against the evaluator and the manifest hashes (paper Section 5.1.1; Online Resource 1, Tables S13g-S13h) |
+| `tools.analysis.export_factorial_pvalues` | Full p-value vector of the RQ1 factorial with Holm ranks and adjusted p (`results/factorial_pvalues.csv`; Online Resource 1, Table S13e) |
+| `tools.analysis.confirmatory_analysis` | Held-out evaluation: primary endpoint, secondary Holm family, factorial, sensitivity (Table 4; Online Resource 1, Section S36) |
+| `tools.analysis.confirmatory_six_methods` | Held-out evaluation: descriptive six-method comparison (Online Resource 1, Table S36b) |
 | `tools.analysis.confirmatory_peruser` | Held-out evaluation: per-user Near-Cold/Long-Tail test metrics of every opened run |
 | `tools.analysis.update_manifest_confirmatory` | Add the held-out runs to `results_manifest.csv` and `metrics_seed.csv` |
 | `tools.analysis.export_embeddings` | Export the item-embedding bundle of a completed run (utility; not used for a reported table) |

@@ -43,8 +43,8 @@ def configurations(args):
         return [{"policy": "no_merge", "direction": "random", "extra": []}]
     if args.study == "epsilon":
         # Matches the full reported sweep (README.md "A3: epsilon_max
-        # sensitivity"; ESM Table S4): 0.10 is also the Amazon-Book main
-        # config value.
+        # sensitivity"; Online Resource 1, Table S4): 0.10 is also the
+        # Amazon-Book main config value.
         return [
             {
                 "policy": "no_merge",

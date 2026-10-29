@@ -1,5 +1,5 @@
 """Seed-matched bootstrap CI, TaxPro-CL vs. a baseline, for one dataset
-(main paper Table 11; Online Resource 1, Table S6).
+(Online Resource 1, Table S6).
 
 Unlike tools/ranking/rank_comparison.py (used by
 tools/analysis/bootstrap_ci.py), which selects one best-validation checkpoint

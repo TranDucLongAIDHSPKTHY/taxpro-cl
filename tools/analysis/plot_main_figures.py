@@ -6,7 +6,7 @@ the values of Online Resource 1, Table S1) reads results/main_results_table.json
 Figure S2 of Online Resource 1 (file Fig4.pdf: Pareto view of Overall vs.
 Long-Tail Recall@20) reads results/beyond_accuracy.json, i.e. one representative checkpoint per
 method and dataset, the same basis as the coverage / share diagnostics next to
-it (ESM Section S10).
+it (Online Resource 1, Section S10).
 
 Usage:
     python -m tools.analysis.plot_main_figures

@@ -139,7 +139,8 @@ def effective_configuration(args):
         if args.warm_start_epochs is not None
         # 20 matches every reported TaxPro-CL run (all datasets, all V0-V3
         # factorial cells); the sole exception is the warm-start-removal
-        # companion check (ESM Table S20), which explicitly passes 0.
+        # companion check (Online Resource 1, Table S20), which explicitly
+        # passes 0.
         else (1 if args.smoke else 20)
     )
     if warm >= epochs:

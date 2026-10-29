@@ -32,7 +32,7 @@ from utility.utility_train.group_evaluator import load_targets
 ROOT = Path(__file__).resolve().parents[2]
 
 # Protocol A datasets: pool = train+validation only (test file is a disjoint
-# holdout copied unfiltered; the main paper's own S24 artifact calculation
+# holdout copied unfiltered; the Online Resource 1 Table S21 artifact calculation
 # for Protocol A also excludes test -- matched here for consistency).
 PROTOCOL_A = {"amazon-book", "yelp2018"}
 # Protocol B datasets: whole pool (train+validation+test) was 5-core filtered

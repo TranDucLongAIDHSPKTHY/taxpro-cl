@@ -1,5 +1,5 @@
 """Relative prototype-to-item distance by leaf size, in three embedding spaces
-(Online Resource 1, Table S16; main paper Sections 4.1 and 5.5).
+(Online Resource 1, Table S16; main paper Sections 4.1 and 6.1).
 
 For each dataset's main TaxPro-CL checkpoint (seeds 42, 0, 1) and every
 valid-taxonomy item i of leaf l, computes ||p_l - e_i|| / ||e_i||, with p_l the
