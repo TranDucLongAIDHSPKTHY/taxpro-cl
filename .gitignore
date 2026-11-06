@@ -68,6 +68,19 @@ tools/ranking/result/
 # merge summaries (~0.4 KB each) back Online Resource 1, Section S28 and Table S28.
 !/metadata/merge_summary_*.json
 
+# Re-drawn splits are rebuilt by tools/data/build_redrawn_splits.py; their hashes are
+# recorded in results/extended/redrawn_split_manifest.json.
+/dataset_verify/*-split*/
+/preprocessed/evaluation_protocol/split_seed_42/*-split*/
+/metadata/taxonomy_variants/*-split*/
+# Evidence of docs/extended_evaluation_protocol.md.
+!results/extended/
+!results/extended/*.json
+!results/extended/*.sha256
+!results/extended/*.csv
+!results/extended/labels/
+!results/extended/labels/**
+
 # Virtual environments created following the README.
 .venv/
 venv/

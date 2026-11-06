@@ -372,7 +372,8 @@ def output_hashes(directory, names):
 
 
 def build_evaluation_protocol(
-    dataset_name, degrees, masks, validation, test, sources, output_root=None
+    dataset_name, degrees, masks, validation, test, sources, output_root=None,
+    split_seed=SPLIT_SEED, creation_command="python -m tools.protocol.build --build",
 ):
     output = (
         Path(output_root) / dataset_name
@@ -382,7 +383,7 @@ def build_evaluation_protocol(
     output.mkdir(parents=True, exist_ok=True)
     degree_payload = {
         "dataset": dataset_name,
-        "split_seed": SPLIT_SEED,
+        "split_seed": split_seed,
         "definition": "number of unique (user,item) interactions in model train only",
         "degrees": degrees,
     }
@@ -406,7 +407,7 @@ def build_evaluation_protocol(
     manifest = {
         "protocol_version": PROTOCOL_VERSION,
         "dataset": dataset_name,
-        "split_seed": SPLIT_SEED,
+        "split_seed": split_seed,
         "group_definitions": GROUP_DEFINITIONS,
         "ranking_protocol": {
             "candidate_catalog": "full catalog",
@@ -418,9 +419,7 @@ def build_evaluation_protocol(
         },
         "source_paths": {key: value["path"] for key, value in sources.items()},
         "source_hashes": {key: value["sha256"] for key, value in sources.items()},
-        "creation_command": (
-            "python -m tools.protocol.build --build"
-        ),
+        "creation_command": creation_command,
         "output_hashes": output_hashes(output, names),
     }
     write_json(output / "manifest.json", manifest)
@@ -493,6 +492,7 @@ def finalize_taxonomy_variant(
     source_paths,
     source_hashes,
     policy,
+    creation_command="python -m tools.protocol.build --build",
 ):
     output = ROOT / "metadata" / "taxonomy_variants" / dataset_name / variant_name
     output.mkdir(parents=True, exist_ok=True)
@@ -572,7 +572,7 @@ def finalize_taxonomy_variant(
         "policy": policy,
         "source_paths": source_paths,
         "source_hashes": source_hashes,
-        "creation_command": "python -m tools.protocol.build --build",
+        "creation_command": creation_command,
         "output_hashes": output_hashes(output, output_names),
     }
     write_json(output / "manifest.json", manifest)

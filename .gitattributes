@@ -9,6 +9,9 @@ metadata/taxonomy_variants/** -text
 # and results/confirmatory/confirmatory_selection.sha256.
 docs/confirmatory_protocol.md -text
 results/confirmatory/confirmatory_selection.json -text
+docs/extended_evaluation_protocol.md -text
+results/extended/selection_*.json -text
+results/extended/labels/** binary
 
 # Analysis outputs (no recorded hashes): always stored and checked out with LF,
 # even when a script rewrites them with CRLF on Windows.

@@ -1,0 +1,128 @@
+{
+  "arts-crafts-and-sewing-split101": {
+    "coverage_percent": 97.492477,
+    "final_leaf_count": 1885,
+    "locked_long_tail_percent": 68.216,
+    "locked_near_cold_percent": 38.048,
+    "long_tail_percent": 67.985,
+    "near_cold_percent": 38.284,
+    "output_hashes": {
+      "test": "f20ed9acd65effe45d544463ee22fbc0cc100baa30944ae7566082ac9bf6947a",
+      "train": "6f8cac4c47dd1bdd7ab1a323ef6effb70b4aaa116b4ddc1f6bf2fdbc7930d427",
+      "validation": "7a25c317df3da43bc89f6b18ea52996445b3c38d0500b371dd1f1f0bdd638eac"
+    },
+    "train_observed_items": 21040
+  },
+  "arts-crafts-and-sewing-split102": {
+    "coverage_percent": 97.492477,
+    "final_leaf_count": 1885,
+    "locked_long_tail_percent": 68.216,
+    "locked_near_cold_percent": 38.048,
+    "long_tail_percent": 68.331,
+    "near_cold_percent": 38.131,
+    "output_hashes": {
+      "test": "932af7b48c803dc89767cf44d6037bc2d37288b20cf0e8bcb3f3d8999e85a5e6",
+      "train": "bd58d83825f5b09bfc110c4811f8f6a9a0a8cd7e0cd601f491f95937a3b85d5a",
+      "validation": "7eebb4e4549b86e8c9adfee86a24210000ed696a401c5bc1624574309bb03f39"
+    },
+    "train_observed_items": 21046
+  },
+  "arts-crafts-and-sewing-split103": {
+    "coverage_percent": 97.492477,
+    "final_leaf_count": 1885,
+    "locked_long_tail_percent": 68.216,
+    "locked_near_cold_percent": 38.048,
+    "long_tail_percent": 68.214,
+    "near_cold_percent": 38.115,
+    "output_hashes": {
+      "test": "060439aba0f759e2cd44082f928a7b93716b82ef6960cfd97a9f770ead7eb09b",
+      "train": "69a27c880e3350c1960018a5402631be258f4d80be420e3cb0801e87c74570d7",
+      "validation": "dba429475be66406b1dfcc6782d9fff5d8039ca063734f53ddf7b20c4f0ef1e1"
+    },
+    "train_observed_items": 21044
+  },
+  "musical-instruments-split101": {
+    "coverage_percent": 98.917137,
+    "final_leaf_count": 873,
+    "locked_long_tail_percent": 68.419,
+    "locked_near_cold_percent": 37.967,
+    "long_tail_percent": 67.926,
+    "near_cold_percent": 38.089,
+    "output_hashes": {
+      "test": "1d8f8486fb32d971286e527b89b31a83a3e0ca9cefc67bc16e0d1a800620caf4",
+      "train": "bd8e09ed15426efdd764696e756447f0d59534d8dacb1b4f806ff81afa803cb4",
+      "validation": "294da6be31bc9b3366e2a084b34c138fc886c696aa3fa7ab8dea02823f0d230b"
+    },
+    "train_observed_items": 9924
+  },
+  "musical-instruments-split102": {
+    "coverage_percent": 98.917137,
+    "final_leaf_count": 873,
+    "locked_long_tail_percent": 68.419,
+    "locked_near_cold_percent": 37.967,
+    "long_tail_percent": 68.581,
+    "near_cold_percent": 37.504,
+    "output_hashes": {
+      "test": "a5ad6e5c9043fa140208fddfe0fda0dc76b2f8b1b5d82449d171c96eda441f79",
+      "train": "b2332d909ac77d45a6c1bce2bbc7c85913e0b87a45407e5e3a09974e6e68f348",
+      "validation": "277d207798ed8b13a29122a739ce416869ea618e365f2391c53ae2d67fc16a1f"
+    },
+    "train_observed_items": 9927
+  },
+  "musical-instruments-split103": {
+    "coverage_percent": 98.917137,
+    "final_leaf_count": 873,
+    "locked_long_tail_percent": 68.419,
+    "locked_near_cold_percent": 37.967,
+    "long_tail_percent": 68.191,
+    "near_cold_percent": 37.783,
+    "output_hashes": {
+      "test": "c4268f272c865e037815b079fcee651d2e4632feba70d4fc779a3bbdedb8ea02",
+      "train": "33c458081e663ad7a561d8e2bcb43f4d4d5ba51c2c6847835e9848d4d8ce5e96",
+      "validation": "448ec3d7f2b8db8a79694a6609719f8b63f26b1be30635979342af9234f2c389"
+    },
+    "train_observed_items": 9925
+  },
+  "office-products-split101": {
+    "coverage_percent": 98.133381,
+    "final_leaf_count": 2036,
+    "locked_long_tail_percent": 60.48,
+    "locked_near_cold_percent": 32.312,
+    "long_tail_percent": 60.719,
+    "near_cold_percent": 32.588,
+    "output_hashes": {
+      "test": "e1db9edaf94ab336ae04d44a81195d05bb828252a2478313b501defb7c82cdf1",
+      "train": "6ced691bb6fbdc1d1640519acb56803574d1bd1a732bee068782f59b60c35d3c",
+      "validation": "c603ea66705d88bfbe76335abbeb650fd95e56c57e1dfa90f322b42dd01f7248"
+    },
+    "train_observed_items": 25893
+  },
+  "office-products-split102": {
+    "coverage_percent": 98.133381,
+    "final_leaf_count": 2036,
+    "locked_long_tail_percent": 60.48,
+    "locked_near_cold_percent": 32.312,
+    "long_tail_percent": 60.585,
+    "near_cold_percent": 32.54,
+    "output_hashes": {
+      "test": "bbdf7de49bbfcbaf39159c3169357558378081d30f46f7d1e21bf29f6bffcae9",
+      "train": "b2cb7ac4e6f9864d44157153bd3d77d8840b6567838af307c6e0b8ff9b2364c7",
+      "validation": "e0f73fc9a16e27a3fb0fb5940553bce3fdde21a1eee2b84d940f01e834c983ab"
+    },
+    "train_observed_items": 25894
+  },
+  "office-products-split103": {
+    "coverage_percent": 98.133381,
+    "final_leaf_count": 2036,
+    "locked_long_tail_percent": 60.48,
+    "locked_near_cold_percent": 32.312,
+    "long_tail_percent": 60.658,
+    "near_cold_percent": 32.444,
+    "output_hashes": {
+      "test": "bead5b2c45d4f3b4bbf3a4ec40316e2b7ee8d49590fd4503d772f1138e241c85",
+      "train": "08f776c52b77ce09977dfcb146178711f46f8371eee21f9a4c9497c3aaed71ac",
+      "validation": "44a3a9689fd5a3c7f593d2b878daa20f934a2b5dd7dea06e1a07ed86de3861cb"
+    },
+    "train_observed_items": 25891
+  }
+}
