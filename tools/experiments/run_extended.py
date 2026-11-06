@@ -111,7 +111,7 @@ NEUTRAL_DEFAULTS = {
     "asymmetric_view_direction": "false", "prototype_leave_one_out": "false",
     "prototype_weighting": "interaction", "prototype_init_scope": "all_valid",
     "mixture_alpha": "0.5", "taxonomy_perturbation": "none", "taxonomy_perturbation_rate": "1.0",
-    "taxonomy_perturbation_seed": "0", "direction_detach": "false",
+    "taxonomy_perturbation_seed": "0", "direction_detach": "false", "pool_layer_zero": "true",
 }
 SHUFFLE_SEED_BASE = 1000
 LABEL_SEED_BASE = 2000
@@ -130,6 +130,7 @@ REGISTRY_COLUMNS = ("run_id", "exp", "dataset", "arm", "split_seed", "train_seed
                     "val_overall_r20", "val_lt_r20", "test_eval_utc", "checkpoint_sha256", "git_commit")
 KINDS = ("smoke", "controls", "label-quality", "seeds", "splits", "grid", "pretrain", "comparator")
 PRETRAINING_STEP = "pretrain-2layers"
+PRETRAINING_OVERRIDES = {"GCN_layer": 2, "pool_layer_zero": "false"}
 
 
 @dataclass(frozen=True)
@@ -251,8 +252,8 @@ def plan_grid_complete():
 
 
 def plan_pretraining(package):
-    """LightGCN at the depth of GALORE's configuration, the start of GALORE. Its test stays closed."""
-    return [job(package, OFFICE, "LightGCN", PRETRAINING_STEP, seed, {"GCN_layer": 2}, arm="LightGCN-2layers")
+    """LightGCN with the depth and pooling of GALORE's encoder, the start of GALORE. Its test stays closed."""
+    return [job(package, OFFICE, "LightGCN", PRETRAINING_STEP, seed, PRETRAINING_OVERRIDES, arm="LightGCN-2layers")
             for seed in SEEDS]
 
 
@@ -269,7 +270,7 @@ def plan_smoke():
     jobs.append(job("smoke", data, "V3", "split-V3", 42, short, split=redrawn))
     jobs.append(job("smoke", data, "SimGCL-default", "split-default", 42, {"training_epochs": "2"}, split=redrawn))
     jobs.append(job("smoke", OFFICE, "LightGCN", "split-default", 42, {"training_epochs": "10"}, split=redrawn))
-    jobs.append(job("smoke", OFFICE, "LightGCN", PRETRAINING_STEP, 42, {"GCN_layer": 2, "training_epochs": "10"},
+    jobs.append(job("smoke", OFFICE, "LightGCN", PRETRAINING_STEP, 42, {**PRETRAINING_OVERRIDES, "training_epochs": "10"},
                     arm="LightGCN-2layers"))
     return jobs
 

@@ -19,6 +19,8 @@ class LightGCN(nn.Module):
         self.dataset = dataset
         self.device = device
         self.reg_lambda = float(self.config['reg_lambda'])
+        # False pools the propagated layers only, as the encoder of GALORE does. True is LightGCN.
+        self.pool_layer_zero = str(self.config.get('pool_layer_zero', 'true')).lower() != 'false'
         self.user_embedding = torch.nn.Embedding(num_embeddings=self.dataset.num_users,
                                                  embedding_dim=int(self.config['embedding_size']))
         self.item_embedding = torch.nn.Embedding(num_embeddings=self.dataset.num_items,
@@ -39,7 +41,7 @@ class LightGCN(nn.Module):
         all_embedding = torch.cat([self.user_embedding.weight, self.item_embedding.weight])
 
         # no dropout
-        embeddings = [all_embedding]
+        embeddings = [all_embedding] if self.pool_layer_zero else []
 
         for layer in range(int(self.config['GCN_layer'])):
             all_embedding = torch.sparse.mm(self.Graph, all_embedding)

@@ -1,8 +1,8 @@
 """User and item tables trained outside this repository, evaluated with its own protocol.
 
 The tables are final representations, so scoring is a dot product with no propagation.
-Scores pass through a double-precision sigmoid: the evaluator marks seen items with -1, so
-every score must stay above that value, and single precision would tie large scores.
+Scores pass through the sigmoid every model of this repository uses, so the rankings are
+built exactly as theirs, including the ties of saturated scores.
 """
 import torch
 from torch import nn
@@ -23,7 +23,7 @@ class ExternalEmbeddings(nn.Module):
 
     def get_rating_for_test(self, user):
         users = self.user_embedding(user.long())
-        return torch.sigmoid((users @ self.item_embedding.weight.transpose(0, 1)).double())
+        return torch.sigmoid(users @ self.item_embedding.weight.transpose(0, 1))
 
 
 class Trainer:

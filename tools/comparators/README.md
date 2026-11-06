@@ -43,5 +43,5 @@ python -m tools.experiments.run_comparators --open-test
 
 `--prepare` writes the data in the authors' formats outside this repository. Their test slots
 receive the validation split, so their code never sees the test split. `pretrain-lightgcn` trains
-the two-layer LightGCN from which GALORE starts, since its public code has no such stage; the test
+the two-layer LightGCN from which GALORE starts, pooled as its encoder pools, since its public code has no such stage; the test
 split of those runs is never evaluated. Selections must be committed before `--open-test`.

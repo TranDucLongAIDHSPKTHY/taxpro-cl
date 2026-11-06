@@ -13,5 +13,6 @@ num_worker = 4
 learn_rate = 0.001
 reg_lambda = 0.0001
 GCN_layer = 3
+pool_layer_zero = true
 resume_checkpoint = none
 sparsity_test = 0

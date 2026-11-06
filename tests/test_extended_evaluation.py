@@ -239,7 +239,8 @@ class RunnerPlanTests(unittest.TestCase):
         jobs = planned("pretrain-lightgcn")
         self.assertEqual({j.seed for j in jobs}, {42, 0, 1})
         for item in jobs:
-            self.assertEqual({k: v for k, v in dict(item.config).items() if reference.get(k) != v}, {"GCN_layer": "2"})
+            self.assertEqual({k: v for k, v in dict(item.config).items() if reference.get(k) != v},
+                             {"GCN_layer": "2", "pool_layer_zero": "false"})
         self.assertIn("log/p0/extended/office-products/LightGCN/pretrain-2layers/seed0",
                       {j.run_dir.as_posix() for j in jobs})
         self.assertIn("pretrain-lightgcn", CLOSED_PACKAGES)
@@ -431,12 +432,40 @@ class ExternalTableTests(unittest.TestCase):
 
         dataset = SimpleNamespace(num_users=2, num_items=3)
         model = ExternalEmbeddings({"embedding_size": 2}, dataset, torch.device("cpu"))
-        users = torch.tensor([[20.0, 0.0], [1.0, 0.0]])
+        users = torch.tensor([[2.0, 0.0], [1.0, 0.0]])
         items = torch.tensor([[2.0, 0.0], [1.5, 0.0], [-1.0, 0.0]])
         model.load_tables(users, items)
         ratings = model.get_rating_for_test(torch.tensor([0, 1]))
         self.assertTrue(bool((ratings > 0).all()))
         self.assertTrue(bool((ratings[0, 0] > ratings[0, 1]) and (ratings[0, 1] > ratings[0, 2])))
+
+    def test_scores_match_the_sigmoid_of_the_repository_models(self):
+        from models.ExternalEmbeddings import ExternalEmbeddings
+
+        dataset = SimpleNamespace(num_users=1, num_items=2)
+        model = ExternalEmbeddings({"embedding_size": 1}, dataset, torch.device("cpu"))
+        model.load_tables(torch.tensor([[1.0]]), torch.tensor([[30.0], [40.0]]))
+        ratings = model.get_rating_for_test(torch.tensor([0]))
+        self.assertEqual(ratings.dtype, torch.float32)
+        self.assertEqual(float(ratings[0, 0]), float(ratings[0, 1]))
+
+    def test_lightgcn_can_leave_layer_zero_out_of_the_pooling(self):
+        from models.LightGCN import LightGCN
+
+        model = LightGCN.__new__(LightGCN)
+        torch.nn.Module.__init__(model)
+        model.config = {"GCN_layer": 2}
+        model.dataset = SimpleNamespace(num_users=1, num_items=1)
+        model.user_embedding = torch.nn.Embedding(1, 1)
+        model.item_embedding = torch.nn.Embedding(1, 1)
+        with torch.no_grad():
+            model.user_embedding.weight.fill_(1.0)
+            model.item_embedding.weight.fill_(1.0)
+        model.Graph = (2.0 * torch.eye(2)).to_sparse()
+        model.pool_layer_zero = True
+        self.assertAlmostEqual(float(model.aggregate()[0]), 7.0 / 3.0, places=5)
+        model.pool_layer_zero = False
+        self.assertAlmostEqual(float(model.aggregate()[0]), 3.0, places=5)
 
     def test_external_tables_cannot_be_trained_here(self):
         from models.ExternalEmbeddings import Trainer
