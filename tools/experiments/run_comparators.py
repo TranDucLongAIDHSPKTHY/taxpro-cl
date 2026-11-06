@@ -41,6 +41,7 @@ from tools.experiments.run_extended import (  # noqa: E402
     LOCKED_SPLIT,
     OFFICE,
     OUTPUT,
+    PRETRAINING_STEP,
     RESULTS,
     SEEDS,
     Job,
@@ -150,11 +151,13 @@ def prepare():
 
 
 def pretrained_tables(seed):
-    """The LightGCN of the same seed; GALORE starts from a trained LightGCN."""
-    path = PREPARED / f"lightgcn_seed{seed}.npz"
+    """The two-layer LightGCN of the same seed, from which GALORE starts."""
+    path = PREPARED / f"lightgcn_2layers_seed{seed}.npz"
     if not path.exists():
-        checkpoint = torch.load(ROOT / FAMILIES[OFFICE]["LightGCN"] / f"seed{seed}" / "best_validation_model.pt",
-                                map_location="cpu", weights_only=False)
+        source = ROOT / OUTPUT / OFFICE / "LightGCN" / PRETRAINING_STEP / f"seed{seed}" / "best_validation_model.pt"
+        if not source.exists():
+            raise SystemExit(f"run the package pretrain-lightgcn first: {source} is missing")
+        checkpoint = torch.load(source, map_location="cpu", weights_only=False)
         state = checkpoint["model_state_dict"]
         np.savez(path, users=state["user_embedding.weight"].numpy(), items=state["item_embedding.weight"].numpy())
     return path

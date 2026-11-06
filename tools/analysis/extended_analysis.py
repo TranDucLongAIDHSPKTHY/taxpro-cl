@@ -94,7 +94,7 @@ def new_run_index():
     """(base dataset, split, arm, seed) -> run directory, for every planned new run."""
     index = {}
     for package in EXPECTED_RUNS:
-        if package == "smoke" or package.startswith("grid"):
+        if package == "smoke" or package.startswith(("grid", "pretrain")):
             continue
         for item in planned(package):
             index[item.base_dataset, item.split, item.arm, item.seed] = ROOT / item.run_dir

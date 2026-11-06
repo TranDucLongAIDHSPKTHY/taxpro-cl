@@ -33,9 +33,8 @@ import torch
 TOP = 20
 EVALUATION_BATCH = 1024
 GALORE_DATASET = "office-products"
-GALORE_OPTIONS = "-n_layer {layers} -l* 1 -lambda 0.2 -eps 0.2 -tau 0.15"
 EMBEDDING_SIZE = 64
-LAYERS = 3
+KGCL_LAYERS = 3
 
 
 def set_seeds(seed):
@@ -82,7 +81,7 @@ def run_kgcl(args):
     sys.path.insert(0, str(code))
     install_stand_ins()
     sys.argv = ["main.py", "--dataset", "amazon-book", "--model", "kgcl", "--seed", str(args.seed),
-                "--recdim", str(EMBEDDING_SIZE), "--layer", str(LAYERS), "--bpr_batch", "2048",
+                "--recdim", str(EMBEDDING_SIZE), "--layer", str(KGCL_LAYERS), "--bpr_batch", "2048",
                 "--epochs", str(args.max_epochs)]
     import world
 
@@ -140,7 +139,7 @@ def run_galore(args):
               "drop_rate": str(args.drop_rate), "add_edge": str(args.edge_num), "cluster_num": "1",
               "training.set": f"{folder}/train.txt", "valid.set": f"{folder}/valid.txt",
               "test.set": f"{folder}/test.txt", "test1.set": f"{folder}/test1.txt",
-              "test2.set": f"{folder}/test2.txt", "GALORE": GALORE_OPTIONS.format(layers=LAYERS)}
+              "test2.set": f"{folder}/test2.txt"}
     for key, value in values.items():
         conf.__setitem__(key, value)
     sets = [FileIO.load_data_set(conf[name], "graph")

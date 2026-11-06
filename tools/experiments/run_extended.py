@@ -128,7 +128,8 @@ LOCKED_COMPLETE_GAMMAS = (1.5, 5.0)
 REGISTRY_COLUMNS = ("run_id", "exp", "dataset", "arm", "split_seed", "train_seed", "config_sha256",
                     "label_file_sha256", "env", "start_utc", "end_utc", "status", "best_epoch",
                     "val_overall_r20", "val_lt_r20", "test_eval_utc", "checkpoint_sha256", "git_commit")
-KINDS = ("smoke", "controls", "label-quality", "seeds", "splits", "grid", "comparator")
+KINDS = ("smoke", "controls", "label-quality", "seeds", "splits", "grid", "pretrain", "comparator")
+PRETRAINING_STEP = "pretrain-2layers"
 
 
 @dataclass(frozen=True)
@@ -249,6 +250,12 @@ def plan_grid_complete():
             for user in GRID_USER_TEMPS for temp in GRID_ITEM_TEMPS for seed in SEEDS]
 
 
+def plan_pretraining(package):
+    """LightGCN at the depth of GALORE's configuration, the start of GALORE. Its test stays closed."""
+    return [job(package, OFFICE, "LightGCN", PRETRAINING_STEP, seed, {"GCN_layer": 2}, arm="LightGCN-2layers")
+            for seed in SEEDS]
+
+
 def plan_smoke():
     """Each new kind of run, briefly: the warm start plus two epochs. Never used in results."""
     data = "musical-instruments"
@@ -262,6 +269,8 @@ def plan_smoke():
     jobs.append(job("smoke", data, "V3", "split-V3", 42, short, split=redrawn))
     jobs.append(job("smoke", data, "SimGCL-default", "split-default", 42, {"training_epochs": "2"}, split=redrawn))
     jobs.append(job("smoke", OFFICE, "LightGCN", "split-default", 42, {"training_epochs": "10"}, split=redrawn))
+    jobs.append(job("smoke", OFFICE, "LightGCN", PRETRAINING_STEP, 42, {"GCN_layer": 2, "training_epochs": "10"},
+                    arm="LightGCN-2layers"))
     return jobs
 
 
@@ -282,14 +291,18 @@ PLANS = {
     "splits-office-products-lightgcn": plan_of(plan_splits, "splits-office-products-lightgcn", OFFICE, ("LightGCN",)),
     "grid-simgcl": plan_grid_simgcl,
     "grid-complete": plan_grid_complete,
+    "pretrain-lightgcn": plan_of(plan_pretraining, "pretrain-lightgcn"),
 }
 EXPECTED_RUNS = {
-    "smoke": 9, **{f"controls-{dataset}": 9 for dataset in FAMILIES},
+    "smoke": 10, **{f"controls-{dataset}": 9 for dataset in FAMILIES},
     "label-quality-musical-instruments": 9, f"label-quality-{OFFICE}": 9,
     "seeds-amazon-book-factorial": 12, "seeds-amazon-book-simgcl": 6, "seeds-yelp2018": 18,
     **{f"splits-{dataset}": 54 for dataset in REDRAWN_SPLIT_BASES},
-    "splits-office-products-lightgcn": 9, "grid-simgcl": 27, "grid-complete": 27,
+    "splits-office-products-lightgcn": 9, "grid-simgcl": 27, "grid-complete": 27, "pretrain-lightgcn": 3,
 }
+
+
+CLOSED_PACKAGES = {"smoke", "grid-simgcl", "grid-complete", "pretrain-lightgcn"}
 
 
 def planned(package):
@@ -610,7 +623,7 @@ def main(argv=None):
     action = parser.add_mutually_exclusive_group(required=True)
     action.add_argument("--package", nargs="+", choices=sorted(PLANS))
     action.add_argument("--select-grid", action="store_true")
-    action.add_argument("--open-test", choices=sorted(set(PLANS) - {"smoke", "grid-simgcl", "grid-complete"} | {"grid"}))
+    action.add_argument("--open-test", choices=sorted(set(PLANS) - CLOSED_PACKAGES | {"grid"}))
     action.add_argument("--registry", action="store_true")
     action.add_argument("--snapshot", choices=("before", "after"))
     parser.add_argument("--device", default="cuda")

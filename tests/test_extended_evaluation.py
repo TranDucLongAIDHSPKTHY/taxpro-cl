@@ -230,7 +230,19 @@ class RunnerPlanTests(unittest.TestCase):
 
         for package, count in EXPECTED_RUNS.items():
             self.assertEqual(len(planned(package)), count, package)
-        self.assertEqual(sum(count for name, count in EXPECTED_RUNS.items() if name != "smoke"), 324)
+        self.assertEqual(sum(count for name, count in EXPECTED_RUNS.items() if name != "smoke"), 327)
+
+    def test_pretraining_keeps_the_reference_except_the_depth_and_stays_closed(self):
+        from tools.experiments.run_extended import CLOSED_PACKAGES, FAMILIES, inherited_config, planned
+
+        reference = inherited_config(FAMILIES["office-products"]["LightGCN"], "LightGCN", {})
+        jobs = planned("pretrain-lightgcn")
+        self.assertEqual({j.seed for j in jobs}, {42, 0, 1})
+        for item in jobs:
+            self.assertEqual({k: v for k, v in dict(item.config).items() if reference.get(k) != v}, {"GCN_layer": "2"})
+        self.assertIn("log/p0/extended/office-products/LightGCN/pretrain-2layers/seed0",
+                      {j.run_dir.as_posix() for j in jobs})
+        self.assertIn("pretrain-lightgcn", CLOSED_PACKAGES)
 
     def test_controls_differ_from_the_reference_only_in_their_flags(self):
         from tools.experiments.run_extended import FAMILIES, inherited_config, planned
