@@ -507,10 +507,10 @@ class ComparatorPlanTests(unittest.TestCase):
         rows = [{"item_id": 0, "final_leaf": "A > B > C"}, {"item_id": 1, "final_leaf": "A > B"},
                 {"item_id": 2, "final_leaf": None}, {"item_id": 3, "final_leaf": "<img src=x> > A > B"}]
         triples = category_triples(rows)
-        self.assertEqual([t for t in triples if t[0] == 0], [(0, 2, 0), (0, 1, 1), (0, 0, 2)])
-        self.assertEqual([t for t in triples if t[0] == 1], [(1, 1, 0), (1, 0, 1)])
+        self.assertEqual([t for t in triples if t[0] == 0], [(0, 0, 0), (0, 1, 1), (0, 2, 2)])
+        self.assertEqual([t for t in triples if t[0] == 1], [(1, 0, 1), (1, 1, 2)])
         self.assertEqual([t for t in triples if t[0] == 2], [])
-        self.assertEqual([t for t in triples if t[0] == 3], [(3, 1, 0), (3, 0, 1)])
+        self.assertEqual([t for t in triples if t[0] == 3], [(3, 0, 1), (3, 1, 2)])
 
     def test_tables_are_padded_with_zero_vectors(self):
         from tools.experiments.run_comparators import pad

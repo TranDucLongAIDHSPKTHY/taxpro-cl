@@ -88,16 +88,17 @@ def plan(package):
 def category_triples(rows):
     """(item, level, node) for each category on an item's path, leaf at level 0. KGCL reads
     item-headed triples only, so the path is attached to the item, one relation per level.
-    Tokens holding HTML are not categories and are left out."""
+    It keeps the first triples of an item, so the leaf comes first. Tokens holding HTML are
+    not categories and are left out."""
     nodes, triples = {}, []
     for row in rows:
         if row["final_leaf"] is None:
             continue
         tokens = [token.strip() for token in row["final_leaf"].split(">")]
         tokens = [token for token in tokens if token and "<" not in token]
-        for depth in range(len(tokens)):
-            node = " > ".join(tokens[:depth + 1])
-            triples.append((row["item_id"], len(tokens) - 1 - depth, nodes.setdefault(node, len(nodes))))
+        for level in range(len(tokens)):
+            node = " > ".join(tokens[:len(tokens) - level])
+            triples.append((row["item_id"], level, nodes.setdefault(node, len(nodes))))
     return triples
 
 
