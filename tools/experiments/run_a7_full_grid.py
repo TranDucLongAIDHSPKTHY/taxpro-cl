@@ -9,9 +9,9 @@ NCL is architecturally different (cluster-based, no perturbation-direction/
 magnitude concept), so its comparable-budget axis is temperature x k
 (number of clusters) instead of temperature x epsilon:
   tau in {0.05, 0.10, 0.15, 0.20}, k in {1000, 2000, 3000}
-Amazon-Book only, matching where NCL's prior ad hoc exploration already
-lives; that ad hoc exploration used temperature values 0.03/0.08 outside
-this grid and is left as informal context, not part of this formal grid.
+on all four datasets (Amazon-Book first, then the other three). Earlier ad
+hoc NCL runs on Amazon-Book at temperatures 0.03/0.08 lie outside this grid
+and are not part of it.
 
 Reuse (no retraining): each model's own already-completed default-
 hyperparameter run from the main A1/A2 comparison table covers exactly one
@@ -74,7 +74,13 @@ DEFAULT_DIRS = {
     },
 }
 SIMXSIM_DEFAULT = {"SimGCL": (0.20, 0.05), "XSimGCL": (0.15, 0.20)}
-NCL_DEFAULT_DIR = "log/p0/baseline/NCL/amazon-book"  # seed{0,1,42}, no subdir
+# NCL's default run per dataset (seed{0,1,42} under each; temperature 0.05, k 2000 on all four)
+NCL_DEFAULT_DIRS = {
+    "amazon-book": "log/p0/baseline/NCL/amazon-book",
+    "yelp2018": "log/p0/baseline/NCL/yelp2018/paper-v1",
+    "musical-instruments": "log/p0/baseline/NCL/musical-instruments/ncl-a8e18596b653",
+    "arts-crafts-and-sewing": "log/p0/baseline/NCL/arts-crafts-and-sewing/ncl-0f7e1a630c06",
+}
 NCL_DEFAULT = (0.05, 2000)
 
 LOG_PATH = ROOT / "results" / "a7_full_grid_progress.log"
@@ -107,7 +113,7 @@ def is_default_reused(model: str, dataset: str, param1: float, param2) -> bool:
     if model == "NCL":
         if (param1, param2) != NCL_DEFAULT:
             return False
-        default_dir = ROOT / NCL_DEFAULT_DIR
+        default_dir = ROOT / NCL_DEFAULT_DIRS[dataset]
         return all(manifest_status(default_dir / f"seed{s}") == "completed" for s in SEEDS)
     return False
 
@@ -163,12 +169,13 @@ def iter_simxsim_cells():
 
 
 def iter_ncl_cells():
-    for temp in NCL_TEMPS:
-        for k in NCL_KS:
-            if is_default_reused("NCL", "amazon-book", temp, k):
-                continue
-            for seed in SEEDS:
-                yield "NCL", "amazon-book", temp, k, seed
+    for dataset in DATASETS:
+        for temp in NCL_TEMPS:
+            for k in NCL_KS:
+                if is_default_reused("NCL", dataset, temp, k):
+                    continue
+                for seed in SEEDS:
+                    yield "NCL", dataset, temp, k, seed
 
 
 def main(argv=None):
@@ -187,7 +194,7 @@ def main(argv=None):
 
     log(f"A7 full grid: {len(cells)} cells total "
         f"(SimGCL/XSimGCL: {len(SIMXSIM_TEMPS)} temps x {len(SIMXSIM_EPS)} eps x {len(DATASETS)} datasets x {len(SEEDS)} seeds x 2 models minus reused defaults; "
-        f"NCL: {len(NCL_TEMPS)} temps x {len(NCL_KS)} k x {len(SEEDS)} seeds, amazon-book only, minus reused default)")
+        f"NCL: {len(NCL_TEMPS)} temps x {len(NCL_KS)} k x {len(DATASETS)} datasets x {len(SEEDS)} seeds minus reused defaults)")
 
     if args.dry_run:
         for model, dataset, p1, p2, seed in cells:

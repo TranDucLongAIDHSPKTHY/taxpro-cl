@@ -103,9 +103,9 @@ Outputs); delete it afterwards, it is not a paper result.
 
 This repository implements the six-model main comparison, the A1-A6
 ablation and sensitivity checks, and the RQ1 direction-by-magnitude factorial
-(V0-V3) reported in the paper, the A7 comparable-budget grid for SimGCL and XSimGCL
-(complete on all four datasets; the NCL part was not completed and is not
-reported), and the prospectively specified held-out evaluation on Office-Products
+(V0-V3) reported in the paper, the A7 comparable-budget grid for SimGCL, XSimGCL
+and NCL (complete on all four datasets), and the prospectively specified held-out
+evaluation on Office-Products
 (`docs/confirmatory_protocol.md`; see Prospectively Specified Held-Out Evaluation below).
 This repository does **not** implement sibling loss, gating, or multi-level
 prototype memory; the taxonomy-guided direction and degree-adaptive magnitude
@@ -230,8 +230,8 @@ parent-level one. A3-A5 run on Amazon-Book only. A6 (same-leaf soft-positive
 weight, Arts-Crafts-and-Sewing) is listed above under TaxPro-CL main results,
 since it is a one-flag variant of that dataset's main command. A7
 (comparable-budget SimGCL/XSimGCL grid on the four datasets, temperature
-{0.05, 0.10, 0.15, 0.20} x epsilon {0.05, 0.10, 0.20}, 3 seeds; the NCL grid was
-not completed and is not reported) is a long-running orchestrator rather than a
+{0.05, 0.10, 0.15, 0.20} x epsilon {0.05, 0.10, 0.20}, 3 seeds; NCL crosses the
+same temperatures with 1000, 2000 or 3000 clusters) is a long-running orchestrator rather than a
 single command: `python -m tools.experiments.run_a7_full_grid` runs the whole
 grid (idempotent; completed cells are skipped and interrupted cells resume from
 `last_model.pt`), and `python -m tools.experiments.run_a7_simgcl_amazonbook_remaining`

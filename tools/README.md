@@ -84,7 +84,7 @@ configuration from test metrics.
 | `tools.experiments.run_taxpro` | Run protocol-scoped TaxProCL configurations |
 | `tools.experiments.run_ablation` | Run screening and controlled ablation studies (A3/A4/A5) |
 | `tools.experiments.run_stability_smoke` | Run engineering-only stability checks |
-| `tools.experiments.run_a7_full_grid` | A7 comparable-budget grid for SimGCL and XSimGCL (idempotent; resumes interrupted cells) |
+| `tools.experiments.run_a7_full_grid` | A7 comparable-budget grid for SimGCL, XSimGCL and NCL (idempotent; resumes interrupted cells) |
 | `tools.experiments.run_confirmatory` | Held-out evaluation of `docs/confirmatory_protocol.md`: validation-only selection, factorial controls, default baselines; test split sealed (`TAXPRO_DEFER_TEST=1`) |
 | `tools.experiments.evaluate_sealed_test` | Open the test split once for sealed runs (refuses runs that already have a test result) |
 

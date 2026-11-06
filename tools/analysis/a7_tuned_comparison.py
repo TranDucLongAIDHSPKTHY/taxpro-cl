@@ -9,6 +9,7 @@ rules:
            Overall (rule R of docs/confirmatory_protocol.md, 2026-09-27, specified
            after the overall-rule results had been viewed; a sensitivity check).
 The default-hyperparameter run (the main comparison's baseline) is one of the 12 cells.
+NCL's grid crosses temperature with the number of clusters instead of epsilon.
 For each selected cell, Near-Cold and Long-Tail test Recall@20 are compared with the
 main TaxPro-CL checkpoints exactly as in Online Resource 1, Table S26b: seed-matched pairs,
 per-user differences averaged over the three pairs, percentile bootstrap (2,000
@@ -16,7 +17,7 @@ resamples) and a two-sided paired sign-flip test (10^5 permutations, seed 42); H
 within the 8-cell family (4 datasets x {NC, LT}) of each rule.
 
 Inference only, no retraining.  Usage:
-    python -m tools.analysis.a7_tuned_comparison [--models SimGCL XSimGCL]
+    python -m tools.analysis.a7_tuned_comparison [--models SimGCL XSimGCL NCL] [--reuse]
 """
 from __future__ import annotations
 
@@ -42,7 +43,10 @@ DATASETS = ("amazon-book", "yelp2018", "musical-instruments", "arts-crafts-and-s
 SEEDS = ("42", "0", "1")
 TEMPS = (0.05, 0.1, 0.15, 0.2)
 EPS = (0.05, 0.1, 0.2)
-DEFAULT = {"SimGCL": (0.2, 0.05), "XSimGCL": (0.15, 0.2)}
+CLUSTERS = (1000, 2000, 3000)
+SECOND_AXIS = {"SimGCL": EPS, "XSimGCL": EPS, "NCL": CLUSTERS}
+AXIS_PREFIX = {"SimGCL": "eps", "XSimGCL": "eps", "NCL": "k"}
+DEFAULT = {"SimGCL": (0.2, 0.05), "XSimGCL": (0.15, 0.2), "NCL": (0.05, 2000)}
 GROUPS = ("near_cold", "long_tail", "warm", "overall")
 OUT = ROOT / "results" / "a7_tuned_comparison.json"
 
@@ -54,10 +58,10 @@ def main_run_dirs(model, dataset):
     return [dirs[s] for s in SEEDS]
 
 
-def cell_run_dirs(model, dataset, temp, eps):
-    if (temp, eps) == DEFAULT[model]:
+def cell_run_dirs(model, dataset, temp, second):
+    if (temp, second) == DEFAULT[model]:
         return main_run_dirs(model, dataset)
-    base = ROOT / "log" / "p0" / "baseline" / model / dataset / f"A7-temp{temp}-eps{eps}"
+    base = ROOT / "log" / "p0" / "baseline" / model / dataset / f"A7-temp{temp}-{AXIS_PREFIX[model]}{second}"
     return [base / f"seed{s}" for s in SEEDS]
 
 
@@ -119,10 +123,10 @@ def main(argv=None) -> int:
         for dataset in DATASETS:
             cells = {}
             for t in TEMPS:
-                for e in EPS:
-                    m = cell_means(cell_run_dirs(model, dataset, t, e))
+                for second in SECOND_AXIS[model]:
+                    m = cell_means(cell_run_dirs(model, dataset, t, second))
                     if m is not None:
-                        cells[(t, e)] = m
+                        cells[(t, second)] = m
             taxpro_dirs = main_run_dirs("TaxPro-CL", dataset)
             entry = {"cells_complete": len(cells), "taxpro_cl": cell_means(taxpro_dirs),
                      "default": {"cell": list(DEFAULT[model]), **cells.get(DEFAULT[model], {})}}
