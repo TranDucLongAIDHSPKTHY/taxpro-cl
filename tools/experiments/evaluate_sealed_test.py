@@ -4,8 +4,9 @@ Runs trained with TAXPRO_DEFER_TEST=1 stop after validation and write no test
 metric. This script rebuilds each run's model from its run_manifest.json, then
 calls the unchanged batch_test.final_test, which loads best_validation_model.pt
 and writes final_test_metrics.json and final_test_group_metrics.json exactly as a
-normal run would. It refuses any run that already has a test result, so the test
-split cannot be opened twice for the same run.
+normal run would. In the same opening it writes final_test_per_user.npz, so paired
+analyses never read the test split again. It refuses any run that already has a test
+result, so the test split cannot be opened twice for the same run.
 
 Usage:
     python -m tools.experiments.evaluate_sealed_test --selection confirmatory_selection.json
@@ -22,6 +23,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from types import SimpleNamespace
 
+import numpy as np
 import torch
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -29,7 +31,32 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 import utility.utility_train.batch_test as batch_test  # noqa: E402
+from config_path.config_path import evaluation_protocol_dir  # noqa: E402
+from tools.analysis.factorial_multiplicity import GROUPS, per_user_metrics  # noqa: E402
 from utility.utility_data.data_loader import Data  # noqa: E402
+from utility.utility_train.group_evaluator import load_targets  # noqa: E402
+
+
+def per_user_arrays(model, dataset, device, dataset_name):
+    """Recall@20 and NDCG@20 of every test user with a target in each group."""
+    targets = load_targets(evaluation_protocol_dir(dataset_name), "test")
+    metrics = per_user_metrics(model, dataset, device, targets)
+    arrays = {}
+    for group in GROUPS:
+        users = sorted(metrics["recall"][group])
+        arrays[f"{group}_users"] = np.asarray(users, dtype=np.int64)
+        arrays[f"{group}_recall"] = np.asarray([metrics["recall"][group][u] for u in users])
+        arrays[f"{group}_ndcg"] = np.asarray([metrics["ndcg"][group][u] for u in users])
+    return arrays
+
+
+def check_against_group_metrics(arrays, group_metrics):
+    """The per-user means must reproduce the stored group metrics."""
+    for group in GROUPS:
+        for name in ("recall", "ndcg"):
+            stored = float(group_metrics[group][name]["20"])
+            if abs(float(arrays[f"{group}_{name}"].mean()) - stored) > 1e-6:
+                raise RuntimeError(f"per-user {name} of {group} does not reproduce the stored value")
 
 
 def evaluate(run_dir: Path, device: torch.device, logger: logging.Logger) -> None:
@@ -47,6 +74,11 @@ def evaluate(run_dir: Path, device: torch.device, logger: logging.Logger) -> Non
     trainer_class = getattr(importlib.import_module("models." + manifest["model"]), "Trainer")
     trainer = trainer_class(SimpleNamespace(seed=manifest.get("training_seed")), config, dataset, device, logger)
     batch_test.final_test(dataset, trainer.model, device, config, logger)
+    arrays = per_user_arrays(trainer.model, dataset, device, str(config["dataset"]))
+    check_against_group_metrics(
+        arrays, json.loads((run_dir / "final_test_group_metrics.json").read_text(encoding="utf-8"))
+    )
+    np.savez_compressed(run_dir / "final_test_per_user.npz", **arrays)
     stamp = {"evaluated_at_utc": datetime.now(timezone.utc).isoformat(),
              "evaluated_by": "tools/experiments/evaluate_sealed_test.py"}
     (run_dir / "sealed_test_evaluation.json").write_text(json.dumps(stamp, indent=2) + "\n", encoding="utf-8")
