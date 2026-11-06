@@ -31,6 +31,9 @@ in the main reported configuration):
   treat other same-leaf batch items as soft positives; default 0.0 (main
   configuration uses the one-positive form). See
   `utility/utility_function/taxonomy_contrastive.py`.
+- `taxonomy_perturbation` and `direction_detach` select the label and
+  gradient-path controls of `docs/extended_evaluation_protocol.md`; both are
+  off in the main configuration.
 - `use_user_ssl` adds a SimGCL-identical isotropic perturbation and
   InfoNCE term on the user side (on by default in the main configuration,
   since the reported comparison inherits SimGCL's own both-sides-SSL
@@ -44,8 +47,10 @@ paper.
 
 from __future__ import annotations
 
+import hashlib
 from pathlib import Path
 
+import numpy as np
 import torch
 from torch import nn
 
@@ -54,7 +59,12 @@ import utility.utility_function.losses as losses
 import utility.utility_function.tools as tools
 import utility.utility_train.taxpro_trainer as taxpro_trainer
 from config_path.config_path import evaluation_protocol_dir
-from utility.utility_data.taxonomy import load_taxonomy, read_json, sha256_file
+from utility.utility_data.taxonomy import (
+    load_taxonomy,
+    perturb_taxonomy_labels,
+    read_json,
+    sha256_file,
+)
 from utility.utility_function.taxonomy_contrastive import (
     PrototypeBank,
     degree_epsilon_scale,
@@ -150,6 +160,14 @@ class TaxProCLImproved(nn.Module):
         self.prototype_weighting = str(config.get("prototype_weighting", "interaction"))
         self.prototype_leave_one_out = _as_bool(config.get("prototype_leave_one_out", False))
         self.asymmetric_view_direction = _as_bool(config.get("asymmetric_view_direction", False))
+        # Label and gradient-path controls (docs/extended_evaluation_protocol.md).
+        # The defaults are the main configuration's behavior.
+        self.taxonomy_perturbation = str(config.get("taxonomy_perturbation", "none"))
+        self.taxonomy_perturbation_rate = float(config.get("taxonomy_perturbation_rate", 1.0))
+        self.taxonomy_perturbation_seed = int(config.get("taxonomy_perturbation_seed", 0))
+        self.taxonomy_label_sha256 = None
+        self.taxonomy_label_retained_share = None
+        self.direction_detach = _as_bool(config.get("direction_detach", False))
         if self.reg_lambda < 0.0 or self.ssl_lambda < 0.0:
             raise ValueError("Loss weights must be non-negative")
         if self.temperature <= 0.0:
@@ -176,6 +194,16 @@ class TaxProCLImproved(nn.Module):
             raise ValueError("TaxPro-CL requires unknown_taxonomy_policy=exclude_cl")
         if self.prototype_weighting not in {"interaction", "leaf_uniform"}:
             raise ValueError("prototype_weighting must be interaction or leaf_uniform")
+        if self.taxonomy_perturbation not in {"none", "shuffle", "noise", "missing"}:
+            raise ValueError("taxonomy_perturbation must be none, shuffle, noise or missing")
+        if self.taxonomy_perturbation != "none" and self.prototype_mode != "leaf":
+            raise ValueError("taxonomy_perturbation requires prototype_mode=leaf")
+        if self.direction_detach and (
+            self.augmentation_direction != "taxonomy"
+            or self.prototype_mode != "leaf"
+            or str(config.get("direction_source", "prototype")) != "prototype"
+        ):
+            raise ValueError("direction_detach applies only to the leaf prototype direction")
 
         self.user_embedding = nn.Embedding(
             dataset.num_users, int(config["embedding_size"])
@@ -204,6 +232,25 @@ class TaxProCLImproved(nn.Module):
                 )
             )
         tensors = taxonomy.as_torch()
+        if self.taxonomy_perturbation != "none":
+            original_leaves = tensors["item_to_leaf_id"].numpy()
+            original_valid = tensors["valid_taxonomy_mask"].numpy()
+            labels, valid_labels = perturb_taxonomy_labels(
+                original_leaves,
+                original_valid,
+                self.taxonomy_perturbation,
+                self.taxonomy_perturbation_rate,
+                self.taxonomy_perturbation_seed,
+            )
+            self.taxonomy_label_retained_share = float(
+                (labels[original_valid] == original_leaves[original_valid]).mean()
+            )
+            self.taxonomy_label_sha256 = hashlib.sha256(labels.tobytes()).hexdigest()
+            output_dir = getattr(dataset, "training_output_dir", None)
+            if output_dir is not None:
+                np.save(Path(output_dir) / "taxonomy_labels.npy", labels)
+            tensors["item_to_leaf_id"] = torch.as_tensor(labels, dtype=torch.long)
+            tensors["valid_taxonomy_mask"] = torch.as_tensor(valid_labels, dtype=torch.bool)
         observed = torch.as_tensor(
             dataset.user_item_net.getnnz(axis=0) > 0, dtype=torch.bool
         )
@@ -502,8 +549,11 @@ class TaxProCLImproved(nn.Module):
                     target_prototype = (
                         safe_support * target_prototype - items
                     ) / (safe_support - 1.0)
+                # direction_detach: the state enters the direction without a
+                # gradient path; the perturbed state below keeps its own.
+                direction_state = items.detach() if self.direction_detach else items
                 leaf_direction = _normalized_direction(
-                    target_prototype - items, self.delta
+                    target_prototype - direction_state, self.delta
                 )
             if self.prototype_mode == "mixture":
                 # Fixed convex mixture of leaf and parent prototype directions:
@@ -802,6 +852,12 @@ class TaxProCLImproved(nn.Module):
             "prototype_weighting": self.prototype_weighting,
             "prototype_leave_one_out": self.prototype_leave_one_out,
             "asymmetric_view_direction": self.asymmetric_view_direction,
+            "taxonomy_perturbation": self.taxonomy_perturbation,
+            "taxonomy_perturbation_rate": self.taxonomy_perturbation_rate,
+            "taxonomy_perturbation_seed": self.taxonomy_perturbation_seed,
+            "taxonomy_label_sha256": self.taxonomy_label_sha256,
+            "taxonomy_label_retained_share": self.taxonomy_label_retained_share,
+            "direction_detach": self.direction_detach,
         })
         return metadata
 
@@ -851,6 +907,11 @@ class TaxProCLImproved(nn.Module):
             "prototype_weighting": self.prototype_weighting,
             "prototype_leave_one_out": self.prototype_leave_one_out,
             "asymmetric_view_direction": self.asymmetric_view_direction,
+            "taxonomy_perturbation": self.taxonomy_perturbation,
+            "taxonomy_perturbation_rate": self.taxonomy_perturbation_rate,
+            "taxonomy_perturbation_seed": self.taxonomy_perturbation_seed,
+            "taxonomy_label_sha256": self.taxonomy_label_sha256,
+            "direction_detach": self.direction_detach,
         }
         if self.prototype_mode == "mixture":
             config["mixture_alpha"] = self.mixture_alpha
@@ -896,6 +957,16 @@ class TaxProCLImproved(nn.Module):
             "isotropic_blend",
         ):
             if metadata.get(key) != expected[key]:
+                raise ValueError("Checkpoint metadata mismatch: {}".format(key))
+        # Absent from checkpoints saved before these controls existed.
+        for key, default in (
+            ("taxonomy_perturbation", "none"),
+            ("taxonomy_perturbation_rate", 1.0),
+            ("taxonomy_perturbation_seed", 0),
+            ("taxonomy_label_sha256", None),
+            ("direction_detach", False),
+        ):
+            if metadata.get(key, default) != expected[key]:
                 raise ValueError("Checkpoint metadata mismatch: {}".format(key))
 
 

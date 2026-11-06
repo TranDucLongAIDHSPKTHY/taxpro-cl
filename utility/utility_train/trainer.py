@@ -64,6 +64,16 @@ def load_resume_checkpoint(path, model, optimizer, config, device, training_seed
     return checkpoint
 
 
+def restore_validation_history(dataset, start_epoch):
+    """Reload the validation history of a resumed run. Entries past the resumed epoch
+    come from an interruption between the history write and the checkpoint save; those
+    epochs run again."""
+    history_path = Path(dataset.training_output_dir) / "validation_metrics.json"
+    if history_path.is_file():
+        history = json.loads(history_path.read_text(encoding="utf-8"))
+        dataset.validation_history = [row for row in history if int(row["epoch"]) <= start_epoch]
+
+
 def prepare_resumed_training(model, optimizer, args, config, dataset, device, logger):
     """Initialize common early-stopping state and optionally restore a run."""
     seed = getattr(args, "seed", None)
@@ -102,9 +112,7 @@ def prepare_resumed_training(model, optimizer, args, config, dataset, device, lo
     best_results["primary_value"] = float(
         state.get("primary_value", checkpoint.get("selection_value", float("-inf")))
     )
-    history_path = Path(dataset.training_output_dir) / "validation_metrics.json"
-    if history_path.is_file():
-        dataset.validation_history = json.loads(history_path.read_text(encoding="utf-8"))
+    restore_validation_history(dataset, start_epoch)
     logger.info("Resumed training from %s at epoch %d", resume_value, start_epoch)
     return start_epoch, best_results
 

@@ -14,6 +14,7 @@ from tqdm import tqdm
 import utility.utility_function.tools as tools
 import utility.utility_train.batch_test as batch_test
 from config_path.config_path import checkpoint_file
+from utility.utility_train.trainer import restore_validation_history
 
 
 def _restore_rng_state(payload):
@@ -134,6 +135,7 @@ def train_taxprocl(model, args, config, dataset, device, logger):
                 "primary_value", checkpoint.get("selection_value", float("-inf"))
             )
         )
+        restore_validation_history(dataset, start_epoch)
         logger.info("Resumed TaxProCL from %s at epoch %d", resume_value, start_epoch)
 
     loop_started = time()

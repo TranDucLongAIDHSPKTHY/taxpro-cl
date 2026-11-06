@@ -45,3 +45,7 @@ isotropic_blend = 0.0
 prototype_weighting = interaction
 prototype_leave_one_out = false
 asymmetric_view_direction = false
+taxonomy_perturbation = none
+taxonomy_perturbation_rate = 1.0
+taxonomy_perturbation_seed = 0
+direction_detach = false

@@ -18,6 +18,21 @@ from config_path.config_path import (
 
 
 SUPPORTED_POLICIES = ("no_merge", "merge_t5", "merge_t10", "merge_t15")
+# Re-drawn partitions of the locked 5-core pools (docs/extended_evaluation_protocol.md);
+# each has its own dataset identifier, so locked splits are never replaced.
+REDRAWN_SPLIT_BASES = ("musical-instruments", "arts-crafts-and-sewing", "office-products")
+REDRAWN_SPLIT_SEEDS = (101, 102, 103)
+SUPPORTED_DATASETS = frozenset(
+    {
+        "amazon-book", "yelp2018", "musical-instruments", "arts-crafts-and-sewing",
+        "cds-and-vinyl", "digital-music", "office-products",
+    }
+    | {
+        "{}-split{}".format(base, seed)
+        for base in REDRAWN_SPLIT_BASES
+        for seed in REDRAWN_SPLIT_SEEDS
+    }
+)
 
 
 def sha256_file(path):
@@ -77,11 +92,39 @@ class TaxonomyArtifacts:
         }
 
 
+def perturb_taxonomy_labels(item_to_leaf_id, valid_mask, mode, rate, seed):
+    """Label controls of docs/extended_evaluation_protocol.md, applied after the taxonomy
+    policy. shuffle: permute the labels of all valid items, keeping category sizes, coverage
+    and the mask. noise: permute the labels among a random share of the valid items, keeping
+    the mask. missing: remove the labels of a random share of the valid items. Uses its own
+    generator, so the global random state that training draws from is not touched. Returns
+    the leaf ids and the validity mask."""
+    leaf_ids = np.array(item_to_leaf_id, dtype=np.int64, copy=True)
+    valid = np.array(valid_mask, dtype=bool, copy=True)
+    if leaf_ids.shape != valid.shape:
+        raise ValueError("Leaf ids and validity mask do not cover the same catalog")
+    if mode not in {"shuffle", "noise", "missing"}:
+        raise ValueError("Unknown label perturbation: {}".format(mode))
+    if not 0.0 < float(rate) <= 1.0:
+        raise ValueError("Label perturbation rate must be in (0, 1]")
+    generator = np.random.default_rng(int(seed))
+    members = np.flatnonzero(valid)
+    if mode == "shuffle":
+        chosen = members
+    else:
+        chosen = np.sort(
+            generator.choice(members, size=int(round(float(rate) * len(members))), replace=False)
+        )
+    if mode == "missing":
+        leaf_ids[chosen] = -1
+        valid[chosen] = False
+    else:
+        leaf_ids[chosen] = generator.permutation(leaf_ids[chosen])
+    return leaf_ids, valid
+
+
 def validate_variant_manifest(dataset, policy, directory, manifest):
-    if dataset not in {
-        "amazon-book", "yelp2018", "musical-instruments", "arts-crafts-and-sewing",
-        "cds-and-vinyl", "digital-music", "office-products",
-    }:
+    if dataset not in SUPPORTED_DATASETS:
         raise ValueError("Unsupported dataset: {}".format(dataset))
     if policy not in SUPPORTED_POLICIES:
         raise ValueError("Unsupported taxonomy policy: {}".format(policy))
