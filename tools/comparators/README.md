@@ -37,11 +37,16 @@ From the root of this repository:
 python -m tools.experiments.run_comparators --prepare
 python -m tools.experiments.run_extended --package pretrain-lightgcn
 python -m tools.experiments.run_comparators --package comparator-kgcl comparator-galore
-python -m tools.experiments.run_comparators --select
-python -m tools.experiments.run_comparators --open-test
+python -m tools.experiments.run_comparators --select kgcl
+python -m tools.experiments.run_comparators --open-test kgcl
+python -m tools.experiments.run_comparators --select galore
+python -m tools.experiments.run_comparators --open-test galore
 ```
 
 `--prepare` writes the data in the authors' formats outside this repository. Their test slots
 receive the validation split, so their code never sees the test split. `pretrain-lightgcn` trains
-the two-layer LightGCN from which GALORE starts, pooled as its encoder pools, since its public code has no such stage; the test
-split of those runs is never evaluated. Selections must be committed before `--open-test`.
+the two-layer LightGCN from which GALORE starts, pooled as its encoder pools. It is the first of the
+paper's two training stages: the public code loads its checkpoint but does not include the step that
+produces it. Each method has its own
+selection file, which must be committed before its `--open-test`. GALORE's opening also evaluates
+those LightGCN runs once, so GALORE is compared with its starting point.

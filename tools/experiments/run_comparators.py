@@ -3,13 +3,14 @@
 The authors' code runs in the comparator environment through tools/comparators/upstream.py.
 Its final tables come back here and are evaluated with the repository's own evaluator, so
 each run has the usual files and the test split opens through evaluate_sealed_test, once,
-for the rule-R cell only, after the selection is committed.
+for the rule-R cell only, after that method's selection is committed. GALORE's opening also
+opens the LightGCN runs it starts from, for the comparison with its starting point.
 
 Usage:
     python -m tools.experiments.run_comparators --prepare
     python -m tools.experiments.run_comparators --package comparator-kgcl comparator-galore [--dry-run]
-    python -m tools.experiments.run_comparators --select
-    python -m tools.experiments.run_comparators --open-test
+    python -m tools.experiments.run_comparators --select kgcl
+    python -m tools.experiments.run_comparators --open-test kgcl
 """
 from __future__ import annotations
 
@@ -47,6 +48,8 @@ from tools.experiments.run_extended import (  # noqa: E402
     Job,
     committed_selection,
     log,
+    planned,
+    selection_file,
     read_manifest,
     require_clean_code,
     require_frozen_protocol,
@@ -60,13 +63,14 @@ from utility.utility_train.group_evaluator import evaluate_model_full_catalog, l
 COMPARATORS = Path(os.environ.get("TAXPRO_COMPARATORS", ROOT.parent / "TaxPro-CL_comparators"))
 PYTHON = COMPARATORS / ".venv" / "Scripts" / "python.exe"
 PREPARED = COMPARATORS / "prepared" / OFFICE
-SELECTION = RESULTS / "selection_comparators.json"
 UPSTREAM = ROOT / "tools" / "comparators" / "upstream.py"
 KGCL_TEMPERATURES = (0.05, 0.10, 0.15, 0.20)
 KGCL_WEIGHTS = (0.02, 0.06, 0.10)
-GALORE_EDGES = (1, 2, 5, 10)
-GALORE_DROPS = (0.05, 0.10, 0.20)
+# The ranges the GALORE authors searched (Luo et al., 2023, Section 5.3).
+GALORE_EDGES = (1, 3, 5, 10)
+GALORE_DROPS = (0.1, 0.3, 0.5)
 PACKAGES = {"comparator-kgcl": "KGCL", "comparator-galore": "GALORE"}
+METHODS = {method.lower(): package for package, method in PACKAGES.items()}
 EXPECTED_RUNS = 36
 
 
@@ -265,45 +269,52 @@ def cell_of(item):
     return item.cell.removeprefix("grid-")
 
 
-def freeze_selection():
-    path = ROOT / SELECTION
+def freeze_selection(name):
+    package = METHODS[name]
+    method = PACKAGES[package]
+    path = ROOT / selection_file(method)
     if path.exists():
         raise SystemExit(f"{path} is frozen already")
+    jobs = plan(package)
+    unfinished = [j for j in jobs if run_status(j.run_dir) != "completed"]
+    if unfinished:
+        raise SystemExit(f"{package}: {len(unfinished)} runs are not complete; nothing is selected")
+    cells = []
+    for cell in dict.fromkeys(cell_of(j) for j in jobs):
+        cells.append((cell, validation_means([ROOT / j.run_dir for j in jobs if cell_of(j) == cell])))
     document = {"protocol": "docs/extended_evaluation_protocol.md",
-                "frozen_at_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
-    for package, method in PACKAGES.items():
-        jobs = plan(package)
-        finished = [j for j in jobs if run_status(j.run_dir) == "completed"]
-        if not finished:
-            continue
-        if len(finished) != len(jobs):
-            raise SystemExit(f"{package}: {len(jobs) - len(finished)} runs are not complete; nothing is selected")
-        cells = []
-        for name in dict.fromkeys(cell_of(j) for j in jobs):
-            cells.append((name, validation_means([ROOT / j.run_dir for j in jobs if cell_of(j) == name])))
-        document[method] = {"rule_R": rule_r(cells), "rule_Ov": rule_ov(cells),
-                            "cells": {name: value["mean"] for name, value in cells}}
+                "frozen_at_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                method: {"rule_R": rule_r(cells), "rule_Ov": rule_ov(cells),
+                         "cells": {cell: value["mean"] for cell, value in cells}}}
+    path.parent.mkdir(parents=True, exist_ok=True)
     path.write_bytes((json.dumps(document, indent=2) + "\n").encode("utf-8"))
     path.with_suffix(".sha256").write_bytes(f"{sha256_path(path)}  {path.name}\n".encode())
-    log("comparator selection written; commit it before opening the test split")
+    log(f"{method} selection written; commit it before opening the test split")
+    print(method, document[method]["rule_R"], document[method]["rule_Ov"])
     return 0
 
 
-def open_test(device):
-    selection = committed_selection(SELECTION)
-    jobs, runs = [], []
-    for package, method in PACKAGES.items():
-        if method not in selection:
-            continue
-        jobs += plan(package)
-        runs += [str(ROOT / j.run_dir) for j in plan(package) if cell_of(j) == selection[method]["rule_R"]
-                 and not (ROOT / j.run_dir / "final_test_metrics.json").exists()]
-    log(f"OPEN TEST comparators: {len(runs)} runs")
+def open_test(name, device):
+    package = METHODS[name]
+    method = PACKAGES[package]
+    selection = committed_selection(selection_file(method))
+    jobs = plan(package)
+    runs = [str(ROOT / j.run_dir) for j in jobs if cell_of(j) == selection[method]["rule_R"]]
+    if method == "GALORE":
+        starts = planned("pretrain-lightgcn")
+        if any(run_status(j.run_dir) != "completed" for j in starts):
+            raise SystemExit("the LightGCN runs GALORE starts from are not complete; the test split stays sealed")
+        runs += [str(ROOT / j.run_dir) for j in starts]
+        update_registry(starts)
+    runs = [run for run in runs if not (Path(run) / "final_test_metrics.json").exists()]
+    log(f"OPEN TEST {method}: {len(runs)} runs")
     if not runs:
         return 0
     code = subprocess.run([sys.executable, "-m", "tools.experiments.evaluate_sealed_test",
                            "--device", device, "--runs", *runs], cwd=ROOT).returncode
     update_registry(jobs)
+    if method == "GALORE":
+        update_registry(planned("pretrain-lightgcn"))
     return code
 
 
@@ -312,8 +323,8 @@ def main(argv=None):
     action = parser.add_mutually_exclusive_group(required=True)
     action.add_argument("--prepare", action="store_true")
     action.add_argument("--package", nargs="+", choices=sorted(PACKAGES))
-    action.add_argument("--select", action="store_true")
-    action.add_argument("--open-test", action="store_true")
+    action.add_argument("--select", choices=sorted(METHODS))
+    action.add_argument("--open-test", choices=sorted(METHODS))
     parser.add_argument("--device", default="cuda")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args(argv)
@@ -323,8 +334,8 @@ def main(argv=None):
     if args.package:
         return run_packages(args.package, args.device, args.dry_run)
     if args.select:
-        return freeze_selection()
-    return open_test(args.device)
+        return freeze_selection(args.select)
+    return open_test(args.open_test, args.device)
 
 
 if __name__ == "__main__":

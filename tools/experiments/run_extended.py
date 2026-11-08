@@ -3,11 +3,12 @@
 Every run inherits the configuration recorded in the manifest of its reference family and
 may differ only in the overrides of its package; anything else stops the runner. Runs set
 TAXPRO_DEFER_TEST=1, so no test metric is computed here. Test splits are opened by
---open-test, once per run; the grid needs its committed selection file first.
+--open-test, once per run; a search needs its committed selection file first.
 
 Usage:
     python -m tools.experiments.run_extended --package grid-simgcl grid-complete [--dry-run]
-    python -m tools.experiments.run_extended --select-grid
+    python -m tools.experiments.run_extended --select grid
+    python -m tools.experiments.run_extended --open-test grid
     python -m tools.experiments.run_extended --open-test controls-amazon-book
     python -m tools.experiments.run_extended --registry
     python -m tools.experiments.run_extended --snapshot after
@@ -44,7 +45,15 @@ OUTPUT = Path("log/p0/extended")
 SMOKE_OUTPUT = OUTPUT / "smoke"
 RESULTS = Path("results/extended")
 PROTOCOL = Path("docs/extended_evaluation_protocol.md")
-SELECTION_GRID = RESULTS / "selection_grid.json"
+
+
+def selection_file(name):
+    """Selection file of a search or of an added baseline, frozen once."""
+    return RESULTS / f"selection_{name.lower()}.json"
+
+
+SELECTION_GRID = selection_file("grid")
+SELECTION_NCL = selection_file("ncl")
 REGISTRY = RESULTS / "run_registry.csv"
 SEEDS = (42, 0, 1)
 NEW_SEEDS = (2, 3, 4)
@@ -97,10 +106,12 @@ FAMILIES = {
         "SimGCL-default": f"{CONF}/SimGCL/grid-temp0.2-eps0.05",
         "SimGCL-tuned": f"{CONF}/SimGCL/grid-temp0.2-eps0.1",
         "LightGCN": f"{CONF}/LightGCN/default",
+        "NCL-default": f"{CONF}/NCL/default",
     },
 }
 REFERENCE_MODEL = {"V0": "TaxPro-CL", "V1": "TaxPro-CL", "V2": "TaxPro-CL", "V3": "TaxPro-CL",
-                   "SimGCL-default": "SimGCL", "SimGCL-tuned": "SimGCL", "LightGCN": "LightGCN"}
+                   "SimGCL-default": "SimGCL", "SimGCL-tuned": "SimGCL", "LightGCN": "LightGCN",
+                   "NCL-default": "NCL"}
 FACTORIAL = ("V0", "V1", "V2", "V3")
 SIMGCL = ("SimGCL-default", "SimGCL-tuned")
 
@@ -120,8 +131,14 @@ LABEL_ARMS = (("V3", "noise", "noise50"), ("V3", "missing", "missing50"), ("V2",
 GRID_SIMGCL_TEMPS = (0.25, 0.30, 0.40)
 GRID_SIMGCL_EPS = (0.05, 0.10, 0.20)
 GRID_ITEM_TEMPS = (0.15, 0.20, 0.25)
-GRID_USER_TEMPS = (0.25, 0.30, 0.40)
+GRID_USER_TEMPS = (0.20, 0.30, 0.40)
 GRID_GAMMA = 1.5
+# (item, user) temperatures; (0.15, 0.20) is the locked cell temp0.15-gamma1.5 and is not run again.
+GRID_COMPLETE_CELLS = tuple((temp, user) for user in GRID_USER_TEMPS for temp in GRID_ITEM_TEMPS
+                            if (temp, user) != (0.15, 0.20))
+NCL_TEMPS = (0.05, 0.10, 0.15, 0.20)
+NCL_CLUSTERS = (1000, 2000, 3000)
+NCL_DEFAULT = (0.05, 2000)
 LOCKED_SIMGCL_TEMPS = (0.05, 0.1, 0.15, 0.2)
 LOCKED_COMPLETE_TEMPS = (0.1, 0.125, 0.15)
 LOCKED_COMPLETE_GAMMAS = (1.5, 5.0)
@@ -129,6 +146,7 @@ REGISTRY_COLUMNS = ("run_id", "exp", "dataset", "arm", "split_seed", "train_seed
                     "label_file_sha256", "env", "start_utc", "end_utc", "status", "best_epoch",
                     "val_overall_r20", "val_lt_r20", "test_eval_utc", "checkpoint_sha256", "git_commit")
 KINDS = ("smoke", "controls", "label-quality", "seeds", "splits", "grid", "pretrain", "comparator")
+REFERENCE_KIND = "reference"
 PRETRAINING_STEP = "pretrain-2layers"
 PRETRAINING_OVERRIDES = {"GCN_layer": 2, "pool_layer_zero": "false"}
 
@@ -182,6 +200,8 @@ def parameters(model, config):
         return f"{config['taxonomy_policy']}-temp{config['temperature']}-gamma{config['gamma_cold']}"
     if model == "SimGCL":
         return f"temp{config['temperature']}-eps{config['epsilon']}"
+    if model == "NCL":
+        return f"temp{config['temperature']}-k{config['k']}"
     return None
 
 
@@ -248,7 +268,15 @@ def plan_grid_complete():
     return [job("grid-complete", OFFICE, "V3", f"grid-tempuser{user}", seed,
                 {"temperature": temp, "temperature_user": user, "gamma_cold": GRID_GAMMA},
                 arm=f"complete-temp{temp}-tempuser{user}")
-            for user in GRID_USER_TEMPS for temp in GRID_ITEM_TEMPS for seed in SEEDS]
+            for temp, user in GRID_COMPLETE_CELLS for seed in SEEDS]
+
+
+def plan_grid_ncl():
+    """The NCL grid of the development datasets; the default cell is the reference family."""
+    return [job("grid-ncl", OFFICE, "NCL-default", "grid", seed, {"temperature": temp, "k": clusters},
+                arm=f"NCL-temp{temp}-k{clusters}")
+            for temp in NCL_TEMPS for clusters in NCL_CLUSTERS if (temp, clusters) != NCL_DEFAULT
+            for seed in SEEDS]
 
 
 def plan_pretraining(package):
@@ -292,6 +320,7 @@ PLANS = {
     "splits-office-products-lightgcn": plan_of(plan_splits, "splits-office-products-lightgcn", OFFICE, ("LightGCN",)),
     "grid-simgcl": plan_grid_simgcl,
     "grid-complete": plan_grid_complete,
+    "grid-ncl": plan_grid_ncl,
     "pretrain-lightgcn": plan_of(plan_pretraining, "pretrain-lightgcn"),
 }
 EXPECTED_RUNS = {
@@ -299,11 +328,12 @@ EXPECTED_RUNS = {
     "label-quality-musical-instruments": 9, f"label-quality-{OFFICE}": 9,
     "seeds-amazon-book-factorial": 12, "seeds-amazon-book-simgcl": 6, "seeds-yelp2018": 18,
     **{f"splits-{dataset}": 54 for dataset in REDRAWN_SPLIT_BASES},
-    "splits-office-products-lightgcn": 9, "grid-simgcl": 27, "grid-complete": 27, "pretrain-lightgcn": 3,
+    "splits-office-products-lightgcn": 9, "grid-simgcl": 27, "grid-complete": 24, "grid-ncl": 33,
+    "pretrain-lightgcn": 3,
 }
 
 
-CLOSED_PACKAGES = {"smoke", "grid-simgcl", "grid-complete", "pretrain-lightgcn"}
+CLOSED_PACKAGES = {"smoke", "grid-simgcl", "grid-complete", "grid-ncl", "pretrain-lightgcn"}
 
 
 def planned(package):
@@ -369,16 +399,37 @@ def registry_path(package):
     return ROOT / (SMOKE_OUTPUT / "run_registry.csv" if package == "smoke" else REGISTRY)
 
 
-def registry_row(item):
-    run_dir = ROOT / item.run_dir
-    manifest = read_manifest(item.run_dir)
+def environment_label(run_dir, environment):
+    """A or B when the GPU, the platform and, where the log names it, the path style of the
+    log all agree; unknown otherwise."""
+    gpu, platform = str(environment.get("gpu_name")), str(environment.get("platform"))
+    separator = None
+    log_file = run_dir / "training.log"
+    if log_file.exists():
+        with log_file.open(encoding="utf-8", errors="replace") as stream:
+            for _, line in zip(range(20), stream):
+                if "Training log: " in line:
+                    path = line.split("Training log: ", 1)[1]
+                    separator = "\\" if "\\" in path else "/"
+                    break
+    if "4060" in gpu and platform.startswith("Windows") and separator in (None, "\\"):
+        return "A"
+    if "3090" in gpu and platform.startswith("Linux") and separator in (None, "/"):
+        return "B"
+    return "unknown"
+
+
+def registry_row(item, relative=None):
+    relative = relative or item.run_dir
+    run_dir = ROOT / relative
+    manifest = read_manifest(relative)
     environment = manifest.get("environment") or {}
     metadata = manifest.get("model_metadata") or {}
     row = dict.fromkeys(REGISTRY_COLUMNS, "")
-    row.update(run_id=item.run_id, exp=item.package, dataset=item.dataset, arm=item.arm, split_seed=item.split,
+    row.update(run_id="" if item.package == REFERENCE_KIND else item.run_id, exp=item.package, dataset=item.dataset, arm=item.arm, split_seed=item.split,
                train_seed=item.seed, status=manifest.get("status"), start_utc=manifest.get("started_at_utc"),
                end_utc=manifest.get("completed_at_utc", ""), git_commit=environment.get("git_commit", ""),
-               env="A" if "4060" in str(environment.get("gpu_name")) else "unknown",
+               env=environment_label(run_dir, environment),
                label_file_sha256=metadata.get("taxonomy_label_sha256") or "",
                config_sha256=hashlib.sha256(json.dumps(manifest["configuration"], sort_keys=True,
                                                        separators=(",", ":")).encode("utf-8")).hexdigest())
@@ -394,14 +445,31 @@ def registry_row(item):
     return row
 
 
-def update_registry(jobs):
-    if not jobs:
+def reference_rows():
+    """One row per reference run, with the environment it ran on. Their test results predate
+    this protocol, so test_eval_utc stays empty."""
+    rows = []
+    for dataset, families in FAMILIES.items():
+        for arm, family in families.items():
+            for seed in SEEDS:
+                item = Job(REFERENCE_KIND, arm, REFERENCE_MODEL[arm], dataset, dataset, LOCKED_SPLIT,
+                           family.rsplit("/", 1)[-1], seed, ())
+                row = registry_row(item, f"{family}/seed{seed}")
+                row.update(run_id=f"{REFERENCE_KIND}_{dataset}_{arm}_s{LOCKED_SPLIT}_r{seed}", exp=REFERENCE_KIND,
+                           test_eval_utc="")
+                rows.append(row)
+    return rows
+
+
+def update_registry(jobs, extra_rows=()):
+    if not jobs and not extra_rows:
         return
-    path = registry_path(jobs[0].package)
+    path = registry_path(jobs[0].package) if jobs else ROOT / REGISTRY
     rows = {}
     if path.exists():
         with path.open(newline="", encoding="utf-8") as stream:
             rows = {row["run_id"]: row for row in csv.DictReader(stream)}
+    rows.update((row["run_id"], row) for row in extra_rows)
     for item in jobs:
         current = rows.get(item.run_id)
         opened = (ROOT / item.run_dir / "sealed_test_evaluation.json").exists()
@@ -508,41 +576,60 @@ def grid_family(side, cell):
     if "tempuser" in cell:
         temp, user = cell.replace("temp", "", 1).split("-tempuser")
         return f"{OUTPUT.as_posix()}/{OFFICE}/TaxPro-CL/grid-tempuser{user}-no_merge-temp{temp}-gamma{GRID_GAMMA}"
+    if side == "ncl":
+        if cell == f"temp{NCL_DEFAULT[0]}-k{NCL_DEFAULT[1]}":
+            return FAMILIES[OFFICE]["NCL-default"]
+        return f"{OUTPUT.as_posix()}/{OFFICE}/NCL/grid-{cell}"
     return f"{CONF}/TaxPro-CL/" + ("step1-no_merge" if cell == "temp0.125-gamma1.5" else f"step2-no_merge-{cell}")
 
 
-def selection_for_grid():
+def search_cells():
+    """Cells of each search, locked ones first, in the order ties are broken."""
+    return {
+        "simgcl": [f"temp{t}-eps{e}" for t in LOCKED_SIMGCL_TEMPS + GRID_SIMGCL_TEMPS for e in GRID_SIMGCL_EPS],
+        "complete_configuration": [f"temp{t}-gamma{g}" for t in LOCKED_COMPLETE_TEMPS for g in LOCKED_COMPLETE_GAMMAS]
+                                  + [f"temp{t}-tempuser{u}" for t, u in GRID_COMPLETE_CELLS],
+        "ncl": [f"temp{t}-k{k}" for t in NCL_TEMPS for k in NCL_CLUSTERS],
+    }
+
+
+# Selection file, the packages it waits for, and the searches it selects.
+SEARCHES = {
+    "grid": (SELECTION_GRID, ("grid-simgcl", "grid-complete"), ("complete_configuration", "simgcl")),
+    "ncl": (SELECTION_NCL, ("grid-ncl",), ("ncl",)),
+}
+
+
+def selection_for(name):
     """Rule R on the union of the locked and the new cells, per method; rule Ov is recorded."""
     def means(family):
         return validation_means([ROOT / family / f"seed{seed}" for seed in SEEDS])
 
-    simgcl = [f"temp{t}-eps{e}" for t in LOCKED_SIMGCL_TEMPS + GRID_SIMGCL_TEMPS for e in GRID_SIMGCL_EPS]
-    complete = [f"temp{t}-gamma{g}" for t in LOCKED_COMPLETE_TEMPS for g in LOCKED_COMPLETE_GAMMAS]
-    complete += [f"temp{t}-tempuser{u}" for u in GRID_USER_TEMPS for t in GRID_ITEM_TEMPS]
-    sides = {"simgcl": simgcl, "complete_configuration": complete}
+    cells_of = search_cells()
     document = {"protocol": PROTOCOL.as_posix(), "frozen_at_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
-    for side, names in sides.items():
-        cells = [(name, means(grid_family(side, name))) for name in names]
+    for side in SEARCHES[name][2]:
+        cells = [(cell, means(grid_family(side, cell))) for cell in cells_of[side]]
         document[side] = {"rule_R": rule_r(cells), "rule_Ov": rule_ov(cells),
-                          "cells": {name: value["mean"] for name, value in cells}}
+                          "cells": {cell: value["mean"] for cell, value in cells}}
     return document
 
 
-def freeze_selection():
-    path = ROOT / SELECTION_GRID
+def freeze_selection(name="grid"):
+    selection_file, packages, sides = SEARCHES[name]
+    path = ROOT / selection_file
     if path.exists():
         raise SystemExit(f"{path} is frozen already")
-    unfinished = [j.run_dir for package in ("grid-simgcl", "grid-complete") for j in planned(package)
+    unfinished = [j.run_dir for package in packages for j in planned(package)
                   if run_status(j.run_dir) != "completed"]
     if unfinished:
         raise SystemExit(f"{len(unfinished)} runs are not complete; nothing is selected")
-    selection = selection_for_grid()
+    selection = selection_for(name)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_bytes((json.dumps(selection, indent=2) + "\n").encode("utf-8"))
     digest = sha256_path(path)
     path.with_suffix(".sha256").write_bytes(f"{digest}  {path.name}\n".encode())
-    log(f"grid selection written sha256={digest}; commit it before opening the test split")
-    for side in ("complete_configuration", "simgcl"):
+    log(f"{name} selection written sha256={digest}; commit it before opening the test split")
+    for side in sides:
         print(side, selection[side]["rule_R"], selection[side]["rule_Ov"])
 
 
@@ -557,20 +644,21 @@ def committed_selection(relative_path):
     return json.loads((ROOT / path).read_text(encoding="utf-8"))
 
 
-def grid_runs_to_open(selection):
+def grid_runs_to_open(selection, sides=("complete_configuration", "simgcl")):
     """Only rule-R cells that are still sealed."""
     runs = []
-    for side in ("complete_configuration", "simgcl"):
+    for side in sides:
         runs += [f"{grid_family(side, selection[side]['rule_R'])}/seed{seed}" for seed in SEEDS]
     return [run for run in runs if not (ROOT / run / "final_test_metrics.json").exists()]
 
 
 def open_test(package, device):
     """Evaluate each sealed run once; evaluate_sealed_test refuses a second opening."""
-    if package == "grid":
-        selection = committed_selection(SELECTION_GRID)
-        jobs = planned("grid-simgcl") + planned("grid-complete")
-        runs = [str(ROOT / run) for run in grid_runs_to_open(selection)]
+    if package in SEARCHES:
+        selection_file, packages, sides = SEARCHES[package]
+        selection = committed_selection(selection_file)
+        jobs = [j for name in packages for j in planned(name)]
+        runs = [str(ROOT / run) for run in grid_runs_to_open(selection, sides)]
     else:
         jobs = planned(package)
         missing = [j.run_dir for j in jobs if run_status(j.run_dir) != "completed"]
@@ -623,8 +711,8 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     action = parser.add_mutually_exclusive_group(required=True)
     action.add_argument("--package", nargs="+", choices=sorted(PLANS))
-    action.add_argument("--select-grid", action="store_true")
-    action.add_argument("--open-test", choices=sorted(set(PLANS) - CLOSED_PACKAGES | {"grid"}))
+    action.add_argument("--select", choices=sorted(SEARCHES))
+    action.add_argument("--open-test", choices=sorted(set(PLANS) - CLOSED_PACKAGES | set(SEARCHES)))
     action.add_argument("--registry", action="store_true")
     action.add_argument("--snapshot", choices=("before", "after"))
     parser.add_argument("--device", default="cuda")
@@ -632,11 +720,12 @@ def main(argv=None):
     args = parser.parse_args(argv)
     if args.package:
         return run_packages(args.package, args.device, args.dry_run)
-    if args.select_grid:
-        return freeze_selection() or 0
+    if args.select:
+        return freeze_selection(args.select) or 0
     if args.open_test:
         return open_test(args.open_test, args.device)
     if args.registry:
+        update_registry([], reference_rows())
         for package in sorted(set(PLANS) - {"smoke"}):
             update_registry(planned(package))
         return 0

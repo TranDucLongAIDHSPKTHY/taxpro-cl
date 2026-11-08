@@ -15,7 +15,15 @@ import torch
 
 from tests.helpers import ToyDataset
 from tests.test_taxpro_cl_improved import improved_config, patched_improved_dependencies
-from tools.analysis.extended_analysis import at_upper_edge, classify, mean_std, sign_test, wording
+from tools.analysis.extended_analysis import (
+    at_upper_edge,
+    classify,
+    mean_std,
+    rank_measure_table,
+    sign_test,
+    starting_point_wording,
+    wording,
+)
 from tools.analysis.mechanism_diagnostics import (
     PerturbationProbe,
     by_bin_and_layer,
@@ -230,7 +238,7 @@ class RunnerPlanTests(unittest.TestCase):
 
         for package, count in EXPECTED_RUNS.items():
             self.assertEqual(len(planned(package)), count, package)
-        self.assertEqual(sum(count for name, count in EXPECTED_RUNS.items() if name != "smoke"), 327)
+        self.assertEqual(sum(count for name, count in EXPECTED_RUNS.items() if name != "smoke"), 357)
 
     def test_pretraining_keeps_the_reference_except_the_depth_and_stays_closed(self):
         from tools.experiments.run_extended import CLOSED_PACKAGES, FAMILIES, inherited_config, planned
@@ -278,11 +286,62 @@ class RunnerPlanTests(unittest.TestCase):
 
         complete = planned("grid-complete")
         self.assertEqual({dict(j.config)["gamma_cold"] for j in complete}, {"1.5"})
-        self.assertEqual({dict(j.config)["temperature_user"] for j in complete}, {"0.25", "0.3", "0.4"})
+        self.assertEqual({dict(j.config)["temperature_user"] for j in complete}, {"0.2", "0.3", "0.4"})
         self.assertEqual({dict(j.config)["temperature"] for j in complete}, {"0.15", "0.2", "0.25"})
+        pairs = {(dict(j.config)["temperature"], dict(j.config)["temperature_user"]) for j in complete}
+        self.assertEqual(len(pairs), 8)
+        self.assertNotIn(("0.15", "0.2"), pairs)
         simgcl = planned("grid-simgcl")
         self.assertEqual({dict(j.config)["temperature"] for j in simgcl}, {"0.25", "0.3", "0.4"})
         self.assertEqual({dict(j.config)["epsilon"] for j in simgcl}, {"0.05", "0.1", "0.2"})
+
+    def test_complete_grid_union_holds_the_locked_cell_once(self):
+        from tools.experiments.run_extended import grid_family, search_cells
+
+        cells = search_cells()["complete_configuration"]
+        self.assertEqual(len(cells), 14)
+        self.assertEqual(len(set(cells)), 14)
+        self.assertNotIn("temp0.15-tempuser0.2", cells)
+        self.assertEqual(grid_family("complete_configuration", "temp0.15-gamma1.5"),
+                         "log/p0/confirmatory/office-products/TaxPro-CL/step2-no_merge-temp0.15-gamma1.5")
+        self.assertEqual(len(search_cells()["simgcl"]), 21)
+
+    def test_ncl_grid_reuses_the_default_cell_and_changes_only_its_two_parameters(self):
+        from tools.experiments.run_extended import CLOSED_PACKAGES, FAMILIES, grid_family, inherited_config, \
+            planned, search_cells
+
+        reference = inherited_config(FAMILIES["office-products"]["NCL-default"], "NCL", {})
+        jobs = planned("grid-ncl")
+        self.assertEqual(len(jobs), 33)
+        cells = {(dict(j.config)["temperature"], dict(j.config)["k"]) for j in jobs}
+        self.assertEqual(len(cells), 11)
+        self.assertNotIn(("0.05", "2000"), cells)
+        for item in jobs:
+            self.assertTrue(set(k for k, v in dict(item.config).items() if reference.get(k) != v)
+                            <= {"temperature", "k"})
+        self.assertEqual(len(search_cells()["ncl"]), 12)
+        self.assertEqual(grid_family("ncl", "temp0.05-k2000"), "log/p0/confirmatory/office-products/NCL/default")
+        self.assertEqual(grid_family("ncl", "temp0.1-k3000"), "log/p0/extended/office-products/NCL/grid-temp0.1-k3000")
+        self.assertIn("grid-ncl", CLOSED_PACKAGES)
+
+    def test_ncl_test_split_opens_only_for_a_new_selected_cell(self):
+        from tools.experiments.run_extended import grid_runs_to_open
+
+        self.assertEqual(grid_runs_to_open({"ncl": {"rule_R": "temp0.05-k2000"}}, ("ncl",)), [])
+        runs = grid_runs_to_open({"ncl": {"rule_R": "temp0.15-k1000"}}, ("ncl",))
+        self.assertEqual(len(runs), 3)
+        self.assertTrue(all("/extended/office-products/NCL/grid-temp0.15-k1000/" in run for run in runs))
+
+    def test_every_reference_run_is_registered_with_its_environment(self):
+        from tools.experiments.run_extended import reference_rows
+
+        rows = reference_rows()
+        self.assertEqual(len(rows), len({row["run_id"] for row in rows}))
+        self.assertTrue(all(row["exp"] == "reference" and row["test_eval_utc"] == "" for row in rows))
+        book = {(row["arm"], row["train_seed"]): row["env"] for row in rows if row["dataset"] == "amazon-book"}
+        for arm in ("V0", "V1", "V2", "V3"):
+            for seed in (42, 0, 1):
+                self.assertEqual(book[arm, seed], "A", (arm, seed))
 
     def test_grid_test_split_opens_only_for_selected_cells_still_sealed(self):
         from tools.experiments.run_extended import grid_runs_to_open
@@ -301,17 +360,23 @@ class RunnerPlanTests(unittest.TestCase):
     def test_selection_refuses_unfinished_runs(self):
         from tools.experiments import run_extended
 
-        with mock.patch.object(run_extended, "SELECTION_GRID", Path("results/extended/_absent.json")), \
-                mock.patch.object(run_extended, "run_status", return_value="running"):
-            with self.assertRaises(SystemExit):
-                run_extended.freeze_selection()
+        absent = Path("results/extended/_absent.json")
+        for name in ("grid", "ncl"):
+            _, packages, sides = run_extended.SEARCHES[name]
+            with mock.patch.dict(run_extended.SEARCHES, {name: (absent, packages, sides)}), \
+                    mock.patch.object(run_extended, "run_status", return_value="running"):
+                with self.assertRaises(SystemExit):
+                    run_extended.freeze_selection(name)
 
     def test_test_split_stays_closed_without_a_committed_selection(self):
         from tools.experiments import run_extended
 
-        with mock.patch.object(run_extended, "SELECTION_GRID", Path("results/extended/_absent.json")):
-            with self.assertRaises(SystemExit):
-                run_extended.open_test("grid", "cpu")
+        absent = Path("results/extended/_absent.json")
+        for name in ("grid", "ncl"):
+            _, packages, sides = run_extended.SEARCHES[name]
+            with mock.patch.dict(run_extended.SEARCHES, {name: (absent, packages, sides)}):
+                with self.assertRaises(SystemExit):
+                    run_extended.open_test(name, "cpu")
 
     def test_test_split_stays_closed_while_a_package_is_unfinished(self):
         from tools.experiments import run_extended
@@ -345,8 +410,9 @@ class RunnerPlanTests(unittest.TestCase):
             return {j.run_dir.as_posix() for j in planned(package)}
 
         self.assertIn(f"{root}/office-products/SimGCL/grid-temp0.25-eps0.05/seed42", paths("grid-simgcl"))
-        self.assertIn(f"{root}/office-products/TaxPro-CL/grid-tempuser0.25-no_merge-temp0.15-gamma1.5/seed42",
+        self.assertIn(f"{root}/office-products/TaxPro-CL/grid-tempuser0.3-no_merge-temp0.15-gamma1.5/seed42",
                       paths("grid-complete"))
+        self.assertIn(f"{root}/office-products/NCL/grid-temp0.1-k1000/seed42", paths("grid-ncl"))
         self.assertIn(f"{root}/amazon-book/TaxPro-CL/control-V3-shuffled-merge_t10-temp0.1-gamma1.5/seed42",
                       paths("controls-amazon-book"))
         self.assertIn(f"{root}/amazon-book/SimGCL/repeat-tuned-temp0.15-eps0.1/seed3",
@@ -491,15 +557,16 @@ class ComparatorPlanTests(unittest.TestCase):
         from tools.experiments.run_comparators import plan
 
         paths = {j.run_dir.as_posix() for j in plan("comparator-galore")}
-        self.assertIn("log/p0/extended/office-products/GALORE/grid-edges2-drop0.1/seed42", paths)
+        self.assertIn("log/p0/extended/office-products/GALORE/grid-edges3-drop0.3/seed42", paths)
         paths = {j.run_dir.as_posix() for j in plan("comparator-kgcl")}
         self.assertIn("log/p0/extended/office-products/KGCL/grid-temp0.2-ssl0.1/seed0", paths)
 
-    def test_the_author_defaults_are_inside_the_grids(self):
+    def test_the_grids_hold_the_author_settings(self):
         from tools.experiments.run_comparators import plan
 
         self.assertTrue(any(j.cell == "grid-temp0.2-ssl0.1" for j in plan("comparator-kgcl")))
-        self.assertTrue(any(j.cell == "grid-edges2-drop0.1" for j in plan("comparator-galore")))
+        galore = {dict(j.config)["edge_num"] for j in plan("comparator-galore")},             {dict(j.config)["drop_rate"] for j in plan("comparator-galore")}
+        self.assertEqual(galore, ({"1", "3", "5", "10"}, {"0.1", "0.3", "0.5"}))
 
     def test_category_triples_follow_the_path_and_skip_markup(self):
         from tools.experiments.run_comparators import category_triples
@@ -522,9 +589,28 @@ class ComparatorPlanTests(unittest.TestCase):
     def test_test_split_stays_closed_without_a_committed_selection(self):
         from tools.experiments import run_comparators
 
-        with mock.patch.object(run_comparators, "SELECTION", Path("results/extended/_absent.json")):
+        with mock.patch.object(run_comparators, "selection_file", return_value=Path("results/extended/_absent.json")):
+            for name in ("kgcl", "galore"):
+                with self.assertRaises(SystemExit):
+                    run_comparators.open_test(name, "cpu")
+
+    @unittest.skipUnless((ROOT / "log" / "p0" / "confirmatory").is_dir(), "needs the local run manifests")
+    def test_galore_opens_only_with_its_starting_point_complete(self):
+        from tools.experiments import run_comparators
+
+        selection = {"GALORE": {"rule_R": "edges2-drop0.1"}}
+        with mock.patch.object(run_comparators, "committed_selection", return_value=selection), \
+                mock.patch.object(run_comparators, "run_status", return_value="running"), \
+                mock.patch.object(run_comparators.subprocess, "run") as evaluate:
             with self.assertRaises(SystemExit):
-                run_comparators.open_test("cpu")
+                run_comparators.open_test("galore", "cpu")
+            evaluate.assert_not_called()
+
+    def test_each_method_has_its_own_selection_file(self):
+        from tools.experiments.run_comparators import METHODS, PACKAGES, selection_file
+
+        self.assertEqual({selection_file(PACKAGES[package]).name for package in METHODS.values()},
+                         {"selection_kgcl.json", "selection_galore.json"})
 
 
 class AnalysisTests(unittest.TestCase):
@@ -564,6 +650,57 @@ class AnalysisTests(unittest.TestCase):
 
     def test_mean_std_uses_the_sample_deviation(self):
         self.assertAlmostEqual(mean_std([1.0, 2.0, 3.0])["std"], 1.0)
+
+    def test_starting_point_wording(self):
+        self.assertEqual(starting_point_wording({"mean_diff": -0.001, "excludes_zero": True}),
+                         "did not improve over its starting point")
+        self.assertEqual(starting_point_wording({"mean_diff": 0.0, "excludes_zero": False}),
+                         "did not improve over its starting point")
+        self.assertEqual(starting_point_wording({"mean_diff": 0.001, "excludes_zero": False}),
+                         "no detectable improvement")
+        self.assertEqual(starting_point_wording({"mean_diff": 0.001, "excludes_zero": True}),
+                         "improved over its starting point")
+
+    def test_rank_measure_table_covers_every_pair_group_and_dataset(self):
+        groups = ("near_cold", "long_tail", "warm", "overall")
+        def measures(value):
+            return {group: {"recall_50": value, "recall_100": value, "ndcg": value, "percentile": value}
+                    for group in groups}
+        arms = {"V0": 0.1, "V1": 0.2, "V2": 0.4, "V3": 0.8}
+        runs = {arm: {seed: {"validation_measures": measures(value + int(seed) / 1000)}
+                      for seed in ("42", "0", "1")} for arm, value in arms.items()}
+        ratio = {"delta_arm": dict.fromkeys(groups, 0.5), "delta_seed": dict.fromkeys(groups, 0.25),
+                 "r": dict.fromkeys(groups, 2.0)}
+        block = {"runs": runs, "ranking_change_ratio": {pair: ratio for pair in ("V2-V0", "V3-V1", "V1-V0", "V3-V2")}}
+        table = rank_measure_table({"datasets": {"musical-instruments": block}})
+        self.assertEqual(len(table["rows"]), 4 * 4)
+        self.assertEqual(len(table["not_measured"]), 4)
+        row = next(r for r in table["rows"] if r["arms"] == "V3-V2" and r["group"] == "long_tail")
+        self.assertEqual(row["role"], "primary")
+        self.assertAlmostEqual(row["recall_50"]["mean"], 0.4)
+        self.assertAlmostEqual(row["ndcg_100"]["per_seed"]["0"], 0.4)
+        self.assertEqual(row["r"], 2.0)
+
+
+class EnvironmentLabelTests(unittest.TestCase):
+    def label(self, gpu, platform, log_line):
+        from tools.experiments.run_extended import environment_label
+
+        with tempfile.TemporaryDirectory() as directory:
+            run_dir = Path(directory)
+            if log_line is not None:
+                (run_dir / "training.log").write_text("2026 | INFO | main | Start Training\n"
+                                                      f"2026 | INFO | main | Training log: {log_line}\n",
+                                                      encoding="utf-8")
+            return environment_label(run_dir, {"gpu_name": gpu, "platform": platform})
+
+    def test_gpu_platform_and_log_paths_must_agree(self):
+        windows, linux = "Windows-10-10.0.19045-SP0", "Linux-5.15.0-187-generic-x86_64-with-glibc2.35"
+        self.assertEqual(self.label("NVIDIA GeForce RTX 4060 Ti", windows, r"log\p0\run\training.log"), "A")
+        self.assertEqual(self.label("NVIDIA GeForce RTX 3090 Ti", linux, "log/p0/run/training.log"), "B")
+        self.assertEqual(self.label("NVIDIA GeForce RTX 4060 Ti", windows, "log/p0/run/training.log"), "unknown")
+        self.assertEqual(self.label("NVIDIA GeForce RTX 4060 Ti", linux, None), "unknown")
+        self.assertEqual(self.label("NVIDIA GeForce RTX 4060 Ti", windows, None), "A")
 
 
 class DiagnosticHelperTests(unittest.TestCase):

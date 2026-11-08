@@ -6,6 +6,9 @@ was read when they were published, per-user values are recomputed once from the 
 checkpoint, checked against the stored group metrics and cached under
 log/p0/extended/per_user/. A package that was not run is reported as not run.
 
+The rank measures of the checkpoint diagnostics are tabulated from
+results/extended/mechanism_diagnostics.json, for every arm pair, group and dataset.
+
 Usage:
     python -m tools.analysis.extended_analysis [--device cuda] [--lock]
 Output: results/extended/extended_analysis.json, results/extended/results_extended.csv;
@@ -48,8 +51,10 @@ from tools.experiments.run_extended import (  # noqa: E402
     SEEDS,
     NEW_SEEDS,
     SELECTION_GRID,
+    SELECTION_NCL,
     grid_family,
     planned,
+    selection_file,
     sha256_path,
 )
 from tools.ranking.inference import load_model  # noqa: E402
@@ -80,8 +85,9 @@ FACTORIAL_CONTRASTS = {
     "magnitude_random_direction": ("V2", "V0"),
     "magnitude_prototype_direction": ("V3", "V1"),
 }
-COMPARATOR_METHODS = ("KGCL", "GALORE")
-SELECTION_COMPARATORS = RESULTS / "selection_comparators.json"
+COMPARATOR_METHODS = ("KGCL", "GALORE", "NCL")
+DIAGNOSTICS = RESULTS / "mechanism_diagnostics.json"
+RANK_MEASURES = ("recall_50", "recall_100", "ndcg", "percentile")
 SIMGCL_CONTRASTS = {
     "complete_vs_default_simgcl": ("V3", "SimGCL-default"),
     "complete_vs_tuned_simgcl": ("V3", "SimGCL-tuned"),
@@ -325,24 +331,58 @@ def analyse_grid(rng, device):
     return document
 
 
-def analyse_comparators(index, rng, device):
-    """The rule-R cell of each added baseline against the complete configuration."""
-    path = ROOT / SELECTION_COMPARATORS
+def comparator_selection(method):
+    """(selected cell, rule-Ov cell, run directories of the selected cell), or None."""
+    path = ROOT / (SELECTION_NCL if method == "NCL" else selection_file(method))
     if not path.exists():
-        return {"status": "not selected"}
-    selection = json.loads(path.read_text(encoding="utf-8"))
+        return None
+    block = json.loads(path.read_text(encoding="utf-8"))[method.lower() if method == "NCL" else method]
+    cell = block["rule_R"]
+    family = grid_family("ncl", cell) if method == "NCL" else f"{OUTPUT.as_posix()}/{OFFICE}/{method}/grid-{cell}"
+    return cell, block["rule_Ov"], [ROOT / family / f"seed{seed}" for seed in SEEDS]
+
+
+def starting_point_wording(cell):
+    """GALORE against the LightGCN it starts from."""
+    if cell["mean_diff"] <= 0:
+        return "did not improve over its starting point"
+    return "improved over its starting point" if cell["excludes_zero"] else "no detectable improvement"
+
+
+def versus_starting_point(runs, rng, device):
+    starts = [ROOT / item.run_dir for item in planned("pretrain-lightgcn")]
+    by_seed = {int(path.name.removeprefix("seed")): path for path in starts}
+    starts = [by_seed[int(path.name.removeprefix("seed"))] for path in runs]
+    if not all(map(is_open, starts)):
+        return {"status": "test not opened"}
+    cells = []
+    for metric in METRICS:
+        for group in GROUPS:
+            cell = contrast_cell(OFFICE, group, metric, runs, starts, BOOT_CONFIGURATION, rng, device, test=False)
+            cell["wording"] = starting_point_wording(cell)
+            cells.append(cell)
+    epochs = [json.loads((path / "run_manifest.json").read_text(encoding="utf-8"))["completed_epochs"] for path in runs]
+    return {"status": "complete", "selected_epochs": epochs, "cells": cells}
+
+
+def analyse_comparators(index, rng, device):
+    """The rule-R cell of each added or tuned baseline against the complete configuration."""
     complete = runs_for(index, OFFICE, LOCKED_SPLIT, "V3", SEEDS)
     document = {}
     for method in COMPARATOR_METHODS:
-        if method not in selection:
-            document[method] = {"status": "not run"}
+        chosen = comparator_selection(method)
+        if chosen is None:
+            document[method] = {"status": "not selected"}
             continue
-        cell = selection[method]["rule_R"]
-        runs = [ROOT / OUTPUT / OFFICE / method / f"grid-{cell}" / f"seed{seed}" for seed in SEEDS]
-        block = {"selected": cell, "rule_Ov": selection[method]["rule_Ov"]}
+        cell, rule_ov_cell, runs = chosen
+        block = {"selected": cell, "rule_Ov": rule_ov_cell}
+        if method == "NCL":
+            block["selected_default"] = runs[0].parent.as_posix().endswith("NCL/default")
         if not all(map(is_open, runs)):
             document[method] = {**block, "status": "test not opened"}
             continue
+        if method == "GALORE":
+            block["versus_starting_point"] = versus_starting_point(runs, rng, device)
         cells = []
         for metric in METRICS:
             family = [contrast_cell(OFFICE, group, metric, complete, runs, BOOT_CONFIGURATION, rng, device)
@@ -355,6 +395,41 @@ def analyse_comparators(index, rng, device):
             cells += family + context
         document[method] = {**block, "status": "complete", "cells": cells}
     return document
+
+
+def rank_measure_table(diagnostics):
+    """Every arm pair x group x dataset of the validation rank measures: per-seed
+    differences, their mean, and r. Datasets not yet measured are listed, not dropped."""
+    rows, missing = [], []
+    for dataset in FAMILIES:
+        block = diagnostics.get("datasets", {}).get(dataset)
+        if block is None:
+            missing.append(dataset)
+            continue
+        for name, (first, second) in FACTORIAL_CONTRASTS.items():
+            pair = f"{first}-{second}"
+            ratio = block["ranking_change_ratio"][pair]
+            for group in GROUPS:
+                row = {"dataset": dataset, "contrast": name, "arms": pair, "group": group,
+                       "role": "primary" if group in PRIMARY_GROUPS else "context",
+                       "r": None if ratio["r"] is None else ratio["r"][group],
+                       "delta_arm": ratio["delta_arm"][group],
+                       "delta_seed": None if ratio["delta_seed"] is None else ratio["delta_seed"][group]}
+                for measure in RANK_MEASURES:
+                    per_seed = {seed: block["runs"][first][seed]["validation_measures"][group][measure]
+                                - block["runs"][second][seed]["validation_measures"][group][measure]
+                                for seed in block["runs"][first]}
+                    label = "ndcg_100" if measure == "ndcg" else measure
+                    row[label] = {"per_seed": per_seed, "mean": statistics.fmean(per_seed.values())}
+                rows.append(row)
+    return {"rows": rows, "not_measured": missing}
+
+
+def analyse_rank_measures():
+    path = ROOT / DIAGNOSTICS
+    if not path.exists():
+        return {"status": "not measured"}
+    return {"status": "measured", **rank_measure_table(json.loads(path.read_text(encoding="utf-8")))}
 
 
 def mean_std(values):
@@ -408,6 +483,7 @@ def main(argv=None):
                 "stability": analyse_stability(index, rng, device),
                 "grid": analyse_grid(rng, device),
                 "comparators": analyse_comparators(index, rng, device),
+                "checkpoint_rank_measures": analyse_rank_measures(),
                 "test_mean_std": summary_table(rows)}
     output = ROOT / RESULTS
     output.mkdir(parents=True, exist_ok=True)
