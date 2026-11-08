@@ -11,6 +11,7 @@ docs/confirmatory_protocol.md -text
 results/confirmatory/confirmatory_selection.json -text
 docs/extended_evaluation_protocol.md -text
 results/extended/selection_*.json -text
+results/extended/results_extended.csv -text
 results/extended/labels/** binary
 
 # Analysis outputs (no recorded hashes): always stored and checked out with LF,
