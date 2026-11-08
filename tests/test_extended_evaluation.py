@@ -491,6 +491,40 @@ class SingleOpeningTests(unittest.TestCase):
             with self.assertRaises(RuntimeError):
                 evaluate(Path(directory), torch.device("cpu"), None)
 
+    def test_completing_per_user_values_needs_a_test_result_and_no_values_yet(self):
+        from tools.experiments.evaluate_sealed_test import complete
+
+        with tempfile.TemporaryDirectory() as directory:
+            run = Path(directory)
+            with self.assertRaises(RuntimeError):
+                complete(run, torch.device("cpu"), None)
+            for name in ("final_test_metrics.json", "final_test_group_metrics.json", "final_test_per_user.npz"):
+                (run / name).write_text("{}", encoding="utf-8")
+            with self.assertRaises(RuntimeError):
+                complete(run, torch.device("cpu"), None)
+
+    def test_per_user_rankings_keep_the_tie_order_of_the_group_metrics(self):
+        from tools.experiments.evaluate_sealed_test import ranked_lists
+
+        scores = torch.tensor([[0.2, 1.0, 1.0, 1.0, 0.9, 1.0],
+                               [1.0, 1.0, 0.3, 1.0, 1.0, 0.1],
+                               [0.5, 0.5, 0.5, 0.5, 0.5, 0.5]])
+        seen = {0: [5], 1: [], 2: [0]}
+        model = SimpleNamespace(eval=lambda: model, get_rating_for_test=lambda users: scores[users].clone())
+        dataset = SimpleNamespace(test_dict={0: [1], 1: [2], 2: [3]},
+                                  get_user_pos_items_for_evaluation=lambda users, split: [seen[u] for u in users])
+        rankings = ranked_lists(model, dataset, torch.device("cpu"), {"top_K": "[2, 4]", "test_batch_size": "2"})
+        expected = {}
+        for start in (0, 2):
+            users = list(range(start, min(start + 2, 3)))
+            rating = scores[users].clone()
+            for row, user in enumerate(users):
+                rating[row, seen[user]] = -1
+            for user, items in zip(users, torch.topk(rating, k=4).indices.tolist()):
+                expected[user] = items
+        self.assertEqual(rankings, expected)
+        self.assertNotIn(5, rankings[0])
+
 
 class ExternalTableTests(unittest.TestCase):
     def test_scores_stay_above_the_seen_item_marker_and_keep_the_order(self):

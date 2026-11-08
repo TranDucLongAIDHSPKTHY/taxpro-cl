@@ -652,8 +652,9 @@ def grid_runs_to_open(selection, sides=("complete_configuration", "simgcl")):
     return [run for run in runs if not (ROOT / run / "final_test_metrics.json").exists()]
 
 
-def open_test(package, device):
-    """Evaluate each sealed run once; evaluate_sealed_test refuses a second opening."""
+def open_test(package, device, dry_run=False):
+    """Evaluate each sealed run once; evaluate_sealed_test refuses a second opening.
+    With dry_run, list the runs that would be evaluated and evaluate none."""
     if package in SEARCHES:
         selection_file, packages, sides = SEARCHES[package]
         selection = committed_selection(selection_file)
@@ -664,8 +665,14 @@ def open_test(package, device):
         missing = [j.run_dir for j in jobs if run_status(j.run_dir) != "completed"]
         if missing:
             raise SystemExit(f"{len(missing)} runs are not complete; the test split stays sealed")
-        update_registry(jobs)
+        if not dry_run:
+            update_registry(jobs)
         runs = [str(ROOT / j.run_dir) for j in jobs if not (ROOT / j.run_dir / "final_test_metrics.json").exists()]
+    if dry_run:
+        print(f"{package}: {len(runs)} runs would be evaluated on test")
+        for run in runs:
+            print(" ", Path(run).relative_to(ROOT).as_posix())
+        return 0
     log(f"OPEN TEST {package}: {len(runs)} runs")
     if not runs:
         return 0
@@ -723,7 +730,7 @@ def main(argv=None):
     if args.select:
         return freeze_selection(args.select) or 0
     if args.open_test:
-        return open_test(args.open_test, args.device)
+        return open_test(args.open_test, args.device, args.dry_run)
     if args.registry:
         update_registry([], reference_rows())
         for package in sorted(set(PLANS) - {"smoke"}):

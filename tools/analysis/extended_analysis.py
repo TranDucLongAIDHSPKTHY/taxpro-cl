@@ -134,7 +134,7 @@ def per_user_values(run_dir, device):
     if cache.exists():
         return dict(np.load(cache))
     model, dataset, config, _ = load_model(run_dir, device)
-    arrays = per_user_arrays(model, dataset, device, str(config["dataset"]))
+    arrays = per_user_arrays(model, dataset, device, config)
     check_against_group_metrics(arrays, group_metrics(run_dir))
     cache.parent.mkdir(parents=True, exist_ok=True)
     np.savez_compressed(cache, **arrays)

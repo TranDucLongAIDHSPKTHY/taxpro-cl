@@ -294,7 +294,8 @@ def freeze_selection(name):
     return 0
 
 
-def open_test(name, device):
+def open_test(name, device, dry_run=False):
+    """With dry_run, list the runs that would be evaluated on test and evaluate none."""
     package = METHODS[name]
     method = PACKAGES[package]
     selection = committed_selection(selection_file(method))
@@ -305,8 +306,14 @@ def open_test(name, device):
         if any(run_status(j.run_dir) != "completed" for j in starts):
             raise SystemExit("the LightGCN runs GALORE starts from are not complete; the test split stays sealed")
         runs += [str(ROOT / j.run_dir) for j in starts]
-        update_registry(starts)
+        if not dry_run:
+            update_registry(starts)
     runs = [run for run in runs if not (Path(run) / "final_test_metrics.json").exists()]
+    if dry_run:
+        print(f"{method}: {len(runs)} runs would be evaluated on test")
+        for run in runs:
+            print(" ", Path(run).relative_to(ROOT).as_posix())
+        return 0
     log(f"OPEN TEST {method}: {len(runs)} runs")
     if not runs:
         return 0
@@ -335,7 +342,7 @@ def main(argv=None):
         return run_packages(args.package, args.device, args.dry_run)
     if args.select:
         return freeze_selection(args.select)
-    return open_test(args.open_test, args.device)
+    return open_test(args.open_test, args.device, args.dry_run)
 
 
 if __name__ == "__main__":
