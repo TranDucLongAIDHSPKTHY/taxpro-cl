@@ -106,7 +106,12 @@ ablation and sensitivity checks, and the RQ1 direction-by-magnitude factorial
 (V0-V3) reported in the paper, the A7 comparable-budget grid for SimGCL, XSimGCL
 and NCL (complete on all four datasets), and the prospectively specified held-out
 evaluation on Office-Products
-(`docs/confirmatory_protocol.md`; see Prospectively Specified Held-Out Evaluation below).
+(`docs/confirmatory_protocol.md`; see Prospectively Specified Held-Out Evaluation below),
+and the extended evaluation on all five datasets: label and gradient-path
+controls, label noise and missing labels, additional seeds, re-drawn splits,
+checkpoint diagnostics, a wider Office-Products search, and the KGCL, GALORE,
+and tuned NCL comparators (`docs/extended_evaluation_protocol.md`; see Extended
+Evaluation below).
 This repository does **not** implement sibling loss, gating, or multi-level
 prototype memory; the taxonomy-guided direction and degree-adaptive magnitude
 described in the paper's Method section are the full extent of the mechanism
@@ -294,6 +299,67 @@ python -m tools.analysis.confirmatory_peruser --dataset office-products
 python -m tools.analysis.update_manifest_confirmatory
 ```
 
+### Extended Evaluation (all five datasets)
+
+The protocol `docs/extended_evaluation_protocol.md` was frozen before any of its
+runs; its SHA-256 is in `docs/extended_evaluation_protocol.sha256`, first
+published in commit 324e2be (2026-11-08). `tools/experiments/run_extended.py`
+runs its packages one after another. Every run inherits the configuration
+recorded for its reference family, may differ only in the overrides of its
+package, and is trained with `TAXPRO_DEFER_TEST=1`. A test split is opened once
+per run with `--open-test`; a search must have its committed selection file
+(`results/extended/selection_<name>.json` and its `.sha256`) first.
+
+| Package | Runs | Content |
+| --- | --- | --- |
+| `controls-<dataset>` (all five datasets) | 9 each | Shuffled labels, detached direction, and both, against V3; seeds 42, 0, 1 |
+| `label-quality-musical-instruments`, `label-quality-office-products` | 9 each | V3 with 50% label noise and with 50% missing labels; V2 with the same missing labels |
+| `seeds-amazon-book-factorial`, `seeds-amazon-book-simgcl`, `seeds-yelp2018` | 12, 6, 18 | Seeds 2, 3, 4 for V0-V3 and for default and tuned SimGCL |
+| `splits-musical-instruments`, `splits-arts-crafts-and-sewing`, `splits-office-products` | 54 each | Re-drawn splits 101-103 x seeds 42, 0, 1 for V0-V3 and default and tuned SimGCL |
+| `splits-office-products-lightgcn` | 9 | LightGCN on the re-drawn Office-Products splits |
+| `grid-simgcl`, `grid-complete` (search `grid`) | 27, 24 | Wider Office-Products temperature search |
+| `grid-ncl` (search `ncl`) | 33 | NCL tuned on Office-Products |
+| `pretrain-lightgcn` | 3 | The two-layer LightGCN that GALORE starts from |
+| `comparator-kgcl`, `comparator-galore` | 36 each | Run by `tools.experiments.run_comparators` from the authors' code; see `tools/comparators/README.md` |
+
+```powershell
+# Re-drawn splits <dataset>-split101..103 of Musical-Instruments, Arts-Crafts-and-Sewing, Office-Products
+python -m tools.data.build_redrawn_splits
+# Record the hashes of the locked files before the first run (compared again with --snapshot after)
+python -m tools.experiments.run_extended --snapshot before
+# Train a package; no test metric is computed. --dry-run lists its runs
+python -m tools.experiments.run_extended --package controls-amazon-book --dry-run
+# Record the validation selection of a search before any of its test evaluations
+python -m tools.experiments.run_extended --select grid
+# Open the test split once for every run of a package or of a selected search
+python -m tools.experiments.run_extended --open-test controls-amazon-book
+# Rebuild results/extended/run_registry.csv
+python -m tools.experiments.run_extended --registry
+# Checkpoint diagnostics of V0-V3 (validation data only)
+python -m tools.analysis.mechanism_diagnostics
+# All analyses of the protocol; --lock also records the SHA-256 of results_extended.csv
+python -m tools.analysis.extended_analysis --lock
+```
+
+Run directories are written under `log/p0/extended/` and are not shipped; the
+locked outputs are in `results/extended/` (listed in `results/README.md`). The
+registry has 525 completed runs: 96 reference runs whose test results predate the
+protocol, and 429 new runs, of which the 288 whose test split was opened are in
+`results_extended.csv`; the other 141 are the search cells that were not
+selected. The analysis reads only test results that were already opened
+(`final_test_per_user.npz` of each new run; for reference runs, per-user values
+recomputed once from the locked checkpoint and cached). Its bootstrap and
+sign-flip draws use a fixed seed through a CUDA generator when a GPU is present,
+so a re-run on CPU draws other resamples and moves interval endpoints and
+p-values in their last digits.
+
+Runs with shuffled, noisy, or missing labels write the labels they use to
+`taxonomy_labels.npy` in their run directory. The labels are a function of the
+perturbation seed, so building the model again, as opening the test split does,
+writes the same bytes, and the checkpoint records their SHA-256.
+`results/extended/labels/` keeps one copy per dataset, condition, and
+perturbation seed (27 files).
+
 ## Main Results (Recall@20, Mean±Std over 3 seeds: 42, 0, 1)
 
 Current comparison: 6 models x 4 datasets (baselines LightGCN, SGL-ED, SimGCL,
@@ -345,7 +411,7 @@ entry points are:
 
 | Paper item                                                                                                                                | Script (`python -m tools.analysis.<name>`)                                                                                                                                                                                                                                                                                    |
 | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Main results (Tables 3, S1), NDCG@20 table (Table S18)                                                                                    | `mid_tail_degree6_10`, then `main_results_table`                                                                                                                                                                                                                                                                            |
+| Main results (Tables 4, S1), NDCG@20 table (Table S18)                                                                                    | `mid_tail_degree6_10`, then `main_results_table`                                                                                                                                                                                                                                                                            |
 | Per-user bootstrap, TaxPro-CL vs. default SimGCL (Tables S26b, S6)                                                                        | `seed_matched_bootstrap`                                                                                                                                                                                                                                                                                                      |
 | Multiplicity-corrected inference for that comparison (Table S26)                                                                          | `a2_multiplicity_correction`                                                                                                                                                                                                                                                                                                  |
 | Wilcoxon tests with Holm correction (Table S5)                                                                                            | `compile_ablation_sweep`, then `statistics`                                                                                                                                                                                                                                                                                 |
@@ -639,7 +705,7 @@ published.
   author = {Tran, Thi Phuong and Tran, Duc Long and Pham, Minh Chuan and
             Nguyen, Van Hau},
   year   = {2026},
-  note   = {Manuscript; code and results: tag v1.6}
+  note   = {Manuscript; code and results: tag v1.7}
 }
 ```
 

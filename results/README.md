@@ -6,7 +6,7 @@ written by the script listed next to it (`python -m tools.analysis.<script>`);
 files and to the runs in `results_manifest.csv`. Trained checkpoints are not
 shipped: the inference-only scripts re-read them from `log/` after the training
 commands of the top-level README have been run. Table numbers refer to the main
-paper (Tables 1-5, Figure 1) and to Online Resource 1 (Tables S1-S36f).
+paper (Tables 1-5, Figure 1) and to Online Resource 1 (Tables S1-S49c).
 
 ## Audit trail
 
@@ -91,5 +91,22 @@ Protocol: `docs/confirmatory_protocol.md` (hashes in `docs/confirmatory_protocol
 | `confirmatory_selection.json`, `.sha256` | Table S36 (validation-only selection, frozen before the test split was opened) | `tools.experiments.run_confirmatory` |
 | `confirmatory_analysis_office-products.json` | Table 5, Figure 1 (Office-Products rows), Tables S36b-S36c, Section S36 | `tools.analysis.confirmatory_analysis` |
 | `six_methods_office-products.json` | Table S36b, top block (six methods, rank of six; descriptive) | `tools.analysis.confirmatory_six_methods` |
-| `peruser_office-products.csv.gz` | Per-user test Recall@20/NDCG@20 of every Near-Cold and Long-Tail user behind Table 4 and Table S36c | `tools.analysis.confirmatory_peruser` |
+| `peruser_office-products.csv.gz` | Per-user test Recall@20/NDCG@20 of every Near-Cold and Long-Tail user behind Table 5 and Table S36c | `tools.analysis.confirmatory_peruser` |
 | `intrinsic_sparsity_office-products.json` | Table S36f (held-out comparison for items sparse under both degree definitions; added after the test split was opened, not part of the protocol) | `tools.analysis.office_intrinsic_sparsity` |
+
+## Extended evaluation (`extended/`)
+
+Protocol: `docs/extended_evaluation_protocol.md` (hash in `docs/extended_evaluation_protocol.sha256`). Commands and
+packages: top-level README, Extended Evaluation. The run directories themselves stay under `log/p0/extended/`.
+
+| File | Manuscript item | Written by |
+| --- | --- | --- |
+| `run_registry.csv` | Every run of the protocol (525: 96 reference runs and 429 new runs): configuration and label-file SHA-256, environment, best epoch, validation Overall and Long-Tail Recall@20, test-evaluation time, best-validation checkpoint SHA-256, commit | `tools.experiments.run_extended --registry` |
+| `integrity_before.json` | SHA-256 of the 38 locked split, protocol and taxonomy files before the first run; `--snapshot after` compares them again | `tools.experiments.run_extended --snapshot before` |
+| `redrawn_split_manifest.json` | Re-drawn splits 101-103 of Musical-Instruments, Arts-Crafts-and-Sewing and Office-Products (Section 4.5) | `tools.data.build_redrawn_splits` |
+| `selection_grid.json`, `selection_ncl.json` (each with `.sha256`) | Validation selections of the wider Office-Products search and of tuned NCL, recorded before their test evaluation (Tables S43, S49) | `tools.experiments.run_extended --select` |
+| `selection_kgcl.json`, `selection_galore.json` (each with `.sha256`) | Validation selections of KGCL and GALORE, recorded before their test evaluation (Tables S45, S48) | `tools.experiments.run_comparators --select` |
+| `mechanism_diagnostics.json` | Checkpoint diagnostics of V0-V3 on validation data (Tables S40, S44-S44c) | `tools.analysis.mechanism_diagnostics` |
+| `extended_analysis.json` | Label and gradient-path controls (Tables S41-S41f), label quality (S42-S42b), wider Office search (S43-S43c), validation rank measures (S44d-S44i), KGCL, GALORE and tuned NCL on Office (Table 5; S45-S45c, S48-S48d, S49-S49c), run-level stability on seeds and re-drawn splits (S46-S46i, S47-S47d) | `tools.analysis.extended_analysis` |
+| `results_extended.csv`, `.sha256` | Per-run test Recall/NDCG@10/20 by group of the 288 new runs whose test split was opened; locked with its SHA-256 | `tools.analysis.extended_analysis --lock` |
+| `labels/<dataset>/<condition>-seed<seed>.npy` | The shuffled, noisy or missing labels used by the controls and label-quality runs, one file per dataset, condition and perturbation seed (27 files) | written by the runs (`taxonomy_labels.npy`) |
