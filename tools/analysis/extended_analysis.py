@@ -9,6 +9,10 @@ log/p0/extended/per_user/. A package that was not run is reported as not run.
 The rank measures of the checkpoint diagnostics are tabulated from
 results/extended/mechanism_diagnostics.json, for every arm pair, group and dataset.
 
+results_extended.csv lists every new run whose test was opened: the runs of the analyses,
+the search grids, the LightGCN runs GALORE starts from and the added baselines. Reference
+runs are not repeated there; their test results predate the protocol.
+
 Usage:
     python -m tools.analysis.extended_analysis [--device cuda] [--lock]
 Output: results/extended/extended_analysis.json, results/extended/results_extended.csv;
@@ -57,6 +61,8 @@ from tools.experiments.run_extended import (  # noqa: E402
     selection_file,
     sha256_path,
 )
+from tools.experiments.run_comparators import PACKAGES as COMPARATOR_PACKAGES  # noqa: E402
+from tools.experiments.run_comparators import plan as comparator_plan  # noqa: E402
 from tools.ranking.inference import load_model  # noqa: E402
 from utility.utility_data.taxonomy import REDRAWN_SPLIT_BASES, REDRAWN_SPLIT_SEEDS  # noqa: E402
 
@@ -104,6 +110,21 @@ def new_run_index():
             continue
         for item in planned(package):
             index[item.base_dataset, item.split, item.arm, item.seed] = ROOT / item.run_dir
+    return index
+
+
+def table_run_index():
+    """(base dataset, split, arm, seed) -> run directory, for every new run of the locked table
+    (protocol section 13): new_run_index() plus the search grids, the pretraining runs and the
+    added baselines."""
+    jobs = [item for package in EXPECTED_RUNS if package != "smoke" for item in planned(package)]
+    jobs += [item for package in COMPARATOR_PACKAGES for item in comparator_plan(package)]
+    index = {}
+    for item in jobs:
+        key = item.base_dataset, item.split, item.arm, item.seed
+        if key in index:
+            raise ValueError(f"two runs share {key}")
+        index[key] = ROOT / item.run_dir
     return index
 
 
@@ -445,10 +466,11 @@ def result_rows(index):
             continue
         metrics = group_metrics(run_dir)
         manifest = json.loads((run_dir / "run_manifest.json").read_text(encoding="utf-8"))
+        model = manifest.get("comparator", manifest["model"])    # an added baseline's manifest names its method here
         data_id = dataset if split == LOCKED_SPLIT else f"{dataset}-split{split}"
         for group in GROUPS:
             entry = metrics[group]
-            rows.append({"run_id": f"{manifest['model']}|{data_id}|{arm}|seed{seed}", "model": manifest["model"],
+            rows.append({"run_id": f"{model}|{data_id}|{arm}|seed{seed}", "model": model,
                          "dataset": data_id, "variant": arm, "seed": seed, "group": group,
                          "eligible_users": entry.get("eligible_users", ""),
                          "relevant_items": entry.get("relevant_items", ""),
@@ -492,7 +514,7 @@ def main(argv=None):
     with table.open("w", newline="\n", encoding="utf-8") as stream:
         writer = csv.DictWriter(stream, fieldnames=CSV_FIELDS, lineterminator="\n")
         writer.writeheader()
-        writer.writerows(rows)
+        writer.writerows(result_rows(table_run_index()))
     if args.lock:
         table.with_suffix(".sha256").write_bytes(f"{sha256_path(table)}  {table.name}\n".encode())
     return 0
