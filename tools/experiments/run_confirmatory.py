@@ -39,7 +39,7 @@ COMMON = {"dataset_path": "./dataset_verify/",
           "evaluation_protocol_path": "./preprocessed/evaluation_protocol/split_seed_42/",
           "top_K": "[10, 20]", "selection_K": "20", "embedding_size": "64", "num_worker": "4",
           "learn_rate": "0.001", "reg_lambda": "0.0001", "GCN_layer": "3", "sparsity_test": "0"}
-# Section 5: the final ACS configuration (manuscript Table 2); checked against the ACS
+# Section 5: the final ACS configuration (manuscript Table 3); checked against the ACS
 # main-run manifest at start-up.
 TAXPRO_BASE = {**COMMON, "training_epochs": "200", "early_stopping": "20", "interval": "1", "batch_size": "2048",
                "test_batch_size": "2048", "warm_start_epochs": "20", "mu": "0.9", "epsilon_max": "0.2",

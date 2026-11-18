@@ -1,6 +1,6 @@
 """Appends LightGCN/SGL-ED/XSimGCL/NCL per-seed Recall@10/20, NDCG@10/20 rows
 (near_cold, long_tail, overall, warm) to results/metrics_seed.csv, so the
-file covers every method of the main comparison (main paper Table 3 and
+file covers every method of the main comparison (main paper Table 4 and
 Online Resource 1, Table S1), not only the SimGCL block.
 
 Pure export/re-analysis: no retraining, no re-inference. Sources:

@@ -8,7 +8,7 @@ configuration scores on the test split relative to the five baselines.
 
 Candidates (per dataset): every retained TaxPro-CL run family with all three training
 seeds (0, 1, 42) whose resolved configuration equals the dataset's main configuration
-except in the hyperparameters that were tuned (main paper Table 2: temperature,
+except in the hyperparameters that were tuned (main paper Table 3: temperature,
 temperature_user, epsilon_max, gamma_cold, gamma_warm, warm_start_epochs,
 taxonomy_policy). This keeps the method as specified in main paper Section 3 and
 excludes the factorial controls, component variants (parent prototype, isotropic blend,

@@ -219,7 +219,7 @@ and `A2-V3-nowarm` with the corresponding Amazon-Book command above plus
 | `tools.analysis.degree_transition` | Pool-to-train degree-bucket transition of the items (Table S21) |
 | `tools.analysis.export_baseline_metrics_seed` | Export per-seed metrics of the baseline runs into `results/metrics_seed.csv` |
 | `tools.analysis.mid_tail_degree6_10` | Disjoint degree-6-10 Mid-Tail slice, all 6 methods x 4 datasets, cross-checked |
-| `tools.analysis.main_results_table` | Full mean±std results table + LaTeX, all 6 methods x 4 datasets x 5 groups (paper Table 3; Online Resource 1, Tables S1, S18) |
+| `tools.analysis.main_results_table` | Full mean±std results table + LaTeX, all 6 methods x 4 datasets x 5 groups (paper Table 4; Online Resource 1, Tables S1, S18) |
 | `tools.analysis.rank_audit_seed_matched` | Seed-matched item-rank audit, one baseline vs. TaxPro-CL |
 | `tools.analysis.beyond_accuracy` | Coverage@20, Long-Tail share@20, avg. recommended popularity, all 6 methods x 4 datasets |
 | `tools.analysis.view_cosine_by_degree` | Cosine similarity between the two perturbed views, by degree group (paper Section 5.1.1; Online Resource 1, Table S22) |
@@ -239,7 +239,7 @@ and `A2-V3-nowarm` with the corresponding Amazon-Book command above plus
 | `tools.analysis.s35_export` | Re-runs the validation-only re-selection and exports `s35_rules.csv`, `s35_candidates.csv`, `s35_results.csv`, `s35_overall_rule_cells.csv` (Online Resource 1, Tables S35-S35c) |
 | `tools.analysis.yelp_factorial_hits` | Yelp2018 factorial per-user hit decomposition, checked against the evaluator and the manifest hashes (paper Section 5.1.1; Online Resource 1, Tables S13g-S13h) |
 | `tools.analysis.export_factorial_pvalues` | Full p-value vector of the RQ1 factorial with Holm ranks and adjusted p (`results/factorial_pvalues.csv`; Online Resource 1, Table S13e) |
-| `tools.analysis.confirmatory_analysis` | Held-out evaluation: primary endpoint, secondary Holm family, factorial, sensitivity (Table 4; Online Resource 1, Section S36) |
+| `tools.analysis.confirmatory_analysis` | Held-out evaluation: primary endpoint, secondary Holm family, factorial, sensitivity (Table 5; Online Resource 1, Section S36) |
 | `tools.analysis.confirmatory_six_methods` | Held-out evaluation: descriptive six-method comparison (Online Resource 1, Table S36b) |
 | `tools.analysis.confirmatory_peruser` | Held-out evaluation: per-user Near-Cold/Long-Tail test metrics of every opened run |
 | `tools.analysis.update_manifest_confirmatory` | Add the held-out runs to `results_manifest.csv` and `metrics_seed.csv` |

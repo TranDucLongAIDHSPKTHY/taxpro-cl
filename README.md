@@ -123,7 +123,7 @@ held-out fifth dataset and an excluded candidate are listed below them:
 | `yelp2018`               | Yelp     | Business recommendation with multi-label category metadata |
 | `musical-instruments`    | Amazon   | Product recommendation, Musical Instruments category       |
 | `arts-crafts-and-sewing` | Amazon   | Product recommendation, Arts/Crafts/Sewing category        |
-| `office-products`        | Amazon   | Prospectively specified held-out evaluation (Table 4)      |
+| `office-products`        | Amazon   | Prospectively specified held-out evaluation (Table 5)      |
 | `cds-and-vinyl`          | Amazon   | Excluded candidate, reported in Online Resource 1, S30     |
 
 `amazon-book` and `yelp2018` reuse the canonical splits established by
@@ -287,7 +287,7 @@ python -m tools.experiments.run_confirmatory --dataset office-products
 # 3. Open the test split once for the selected runs
 python -m tools.experiments.evaluate_sealed_test --selection results/confirmatory/confirmatory_selection.json
 
-# 4. Analyses (Table 4; Online Resource 1, Section S36)
+# 4. Analyses (Table 5; Online Resource 1, Section S36)
 python -m tools.analysis.confirmatory_analysis --dataset office-products
 python -m tools.analysis.confirmatory_six_methods --dataset office-products
 python -m tools.analysis.confirmatory_peruser --dataset office-products
@@ -367,9 +367,9 @@ entry points are:
 | CDs-and-Vinyl comparison (Tables S30b, S30c)                                                                                              | `cds_and_vinyl_summary`, `update_manifest_cds_and_vinyl`                                                                                                                                                                                                                                                                    |
 | Full p-value vector of the factorial (Table S13e)                                                                                         | `export_factorial_pvalues`                                                                                                                                                                                                                                                                                                    |
 | Yelp2018 per-user hit decomposition (Tables S13g, S13h)                                                                                   | `yelp_factorial_hits`                                                                                                                                                                                                                                                                                                         |
-| A7 comparable-budget grid (Table 3; Tables S24-S24e)                                                                                      | `a7_tuned_comparison`                                                                                                                                                                                                                                                                                                         |
+| A7 comparable-budget grid (Table 4; Tables S24-S24g)                                                                                      | `a7_tuned_comparison`                                                                                                                                                                                                                                                                                                         |
 | Validation-only re-selection of the configuration (Tables S35-S35c)                                                                       | `validation_reselection_audit`, then `s35_export`                                                                                                                                                                                                                                                                           |
-| Prospectively specified held-out evaluation (Table 4; Tables S36-S36e)                                                                    | `confirmatory_analysis`, `confirmatory_six_methods`, `confirmatory_peruser`                                                                                                                                                                                                                                               |
+| Prospectively specified held-out evaluation (Table 5; Tables S36-S36e)                                                                    | `confirmatory_analysis`, `confirmatory_six_methods`, `confirmatory_peruser`                                                                                                                                                                                                                                               |
 
 `results/README.md` lists every shipped result file with the script that
 writes it and the manuscript item it supports.

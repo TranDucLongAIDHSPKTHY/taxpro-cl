@@ -57,7 +57,7 @@ def parse_args(argv=None):
     parser.add_argument(
         "--taxonomy-policy", choices=POLICIES, default=None,
         help="Default: the policy selected for the dataset in the paper "
-             "(Table 2): merge_t10 for amazon-book, no_merge otherwise.",
+             "(Table 3): merge_t10 for amazon-book, no_merge otherwise.",
     )
     parser.add_argument(
         "--taxonomy-granularity", choices=("leaf", "parent"), default="leaf"

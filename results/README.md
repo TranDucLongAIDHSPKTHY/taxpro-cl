@@ -6,7 +6,7 @@ written by the script listed next to it (`python -m tools.analysis.<script>`);
 files and to the runs in `results_manifest.csv`. Trained checkpoints are not
 shipped: the inference-only scripts re-read them from `log/` after the training
 commands of the top-level README have been run. Table numbers refer to the main
-paper (Tables 1-4, Figure 1) and to Online Resource 1 (Tables S1-S36f).
+paper (Tables 1-5, Figure 1) and to Online Resource 1 (Tables S1-S36f).
 
 ## Audit trail
 
@@ -21,7 +21,7 @@ paper (Tables 1-4, Figure 1) and to Online Resource 1 (Tables S1-S36f).
 | File | Manuscript item | Written by |
 | --- | --- | --- |
 | `mid_tail_degree6_10.json` | Mid-Tail slice and checkpoint resolution for Table S1 | `mid_tail_degree6_10` |
-| `main_results_table.json` | Tables 3, S1, S18 (Recall@20 and NDCG@20, mean and std) | `main_results_table` |
+| `main_results_table.json` | Tables 4, S1, S18 (Recall@20 and NDCG@20, mean and std) | `main_results_table` |
 | `{dataset}_seed_matched_bootstrap.json` (4 files) | Tables S26b and S6 (per-user bootstrap, TaxPro-CL vs. SimGCL) | `seed_matched_bootstrap` |
 | `a2_multiplicity_correction_signflip_100k.json` | Table S26 (sign-flip p, centred-bootstrap p, earlier tail p; Holm) | `a2_multiplicity_correction` |
 | `a2_multiplicity_correction_signflip_1M_seed123.json` | Table S26 precision re-run (10^6 permutations, seed 123) | `a2_multiplicity_correction` |
@@ -74,7 +74,7 @@ paper (Tables 1-4, Figure 1) and to Online Resource 1 (Tables S1-S36f).
 | `policy_sweep_splits.json` | Table S3 and, for CDs-and-Vinyl, Table S30d | `policy_sweep_splits` |
 | `cds_and_vinyl_summary.json` | Tables S30b, S30c | `cds_and_vinyl_summary` |
 | `a7_grid_status.json` | Partial A7 grid summary at the 2026-09-15 data cut-off (not used for any reported table; see `a7_tuned_comparison.json`) | `a7_grid_status` |
-| `a7_tuned_comparison.json` | Table 3 and Section 5.2.1 (A7), Tables S24-S24e (A7 grid: selected cells by rule Ov and rule R, statistics vs. TaxPro-CL) | `a7_tuned_comparison` |
+| `a7_tuned_comparison.json` | Table 4 and Section 5.2.1 (A7), Tables S24-S24g (A7 grid: selected cells by rule Ov and rule R, statistics vs. TaxPro-CL) | `a7_tuned_comparison` |
 | `validation_reselection_audit.json` | Table S35 (retrospective validation-only re-selection of the configuration) | `validation_reselection_audit` |
 | `s35_rules.csv`, `s35_candidates.csv`, `s35_overall_rule_cells.csv` | Tables S35b-S35c (rule definitions and tie-breaks, candidate set, the four AB/Yelp cells under the Overall rule per seed, unrounded); re-runs and checks every selection | `s35_export` |
 | `s35_results.csv` | Table S35 (per rule and dataset: selected configuration, test change vs. SimGCL, rank of six) | `s35_export` |
@@ -89,7 +89,7 @@ Protocol: `docs/confirmatory_protocol.md` (hashes in `docs/confirmatory_protocol
 | --- | --- | --- |
 | `screening_*.json` | Section S35 (screening of Digital_Music, Prime_Pantry, Office_Products) | `tools.data.screen_confirmatory_candidates`; taxonomy files from the metadata/taxonomy build |
 | `confirmatory_selection.json`, `.sha256` | Table S36 (validation-only selection, frozen before the test split was opened) | `tools.experiments.run_confirmatory` |
-| `confirmatory_analysis_office-products.json` | Table 4, Figure 1 (Office-Products rows), Tables S36b-S36c, Section S36 | `tools.analysis.confirmatory_analysis` |
+| `confirmatory_analysis_office-products.json` | Table 5, Figure 1 (Office-Products rows), Tables S36b-S36c, Section S36 | `tools.analysis.confirmatory_analysis` |
 | `six_methods_office-products.json` | Table S36b, top block (six methods, rank of six; descriptive) | `tools.analysis.confirmatory_six_methods` |
 | `peruser_office-products.csv.gz` | Per-user test Recall@20/NDCG@20 of every Near-Cold and Long-Tail user behind Table 4 and Table S36c | `tools.analysis.confirmatory_peruser` |
 | `intrinsic_sparsity_office-products.json` | Table S36f (held-out comparison for items sparse under both degree definitions; added after the test split was opened, not part of the protocol) | `tools.analysis.office_intrinsic_sparsity` |
