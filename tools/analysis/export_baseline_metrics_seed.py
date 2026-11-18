@@ -6,7 +6,7 @@ Online Resource 1, Table S1), not only the SimGCL block.
 Pure export/re-analysis: no retraining, no re-inference. Sources:
 - results/mid_tail_degree6_10.json for near_cold/long_tail
   (already the official checkpoint-resolved per-seed source used by
-  tools/analysis/main_results_table.py for Table S1/Table 3).
+  tools/analysis/main_results_table.py for Table S1/Table 4).
 - each of those same checkpoints' own final_test_group_metrics.json for
   overall/warm (same convention main_results_table.py itself documents).
 """

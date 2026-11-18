@@ -186,9 +186,9 @@ def main():
     for row in manifest_rows:
         tables = []
         if row["variant"] == "TaxPro-CL-main":
-            tables = ["Table S1", "Table 3 (deltas)", "Tables S26/S26b (bootstrap)"]
+            tables = ["Table S1", "Table 4 (deltas)", "Tables S26/S26b (bootstrap)"]
         elif row["variant"] == "SimGCL-main":
-            tables = ["Table S1", "Table 3 (deltas)", "Tables S26/S26b (bootstrap)"]
+            tables = ["Table S1", "Table 4 (deltas)", "Tables S26/S26b (bootstrap)"]
         elif row["variant"] in ("V0", "V1", "V2", "V3"):
             tables = ["Figure 1", "Online Resource 1 Tables S13/S13b/S13e/S17/S17b/S19/S27"]
         row["used_in_tables"] = "; ".join(tables)

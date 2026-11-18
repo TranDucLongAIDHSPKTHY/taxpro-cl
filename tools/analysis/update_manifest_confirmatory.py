@@ -33,7 +33,7 @@ def runs():
     sel = json.loads((BASE / "confirmatory_selection.json").read_text(encoding="utf-8"))
     pol, tax = sel["step1_policy"]["selected"], sel["step2_taxpro"]["selected"]
     sim = sel["step3_tuned_simgcl"]
-    tables = "Table 4; Online Resource 1 Tables S36-S36c (held-out evaluation)"
+    tables = "Table 5; Online Resource 1 Tables S36-S36c (held-out evaluation)"
     out = [("TaxPro-CL", "HO-TaxPro-CL-selected", BASE / "TaxPro-CL" / f"step2-{pol}-{tax}", tables)]
     for v in ("V0", "V1", "V2"):
         out.append(("TaxPro-CL", f"HO-{v}", BASE / "TaxPro-CL" / f"step4-{v}-{pol}-{tax}", "Figure 1; Online Resource 1 Tables S36b-S36c"))
