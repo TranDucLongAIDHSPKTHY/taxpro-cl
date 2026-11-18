@@ -82,7 +82,9 @@ The locked splits (`dataset_verify/`), evaluation-protocol artifacts
 with the repository, so nothing has to be downloaded to run the checks below.
 
 ```powershell
-# 1. Unit tests (CPU).
+# 1. Unit tests (CPU). In a fresh clone, the tests that read the local run
+#    manifests of the extended evaluation are skipped, because the run
+#    directories under log/ are not shipped.
 python -m pytest -q
 
 # 2. Check that models import and every shipped dataset artifact is present.
