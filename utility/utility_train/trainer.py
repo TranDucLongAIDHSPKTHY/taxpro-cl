@@ -1,3 +1,11 @@
+"""Training loop with validation-based early stopping and resumption.
+
+Adapted from ID-GRec (https://github.com/BlueGhostYi/ID-GRec, Yi Zhang et al.).
+This file is not covered by the MIT License of this repository; it is
+redistributed for non-commercial research use with attribution, under the
+permission quoted in NOTICE.
+"""
+
 import json
 import random
 from pathlib import Path

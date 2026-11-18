@@ -1,6 +1,8 @@
 """
 PyTorch Implementation of NCL
-Adapted from ID-GRec (https://github.com/BlueGhostYi/ID-GRec).
+Adapted from ID-GRec (https://github.com/BlueGhostYi/ID-GRec, Yi Zhang et al.).
+Not covered by the MIT License of this repository; redistributed for non-commercial
+research use with attribution, under the permission quoted in NOTICE.
 Improving Graph Collaborative Filtering with Neighborhood-enriched Contrastive Learning  Lin et al. WWW'22
 Additional requirements: faiss
 """

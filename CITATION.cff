@@ -25,7 +25,6 @@ authors:
     country: "VN"
 version: "v1.6"
 date-released: 2026-10-21
-license: MIT
 repository-code: "https://github.com/TranDucLongAIDHSPKTHY/taxpro-cl"
 preferred-citation:
   type: unpublished
@@ -78,4 +77,4 @@ references:
       - family-names: "Sheng"
         given-names: "Victor S."
     url: "https://github.com/BlueGhostYi/ID-GRec"
-    notes: "Upstream framework from which the baseline implementations (LightGCN, SGL, SimGCL, NCL, XSimGCL) and the training/evaluation pipeline in this repository are adapted; no license was declared upstream when checked on 2026-09-20 (see README.md, Acknowledgements And Upstream Code)."
+    notes: "Upstream framework from which the baseline implementations (LightGCN, SGL, SimGCL, NCL, XSimGCL) and the training/evaluation pipeline in this repository are adapted. Permission to use, modify, and publicly redistribute the portions of ID-GRec for which its authors hold the relevant rights, for non-commercial research purposes and with attribution, was communicated in an email from Yi Zhang dated 2026-11-13; these portions are not covered by the MIT License of this repository (see NOTICE and README.md, License And Data)."

@@ -1,0 +1,46 @@
+TaxPro-CL
+Copyright (c) 2026 The TaxPro-CL Authors
+
+The MIT License in LICENSE covers this project's own contributions: the
+TaxPro-CL model, taxonomy construction, and experiment tooling.
+
+It does not cover the code adapted from ID-GRec
+(https://github.com/BlueGhostYi/ID-GRec, Yi Zhang et al.):
+
+  - models/LightGCN.py, models/SGL.py, models/SimGCL.py, models/NCL.py,
+    models/XSimGCL.py;
+  - configure/LightGCN.txt, configure/SGL.txt, configure/SimGCL.txt,
+    configure/NCL.txt, configure/XSimGCL.txt;
+  - utility/utility_data/data_graph.py, utility/utility_data/data_loader.py,
+    utility/utility_function/losses.py, utility/utility_function/metrics.py,
+    utility/utility_function/tools.py, utility/utility_train/batch_test.py,
+    utility/utility_train/trainer.py;
+  - the parts of main.py and Parser.py that come from the ID-GRec pipeline.
+
+In an email dated 13 November 2026, Yi Zhang of ID-GRec wrote:
+
+  "We are happy to grant permission to use, modify, and publicly redistribute
+  the portions of the ID-GRec for which we hold the relevant rights, for
+  non-commercial research purposes, provided that appropriate attribution is
+  given to the ID-GRec framework and the relevant publications. Any
+  third-party components remain subject to their respective licenses and
+  permissions."
+
+Reuse of the ID-GRec-derived code listed above is limited to the same purposes
+and conditions; for other uses, please contact the ID-GRec authors. Because
+the bundled training and evaluation workflow depends on that code, using that
+workflow as distributed is subject to the same conditions. Please cite:
+
+  Yi Zhang, Yiwen Zhang, Lei Sang, and Victor S. Sheng. Simplify to the Limit!
+  Embedding-less Graph Collaborative Filtering for Recommender Systems.
+  ACM Transactions on Information Systems 43(1), Article 22, 2025.
+  https://doi.org/10.1145/3701230
+
+ID-GRec adapted the baseline implementations from the original code of each
+method; those parts remain subject to the terms of the original
+implementations, and the original method papers are cited in the TaxPro-CL
+manuscript.
+
+The comparators' own code (KGCL, GALORE) is not part of this repository;
+tools/comparators/ holds only the scripts that run it unmodified at pinned
+commits (see tools/comparators/README.md).

@@ -597,10 +597,12 @@ training/evaluation pipeline used here (command-line parser, the
 `configure/*.txt` per-model configuration layout, the training loop, and the
 evaluation and logging conventions) are adapted from
 [ID-GRec](https://github.com/BlueGhostYi/ID-GRec), a graph recommendation
-framework by Yi Zhang and colleagues. The per-model training settings (epoch
-cap, early-stopping patience, batch size) follow ID-GRec's configuration files,
-with one deliberate change: the epoch cap of SGL, SimGCL, and XSimGCL is raised
-from ID-GRec's default of 50 to 200 (see "Epoch cap" above).
+framework by Yi Zhang and colleagues, and are redistributed under the
+permission stated in an email from Yi Zhang dated 13 November 2026 (see
+"License And Data" and `NOTICE`). The per-model training settings (epoch cap,
+early-stopping patience, batch size) follow ID-GRec's configuration files, with
+one deliberate change: the epoch cap of SGL, SimGCL, and XSimGCL is raised from
+ID-GRec's default of 50 to 200 (see "Epoch cap" above).
 Many thanks to the ID-GRec authors. If you use these baselines or this
 pipeline, please also cite the ID-GRec associated work:
 
@@ -650,9 +652,22 @@ This repository distributes code and experiment metadata. Dataset access and use
 remain subject to the respective source licenses and terms of service.
 
 The MIT License in `LICENSE` covers this project's own contributions (the
-TaxPro-CL model, taxonomy construction, and experiment tooling). Code adapted
-from ID-GRec (see "Acknowledgements And Upstream Code" above) remains subject
-to its authors' rights: the ID-GRec repository declared no license when checked
-on 2026-09-20. The adapted code is credited in the source headers and above, and
-the associated paper (Zhang et al., ACM TOIS 43(1), Article 22, 2025) is cited in
-the manuscript and in `CITATION.cff`.
+TaxPro-CL model, taxonomy construction, and experiment tooling). It does not
+cover the code adapted from ID-GRec (see "Acknowledgements And Upstream Code"
+above), which `NOTICE` lists file by file: the five baseline models and their
+configuration files, seven files under `utility/`, and the parts of `main.py`
+and `Parser.py` that come from the ID-GRec pipeline. In an email dated
+13 November 2026, Yi Zhang of ID-GRec wrote: "We are happy to grant permission
+to use, modify, and publicly redistribute the portions of the ID-GRec for
+which we hold the relevant rights, for non-commercial research purposes,
+provided that appropriate attribution is given to the ID-GRec framework and
+the relevant publications." Reuse of the ID-GRec-derived code is limited to
+the same purposes and conditions; for other uses, please contact the ID-GRec
+authors. Because the bundled training and evaluation workflow depends on that
+code, using that workflow as distributed is subject to the same conditions. As
+the same email notes, third-party components remain subject to their
+respective licenses and permissions; the original papers of the baseline
+methods are cited in the TaxPro-CL manuscript. Each ID-GRec-derived Python file
+is credited in its source header, and the ID-GRec associated paper (Zhang et
+al., ACM TOIS 43(1), Article 22, 2025) is cited in the manuscript and in
+`CITATION.cff`.

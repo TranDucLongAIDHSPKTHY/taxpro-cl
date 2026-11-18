@@ -1,3 +1,12 @@
+"""Command-line parser for main.py.
+
+Adapted from ID-GRec (https://github.com/BlueGhostYi/ID-GRec, Yi Zhang et al.);
+extended for the TaxPro-CL experiments. The parts that come from the ID-GRec
+pipeline are not covered by the MIT License of this repository; they are
+redistributed for non-commercial research use with attribution, under the
+permission quoted in NOTICE.
+"""
+
 import argparse
 import sys
 

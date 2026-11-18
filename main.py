@@ -2,7 +2,9 @@
 
 Adapted from ID-GRec (https://github.com/BlueGhostYi/ID-GRec, Yi Zhang et al.);
 extended for the TaxPro-CL experiments (see README.md, Acknowledgements And
-Upstream Code).
+Upstream Code). The parts that come from the ID-GRec pipeline are not covered by
+the MIT License of this repository; they are redistributed for non-commercial
+research use with attribution, under the permission quoted in NOTICE.
 """
 
 __author__ = "Yi Zhang"  # upstream ID-GRec author

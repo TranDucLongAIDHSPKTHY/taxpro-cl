@@ -1,3 +1,12 @@
+"""Training helpers: seeding, configuration reading, mini-batching, and sparse-matrix
+conversion.
+
+Adapted from ID-GRec (https://github.com/BlueGhostYi/ID-GRec, Yi Zhang et al.).
+This file is not covered by the MIT License of this repository; it is
+redistributed for non-commercial research use with attribution, under the
+permission quoted in NOTICE.
+"""
+
 import os
 import torch
 import random
