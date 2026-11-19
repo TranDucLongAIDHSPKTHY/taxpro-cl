@@ -6,4 +6,5 @@ pytest==8.3.5
 # Only for the figure scripts (tools/analysis/plot_figure1_factorial_forest.py,
 # regenerate_fig3_factorial_forest.py, plot_main_figures.py):
 matplotlib==3.10.9
-# NCL full training additionally requires a CUDA-compatible FAISS-GPU build.
+# NCL additionally needs FAISS (requirements-ncl-cpu.txt): the reported NCL runs used
+# faiss-cpu 1.14.3, with k-means on the CPU; a FAISS-GPU build is optional.

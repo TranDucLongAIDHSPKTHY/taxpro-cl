@@ -67,7 +67,7 @@ python -m venv .venv
 # the default PyPI wheel of torch is CPU-only.
 pip install torch==2.1.0 --index-url https://download.pytorch.org/whl/cu121
 pip install -r requirements.txt         # torch==2.1.0 is already satisfied
-# Optional, only needed to run NCL without a CUDA-compatible FAISS-GPU build:
+# NCL only: FAISS for its k-means (the reported NCL runs used this CPU build):
 pip install -r requirements-ncl-cpu.txt
 ```
 
@@ -707,7 +707,7 @@ published.
   author = {Tran, Thi Phuong and Tran, Duc Long and Pham, Minh Chuan and
             Nguyen, Van Hau},
   year   = {2026},
-  note   = {Manuscript; code and results: tag v1.7}
+  note   = {Manuscript; code and results: tag v1.8}
 }
 ```
 
