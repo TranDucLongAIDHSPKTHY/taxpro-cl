@@ -55,6 +55,7 @@ def selection_file(name):
 SELECTION_GRID = selection_file("grid")
 SELECTION_NCL = selection_file("ncl")
 REGISTRY = RESULTS / "run_registry.csv"
+WIDE_REGISTRY = RESULTS / "run_registry_wide.csv"   # runs of protocol Deviation 2, after the data lock
 SEEDS = (42, 0, 1)
 NEW_SEEDS = (2, 3, 4)
 LOCKED_SPLIT = 42
@@ -371,7 +372,8 @@ def sha256_path(path):
 
 def require_clean_code():
     """environment.json records HEAD, so training code must be committed before a package runs."""
-    tracked = ("models", "utility", "configure", "main.py", "Parser.py", "tools/experiments/run_extended.py")
+    tracked = ("models", "utility", "configure", "main.py", "Parser.py", "tools/experiments/run_extended.py",
+               "tools/experiments/run_comparators.py", "tools/experiments/run_wide_grids.py", "tools/comparators")
     changed = subprocess.run(["git", "status", "--porcelain", "--", *tracked], cwd=ROOT,
                              capture_output=True, text=True, check=True).stdout.strip()
     if changed:
@@ -379,10 +381,16 @@ def require_clean_code():
 
 
 def require_frozen_protocol():
+    """The protocol must match its SHA-256 at the freeze or, once Section 14 records a change, the
+    last SHA-256 of <protocol>_deviations.sha256 (one line per amended state)."""
     recorded = (ROOT / PROTOCOL).with_suffix(".sha256")
     if not recorded.exists():
         raise SystemExit(f"{PROTOCOL} is not frozen: {recorded.name} is missing")
-    if sha256_path(ROOT / PROTOCOL) != recorded.read_text(encoding="utf-8").split()[0]:
+    accepted = recorded.read_text(encoding="utf-8").split()[0]
+    amended = (ROOT / PROTOCOL).with_name(f"{PROTOCOL.stem}_deviations.sha256")
+    if amended.exists():
+        accepted = amended.read_text(encoding="utf-8").strip().splitlines()[-1].split()[0]
+    if sha256_path(ROOT / PROTOCOL) != accepted:
         raise SystemExit(f"{PROTOCOL} does not match its recorded SHA-256")
 
 
@@ -396,7 +404,11 @@ def history_is_complete(run_dir):
 
 
 def registry_path(package):
-    return ROOT / (SMOKE_OUTPUT / "run_registry.csv" if package == "smoke" else REGISTRY)
+    """Runs of Deviation 2 (packages ending in -wide) have their own registry, so the locked one of
+    Section 13 does not change."""
+    if package == "smoke":
+        return ROOT / SMOKE_OUTPUT / "run_registry.csv"
+    return ROOT / (WIDE_REGISTRY if package.endswith("-wide") else REGISTRY)
 
 
 def environment_label(run_dir, environment):

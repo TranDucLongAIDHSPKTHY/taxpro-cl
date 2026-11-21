@@ -454,4 +454,52 @@ recorded when the data are locked. No run starts after the lock.
 
 ## 14. Changes after freezing
 
-None.
+### Deviation 1 (2026-11-21, after every run of Sections 4-10 and the data lock)
+
+Labels only; no run, selection or result changes. Section 1 labels the Office-Products comparisons with
+KGCL, GALORE and tuned NCL prospectively specified. Their selection rules were fixed here and each test
+result was evaluated once, but the Office-Products test split had been viewed for other methods, including
+default NCL, before these runs. They are relabeled exploratory, secondary comparisons. Their selection files
+were committed before each test evaluation and reached the public repository after it (pushed 2026-11-11
+11:05 UTC for KGCL, 2026-11-18 16:29 UTC for GALORE and NCL). Results on the re-drawn splits keep their label: their
+rule is fixed here, in the version published before the first run, and their test sets had not been viewed.
+
+### Deviation 2 (2026-11-21, after the data lock, before any of its runs)
+
+Additions only; exploratory. The selected KGCL temperature, 0.20, is the highest searched, and the selected
+NCL cell, temperature 0.05 with 1000 clusters, has the lowest temperature and the fewest clusters searched.
+Each grid is widened past that edge, on Office-Products, split 42, with seeds 42, 0 and 1 and otherwise the
+settings of Sections 9 and 10:
+
+- KGCL: `kgc_temp` in {0.25, 0.30} x `ssl_reg` in {0.02, 0.06, 0.10}. 18 runs.
+- NCL: temperature in {0.02, 0.03} x number of clusters in {500, 1000}. 12 runs.
+
+Section 13 says that no run starts after the lock; these runs are the exception recorded here. They run from
+`tools/experiments/run_wide_grids.py` and have their own registry, `results/extended/run_registry_wide.csv`,
+so the locked files of Section 13 do not change. Rule R selects on the union of the existing and new cells,
+18 for KGCL and 16 for NCL, existing cells first in the order ties are broken; rule Ov is recorded. The
+selections are committed to `results/extended/selection_kgcl_wide.json` and `selection_ncl_wide.json` before
+any test evaluation. If rule R selects the cell selected before, no test split is opened. Otherwise the three
+runs of the selected cell are evaluated once and compared with the complete configuration as in Section 9
+(bootstrap 2,000, sign-flip, Holm over NC and LT), with a random stream separate from that of
+`extended_analysis.json`, in `results/extended/wide_grids.json`. The comparisons reported in the paper keep
+their selected cells; a changed selection is reported beside them.
+
+Reporting. Selection unchanged: "Widening the KGCL [NCL] grid did not change the validation-selected cell."
+Selection changed: "With the wider grid, rule R selected the reported cell; the LT difference from the
+complete configuration was the reported value." A selected cell at the new edge: "The selected value remains
+at the edge of the widened grid, so the optimum is not bracketed."
+
+### Deviation 3 (recorded 2026-11-21, after the events)
+
+- Section 11 says that a failed run is repeated. Two runs stopped on a file-permission error while writing a
+  checkpoint and were resumed from their last checkpoint, as the runner does for an interrupted run, after
+  the trainer checked the checkpoint's configuration against the run's: tuned-grid NCL on Office-Products
+  at temperature 0.2 with 1000 clusters, seed 42, at epoch 57 (2026-11-16 03:56 UTC), and default SimGCL on
+  the re-drawn Arts-Crafts-and-Sewing split 101, seed 1, at epoch 32 (2026-11-16 19:10 UTC). Neither run had
+  a test evaluation.
+- Rule R does not state how ties are broken. In the GALORE grid, five and ten structural neighbors at drop
+  rate 0.1 have the same three-seed mean validation LT Recall@20; the first cell in grid order was selected,
+  as `rule_r` does. It is also the rule-Ov cell.
+
+The SHA-256 of this file after Deviations 1-3 is recorded in `docs/extended_evaluation_protocol_deviations.sha256`.

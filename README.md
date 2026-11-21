@@ -362,6 +362,19 @@ writes the same bytes, and the checkpoint records their SHA-256.
 `results/extended/labels/` keeps one copy per dataset, condition, and
 perturbation seed (27 files).
 
+Section 14 of the protocol records the changes after its freeze, and
+`docs/extended_evaluation_protocol_deviations.sha256` the SHA-256 of the amended
+file. Deviation 2 widens the KGCL and NCL grids on Office-Products after the data
+lock (exploratory; 18 and 12 runs). These runs have their own registry,
+selections and analysis, so no locked file changes:
+
+```powershell
+python -m tools.experiments.run_wide_grids --package comparator-kgcl-wide grid-ncl-wide
+python -m tools.experiments.run_wide_grids --select kgcl      # then --select ncl; commit both files
+python -m tools.experiments.run_wide_grids --open-test kgcl   # opens only a changed selection
+python -m tools.analysis.wide_grid_analysis                   # results/extended/wide_grids.json
+```
+
 ## Main Results (Recall@20, Mean±Std over 3 seeds: 42, 0, 1)
 
 Current comparison: 6 models x 4 datasets (baselines LightGCN, SGL-ED, SimGCL,
