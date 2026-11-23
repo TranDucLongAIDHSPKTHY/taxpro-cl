@@ -1,0 +1,586 @@
+{
+  "protocol": "docs/extended_evaluation_protocol.md",
+  "deviation": "Deviation 2 (Section 14)",
+  "random_seed": 2026,
+  "device": "cuda",
+  "kgcl": {
+    "rule_R": "temp0.25-ssl0.06",
+    "rule_R_before": "temp0.2-ssl0.06",
+    "rule_Ov": "temp0.2-ssl0.06",
+    "selection_changed": true,
+    "selected_cell_is_new": true,
+    "selected_at_edge_in": [],
+    "cells": {
+      "temp0.05-ssl0.02": {
+        "near_cold": 0.0019192600082387748,
+        "long_tail": 0.0038768658409328075,
+        "warm": 0.1636296186671136,
+        "overall": 0.13219183085696465
+      },
+      "temp0.05-ssl0.06": {
+        "near_cold": 0.0018911732764108902,
+        "long_tail": 0.003060205979764983,
+        "warm": 0.14741624267112893,
+        "overall": 0.11891920113074911
+      },
+      "temp0.05-ssl0.1": {
+        "near_cold": 0.00143242332322211,
+        "long_tail": 0.0022934531101129712,
+        "warm": 0.13501430135597134,
+        "overall": 0.10874132036897576
+      },
+      "temp0.1-ssl0.02": {
+        "near_cold": 0.002668239523649028,
+        "long_tail": 0.00589356199809446,
+        "warm": 0.18748845335040976,
+        "overall": 0.15182412514550758
+      },
+      "temp0.1-ssl0.06": {
+        "near_cold": 0.002499719132681721,
+        "long_tail": 0.0044485277437502834,
+        "warm": 0.17953027958454779,
+        "overall": 0.1449786556515946
+      },
+      "temp0.1-ssl0.1": {
+        "near_cold": 0.0021533161068044786,
+        "long_tail": 0.003978948323578785,
+        "warm": 0.1714888591658873,
+        "overall": 0.13841362780726385
+      },
+      "temp0.15-ssl0.02": {
+        "near_cold": 0.002321836497771786,
+        "long_tail": 0.0054398620752234466,
+        "warm": 0.1886071087046363,
+        "overall": 0.15255947000463552
+      },
+      "temp0.15-ssl0.06": {
+        "near_cold": 0.0026307905478785156,
+        "long_tail": 0.0054875005671249045,
+        "warm": 0.18899058531159096,
+        "overall": 0.1528150292802167
+      },
+      "temp0.15-ssl0.1": {
+        "near_cold": 0.002518443620566978,
+        "long_tail": 0.0056054625470713685,
+        "warm": 0.18582465210349366,
+        "overall": 0.15026439577000603
+      },
+      "temp0.2-ssl0.02": {
+        "near_cold": 0.002293749765943901,
+        "long_tail": 0.006065967968785445,
+        "warm": 0.18495970009795074,
+        "overall": 0.1498944225070796
+      },
+      "temp0.2-ssl0.06": {
+        "near_cold": 0.0026776017675916564,
+        "long_tail": 0.006081847466085931,
+        "warm": 0.1890424112565284,
+        "overall": 0.15308248793227291
+      },
+      "temp0.2-ssl0.1": {
+        "near_cold": 0.002733775231247425,
+        "long_tail": 0.0059843019826686635,
+        "warm": 0.1881020482046769,
+        "overall": 0.15227597317342045
+      },
+      "temp0.25-ssl0.02": {
+        "near_cold": 0.002565254840280119,
+        "long_tail": 0.0060841159657002855,
+        "warm": 0.1807741509760944,
+        "overall": 0.14655261125829044
+      },
+      "temp0.25-ssl0.06": {
+        "near_cold": 0.00311762723289518,
+        "long_tail": 0.006696610861576153,
+        "warm": 0.1885858366691443,
+        "overall": 0.15282563138170127
+      },
+      "temp0.25-ssl0.1": {
+        "near_cold": 0.0029397445979852453,
+        "long_tail": 0.0061136064606869015,
+        "warm": 0.18804363199670662,
+        "overall": 0.15220527561804212
+      },
+      "temp0.3-ssl0.02": {
+        "near_cold": 0.002799310938845823,
+        "long_tail": 0.006864479833038429,
+        "warm": 0.17881800645119908,
+        "overall": 0.14516600149702588
+      },
+      "temp0.3-ssl0.06": {
+        "near_cold": 0.002771224207017938,
+        "long_tail": 0.006290549430606596,
+        "warm": 0.18671379919095887,
+        "overall": 0.1512578912577825
+      },
+      "temp0.3-ssl0.1": {
+        "near_cold": 0.002930382354042617,
+        "long_tail": 0.006313234426750147,
+        "warm": 0.1868760403490557,
+        "overall": 0.15140813612463414
+      }
+    },
+    "status": "complete",
+    "test_mean_std": {
+      "recall": {
+        "near_cold": {
+          "mean": 0.002730277745898562,
+          "std": 0.0002995163769732608,
+          "n": 3
+        },
+        "long_tail": {
+          "mean": 0.007967128291873812,
+          "std": 0.0004673531721491265,
+          "n": 3
+        },
+        "warm": {
+          "mean": 0.20274287741055264,
+          "std": 0.0006606161710035534,
+          "n": 3
+        },
+        "overall": {
+          "mean": 0.1655986791413003,
+          "std": 0.000638650244300685,
+          "n": 3
+        }
+      },
+      "ndcg": {
+        "near_cold": {
+          "mean": 0.0010377983722790164,
+          "std": 0.00011007847993015023,
+          "n": 3
+        },
+        "long_tail": {
+          "mean": 0.00329180023472498,
+          "std": 0.00019257068046222886,
+          "n": 3
+        },
+        "warm": {
+          "mean": 0.1293492276630307,
+          "std": 0.00014363328927103662,
+          "n": 3
+        },
+        "overall": {
+          "mean": 0.10645793795832907,
+          "std": 8.103619573743372e-05,
+          "n": 3
+        }
+      }
+    },
+    "contrasts": [
+      {
+        "n_users": 11203,
+        "mean_diff": -7.10788446216456e-05,
+        "ci95_lo": -0.000737236388401255,
+        "ci95_hi": 0.0006116086630234627,
+        "excludes_zero": false,
+        "dataset": "office-products",
+        "group": "near_cold",
+        "metric": "recall",
+        "reference_mean": 0.002730277745898562,
+        "percent": -2.6033558207922485,
+        "runs": 3,
+        "p": 0.8464915350846491,
+        "holm_significant": false,
+        "holm_significant_threshold": 0.05,
+        "wording": "not detected"
+      },
+      {
+        "n_users": 22202,
+        "mean_diff": 0.0023905407767222013,
+        "ci95_lo": 0.001614417838181463,
+        "ci95_hi": 0.00324131498124832,
+        "excludes_zero": true,
+        "dataset": "office-products",
+        "group": "long_tail",
+        "metric": "recall",
+        "reference_mean": 0.007967128291873812,
+        "percent": 30.005049362145556,
+        "runs": 3,
+        "p": 9.99990000099999e-06,
+        "holm_significant": true,
+        "holm_significant_threshold": 0.025,
+        "wording": "evidence"
+      },
+      {
+        "n_users": 72631,
+        "mean_diff": -0.005961837928288177,
+        "ci95_lo": -0.007194096708885183,
+        "ci95_hi": -0.004723684475721107,
+        "excludes_zero": true,
+        "dataset": "office-products",
+        "group": "warm",
+        "metric": "recall",
+        "reference_mean": 0.20274287741055264,
+        "percent": -2.940590566945296,
+        "runs": 3,
+        "p": 9.99990000099999e-06,
+        "wording": "nominal signal"
+      },
+      {
+        "n_users": 86713,
+        "mean_diff": -0.0043886352795997965,
+        "ci95_lo": -0.005391297557425544,
+        "ci95_hi": -0.00336856946454695,
+        "excludes_zero": true,
+        "dataset": "office-products",
+        "group": "overall",
+        "metric": "recall",
+        "reference_mean": 0.1655986791413003,
+        "percent": -2.65016321528453,
+        "runs": 3,
+        "p": 9.99990000099999e-06,
+        "wording": "nominal signal"
+      },
+      {
+        "n_users": 11203,
+        "mean_diff": -0.0002817900225384477,
+        "ci95_lo": -0.0005930078280582025,
+        "ci95_hi": 7.652758990049738e-06,
+        "excludes_zero": false,
+        "dataset": "office-products",
+        "group": "near_cold",
+        "metric": "ndcg",
+        "reference_mean": 0.0010377983722790164,
+        "percent": -27.152675323592366,
+        "runs": 3,
+        "p": 0.06258937410625894,
+        "holm_significant": false,
+        "holm_significant_threshold": 0.05,
+        "wording": "not detected"
+      },
+      {
+        "n_users": 22202,
+        "mean_diff": 0.0007499627039073564,
+        "ci95_lo": 0.00034085628353758995,
+        "ci95_hi": 0.0011337898067993052,
+        "excludes_zero": true,
+        "dataset": "office-products",
+        "group": "long_tail",
+        "metric": "ndcg",
+        "reference_mean": 0.00329180023472498,
+        "percent": 22.78275261044246,
+        "runs": 3,
+        "p": 0.0001999980000199998,
+        "holm_significant": true,
+        "holm_significant_threshold": 0.025,
+        "wording": "evidence"
+      },
+      {
+        "n_users": 72631,
+        "mean_diff": 0.005999913474209094,
+        "ci95_lo": 0.005160124217919657,
+        "ci95_hi": 0.0068532136274888295,
+        "excludes_zero": true,
+        "dataset": "office-products",
+        "group": "warm",
+        "metric": "ndcg",
+        "reference_mean": 0.1293492276630307,
+        "percent": 4.638538306420773,
+        "runs": 3,
+        "p": 9.99990000099999e-06,
+        "wording": "nominal signal"
+      },
+      {
+        "n_users": 86713,
+        "mean_diff": 0.004994184015766231,
+        "ci95_lo": 0.004325624588568357,
+        "ci95_hi": 0.005647706573216018,
+        "excludes_zero": true,
+        "dataset": "office-products",
+        "group": "overall",
+        "metric": "ndcg",
+        "reference_mean": 0.10645793795832907,
+        "percent": 4.691227457102456,
+        "runs": 3,
+        "p": 9.99990000099999e-06,
+        "wording": "nominal signal"
+      }
+    ]
+  },
+  "ncl": {
+    "rule_R": "temp0.02-k1000",
+    "rule_R_before": "temp0.05-k1000",
+    "rule_Ov": "temp0.02-k500",
+    "selection_changed": true,
+    "selected_cell_is_new": true,
+    "selected_at_edge_in": [
+      "temperature"
+    ],
+    "cells": {
+      "temp0.05-k1000": {
+        "near_cold": 0.002668239523649028,
+        "long_tail": 0.007424799237784129,
+        "warm": 0.17239766884513794,
+        "overall": 0.14015131458211683
+      },
+      "temp0.05-k2000": {
+        "near_cold": 0.002733775231247425,
+        "long_tail": 0.0074021142416405795,
+        "warm": 0.17229571344201067,
+        "overall": 0.1400658107471925
+      },
+      "temp0.05-k3000": {
+        "near_cold": 0.002668239523649028,
+        "long_tail": 0.007315911256295086,
+        "warm": 0.17210131781666557,
+        "overall": 0.13988507791694646
+      },
+      "temp0.1-k1000": {
+        "near_cold": 0.0026307905478785156,
+        "long_tail": 0.0062247629417903,
+        "warm": 0.15993395814793696,
+        "overall": 0.12988506488030852
+      },
+      "temp0.1-k2000": {
+        "near_cold": 0.0025090813766243496,
+        "long_tail": 0.006165781951817069,
+        "warm": 0.15985775425999282,
+        "overall": 0.129824543146166
+      },
+      "temp0.1-k3000": {
+        "near_cold": 0.0025090813766243496,
+        "long_tail": 0.006220225942561591,
+        "warm": 0.15985042099124241,
+        "overall": 0.12982536194401414
+      },
+      "temp0.15-k1000": {
+        "near_cold": 0.002527805864509606,
+        "long_tail": 0.006800961843836487,
+        "warm": 0.16957921252323183,
+        "overall": 0.1377143461725547
+      },
+      "temp0.15-k2000": {
+        "near_cold": 0.0024622701569112088,
+        "long_tail": 0.006789619345764711,
+        "warm": 0.16958712761766534,
+        "overall": 0.13773757589782787
+      },
+      "temp0.15-k3000": {
+        "near_cold": 0.0024622701569112088,
+        "long_tail": 0.00673517535502019,
+        "warm": 0.16953566936338152,
+        "overall": 0.1376745278862402
+      },
+      "temp0.2-k1000": {
+        "near_cold": 0.0028554844025015917,
+        "long_tail": 0.007352207250124768,
+        "warm": 0.17107058186679924,
+        "overall": 0.1390298751554124
+      },
+      "temp0.2-k2000": {
+        "near_cold": 0.002808673182788451,
+        "long_tail": 0.007356744249353477,
+        "warm": 0.171016246894775,
+        "overall": 0.138997279357435
+      },
+      "temp0.2-k3000": {
+        "near_cold": 0.002546530352394862,
+        "long_tail": 0.007377160745882673,
+        "warm": 0.1718049048779813,
+        "overall": 0.13957543735934985
+      },
+      "temp0.02-k500": {
+        "near_cold": 0.0026120660599932596,
+        "long_tail": 0.008295903089696475,
+        "warm": 0.1761409106198111,
+        "overall": 0.14326908980814426
+      },
+      "temp0.02-k1000": {
+        "near_cold": 0.002499719132681721,
+        "long_tail": 0.008309514087382605,
+        "warm": 0.1757674822925355,
+        "overall": 0.1429952646424488
+      },
+      "temp0.03-k500": {
+        "near_cold": 0.002490356888739093,
+        "long_tail": 0.00774692618302255,
+        "warm": 0.17377135268442476,
+        "overall": 0.1412762612611473
+      },
+      "temp0.03-k1000": {
+        "near_cold": 0.0026588772797064004,
+        "long_tail": 0.007923869152942244,
+        "warm": 0.1736305592975466,
+        "overall": 0.14121986980243426
+      }
+    },
+    "status": "complete",
+    "test_mean_std": {
+      "recall": {
+        "near_cold": {
+          "mean": 0.0032978222481034225,
+          "std": 0.0001233794626363386,
+          "n": 3
+        },
+        "long_tail": {
+          "mean": 0.00947086207423114,
+          "std": 0.0006376311586123756,
+          "n": 3
+        },
+        "warm": {
+          "mean": 0.19015257567249824,
+          "std": 0.0006961915633528036,
+          "n": 3
+        },
+        "overall": {
+          "mean": 0.15606174453595795,
+          "std": 0.0006984327843228621,
+          "n": 3
+        }
+      },
+      "ndcg": {
+        "near_cold": {
+          "mean": 0.0012008337509210093,
+          "std": 9.751184498960203e-05,
+          "n": 3
+        },
+        "long_tail": {
+          "mean": 0.003917221729190057,
+          "std": 0.00015774168081469111,
+          "n": 3
+        },
+        "warm": {
+          "mean": 0.11890833293843878,
+          "std": 0.0006781285828263643,
+          "n": 3
+        },
+        "overall": {
+          "mean": 0.09828788097277724,
+          "std": 0.0006087322594781947,
+          "n": 3
+        }
+      }
+    },
+    "contrasts": [
+      {
+        "n_users": 11203,
+        "mean_diff": -0.0006386233468265067,
+        "ci95_lo": -0.0014662077948697603,
+        "ci95_hi": 0.00019448683199464243,
+        "excludes_zero": false,
+        "dataset": "office-products",
+        "group": "near_cold",
+        "metric": "recall",
+        "reference_mean": 0.0032978222481034225,
+        "percent": -19.365002076560643,
+        "runs": 3,
+        "p": 0.1265487345126549,
+        "holm_significant": false,
+        "holm_significant_threshold": 0.05,
+        "wording": "not detected"
+      },
+      {
+        "n_users": 22202,
+        "mean_diff": 0.000886806994364872,
+        "ci95_lo": -2.1602992056104296e-05,
+        "ci95_hi": 0.0018829634967820715,
+        "excludes_zero": false,
+        "dataset": "office-products",
+        "group": "long_tail",
+        "metric": "recall",
+        "reference_mean": 0.00947086207423114,
+        "percent": 9.363529818238478,
+        "runs": 3,
+        "p": 0.07162928370716293,
+        "holm_significant": false,
+        "holm_significant_threshold": 0.025,
+        "wording": "not detected"
+      },
+      {
+        "n_users": 72631,
+        "mean_diff": 0.0066284638097657824,
+        "ci95_lo": 0.005368113955191674,
+        "ci95_hi": 0.00789677446329908,
+        "excludes_zero": true,
+        "dataset": "office-products",
+        "group": "warm",
+        "metric": "recall",
+        "reference_mean": 0.19015257567249824,
+        "percent": 3.4858659086385737,
+        "runs": 3,
+        "p": 9.99990000099999e-06,
+        "wording": "nominal signal"
+      },
+      {
+        "n_users": 86713,
+        "mean_diff": 0.005148299325741847,
+        "ci95_lo": 0.00416453312025858,
+        "ci95_hi": 0.006214907147985649,
+        "excludes_zero": true,
+        "dataset": "office-products",
+        "group": "overall",
+        "metric": "recall",
+        "reference_mean": 0.15606174453595795,
+        "percent": 3.2988861819083635,
+        "runs": 3,
+        "p": 9.99990000099999e-06,
+        "wording": "nominal signal"
+      },
+      {
+        "n_users": 11203,
+        "mean_diff": -0.00044482540118044085,
+        "ci95_lo": -0.0007784603971237771,
+        "ci95_hi": -0.00011310644643413331,
+        "excludes_zero": true,
+        "dataset": "office-products",
+        "group": "near_cold",
+        "metric": "ndcg",
+        "reference_mean": 0.0012008337509210093,
+        "percent": -37.04304620346246,
+        "runs": 3,
+        "p": 0.0055599444005559944,
+        "holm_significant": true,
+        "holm_significant_threshold": 0.025,
+        "wording": "evidence"
+      },
+      {
+        "n_users": 22202,
+        "mean_diff": 0.00012454120944227842,
+        "ci95_lo": -0.0003124751702756763,
+        "ci95_hi": 0.0005842998538229983,
+        "excludes_zero": false,
+        "dataset": "office-products",
+        "group": "long_tail",
+        "metric": "ndcg",
+        "reference_mean": 0.003917221729190057,
+        "percent": 3.179324992359551,
+        "runs": 3,
+        "p": 0.5865241347586524,
+        "holm_significant": false,
+        "holm_significant_threshold": 0.05,
+        "wording": "not detected"
+      },
+      {
+        "n_users": 72631,
+        "mean_diff": 0.016440808198800897,
+        "ci95_lo": 0.015497446365684618,
+        "ci95_hi": 0.01740296999646334,
+        "excludes_zero": true,
+        "dataset": "office-products",
+        "group": "warm",
+        "metric": "ndcg",
+        "reference_mean": 0.11890833293843878,
+        "percent": 13.826455886243593,
+        "runs": 3,
+        "p": 9.99990000099999e-06,
+        "wording": "nominal signal"
+      },
+      {
+        "n_users": 86713,
+        "mean_diff": 0.013164241001317805,
+        "ci95_lo": 0.012382410404912036,
+        "ci95_hi": 0.01394298943781954,
+        "excludes_zero": true,
+        "dataset": "office-products",
+        "group": "overall",
+        "metric": "ndcg",
+        "reference_mean": 0.09828788097277724,
+        "percent": 13.393554598011834,
+        "runs": 3,
+        "p": 9.99990000099999e-06,
+        "wording": "nominal signal"
+      }
+    ]
+  }
+}

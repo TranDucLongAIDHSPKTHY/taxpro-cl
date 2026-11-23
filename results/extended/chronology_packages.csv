@@ -1,0 +1,23 @@
+package,description,label,runs,completed,first_start_utc,last_end_utc,test_opened,first_opening_utc,last_opening_utc
+grid-simgcl,"Wider search, SimGCL",Exploratory,27,27,2026-11-08T02:30:30Z,2026-11-08T10:32:41Z,3,2026-11-08T18:32:56Z,2026-11-08T18:33:43Z
+grid-complete,"Wider search, TaxPro-CL",Exploratory,24,24,2026-11-08T10:32:49Z,2026-11-08T18:11:02Z,3,2026-11-08T18:17:30Z,2026-11-08T18:32:32Z
+controls-office-products,"Controls, Office",Exploratory,9,9,2026-11-08T18:34:23Z,2026-11-08T21:07:05Z,9,2026-11-09T00:44:52Z,2026-11-09T00:48:06Z
+controls-musical-instruments,"Controls, MI",Exploratory,9,9,2026-11-08T21:07:09Z,2026-11-08T21:34:52Z,9,2026-11-09T00:48:17Z,2026-11-09T00:49:17Z
+label-quality-office-products,"Label quality, Office",Exploratory,9,9,2026-11-08T21:35:00Z,2026-11-09T00:16:06Z,9,2026-11-09T00:49:44Z,2026-11-09T00:52:47Z
+label-quality-musical-instruments,"Label quality, MI",Exploratory,9,9,2026-11-09T00:16:10Z,2026-11-09T00:44:21Z,9,2026-11-09T00:52:57Z,2026-11-09T00:54:03Z
+controls-amazon-book,"Controls, AB",Exploratory,9,9,2026-11-09T01:07:26Z,2026-11-10T08:43:24Z,9,2026-11-10T08:44:00Z,2026-11-10T08:46:43Z
+comparator-kgcl,"KGCL grid, Office","Exploratory, Deviation 1",36,36,2026-11-10T08:46:52Z,2026-11-11T10:42:53Z,3,2026-11-11T11:00:36Z,2026-11-11T11:01:22Z
+splits-office-products,Re-drawn Office splits,Prospectively specified,54,54,2026-11-11T10:43:05Z,2026-11-12T02:30:05Z,54,2026-11-12T02:30:32Z,2026-11-12T02:50:53Z
+seeds-amazon-book-factorial,"Seeds 2-4, AB, V0-V3",Exploratory,12,12,2026-11-12T02:52:51Z,2026-11-13T22:47:31Z,12,2026-11-13T22:47:56Z,2026-11-13T22:51:33Z
+seeds-amazon-book-simgcl,"Seeds 2-4, AB, SimGCL",Exploratory,6,6,2026-11-13T22:53:26Z,2026-11-14T20:05:56Z,6,2026-11-14T20:06:20Z,2026-11-14T20:07:59Z
+pretrain-lightgcn,GALORE's starting LightGCN,"Exploratory, Deviation 1",3,3,2026-11-14T20:08:09Z,2026-11-14T22:04:56Z,3,2026-11-15T05:30:49Z,2026-11-15T05:31:41Z
+comparator-galore,"GALORE grid, Office","Exploratory, Deviation 1",36,36,2026-11-14T22:04:59Z,2026-11-15T02:25:07Z,3,2026-11-15T05:29:30Z,2026-11-15T05:30:23Z
+splits-musical-instruments,Re-drawn MI splits,Prospectively specified,54,54,2026-11-15T02:25:14Z,2026-11-15T05:22:37Z,54,2026-11-15T05:22:47Z,2026-11-15T05:28:59Z
+grid-ncl,"NCL grid, Office","Exploratory, Deviation 1",33,33,2026-11-15T05:33:52Z,2026-11-16T15:57:54Z,3,2026-11-16T17:10:31Z,2026-11-16T17:11:19Z
+controls-arts-crafts-and-sewing,"Controls, ACS",Exploratory,9,9,2026-11-16T16:00:03Z,2026-11-16T17:08:08Z,9,2026-11-16T17:08:23Z,2026-11-16T17:10:05Z
+splits-arts-crafts-and-sewing,Re-drawn ACS splits,Prospectively specified,54,54,2026-11-16T17:14:32Z,2026-11-17T00:15:02Z,54,2026-11-17T00:15:17Z,2026-11-17T00:26:31Z
+seeds-yelp2018,"Seeds 2-4, Yelp",Exploratory,18,18,2026-11-17T00:26:40Z,2026-11-17T16:10:27Z,18,2026-11-17T16:10:43Z,2026-11-17T16:14:03Z
+controls-yelp2018,"Controls, Yelp",Exploratory,9,9,2026-11-17T16:14:12Z,2026-11-17T23:51:14Z,9,2026-11-17T23:51:30Z,2026-11-17T23:53:08Z
+splits-office-products-lightgcn,"LightGCN, re-drawn Office",Prospectively specified,9,9,2026-11-17T23:53:21Z,2026-11-18T10:36:01Z,9,2026-11-18T10:36:29Z,2026-11-18T10:39:46Z
+comparator-kgcl-wide,"Widened KGCL grid, Office","Exploratory, Deviation 2",18,18,2026-11-21T15:14:03Z,2026-11-22T16:37:40Z,3,2026-11-23T00:53:58Z,2026-11-23T00:54:54Z
+grid-ncl-wide,"Widened NCL grid, Office","Exploratory, Deviation 2",12,12,2026-11-22T16:37:48Z,2026-11-23T08:11:34Z,3,2026-11-23T08:36:56Z,2026-11-23T08:37:43Z

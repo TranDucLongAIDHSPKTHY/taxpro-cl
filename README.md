@@ -375,6 +375,16 @@ python -m tools.experiments.run_wide_grids --open-test kgcl   # opens only a cha
 python -m tools.analysis.wide_grid_analysis                   # results/extended/wide_grids.json
 ```
 
+Two further summaries read only locked outputs and the git history:
+
+```powershell
+# Run-level stability of the complete-configuration comparisons (main paper Table 6)
+python -m tools.analysis.run_level_summary         # results/extended/run_level_summary.csv
+# Records of the protocol in time order (Online Resource 1, Tables S50-S50b);
+# --check-github compares the recorded pushes with the public activity log
+python -m tools.analysis.extended_chronology --check-github   # chronology.csv, chronology_packages.csv
+```
+
 ## Main Results (Recall@20, Mean±Std over 3 seeds: 42, 0, 1)
 
 Current comparison: 6 models x 4 datasets (baselines LightGCN, SGL-ED, SimGCL,
@@ -720,7 +730,7 @@ published.
   author = {Tran, Thi Phuong and Tran, Duc Long and Pham, Minh Chuan and
             Nguyen, Van Hau},
   year   = {2026},
-  note   = {Manuscript; code and results: tag v1.8}
+  note   = {Manuscript; code and results: tag v1.9}
 }
 ```
 

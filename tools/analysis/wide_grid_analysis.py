@@ -74,7 +74,7 @@ def analyse(name, complete, rng, device):
     runs = [ROOT / search["family"](block["rule_R"]) / f"seed{seed}" for seed in SEEDS]
     if not all(map(is_open, runs)):
         return {**document, "status": "test not opened"}
-    cells = []
+    contrasts = []
     for metric in METRICS:
         family = [contrast_cell(OFFICE, group, metric, complete, runs, BOOT_CONFIGURATION, rng, device)
                   for group in PRIMARY_GROUPS]
@@ -83,10 +83,10 @@ def analyse(name, complete, rng, device):
                    for group in GROUPS if group not in PRIMARY_GROUPS]
         for item in family + context:
             item["wording"] = wording(item)
-        cells += family + context
+        contrasts += family + context
     means = {metric: {group: mean_std([float(group_metrics(run)[group][metric]["20"]) for run in runs])
                       for group in GROUPS} for metric in METRICS}
-    return {**document, "status": "complete", "test_mean_std": means, "cells": cells}
+    return {**document, "status": "complete", "test_mean_std": means, "contrasts": contrasts}
 
 
 def main(argv=None):

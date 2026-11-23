@@ -1,0 +1,28 @@
+time_utc,event,record,test_data_seen
+2026-11-08T01:50:07Z,Protocol frozen (SHA-256 490907ce...),"extended_evaluation_protocol.sha256, commit 324e2be",Office test split viewed on 2026-09-28 (Section S36)
+2026-11-08T01:50:33Z,Published on GitHub (push),commit 324e2be,
+2026-11-08T02:30:30Z,"First run of the protocol (Wider search, SimGCL)",run registry,None
+2026-11-08T18:17:04Z,Wider Office search: selection committed,"selection_grid.json, commit 773b287",Validation only
+2026-11-08T18:17:30Z,Wider Office search: test opened,run registry,"Its 6 runs, once each"
+2026-11-08T18:31:25Z,Per-user test values of one opened run completed after a tie-order fix (commit e4dc6a8); they reproduce its stored test metrics,stamp of the run,"That run, opened at 18:17"
+2026-11-11T10:49:16Z,KGCL selection committed,"selection_kgcl.json, commit fd25c99",Validation only
+2026-11-11T11:00:36Z,KGCL: test opened,run registry,"Its 3 runs, once each"
+2026-11-11T11:05:50Z,Published on GitHub (push),"commits 773b287, fd25c99",
+2026-11-15T04:40:10Z,GALORE selection committed,"selection_galore.json, commit 77da861",Validation only
+2026-11-15T05:29:30Z,GALORE and its start: test opened,run registry,"Its 6 runs, once each"
+2026-11-16T03:56:58Z,"NCL run (0.2, 1000 clusters, seed 42) resumed at epoch 57 (Deviation 3)",training log,None
+2026-11-16T16:00:09Z,Tuned-NCL selection committed,"selection_ncl.json, commit e83320e",Validation only
+2026-11-16T17:10:31Z,Tuned NCL: test opened,run registry,"Its 3 runs, once each"
+2026-11-16T19:10:49Z,"Default SimGCL, ACS split 101, seed 1, resumed at epoch 32 (Deviation 3)",training log,None
+2026-11-18T14:50:15Z,Data locked,"results_extended.sha256, commit de00d32",All openings of Sections 4-10
+2026-11-18T16:29:07Z,Published on GitHub (push),"commits 77da861, e83320e, de00d32",
+2026-11-21T15:13:33Z,Deviations 1-3 recorded in Section 14,"extended_evaluation_protocol_deviations.sha256, commit 37e9aaf",None of Deviation 2
+2026-11-21T15:13:44Z,Published on GitHub (push),commit 37e9aaf,
+2026-11-21T15:14:03Z,First run of Deviation 2,run registry,None
+2026-11-23T00:52:42Z,Widened KGCL grid: selection committed,"selection_kgcl_wide.json, commit 34db024",Validation only
+2026-11-23T00:52:46Z,Published on GitHub (push),commit 34db024,
+2026-11-23T00:53:58Z,Widened KGCL grid: test opened,run registry,"Its 3 runs, once each"
+2026-11-23T08:11:34Z,Last run of Deviation 2 ended,run registry,None
+2026-11-23T08:36:07Z,Widened NCL grid: selection committed,"selection_ncl_wide.json, commit 9ad26b0",Validation only
+2026-11-23T08:36:12Z,Published on GitHub (push),commit 9ad26b0,
+2026-11-23T08:36:56Z,Widened NCL grid: test opened,run registry,"Its 3 runs, once each"
