@@ -6,7 +6,7 @@
     "seed": 1,
     "coverage_at_20": 0.40442581250887016,
     "long_tail_share_at_20": 0.002826586630701138,
-    "avg_recommended_popularity": 201.32579830176851,
+    "avg_recommended_popularity": 201.3257460631043,
     "long_tail_recall20": 0.0025158796146737944,
     "overall_recall20": 0.040361697520957175,
     "harmonic_mean_longtail_overall": 0.0047365163234572155

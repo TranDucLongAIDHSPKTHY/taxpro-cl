@@ -6,7 +6,16 @@ written by the script listed next to it (`python -m tools.analysis.<script>`);
 files and to the runs in `results_manifest.csv`. Trained checkpoints are not
 shipped: the inference-only scripts re-read them from `log/` after the training
 commands of the top-level README have been run. Table numbers refer to the main
-paper (Tables 1-5, Figure 1) and to Online Resource 1 (Tables S1-S49c).
+paper (Tables 1-6, Figure 1) and to Online Resource 1 (Tables S1-S50b).
+
+Per-user re-scoring (`tools/ranking/inference.py`, `head_k`) takes each user's
+top 20 items with `torch.topk`, as the evaluation behind the reported metrics
+does, so exactly tied scores are ordered as in that evaluation: per-user means
+reproduce the reported Recall@20 exactly and NDCG@20 to within 1e-6 (tied scores
+can still be ordered differently between scorings on the GPU). PyTorch does not
+guarantee the order of tied values, so `tie_order_sensitivity` repeats the main
+per-user analyses with a deterministic order (pre-sigmoid scores, ties by item
+index) and compares every decision (`tie_order_sensitivity.json`, `tie_order/`).
 
 ## Audit trail
 
@@ -58,6 +67,9 @@ paper (Tables 1-5, Figure 1) and to Online Resource 1 (Tables S1-S49c).
 | `prototype_variants_overlap.json` | Table S14b | `prototype_variants_overlap` |
 | `prototype_variants_ndcg.json` | Table S14c | `prototype_variants_ndcg` |
 | `a5_leaf_vs_parent_mergedt10.json` | Tables S7, S7b (A5) | `a5_leaf_vs_parent_mergedt10` |
+| `tie_order_sensitivity.json` | Section S13e (ties among the top-20 scores per checkpoint and dataset; every Recall@20 and NDCG@20 decision of the analyses below under the evaluation's order and under a deterministic order) | `tie_order_sensitivity` |
+| `tie_order/factorial_multiplicity_logit.json`, `tie_order/a5_leaf_vs_parent_mergedt10_logit.json`, `tie_order/prototype_variants_ndcg_logit.json`, `tie_order/confirmatory_analysis_office-products_logit.json`, `tie_order/extended_controls_logit.json` | Section S13e (the factorial with its Holm families, A5, the prototype-construction variants, the Office analysis, and the label and gradient-path controls of Section S41, ranked on the pre-sigmoid scores with ties by item index) | `tie_order_sensitivity` |
+| `tie_order/ties_by_checkpoint.json` | Section S13e (per checkpoint: users scored, users with tied scores in the top 20, users with a tie across positions 20 and 21) | `tie_order_sensitivity` |
 | `leaf_size_distribution.json` | Table S15 (including the held-out Office-Products row) | `leaf_size_distribution` |
 | `prototype_distance_by_space.json` | Table S16 | `prototype_distance_by_space` |
 | `prototype_distance_by_leaf_size.json` | Table S16, "Layer 0 (lookup)" rows | `prototype_distance_by_leaf_size` |
@@ -107,7 +119,7 @@ packages: top-level README, Extended Evaluation. The run directories themselves 
 | `selection_grid.json`, `selection_ncl.json` (each with `.sha256`) | Validation selections of the wider Office-Products search and of tuned NCL, recorded before their test evaluation (Tables S43, S49) | `tools.experiments.run_extended --select` |
 | `selection_kgcl.json`, `selection_galore.json` (each with `.sha256`) | Validation selections of KGCL and GALORE, recorded before their test evaluation (Tables S45, S48) | `tools.experiments.run_comparators --select` |
 | `mechanism_diagnostics.json` | Checkpoint diagnostics of V0-V3 on validation data (Tables S40, S44-S44c) | `tools.analysis.mechanism_diagnostics` |
-| `extended_analysis.json` | Label and gradient-path controls (Tables S41-S41f), label quality (S42-S42b), wider Office search (S43-S43c), validation rank measures (S44d-S44i), KGCL, GALORE and tuned NCL on Office (Table 5; S45-S45c, S48-S48d, S49-S49c), run-level stability on seeds and re-drawn splits (S46-S46i, S47-S47d) | `tools.analysis.extended_analysis` |
+| `extended_analysis.json` | Label and gradient-path controls (Tables S41-S41f), label quality (S42-S42b), wider Office search (S43-S43c), validation rank measures (S44d-S44i), KGCL, GALORE and tuned NCL on Office (Table 5; S45-S45c, S48-S48d, S49-S49c), run-level stability on seeds and re-drawn splits (S46-S46j, S47-S47d) | `tools.analysis.extended_analysis` |
 | `results_extended.csv`, `.sha256` | Per-run test Recall/NDCG@10/20 by group of the 288 new runs whose test split was opened; locked with its SHA-256 | `tools.analysis.extended_analysis --lock` |
 | `labels/<dataset>/<condition>-seed<seed>.npy` | The shuffled, noisy or missing labels used by the controls and label-quality runs, one file per dataset, condition and perturbation seed (27 files) | written by the runs (`taxonomy_labels.npy`) |
 | `run_level_summary.csv` | Run-level stability of the complete-configuration comparisons: +/- counts, mean, std, split means, stability class and exact sign test per dataset, comparison and group (main paper Table 6; the numbers of Tables S46-S47) | `tools.analysis.run_level_summary` |

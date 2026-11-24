@@ -90,12 +90,22 @@ def load_model(run_dir, device):
     return trainer.model, dataset, config, model_name
 
 
-def compute_batch_order_and_rank(model, dataset, device, batch_users, split="test"):
+# The stored group metrics of every run (utility_train/batch_test.Test and group_evaluator.evaluate_model_full_catalog)
+# take the top items with torch.topk(k=20). Sigmoid scores saturate at 1.0 in float32, so several items can tie, and
+# torch.argsort orders tied items differently from torch.topk: Recall@20 (a set) is unchanged, NDCG@20 is not.
+# Per-user Recall/NDCG analyses pass head_k=STORED_TOP_K, so that their per-user values average to the stored metrics.
+STORED_TOP_K = 20
+
+
+def compute_batch_order_and_rank(model, dataset, device, batch_users, split="test", head_k=None):
     """Full-catalog scores for one batch of users, train/val positives excluded.
 
     Returns (order, rank): both [len(batch_users), num_items] long tensors.
     order[row] lists item ids best-to-worst; rank[row, item] is that item's
     1-indexed position (1 = top recommendation).
+    With head_k, the first head_k positions are those of torch.topk(k=head_k), the selection and order of the stored
+    evaluation (ties included), and the remaining items follow in torch.argsort order. Without it (rank analyses),
+    the whole order is torch.argsort's.
     """
     batch_tensor = torch.tensor(batch_users, dtype=torch.long, device=device)
     with torch.no_grad():
@@ -105,6 +115,12 @@ def compute_batch_order_and_rank(model, dataset, device, batch_users, split="tes
             if len(items):
                 rating[row, list(items)] = float("-inf")
         order = torch.argsort(rating, dim=1, descending=True)
+        if head_k:
+            head = torch.topk(rating, k=head_k).indices
+            keep = torch.ones_like(rating, dtype=torch.bool)
+            keep.scatter_(1, head, False)
+            rest = order[keep.gather(1, order)].view(order.shape[0], -1)
+            order = torch.cat([head, rest], dim=1)
         num_items = rating.shape[1]
         rank = torch.empty_like(order)
         positions = torch.arange(1, num_items + 1, device=device).unsqueeze(0).expand(order.shape[0], -1)

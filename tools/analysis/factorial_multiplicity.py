@@ -137,7 +137,8 @@ def per_user_metrics(model, dataset, device, targets_by_group):
     discounts = 1.0 / np.log2(np.arange(K) + 2)
     for start in range(0, len(all_users), BATCH_SIZE):
         batch = all_users[start:start + BATCH_SIZE]
-        order, _rank = compute_batch_order_and_rank(model, dataset, device, batch, split="test")
+        # head_k: the top K as the stored evaluation selects and orders it (tied scores; tools/ranking/inference.py)
+        order, _rank = compute_batch_order_and_rank(model, dataset, device, batch, split="test", head_k=K)
         order_np = order[:, :K].cpu().numpy()
         for row_idx, user in enumerate(batch):
             topk = order_np[row_idx].tolist()

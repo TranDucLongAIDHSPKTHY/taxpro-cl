@@ -110,8 +110,9 @@ def score_pair(variant_dir, main_dir, device, batch_size=256):
 
     for start in range(0, len(users), batch_size):
         batch_users = users[start : start + batch_size]
-        order_v, _ = inference.compute_batch_order_and_rank(variant_model, variant_dataset, device, batch_users, split="test")
-        order_m, _ = inference.compute_batch_order_and_rank(main_model, main_dataset, device, batch_users, split="test")
+        # head_k: the top K as the stored evaluation selects and orders it (tied scores; tools/ranking/inference.py)
+        order_v, _ = inference.compute_batch_order_and_rank(variant_model, variant_dataset, device, batch_users, split="test", head_k=K)
+        order_m, _ = inference.compute_batch_order_and_rank(main_model, main_dataset, device, batch_users, split="test", head_k=K)
         order_v_np = order_v[:, :K].cpu().numpy()
         order_m_np = order_m[:, :K].cpu().numpy()
 

@@ -50,7 +50,8 @@ def per_user_ndcg(model, dataset, device, targets_by_group):
     per_user = {g: {} for g in GROUPS}
     for start in range(0, len(all_users), BATCH_SIZE):
         batch = all_users[start:start + BATCH_SIZE]
-        order, _rank = compute_batch_order_and_rank(model, dataset, device, batch, split="test")
+        # head_k: the top K as the stored evaluation selects and orders it (tied scores; tools/ranking/inference.py)
+        order, _rank = compute_batch_order_and_rank(model, dataset, device, batch, split="test", head_k=K)
         order_np = order[:, :K].cpu().numpy()
         for row_idx, user in enumerate(batch):
             topk_items = order_np[row_idx].tolist()
@@ -88,13 +89,13 @@ def pool_diffs_across_seeds(pooled_by_user):
     return [float(np.mean(diffs)) for diffs in pooled_by_user.values()]
 
 
-def main():
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+def main(argv=None):
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--device", choices=("cpu", "cuda"), default="cuda" if torch.cuda.is_available() else "cpu")
     parser.add_argument("--n-boot", type=int, default=N_BOOT)
-    args = parser.parse_args()
+    parser.add_argument("--output", type=Path, default=RESULT_DIR / "prototype_variants_ndcg.json")
+    args = parser.parse_args(argv)
     device = torch.device(args.device)
     rng = np.random.default_rng(42)
     t0 = time.time()
@@ -146,7 +147,7 @@ def main():
             results.append(stat)
             print(json.dumps(stat, indent=2))
 
-    output = RESULT_DIR / "prototype_variants_ndcg.json"
+    output = args.output
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(results, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print("Saved {} rows to {}".format(len(results), output))

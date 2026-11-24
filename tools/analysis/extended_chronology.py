@@ -54,8 +54,8 @@ RECORDS = (
      "Validation only"),
     ("results/extended/selection_ncl.json", "Tuned-NCL selection committed", "Validation only"),
     ("results/extended/results_extended.sha256", "Data locked",
-     "All openings of Sections 4-10"),
-    ("docs/extended_evaluation_protocol_deviations.sha256", "Deviations 1-3 recorded in Section 14",
+     "All openings of protocol Sections 4-10"),
+    ("docs/extended_evaluation_protocol_deviations.sha256", "Deviations 1-3 recorded in protocol Section 14",
      "None of Deviation 2"),
     ("results/extended/selection_kgcl_wide.json", "Widened KGCL grid: selection committed",
      "Validation only"),
@@ -175,6 +175,7 @@ def event_rows(packages):
             events.append({"time_utc": "", "event": "Not yet published", "record": f"commit {commit}",
                            "test_data_seen": ""})
     openings = {row["package"]: row for row in packages}
+    spans = {}   # opening event -> (first, last) opening time
     # A search's opening covers its selected cells of every method it selects, and GALORE's covers its start.
     for members, event in ((("grid-complete", "grid-simgcl"), "Wider Office search: test opened"),
                            (("comparator-kgcl",), "KGCL: test opened"),
@@ -184,8 +185,8 @@ def event_rows(packages):
                            (("grid-ncl-wide",), "Widened NCL grid: test opened")):
         rows = [openings[p] for p in members if p in openings and openings[p]["first_opening_utc"]]
         if rows:
-            events.append({"time_utc": min(r["first_opening_utc"] for r in rows), "event": event,
-                           "record": "run registry",
+            spans[event] = (min(r["first_opening_utc"] for r in rows), max(r["last_opening_utc"] for r in rows))
+            events.append({"time_utc": spans[event][0], "event": event, "record": "run registry",
                            "test_data_seen": f"Its {sum(r['test_opened'] for r in rows)} runs, once each"})
     first = min(packages, key=lambda row: row["first_start_utc"])
     events.append({"time_utc": first["first_start_utc"], "event": f"First run of the protocol ({first['description']})",
@@ -200,6 +201,13 @@ def event_rows(packages):
                        "record": "run registry", "test_data_seen": "None"})
     for moment, event, record, seen in EVENTS:
         events.append({"time_utc": moment, "event": event, "record": record, "test_data_seen": seen})
+    # An opening event carries the time of its first opening. When another record falls before its last opening
+    # (the tie-order fix during the wider search's openings), the last opening time is given, so the order holds.
+    for row in events:
+        if row["event"] in spans:
+            first, last = spans[row["event"]]
+            if any(first < other["time_utc"] < last for other in events if other is not row):
+                row["test_data_seen"] += f", the last at {last[11:16]}"
     return sorted(events, key=lambda row: (row["time_utc"] or "9", row["event"]))
 
 

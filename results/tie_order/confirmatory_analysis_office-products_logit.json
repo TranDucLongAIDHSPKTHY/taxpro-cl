@@ -1,0 +1,308 @@
+{
+  "dataset": "office-products",
+  "run_dirs": {
+    "TaxPro-CL": "log/p0/confirmatory/office-products/TaxPro-CL/step2-no_merge-temp0.15-gamma1.5",
+    "SimGCL_R": "log/p0/confirmatory/office-products/SimGCL/grid-temp0.2-eps0.1",
+    "SimGCL_Ov": "log/p0/confirmatory/office-products/SimGCL/grid-temp0.2-eps0.2",
+    "SimGCL_default": "log/p0/confirmatory/office-products/SimGCL/grid-temp0.2-eps0.05",
+    "V0": "log/p0/confirmatory/office-products/TaxPro-CL/step4-V0-no_merge-temp0.15-gamma1.5",
+    "V1": "log/p0/confirmatory/office-products/TaxPro-CL/step4-V1-no_merge-temp0.15-gamma1.5",
+    "V2": "log/p0/confirmatory/office-products/TaxPro-CL/step4-V2-no_merge-temp0.15-gamma1.5",
+    "V3": "log/p0/confirmatory/office-products/TaxPro-CL/step2-no_merge-temp0.15-gamma1.5"
+  },
+  "P1": {
+    "n": 22202,
+    "mean_diff": 0.004391316610936465,
+    "ci95": [
+      0.0035974403373736767,
+      0.005193142426274577
+    ],
+    "ci90": [
+      0.0037088750763194503,
+      0.005041228543615716
+    ],
+    "p_signflip": 9.99990000099999e-06,
+    "interpretation": {
+      "relative_difference": 0.7358648391771995,
+      "relative_ci90": [
+        0.6215062595958247,
+        0.8447723451013446
+      ],
+      "relative_ci95": [
+        0.602832838041828,
+        0.8702289665968527
+      ],
+      "label": "Long-Tail improvement over a comparably tuned SimGCL confirmed on a held-out dataset",
+      "qualifier": "practically meaningful"
+    }
+  },
+  "secondary_holm": [
+    {
+      "name": "LT vs default SimGCL",
+      "n": 22202,
+      "mean_diff": 0.004182389307603253,
+      "ci95": [
+        0.0034123552432713767,
+        0.004953674510471196
+      ],
+      "ci90": [
+        0.0035195361111945204,
+        0.0048392370390388595
+      ],
+      "p_signflip": 9.99990000099999e-06,
+      "holm_significant": true,
+      "holm_significant_threshold": 0.016666666666666666
+    },
+    {
+      "name": "NC vs tuned SimGCL",
+      "n": 11203,
+      "mean_diff": 0.0014463718382311615,
+      "ci95": [
+        0.0007736023089053525,
+        0.0021604662772207184
+      ],
+      "ci90": [
+        0.0008512931390731979,
+        0.0020530215120949744
+      ],
+      "p_signflip": 4.999950000499995e-05,
+      "holm_significant": true,
+      "holm_significant_threshold": 0.025
+    },
+    {
+      "name": "NC vs default SimGCL",
+      "n": 11203,
+      "mean_diff": 0.0013379825037416753,
+      "ci95": [
+        0.0006800899418948155,
+        0.0020116966024312267
+      ],
+      "ci90": [
+        0.0007799781521106166,
+        0.0019066132607148405
+      ],
+      "p_signflip": 5.999940000599994e-05,
+      "holm_significant": true,
+      "holm_significant_threshold": 0.05
+    }
+  ],
+  "factorial": {
+    "direction": [
+      {
+        "group": "near_cold",
+        "contrasts": {
+          "V1-V0": {
+            "n": 11203,
+            "mean_diff": 2.975393495789818e-05,
+            "ci95": [
+              0.0,
+              8.926180487369455e-05
+            ],
+            "ci90": [
+              0.0,
+              8.926180487369455e-05
+            ],
+            "p_signflip": 1.0
+          },
+          "V3-V2": {
+            "n": 11203,
+            "mean_diff": 2.975393495789818e-05,
+            "ci95": [
+              0.0,
+              8.926180487369455e-05
+            ],
+            "ci90": [
+              0.0,
+              8.926180487369455e-05
+            ],
+            "p_signflip": 1.0
+          }
+        },
+        "cell_p": 1.0,
+        "both_positive": true,
+        "holm_significant": false,
+        "holm_significant_threshold": 0.025,
+        "supported": false
+      },
+      {
+        "group": "long_tail",
+        "contrasts": {
+          "V1-V0": {
+            "n": 22202,
+            "mean_diff": 2.5022770721356447e-06,
+            "ci95": [
+              -6.005464973125544e-05,
+              6.255692680339109e-05
+            ],
+            "ci90": [
+              -5.004554144271287e-05,
+              5.2547818514848514e-05
+            ],
+            "p_signflip": 1.0
+          },
+          "V3-V2": {
+            "n": 22202,
+            "mean_diff": 1.7515939504949506e-05,
+            "ci95": [
+              -3.5031879009899005e-05,
+              7.256603509193367e-05
+            ],
+            "ci90": [
+              -2.7525047793492076e-05,
+              6.255692680339109e-05
+            ],
+            "p_signflip": 0.6236537634623653
+          }
+        },
+        "cell_p": 1.0,
+        "both_positive": true,
+        "holm_significant": false,
+        "holm_significant_threshold": 0.05,
+        "supported": false
+      }
+    ],
+    "epsilon_adaptivity": [
+      {
+        "group": "near_cold",
+        "contrasts": {
+          "V2-V0": {
+            "n": 11203,
+            "mean_diff": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "ci90": [
+              0.0,
+              0.0
+            ],
+            "p_signflip": 1.0
+          },
+          "V3-V1": {
+            "n": 11203,
+            "mean_diff": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "ci90": [
+              0.0,
+              0.0
+            ],
+            "p_signflip": 1.0
+          }
+        },
+        "cell_p": 1.0,
+        "both_positive": false,
+        "holm_significant": false,
+        "holm_significant_threshold": 0.025,
+        "supported": false
+      },
+      {
+        "group": "long_tail",
+        "contrasts": {
+          "V2-V0": {
+            "n": 22202,
+            "mean_diff": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "ci90": [
+              0.0,
+              0.0
+            ],
+            "p_signflip": 1.0
+          },
+          "V3-V1": {
+            "n": 22202,
+            "mean_diff": 1.501366243281386e-05,
+            "ci95": [
+              0.0,
+              4.504098729844158e-05
+            ],
+            "ci90": [
+              0.0,
+              4.504098729844158e-05
+            ],
+            "p_signflip": 1.0
+          }
+        },
+        "cell_p": 1.0,
+        "both_positive": false,
+        "holm_significant": false,
+        "holm_significant_threshold": 0.05,
+        "supported": false
+      }
+    ]
+  },
+  "sensitivity_rule_Ov": {
+    "P1_rule_Ov": {
+      "n": 22202,
+      "mean_diff": 0.0048992788565800005,
+      "ci95": [
+        0.0040535926154338904,
+        0.005702689447397132
+      ],
+      "ci90": [
+        0.004196639454724312,
+        0.005588001748257581
+      ],
+      "p_signflip": 9.99990000099999e-06,
+      "interpretation": {
+        "relative_difference": 0.8973701467349533,
+        "relative_ci90": [
+          0.7686720992053326,
+          1.023519194473759
+        ],
+        "relative_ci95": [
+          0.7424711078101164,
+          1.044525820227941
+        ],
+        "label": "Long-Tail improvement over a comparably tuned SimGCL confirmed on a held-out dataset",
+        "qualifier": "practically meaningful"
+      }
+    },
+    "NC_rule_Ov": {
+      "n": 11203,
+      "mean_diff": 0.0016992802853732962,
+      "ci95": [
+        0.0010182457741147375,
+        0.002398497756883904
+      ],
+      "ci90": [
+        0.001130649528400131,
+        0.0022794820170523107
+      ],
+      "p_signflip": 9.99990000099999e-06
+    }
+  },
+  "descriptive_ndcg": {
+    "LT vs tuned SimGCL (NDCG@20)": {
+      "n": 22202,
+      "mean_diff": 0.0016897653857393983,
+      "ci95": [
+        0.001372939303552777,
+        0.00200935623586709
+      ],
+      "ci90": [
+        0.0014272529646386445,
+        0.0019559542901555742
+      ],
+      "p_signflip": 9.99990000099999e-06
+    },
+    "NC vs tuned SimGCL (NDCG@20)": {
+      "n": 11203,
+      "mean_diff": 0.0003638282854289793,
+      "ci95": [
+        0.00017656440441256486,
+        0.000558108304973564
+      ],
+      "ci90": [
+        0.00020715197868065844,
+        0.0005233794978173411
+      ],
+      "p_signflip": 0.00024999750002499977
+    }
+  }
+}

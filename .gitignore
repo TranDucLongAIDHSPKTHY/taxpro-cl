@@ -80,6 +80,8 @@ tools/ranking/result/
 !results/extended/*.csv
 !results/extended/labels/
 !results/extended/labels/**
+# Per-user analyses repeated with a deterministic order of tied scores (tools/analysis/tie_order_sensitivity.py).
+!results/tie_order/
 
 # Virtual environments created following the README.
 .venv/

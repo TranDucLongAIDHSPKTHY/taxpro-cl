@@ -69,8 +69,8 @@ def main():
     x = ab[("direction", "recall", "long_tail")]
     assert round(x["p_cell"], 3) == 0.016 and round(x["holm_adjusted_p_8"], 2) == 0.13 and not x["holm_significant_8"]
     y = ab[("direction", "ndcg", "long_tail")]
-    assert round(y["p_cell"], 4) == 0.0019 and round(y["holm_adjusted_p_8"], 3) == 0.015 and y["holm_significant_8"]
-    assert round(y["holm_adjusted_p_32"], 3) == 0.061
+    assert round(y["p_cell"], 5) == 0.00007 and round(y["holm_adjusted_p_8"], 3) == 0.001 and y["holm_significant_8"]
+    assert round(y["holm_adjusted_p_32"], 3) == 0.002 and y["p_cell"] <= 0.05 / 32
     assert sum(r["holm_significant_8"] for r in current) == 1
 
     fields = ["checkpoint_set", "dataset", "factor", "metric", "group", "contrast_1", "p_1", "sign_1", "contrast_2", "p_2", "sign_2",
@@ -81,7 +81,7 @@ def main():
         w.writeheader()
         w.writerows(sorted(rows, key=lambda r: (r["checkpoint_set"], r["factor"], r["metric"], r["dataset"], r["group"])))
     print(f"wrote {len(rows)} cells; quoted values reproduced: AB/LT Recall p_cell {x['p_cell']:.4f} adj {x['holm_adjusted_p_8']:.3f}; "
-          f"NDCG p_cell {y['p_cell']:.4f} adj8 {y['holm_adjusted_p_8']:.3f} adj32 {y['holm_adjusted_p_32']:.3f}")
+          f"NDCG p_cell {y['p_cell']:.5f} adj8 {y['holm_adjusted_p_8']:.3f} adj32 {y['holm_adjusted_p_32']:.3f}")
 
 
 if __name__ == "__main__":

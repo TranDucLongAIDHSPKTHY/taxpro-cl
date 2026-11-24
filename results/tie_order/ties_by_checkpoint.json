@@ -1,0 +1,866 @@
+{
+  "log/p0/confirmatory/office-products/SimGCL/grid-temp0.2-eps0.05/seed0": {
+    "users": 86713,
+    "tie_within_top20": 23,
+    "tie_at_20_21": 1,
+    "logit_tie_within_top21": 8
+  },
+  "log/p0/confirmatory/office-products/SimGCL/grid-temp0.2-eps0.05/seed1": {
+    "users": 86713,
+    "tie_within_top20": 29,
+    "tie_at_20_21": 1,
+    "logit_tie_within_top21": 2
+  },
+  "log/p0/confirmatory/office-products/SimGCL/grid-temp0.2-eps0.05/seed42": {
+    "users": 86713,
+    "tie_within_top20": 30,
+    "tie_at_20_21": 3,
+    "logit_tie_within_top21": 2
+  },
+  "log/p0/confirmatory/office-products/SimGCL/grid-temp0.2-eps0.1/seed0": {
+    "users": 86713,
+    "tie_within_top20": 15,
+    "tie_at_20_21": 2,
+    "logit_tie_within_top21": 5
+  },
+  "log/p0/confirmatory/office-products/SimGCL/grid-temp0.2-eps0.1/seed1": {
+    "users": 86713,
+    "tie_within_top20": 17,
+    "tie_at_20_21": 4,
+    "logit_tie_within_top21": 4
+  },
+  "log/p0/confirmatory/office-products/SimGCL/grid-temp0.2-eps0.1/seed42": {
+    "users": 86713,
+    "tie_within_top20": 23,
+    "tie_at_20_21": 0,
+    "logit_tie_within_top21": 5
+  },
+  "log/p0/confirmatory/office-products/SimGCL/grid-temp0.2-eps0.2/seed0": {
+    "users": 86713,
+    "tie_within_top20": 26,
+    "tie_at_20_21": 1,
+    "logit_tie_within_top21": 7
+  },
+  "log/p0/confirmatory/office-products/SimGCL/grid-temp0.2-eps0.2/seed1": {
+    "users": 86713,
+    "tie_within_top20": 19,
+    "tie_at_20_21": 2,
+    "logit_tie_within_top21": 3
+  },
+  "log/p0/confirmatory/office-products/SimGCL/grid-temp0.2-eps0.2/seed42": {
+    "users": 86713,
+    "tie_within_top20": 24,
+    "tie_at_20_21": 1,
+    "logit_tie_within_top21": 5
+  },
+  "log/p0/confirmatory/office-products/TaxPro-CL/step2-no_merge-temp0.15-gamma1.5/seed0": {
+    "users": 86713,
+    "tie_within_top20": 502,
+    "tie_at_20_21": 34,
+    "logit_tie_within_top21": 288
+  },
+  "log/p0/confirmatory/office-products/TaxPro-CL/step2-no_merge-temp0.15-gamma1.5/seed1": {
+    "users": 86713,
+    "tie_within_top20": 309,
+    "tie_at_20_21": 19,
+    "logit_tie_within_top21": 116
+  },
+  "log/p0/confirmatory/office-products/TaxPro-CL/step2-no_merge-temp0.15-gamma1.5/seed42": {
+    "users": 86713,
+    "tie_within_top20": 412,
+    "tie_at_20_21": 25,
+    "logit_tie_within_top21": 167
+  },
+  "log/p0/confirmatory/office-products/TaxPro-CL/step4-V0-no_merge-temp0.15-gamma1.5/seed0": {
+    "users": 86713,
+    "tie_within_top20": 496,
+    "tie_at_20_21": 40,
+    "logit_tie_within_top21": 279
+  },
+  "log/p0/confirmatory/office-products/TaxPro-CL/step4-V0-no_merge-temp0.15-gamma1.5/seed1": {
+    "users": 86713,
+    "tie_within_top20": 318,
+    "tie_at_20_21": 22,
+    "logit_tie_within_top21": 108
+  },
+  "log/p0/confirmatory/office-products/TaxPro-CL/step4-V0-no_merge-temp0.15-gamma1.5/seed42": {
+    "users": 86713,
+    "tie_within_top20": 402,
+    "tie_at_20_21": 23,
+    "logit_tie_within_top21": 156
+  },
+  "log/p0/confirmatory/office-products/TaxPro-CL/step4-V1-no_merge-temp0.15-gamma1.5/seed0": {
+    "users": 86713,
+    "tie_within_top20": 499,
+    "tie_at_20_21": 31,
+    "logit_tie_within_top21": 299
+  },
+  "log/p0/confirmatory/office-products/TaxPro-CL/step4-V1-no_merge-temp0.15-gamma1.5/seed1": {
+    "users": 86713,
+    "tie_within_top20": 306,
+    "tie_at_20_21": 22,
+    "logit_tie_within_top21": 119
+  },
+  "log/p0/confirmatory/office-products/TaxPro-CL/step4-V1-no_merge-temp0.15-gamma1.5/seed42": {
+    "users": 86713,
+    "tie_within_top20": 416,
+    "tie_at_20_21": 25,
+    "logit_tie_within_top21": 174
+  },
+  "log/p0/confirmatory/office-products/TaxPro-CL/step4-V2-no_merge-temp0.15-gamma1.5/seed0": {
+    "users": 86713,
+    "tie_within_top20": 498,
+    "tie_at_20_21": 34,
+    "logit_tie_within_top21": 245
+  },
+  "log/p0/confirmatory/office-products/TaxPro-CL/step4-V2-no_merge-temp0.15-gamma1.5/seed1": {
+    "users": 86713,
+    "tie_within_top20": 318,
+    "tie_at_20_21": 17,
+    "logit_tie_within_top21": 114
+  },
+  "log/p0/confirmatory/office-products/TaxPro-CL/step4-V2-no_merge-temp0.15-gamma1.5/seed42": {
+    "users": 86713,
+    "tie_within_top20": 400,
+    "tie_at_20_21": 23,
+    "logit_tie_within_top21": 172
+  },
+  "log/p0/extended/amazon-book/TaxPro-CL/control-V3-detached-merge_t10-temp0.1-gamma1.5/seed0": {
+    "users": 52639,
+    "tie_within_top20": 933,
+    "tie_at_20_21": 76,
+    "logit_tie_within_top21": 5
+  },
+  "log/p0/extended/amazon-book/TaxPro-CL/control-V3-detached-merge_t10-temp0.1-gamma1.5/seed1": {
+    "users": 52639,
+    "tie_within_top20": 945,
+    "tie_at_20_21": 72,
+    "logit_tie_within_top21": 3
+  },
+  "log/p0/extended/amazon-book/TaxPro-CL/control-V3-detached-merge_t10-temp0.1-gamma1.5/seed42": {
+    "users": 52639,
+    "tie_within_top20": 908,
+    "tie_at_20_21": 80,
+    "logit_tie_within_top21": 6
+  },
+  "log/p0/extended/amazon-book/TaxPro-CL/control-V3-shuffled-detached-merge_t10-temp0.1-gamma1.5/seed0": {
+    "users": 52639,
+    "tie_within_top20": 958,
+    "tie_at_20_21": 77,
+    "logit_tie_within_top21": 3
+  },
+  "log/p0/extended/amazon-book/TaxPro-CL/control-V3-shuffled-detached-merge_t10-temp0.1-gamma1.5/seed1": {
+    "users": 52639,
+    "tie_within_top20": 937,
+    "tie_at_20_21": 74,
+    "logit_tie_within_top21": 4
+  },
+  "log/p0/extended/amazon-book/TaxPro-CL/control-V3-shuffled-detached-merge_t10-temp0.1-gamma1.5/seed42": {
+    "users": 52639,
+    "tie_within_top20": 989,
+    "tie_at_20_21": 68,
+    "logit_tie_within_top21": 6
+  },
+  "log/p0/extended/amazon-book/TaxPro-CL/control-V3-shuffled-merge_t10-temp0.1-gamma1.5/seed0": {
+    "users": 52639,
+    "tie_within_top20": 941,
+    "tie_at_20_21": 75,
+    "logit_tie_within_top21": 4
+  },
+  "log/p0/extended/amazon-book/TaxPro-CL/control-V3-shuffled-merge_t10-temp0.1-gamma1.5/seed1": {
+    "users": 52639,
+    "tie_within_top20": 948,
+    "tie_at_20_21": 89,
+    "logit_tie_within_top21": 5
+  },
+  "log/p0/extended/amazon-book/TaxPro-CL/control-V3-shuffled-merge_t10-temp0.1-gamma1.5/seed42": {
+    "users": 52639,
+    "tie_within_top20": 974,
+    "tie_at_20_21": 75,
+    "logit_tie_within_top21": 7
+  },
+  "log/p0/extended/arts-crafts-and-sewing/TaxPro-CL/control-V3-detached-no_merge-temp0.125-gamma1.5/seed0": {
+    "users": 45346,
+    "tie_within_top20": 55,
+    "tie_at_20_21": 3,
+    "logit_tie_within_top21": 28
+  },
+  "log/p0/extended/arts-crafts-and-sewing/TaxPro-CL/control-V3-detached-no_merge-temp0.125-gamma1.5/seed1": {
+    "users": 45346,
+    "tie_within_top20": 79,
+    "tie_at_20_21": 2,
+    "logit_tie_within_top21": 39
+  },
+  "log/p0/extended/arts-crafts-and-sewing/TaxPro-CL/control-V3-detached-no_merge-temp0.125-gamma1.5/seed42": {
+    "users": 45346,
+    "tie_within_top20": 50,
+    "tie_at_20_21": 2,
+    "logit_tie_within_top21": 22
+  },
+  "log/p0/extended/arts-crafts-and-sewing/TaxPro-CL/control-V3-shuffled-detached-no_merge-temp0.125-gamma1.5/seed0": {
+    "users": 45346,
+    "tie_within_top20": 65,
+    "tie_at_20_21": 3,
+    "logit_tie_within_top21": 29
+  },
+  "log/p0/extended/arts-crafts-and-sewing/TaxPro-CL/control-V3-shuffled-detached-no_merge-temp0.125-gamma1.5/seed1": {
+    "users": 45346,
+    "tie_within_top20": 85,
+    "tie_at_20_21": 1,
+    "logit_tie_within_top21": 39
+  },
+  "log/p0/extended/arts-crafts-and-sewing/TaxPro-CL/control-V3-shuffled-detached-no_merge-temp0.125-gamma1.5/seed42": {
+    "users": 45346,
+    "tie_within_top20": 56,
+    "tie_at_20_21": 6,
+    "logit_tie_within_top21": 27
+  },
+  "log/p0/extended/arts-crafts-and-sewing/TaxPro-CL/control-V3-shuffled-no_merge-temp0.125-gamma1.5/seed0": {
+    "users": 45346,
+    "tie_within_top20": 63,
+    "tie_at_20_21": 2,
+    "logit_tie_within_top21": 28
+  },
+  "log/p0/extended/arts-crafts-and-sewing/TaxPro-CL/control-V3-shuffled-no_merge-temp0.125-gamma1.5/seed1": {
+    "users": 45346,
+    "tie_within_top20": 84,
+    "tie_at_20_21": 5,
+    "logit_tie_within_top21": 41
+  },
+  "log/p0/extended/arts-crafts-and-sewing/TaxPro-CL/control-V3-shuffled-no_merge-temp0.125-gamma1.5/seed42": {
+    "users": 45346,
+    "tie_within_top20": 54,
+    "tie_at_20_21": 5,
+    "logit_tie_within_top21": 26
+  },
+  "log/p0/extended/musical-instruments/TaxPro-CL/control-V3-detached-no_merge-temp0.15-gamma5.0/seed0": {
+    "users": 24780,
+    "tie_within_top20": 281,
+    "tie_at_20_21": 11,
+    "logit_tie_within_top21": 283
+  },
+  "log/p0/extended/musical-instruments/TaxPro-CL/control-V3-detached-no_merge-temp0.15-gamma5.0/seed1": {
+    "users": 24780,
+    "tie_within_top20": 197,
+    "tie_at_20_21": 11,
+    "logit_tie_within_top21": 191
+  },
+  "log/p0/extended/musical-instruments/TaxPro-CL/control-V3-detached-no_merge-temp0.15-gamma5.0/seed42": {
+    "users": 24780,
+    "tie_within_top20": 192,
+    "tie_at_20_21": 18,
+    "logit_tie_within_top21": 195
+  },
+  "log/p0/extended/musical-instruments/TaxPro-CL/control-V3-shuffled-detached-no_merge-temp0.15-gamma5.0/seed0": {
+    "users": 24780,
+    "tie_within_top20": 251,
+    "tie_at_20_21": 15,
+    "logit_tie_within_top21": 255
+  },
+  "log/p0/extended/musical-instruments/TaxPro-CL/control-V3-shuffled-detached-no_merge-temp0.15-gamma5.0/seed1": {
+    "users": 24780,
+    "tie_within_top20": 150,
+    "tie_at_20_21": 11,
+    "logit_tie_within_top21": 152
+  },
+  "log/p0/extended/musical-instruments/TaxPro-CL/control-V3-shuffled-detached-no_merge-temp0.15-gamma5.0/seed42": {
+    "users": 24780,
+    "tie_within_top20": 176,
+    "tie_at_20_21": 18,
+    "logit_tie_within_top21": 183
+  },
+  "log/p0/extended/musical-instruments/TaxPro-CL/control-V3-shuffled-no_merge-temp0.15-gamma5.0/seed0": {
+    "users": 24780,
+    "tie_within_top20": 266,
+    "tie_at_20_21": 20,
+    "logit_tie_within_top21": 271
+  },
+  "log/p0/extended/musical-instruments/TaxPro-CL/control-V3-shuffled-no_merge-temp0.15-gamma5.0/seed1": {
+    "users": 24780,
+    "tie_within_top20": 171,
+    "tie_at_20_21": 11,
+    "logit_tie_within_top21": 174
+  },
+  "log/p0/extended/musical-instruments/TaxPro-CL/control-V3-shuffled-no_merge-temp0.15-gamma5.0/seed42": {
+    "users": 24780,
+    "tie_within_top20": 215,
+    "tie_at_20_21": 10,
+    "logit_tie_within_top21": 213
+  },
+  "log/p0/extended/office-products/TaxPro-CL/control-V3-detached-no_merge-temp0.15-gamma1.5/seed0": {
+    "users": 86713,
+    "tie_within_top20": 502,
+    "tie_at_20_21": 36,
+    "logit_tie_within_top21": 291
+  },
+  "log/p0/extended/office-products/TaxPro-CL/control-V3-detached-no_merge-temp0.15-gamma1.5/seed1": {
+    "users": 86713,
+    "tie_within_top20": 312,
+    "tie_at_20_21": 18,
+    "logit_tie_within_top21": 103
+  },
+  "log/p0/extended/office-products/TaxPro-CL/control-V3-detached-no_merge-temp0.15-gamma1.5/seed42": {
+    "users": 86713,
+    "tie_within_top20": 404,
+    "tie_at_20_21": 32,
+    "logit_tie_within_top21": 169
+  },
+  "log/p0/extended/office-products/TaxPro-CL/control-V3-shuffled-detached-no_merge-temp0.15-gamma1.5/seed0": {
+    "users": 86713,
+    "tie_within_top20": 507,
+    "tie_at_20_21": 38,
+    "logit_tie_within_top21": 330
+  },
+  "log/p0/extended/office-products/TaxPro-CL/control-V3-shuffled-detached-no_merge-temp0.15-gamma1.5/seed1": {
+    "users": 86713,
+    "tie_within_top20": 293,
+    "tie_at_20_21": 28,
+    "logit_tie_within_top21": 119
+  },
+  "log/p0/extended/office-products/TaxPro-CL/control-V3-shuffled-detached-no_merge-temp0.15-gamma1.5/seed42": {
+    "users": 86713,
+    "tie_within_top20": 379,
+    "tie_at_20_21": 30,
+    "logit_tie_within_top21": 145
+  },
+  "log/p0/extended/office-products/TaxPro-CL/control-V3-shuffled-no_merge-temp0.15-gamma1.5/seed0": {
+    "users": 86713,
+    "tie_within_top20": 507,
+    "tie_at_20_21": 32,
+    "logit_tie_within_top21": 252
+  },
+  "log/p0/extended/office-products/TaxPro-CL/control-V3-shuffled-no_merge-temp0.15-gamma1.5/seed1": {
+    "users": 86713,
+    "tie_within_top20": 301,
+    "tie_at_20_21": 27,
+    "logit_tie_within_top21": 111
+  },
+  "log/p0/extended/office-products/TaxPro-CL/control-V3-shuffled-no_merge-temp0.15-gamma1.5/seed42": {
+    "users": 86713,
+    "tie_within_top20": 395,
+    "tie_at_20_21": 29,
+    "logit_tie_within_top21": 151
+  },
+  "log/p0/extended/yelp2018/TaxPro-CL/control-V3-detached-no_merge-temp0.125-gamma1.5/seed0": {
+    "users": 31668,
+    "tie_within_top20": 19,
+    "tie_at_20_21": 2,
+    "logit_tie_within_top21": 3
+  },
+  "log/p0/extended/yelp2018/TaxPro-CL/control-V3-detached-no_merge-temp0.125-gamma1.5/seed1": {
+    "users": 31668,
+    "tie_within_top20": 14,
+    "tie_at_20_21": 1,
+    "logit_tie_within_top21": 1
+  },
+  "log/p0/extended/yelp2018/TaxPro-CL/control-V3-detached-no_merge-temp0.125-gamma1.5/seed42": {
+    "users": 31668,
+    "tie_within_top20": 19,
+    "tie_at_20_21": 2,
+    "logit_tie_within_top21": 1
+  },
+  "log/p0/extended/yelp2018/TaxPro-CL/control-V3-shuffled-detached-no_merge-temp0.125-gamma1.5/seed0": {
+    "users": 31668,
+    "tie_within_top20": 22,
+    "tie_at_20_21": 1,
+    "logit_tie_within_top21": 0
+  },
+  "log/p0/extended/yelp2018/TaxPro-CL/control-V3-shuffled-detached-no_merge-temp0.125-gamma1.5/seed1": {
+    "users": 31668,
+    "tie_within_top20": 21,
+    "tie_at_20_21": 1,
+    "logit_tie_within_top21": 0
+  },
+  "log/p0/extended/yelp2018/TaxPro-CL/control-V3-shuffled-detached-no_merge-temp0.125-gamma1.5/seed42": {
+    "users": 31668,
+    "tie_within_top20": 19,
+    "tie_at_20_21": 2,
+    "logit_tie_within_top21": 0
+  },
+  "log/p0/extended/yelp2018/TaxPro-CL/control-V3-shuffled-no_merge-temp0.125-gamma1.5/seed0": {
+    "users": 31668,
+    "tie_within_top20": 35,
+    "tie_at_20_21": 4,
+    "logit_tie_within_top21": 4
+  },
+  "log/p0/extended/yelp2018/TaxPro-CL/control-V3-shuffled-no_merge-temp0.125-gamma1.5/seed1": {
+    "users": 31668,
+    "tie_within_top20": 22,
+    "tie_at_20_21": 1,
+    "logit_tie_within_top21": 1
+  },
+  "log/p0/extended/yelp2018/TaxPro-CL/control-V3-shuffled-no_merge-temp0.125-gamma1.5/seed42": {
+    "users": 31668,
+    "tie_within_top20": 20,
+    "tie_at_20_21": 2,
+    "logit_tie_within_top21": 5
+  },
+  "log/p0/taxprocl/amazon-book/A2-V0-mergedt10/seed0": {
+    "users": 52639,
+    "tie_within_top20": 985,
+    "tie_at_20_21": 79,
+    "logit_tie_within_top21": 4
+  },
+  "log/p0/taxprocl/amazon-book/A2-V0-mergedt10/seed1": {
+    "users": 52639,
+    "tie_within_top20": 1044,
+    "tie_at_20_21": 78,
+    "logit_tie_within_top21": 5
+  },
+  "log/p0/taxprocl/amazon-book/A2-V0-mergedt10/seed42": {
+    "users": 52639,
+    "tie_within_top20": 1012,
+    "tie_at_20_21": 89,
+    "logit_tie_within_top21": 5
+  },
+  "log/p0/taxprocl/amazon-book/A2-V0/seed0": {
+    "users": 52639,
+    "tie_within_top20": 963,
+    "tie_at_20_21": 79,
+    "logit_tie_within_top21": 1
+  },
+  "log/p0/taxprocl/amazon-book/A2-V0/seed1": {
+    "users": 52639,
+    "tie_within_top20": 977,
+    "tie_at_20_21": 84,
+    "logit_tie_within_top21": 5
+  },
+  "log/p0/taxprocl/amazon-book/A2-V0/seed42": {
+    "users": 52639,
+    "tie_within_top20": 1001,
+    "tie_at_20_21": 77,
+    "logit_tie_within_top21": 2
+  },
+  "log/p0/taxprocl/amazon-book/A2-V1-mergedt10/seed0": {
+    "users": 52639,
+    "tie_within_top20": 1001,
+    "tie_at_20_21": 81,
+    "logit_tie_within_top21": 5
+  },
+  "log/p0/taxprocl/amazon-book/A2-V1-mergedt10/seed1": {
+    "users": 52639,
+    "tie_within_top20": 988,
+    "tie_at_20_21": 84,
+    "logit_tie_within_top21": 2
+  },
+  "log/p0/taxprocl/amazon-book/A2-V1-mergedt10/seed42": {
+    "users": 52639,
+    "tie_within_top20": 953,
+    "tie_at_20_21": 84,
+    "logit_tie_within_top21": 4
+  },
+  "log/p0/taxprocl/amazon-book/A2-V1/seed0": {
+    "users": 52639,
+    "tie_within_top20": 972,
+    "tie_at_20_21": 84,
+    "logit_tie_within_top21": 3
+  },
+  "log/p0/taxprocl/amazon-book/A2-V1/seed1": {
+    "users": 52639,
+    "tie_within_top20": 992,
+    "tie_at_20_21": 68,
+    "logit_tie_within_top21": 4
+  },
+  "log/p0/taxprocl/amazon-book/A2-V1/seed42": {
+    "users": 52639,
+    "tie_within_top20": 1001,
+    "tie_at_20_21": 83,
+    "logit_tie_within_top21": 6
+  },
+  "log/p0/taxprocl/amazon-book/A2-V2-mergedt10/seed0": {
+    "users": 52639,
+    "tie_within_top20": 980,
+    "tie_at_20_21": 77,
+    "logit_tie_within_top21": 7
+  },
+  "log/p0/taxprocl/amazon-book/A2-V2-mergedt10/seed1": {
+    "users": 52639,
+    "tie_within_top20": 1029,
+    "tie_at_20_21": 69,
+    "logit_tie_within_top21": 2
+  },
+  "log/p0/taxprocl/amazon-book/A2-V2-mergedt10/seed42": {
+    "users": 52639,
+    "tie_within_top20": 1008,
+    "tie_at_20_21": 84,
+    "logit_tie_within_top21": 2
+  },
+  "log/p0/taxprocl/amazon-book/A2-V2/seed0": {
+    "users": 52639,
+    "tie_within_top20": 964,
+    "tie_at_20_21": 80,
+    "logit_tie_within_top21": 5
+  },
+  "log/p0/taxprocl/amazon-book/A2-V2/seed1": {
+    "users": 52639,
+    "tie_within_top20": 996,
+    "tie_at_20_21": 84,
+    "logit_tie_within_top21": 1
+  },
+  "log/p0/taxprocl/amazon-book/A2-V2/seed42": {
+    "users": 52639,
+    "tie_within_top20": 992,
+    "tie_at_20_21": 83,
+    "logit_tie_within_top21": 3
+  },
+  "log/p0/taxprocl/amazon-book/A2-V3-warm20/seed0": {
+    "users": 52639,
+    "tie_within_top20": 1000,
+    "tie_at_20_21": 81,
+    "logit_tie_within_top21": 9
+  },
+  "log/p0/taxprocl/amazon-book/A2-V3-warm20/seed1": {
+    "users": 52639,
+    "tie_within_top20": 965,
+    "tie_at_20_21": 81,
+    "logit_tie_within_top21": 3
+  },
+  "log/p0/taxprocl/amazon-book/A2-V3-warm20/seed42": {
+    "users": 52639,
+    "tie_within_top20": 958,
+    "tie_at_20_21": 83,
+    "logit_tie_within_top21": 3
+  },
+  "log/p0/taxprocl/amazon-book/A2-V3/seed0": {
+    "users": 52639,
+    "tie_within_top20": 1003,
+    "tie_at_20_21": 86,
+    "logit_tie_within_top21": 2
+  },
+  "log/p0/taxprocl/amazon-book/A2-V3/seed1": {
+    "users": 52639,
+    "tie_within_top20": 1021,
+    "tie_at_20_21": 68,
+    "logit_tie_within_top21": 10
+  },
+  "log/p0/taxprocl/amazon-book/A2-V3/seed42": {
+    "users": 52639,
+    "tie_within_top20": 1015,
+    "tie_at_20_21": 84,
+    "logit_tie_within_top21": 4
+  },
+  "log/p0/taxprocl/amazon-book/ablation-A5-parent-mergedt10/seed0": {
+    "users": 52639,
+    "tie_within_top20": 943,
+    "tie_at_20_21": 76,
+    "logit_tie_within_top21": 4
+  },
+  "log/p0/taxprocl/amazon-book/ablation-A5-parent-mergedt10/seed1": {
+    "users": 52639,
+    "tie_within_top20": 951,
+    "tie_at_20_21": 76,
+    "logit_tie_within_top21": 8
+  },
+  "log/p0/taxprocl/amazon-book/ablation-A5-parent-mergedt10/seed42": {
+    "users": 52639,
+    "tie_within_top20": 965,
+    "tie_at_20_21": 84,
+    "logit_tie_within_top21": 5
+  },
+  "log/p0/taxprocl/amazon-book/proto-leafuniform/seed0": {
+    "users": 52639,
+    "tie_within_top20": 960,
+    "tie_at_20_21": 84,
+    "logit_tie_within_top21": 5
+  },
+  "log/p0/taxprocl/amazon-book/proto-leafuniform/seed1": {
+    "users": 52639,
+    "tie_within_top20": 951,
+    "tie_at_20_21": 68,
+    "logit_tie_within_top21": 4
+  },
+  "log/p0/taxprocl/amazon-book/proto-leafuniform/seed42": {
+    "users": 52639,
+    "tie_within_top20": 904,
+    "tie_at_20_21": 83,
+    "logit_tie_within_top21": 7
+  },
+  "log/p0/taxprocl/amazon-book/proto-leaveoneout/seed0": {
+    "users": 52639,
+    "tie_within_top20": 981,
+    "tie_at_20_21": 77,
+    "logit_tie_within_top21": 8
+  },
+  "log/p0/taxprocl/amazon-book/proto-leaveoneout/seed1": {
+    "users": 52639,
+    "tie_within_top20": 972,
+    "tie_at_20_21": 91,
+    "logit_tie_within_top21": 7
+  },
+  "log/p0/taxprocl/amazon-book/proto-leaveoneout/seed42": {
+    "users": 52639,
+    "tie_within_top20": 936,
+    "tie_at_20_21": 81,
+    "logit_tie_within_top21": 3
+  },
+  "log/p0/taxprocl/amazon-book/proto-rescue/seed0": {
+    "users": 52639,
+    "tie_within_top20": 976,
+    "tie_at_20_21": 84,
+    "logit_tie_within_top21": 5
+  },
+  "log/p0/taxprocl/amazon-book/proto-rescue/seed1": {
+    "users": 52639,
+    "tie_within_top20": 977,
+    "tie_at_20_21": 80,
+    "logit_tie_within_top21": 4
+  },
+  "log/p0/taxprocl/amazon-book/proto-rescue/seed42": {
+    "users": 52639,
+    "tie_within_top20": 958,
+    "tie_at_20_21": 75,
+    "logit_tie_within_top21": 7
+  },
+  "log/p0/taxprocl/amazon-book/taxpro-cl-v15-prototype-leaf-lambda0.5-same_leaf_weight0-user_ssl-warmstart20-noblend-temp0.1-DONE-overall-2.30pct-BEST-overall-nearcold-longtail-positive/seed0": {
+    "users": 52639,
+    "tie_within_top20": 975,
+    "tie_at_20_21": 82,
+    "logit_tie_within_top21": 7
+  },
+  "log/p0/taxprocl/amazon-book/taxpro-cl-v15-prototype-leaf-lambda0.5-same_leaf_weight0-user_ssl-warmstart20-noblend-temp0.1-DONE-overall-2.30pct-BEST-overall-nearcold-longtail-positive/seed1": {
+    "users": 52639,
+    "tie_within_top20": 979,
+    "tie_at_20_21": 86,
+    "logit_tie_within_top21": 5
+  },
+  "log/p0/taxprocl/amazon-book/taxpro-cl-v15-prototype-leaf-lambda0.5-same_leaf_weight0-user_ssl-warmstart20-noblend-temp0.1-DONE-overall-2.30pct-BEST-overall-nearcold-longtail-positive/seed42": {
+    "users": 52639,
+    "tie_within_top20": 929,
+    "tie_at_20_21": 80,
+    "logit_tie_within_top21": 6
+  },
+  "log/p0/taxprocl/arts-crafts-and-sewing/A2-V0/seed0": {
+    "users": 45346,
+    "tie_within_top20": 55,
+    "tie_at_20_21": 4,
+    "logit_tie_within_top21": 28
+  },
+  "log/p0/taxprocl/arts-crafts-and-sewing/A2-V0/seed1": {
+    "users": 45346,
+    "tie_within_top20": 71,
+    "tie_at_20_21": 2,
+    "logit_tie_within_top21": 36
+  },
+  "log/p0/taxprocl/arts-crafts-and-sewing/A2-V0/seed42": {
+    "users": 45346,
+    "tie_within_top20": 51,
+    "tie_at_20_21": 6,
+    "logit_tie_within_top21": 22
+  },
+  "log/p0/taxprocl/arts-crafts-and-sewing/A2-V1/seed0": {
+    "users": 45346,
+    "tie_within_top20": 55,
+    "tie_at_20_21": 4,
+    "logit_tie_within_top21": 27
+  },
+  "log/p0/taxprocl/arts-crafts-and-sewing/A2-V1/seed1": {
+    "users": 45346,
+    "tie_within_top20": 67,
+    "tie_at_20_21": 2,
+    "logit_tie_within_top21": 37
+  },
+  "log/p0/taxprocl/arts-crafts-and-sewing/A2-V1/seed42": {
+    "users": 45346,
+    "tie_within_top20": 52,
+    "tie_at_20_21": 5,
+    "logit_tie_within_top21": 25
+  },
+  "log/p0/taxprocl/arts-crafts-and-sewing/A2-V2/seed0": {
+    "users": 45346,
+    "tie_within_top20": 54,
+    "tie_at_20_21": 3,
+    "logit_tie_within_top21": 27
+  },
+  "log/p0/taxprocl/arts-crafts-and-sewing/A2-V2/seed1": {
+    "users": 45346,
+    "tie_within_top20": 78,
+    "tie_at_20_21": 1,
+    "logit_tie_within_top21": 38
+  },
+  "log/p0/taxprocl/arts-crafts-and-sewing/A2-V2/seed42": {
+    "users": 45346,
+    "tie_within_top20": 51,
+    "tie_at_20_21": 3,
+    "logit_tie_within_top21": 25
+  },
+  "log/p0/taxprocl/arts-crafts-and-sewing/taxpro-cl-FINAL-no_merge-temp0.125-gammacold1.5-sameleaf0/seed0": {
+    "users": 45346,
+    "tie_within_top20": 60,
+    "tie_at_20_21": 4,
+    "logit_tie_within_top21": 32
+  },
+  "log/p0/taxprocl/arts-crafts-and-sewing/taxpro-cl-FINAL-no_merge-temp0.125-gammacold1.5-sameleaf0/seed1": {
+    "users": 45346,
+    "tie_within_top20": 68,
+    "tie_at_20_21": 3,
+    "logit_tie_within_top21": 38
+  },
+  "log/p0/taxprocl/arts-crafts-and-sewing/taxpro-cl-FINAL-no_merge-temp0.125-gammacold1.5-sameleaf0/seed42": {
+    "users": 45346,
+    "tie_within_top20": 44,
+    "tie_at_20_21": 2,
+    "logit_tie_within_top21": 21
+  },
+  "log/p0/taxprocl/musical-instruments/A2-V0/seed0": {
+    "users": 24780,
+    "tie_within_top20": 274,
+    "tie_at_20_21": 11,
+    "logit_tie_within_top21": 276
+  },
+  "log/p0/taxprocl/musical-instruments/A2-V0/seed1": {
+    "users": 24780,
+    "tie_within_top20": 172,
+    "tie_at_20_21": 9,
+    "logit_tie_within_top21": 170
+  },
+  "log/p0/taxprocl/musical-instruments/A2-V0/seed42": {
+    "users": 24780,
+    "tie_within_top20": 176,
+    "tie_at_20_21": 10,
+    "logit_tie_within_top21": 170
+  },
+  "log/p0/taxprocl/musical-instruments/A2-V1/seed0": {
+    "users": 24780,
+    "tie_within_top20": 260,
+    "tie_at_20_21": 11,
+    "logit_tie_within_top21": 261
+  },
+  "log/p0/taxprocl/musical-instruments/A2-V1/seed1": {
+    "users": 24780,
+    "tie_within_top20": 175,
+    "tie_at_20_21": 11,
+    "logit_tie_within_top21": 178
+  },
+  "log/p0/taxprocl/musical-instruments/A2-V1/seed42": {
+    "users": 24780,
+    "tie_within_top20": 182,
+    "tie_at_20_21": 9,
+    "logit_tie_within_top21": 183
+  },
+  "log/p0/taxprocl/musical-instruments/A2-V2/seed0": {
+    "users": 24780,
+    "tie_within_top20": 279,
+    "tie_at_20_21": 16,
+    "logit_tie_within_top21": 283
+  },
+  "log/p0/taxprocl/musical-instruments/A2-V2/seed1": {
+    "users": 24780,
+    "tie_within_top20": 144,
+    "tie_at_20_21": 12,
+    "logit_tie_within_top21": 145
+  },
+  "log/p0/taxprocl/musical-instruments/A2-V2/seed42": {
+    "users": 24780,
+    "tie_within_top20": 182,
+    "tie_at_20_21": 14,
+    "logit_tie_within_top21": 189
+  },
+  "log/p0/taxprocl/musical-instruments/taxpro-cl-FINAL-no_merge-temp0.15-gammacold5.0/seed0": {
+    "users": 24780,
+    "tie_within_top20": 286,
+    "tie_at_20_21": 11,
+    "logit_tie_within_top21": 286
+  },
+  "log/p0/taxprocl/musical-instruments/taxpro-cl-FINAL-no_merge-temp0.15-gammacold5.0/seed1": {
+    "users": 24780,
+    "tie_within_top20": 182,
+    "tie_at_20_21": 9,
+    "logit_tie_within_top21": 179
+  },
+  "log/p0/taxprocl/musical-instruments/taxpro-cl-FINAL-no_merge-temp0.15-gammacold5.0/seed42": {
+    "users": 24780,
+    "tie_within_top20": 197,
+    "tie_at_20_21": 17,
+    "logit_tie_within_top21": 198
+  },
+  "log/p0/taxprocl/yelp2018/A2-V0-tempuser0.15/seed0": {
+    "users": 31668,
+    "tie_within_top20": 28,
+    "tie_at_20_21": 1,
+    "logit_tie_within_top21": 2
+  },
+  "log/p0/taxprocl/yelp2018/A2-V0-tempuser0.15/seed1": {
+    "users": 31668,
+    "tie_within_top20": 23,
+    "tie_at_20_21": 4,
+    "logit_tie_within_top21": 1
+  },
+  "log/p0/taxprocl/yelp2018/A2-V0-tempuser0.15/seed42": {
+    "users": 31668,
+    "tie_within_top20": 22,
+    "tie_at_20_21": 1,
+    "logit_tie_within_top21": 0
+  },
+  "log/p0/taxprocl/yelp2018/A2-V1-tempuser0.15/seed0": {
+    "users": 31668,
+    "tie_within_top20": 23,
+    "tie_at_20_21": 1,
+    "logit_tie_within_top21": 3
+  },
+  "log/p0/taxprocl/yelp2018/A2-V1-tempuser0.15/seed1": {
+    "users": 31668,
+    "tie_within_top20": 26,
+    "tie_at_20_21": 1,
+    "logit_tie_within_top21": 0
+  },
+  "log/p0/taxprocl/yelp2018/A2-V1-tempuser0.15/seed42": {
+    "users": 31668,
+    "tie_within_top20": 25,
+    "tie_at_20_21": 2,
+    "logit_tie_within_top21": 2
+  },
+  "log/p0/taxprocl/yelp2018/A2-V2-tempuser0.15/seed0": {
+    "users": 31668,
+    "tie_within_top20": 20,
+    "tie_at_20_21": 2,
+    "logit_tie_within_top21": 0
+  },
+  "log/p0/taxprocl/yelp2018/A2-V2-tempuser0.15/seed1": {
+    "users": 31668,
+    "tie_within_top20": 19,
+    "tie_at_20_21": 0,
+    "logit_tie_within_top21": 1
+  },
+  "log/p0/taxprocl/yelp2018/A2-V2-tempuser0.15/seed42": {
+    "users": 31668,
+    "tie_within_top20": 28,
+    "tie_at_20_21": 2,
+    "logit_tie_within_top21": 3
+  },
+  "log/p0/taxprocl/yelp2018/A2-V3-tempuser0.15/seed0": {
+    "users": 31668,
+    "tie_within_top20": 29,
+    "tie_at_20_21": 2,
+    "logit_tie_within_top21": 0
+  },
+  "log/p0/taxprocl/yelp2018/A2-V3-tempuser0.15/seed1": {
+    "users": 31668,
+    "tie_within_top20": 30,
+    "tie_at_20_21": 2,
+    "logit_tie_within_top21": 0
+  },
+  "log/p0/taxprocl/yelp2018/A2-V3-tempuser0.15/seed42": {
+    "users": 31668,
+    "tie_within_top20": 24,
+    "tie_at_20_21": 1,
+    "logit_tie_within_top21": 2
+  },
+  "log/p0/taxprocl/yelp2018/taxpro-cl-FINAL-no_merge-temp0.125-tempuser0.15-gammacold1.5/seed0": {
+    "users": 31668,
+    "tie_within_top20": 23,
+    "tie_at_20_21": 2,
+    "logit_tie_within_top21": 2
+  },
+  "log/p0/taxprocl/yelp2018/taxpro-cl-FINAL-no_merge-temp0.125-tempuser0.15-gammacold1.5/seed1": {
+    "users": 31668,
+    "tie_within_top20": 29,
+    "tie_at_20_21": 2,
+    "logit_tie_within_top21": 4
+  },
+  "log/p0/taxprocl/yelp2018/taxpro-cl-FINAL-no_merge-temp0.125-tempuser0.15-gammacold1.5/seed42": {
+    "users": 31668,
+    "tie_within_top20": 23,
+    "tie_at_20_21": 2,
+    "logit_tie_within_top21": 3
+  }
+}

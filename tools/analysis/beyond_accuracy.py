@@ -83,7 +83,8 @@ def compute_for_model_dataset(model_name, dataset_name, device):
     all_users = list(range(dataset.num_users))
     for start in range(0, len(all_users), BATCH_SIZE):
         batch = all_users[start : start + BATCH_SIZE]
-        order, _rank = compute_batch_order_and_rank(model, dataset, device, batch, split="test")
+        # head_k: the top K as the stored evaluation selects and orders it (tied scores; tools/ranking/inference.py)
+        order, _rank = compute_batch_order_and_rank(model, dataset, device, batch, split="test", head_k=K)
         for row in order[:, :K].tolist():
             for item_id in row:
                 degree = degrees[item_id] if item_id < len(degrees) else 0

@@ -39,36 +39,36 @@
   },
   "direction_fixed_eps__V1-V0|ndcg|near_cold": {
    "n_users": 13238,
-   "mean_diff": 5.2362696590488374e-05,
-   "ci95_lo": 5.442553411713966e-06,
-   "ci95_hi": 0.00010697819825171755,
+   "mean_diff": 5.440018876789703e-05,
+   "ci95_lo": 6.684171177480785e-06,
+   "ci95_hi": 0.00011016580986404932,
    "excludes_zero": true,
-   "p1e5": 0.04310956890431096,
-   "p1e6": 0.04240895759104241
+   "p1e5": 0.037179628203717965,
+   "p1e6": 0.036725963274036724
   },
   "direction_fixed_eps__V1-V0|ndcg|long_tail": {
    "n_users": 36609,
-   "mean_diff": 3.963098427711936e-05,
-   "ci95_lo": 1.4658842968207356e-05,
-   "ci95_hi": 6.454921509598168e-05,
+   "mean_diff": 5.162698700890393e-05,
+   "ci95_lo": 2.644643719801146e-05,
+   "ci95_hi": 7.773692795170841e-05,
    "excludes_zero": true,
-   "p1e5": 0.001909980900190998,
-   "p1e6": 0.00170999829000171
+   "p1e5": 6.999930000699993e-05,
+   "p1e6": 7.2999927000073e-05
   },
   "direction_fixed_eps__V1-V0|ndcg|overall": {
    "n_users": 52639,
-   "mean_diff": 0.00018700324288614193,
-   "ci95_lo": 0.00013691812700097477,
-   "ci95_hi": 0.00023703321181385993,
+   "mean_diff": 0.00019447333820597215,
+   "ci95_lo": 0.00014428195717517125,
+   "ci95_hi": 0.00024551561271843314,
    "excludes_zero": true,
    "p1e5": 9.99990000099999e-06,
    "p1e6": null
   },
   "direction_fixed_eps__V1-V0|ndcg|warm": {
    "n_users": 52123,
-   "mean_diff": 0.0002061185872907123,
-   "ci95_lo": 0.00014517248646151975,
-   "ci95_hi": 0.0002667203792253234,
+   "mean_diff": 0.0002163257518589476,
+   "ci95_lo": 0.00015354497509126254,
+   "ci95_hi": 0.00027789127580859477,
    "excludes_zero": true,
    "p1e5": 9.99990000099999e-06,
    "p1e6": null
@@ -111,36 +111,36 @@
   },
   "direction_adaptive_eps__V3-V2|ndcg|near_cold": {
    "n_users": 13238,
-   "mean_diff": 5.259888932072591e-05,
-   "ci95_lo": 5.654130853329657e-06,
-   "ci95_hi": 0.00010711568981459166,
+   "mean_diff": 5.463638149813455e-05,
+   "ci95_lo": 6.925328492003967e-06,
+   "ci95_hi": 0.00011044403776852395,
    "excludes_zero": true,
-   "p1e5": 0.04209957900420996,
-   "p1e6": 0.041450958549041454
+   "p1e5": 0.03631963680363196,
+   "p1e6": 0.035861964138035864
   },
   "direction_adaptive_eps__V3-V2|ndcg|long_tail": {
    "n_users": 36609,
-   "mean_diff": 3.938173446761888e-05,
-   "ci95_lo": 1.4474713833755017e-05,
-   "ci95_hi": 6.429975659054252e-05,
+   "mean_diff": 5.134976668922256e-05,
+   "ci95_lo": 2.616925394121688e-05,
+   "ci95_hi": 7.742813773517844e-05,
    "excludes_zero": true,
-   "p1e5": 0.002039979600203998,
-   "p1e6": 0.001835998164001836
+   "p1e5": 6.999930000699993e-05,
+   "p1e6": 8.4999915000085e-05
   },
   "direction_adaptive_eps__V3-V2|ndcg|overall": {
    "n_users": 52639,
-   "mean_diff": 0.00018927135755534647,
-   "ci95_lo": 0.00013903563575261925,
-   "ci95_hi": 0.00023969506676625434,
+   "mean_diff": 0.00019687650285442012,
+   "ci95_lo": 0.00014621205661890217,
+   "ci95_hi": 0.0002482067973637126,
    "excludes_zero": true,
    "p1e5": 9.99990000099999e-06,
    "p1e6": null
   },
   "direction_adaptive_eps__V3-V2|ndcg|warm": {
    "n_users": 52123,
-   "mean_diff": 0.0002101092589171448,
-   "ci95_lo": 0.0001490575840349156,
-   "ci95_hi": 0.00027111770782235024,
+   "mean_diff": 0.00022030387824246016,
+   "ci95_lo": 0.0001565390915347693,
+   "ci95_hi": 0.00028290185736032456,
    "excludes_zero": true,
    "p1e5": 9.99990000099999e-06,
    "p1e6": null
@@ -192,29 +192,29 @@
   },
   "eps_random_dir__V2-V0|ndcg|long_tail": {
    "n_users": 36609,
-   "mean_diff": 1.0070440898319516e-07,
-   "ci95_lo": -6.057179566612629e-08,
-   "ci95_hi": 3.184155863739408e-07,
+   "mean_diff": 1.1722423774374593e-07,
+   "ci95_lo": -4.2185541059889234e-08,
+   "ci95_hi": 3.3468625062273565e-07,
    "excludes_zero": false,
-   "p1e5": 0.3906060939390606,
-   "p1e6": 0.3904066095933904
+   "p1e5": 0.31244687553124467,
+   "p1e6": 0.311989688010312
   },
   "eps_random_dir__V2-V0|ndcg|overall": {
    "n_users": 52639,
-   "mean_diff": -6.323604945577077e-07,
-   "ci95_lo": -4.624756930724644e-06,
-   "ci95_hi": 3.195724240348373e-06,
+   "mean_diff": -5.736458131407418e-07,
+   "ci95_lo": -4.59658552923624e-06,
+   "ci95_hi": 3.4141600844168977e-06,
    "excludes_zero": false,
-   "p1e5": 0.7564524354756452,
+   "p1e5": 0.7816621833781662,
    "p1e6": null
   },
   "eps_random_dir__V2-V0|ndcg|warm": {
    "n_users": 52123,
-   "mean_diff": -1.2767524857790153e-06,
-   "ci95_lo": -5.907638468720344e-06,
-   "ci95_hi": 3.456513217137021e-06,
+   "mean_diff": -9.484101104254336e-07,
+   "ci95_lo": -5.734714682117333e-06,
+   "ci95_hi": 3.882388572868286e-06,
    "excludes_zero": false,
-   "p1e5": 0.5900540994590054,
+   "p1e5": 0.6948730512694873,
    "p1e6": null
   },
   "eps_taxonomy_dir__V3-V1|recall|near_cold": {
@@ -264,29 +264,29 @@
   },
   "eps_taxonomy_dir__V3-V1|ndcg|long_tail": {
    "n_users": 36609,
-   "mean_diff": -1.4854540051728192e-07,
-   "ci95_lo": -5.549465655326672e-07,
-   "ci95_hi": 9.975720893097718e-08,
+   "mean_diff": -1.599960819376304e-07,
+   "ci95_lo": -5.631667708476641e-07,
+   "ci95_hi": 8.932675404752201e-08,
    "excludes_zero": false,
-   "p1e5": 0.7171928280717192,
-   "p1e6": 0.7178882821117178
+   "p1e5": 0.6088539114608854,
+   "p1e6": 0.6086813913186087
   },
   "eps_taxonomy_dir__V3-V1|ndcg|overall": {
    "n_users": 52639,
-   "mean_diff": 1.6357541746468046e-06,
-   "ci95_lo": -1.2917474001950137e-06,
-   "ci95_hi": 4.758187486570889e-06,
+   "mean_diff": 1.829518835307264e-06,
+   "ci95_lo": -1.1814350340961747e-06,
+   "ci95_hi": 5.060704748358746e-06,
    "excludes_zero": false,
-   "p1e5": 0.2949370506294937,
+   "p1e5": 0.24934750652493476,
    "p1e6": null
   },
   "eps_taxonomy_dir__V3-V1|ndcg|warm": {
    "n_users": 52123,
-   "mean_diff": 2.713919140653498e-06,
-   "ci95_lo": -1.6644876951106279e-06,
-   "ci95_hi": 7.677515423100875e-06,
+   "mean_diff": 3.0297162730871457e-06,
+   "ci95_lo": -1.4010804736723544e-06,
+   "ci95_hi": 8.027046387299973e-06,
    "excludes_zero": false,
-   "p1e5": 0.26343736562634373,
+   "p1e5": 0.21388786112138877,
    "p1e6": null
   },
   "interaction__(V3-V2)-(V1-V0)|recall|near_cold": {
@@ -336,29 +336,29 @@
   },
   "interaction__(V3-V2)-(V1-V0)|ndcg|long_tail": {
    "n_users": 36609,
-   "mean_diff": -2.492498095004773e-07,
-   "ci95_lo": -7.18427522918964e-07,
-   "ci95_hi": 7.46883230198855e-08,
+   "mean_diff": -2.772203196813766e-07,
+   "ci95_lo": -7.453006463002518e-07,
+   "ci95_hi": 4.307778997945043e-08,
    "excludes_zero": false,
-   "p1e5": 0.26426735732642676,
-   "p1e6": 0.26428873571126427
+   "p1e5": 0.1896381036189638,
+   "p1e6": 0.18792681207318793
   },
   "interaction__(V3-V2)-(V1-V0)|ndcg|overall": {
    "n_users": 52639,
-   "mean_diff": 2.2681146692045124e-06,
-   "ci95_lo": -2.7343504228085653e-06,
-   "ci95_hi": 7.386372629170142e-06,
+   "mean_diff": 2.403164648448006e-06,
+   "ci95_lo": -2.6397721864292994e-06,
+   "ci95_hi": 7.610114765647206e-06,
    "excludes_zero": false,
-   "p1e5": 0.3733862661373386,
+   "p1e5": 0.3543564564354356,
    "p1e6": null
   },
   "interaction__(V3-V2)-(V1-V0)|ndcg|warm": {
    "n_users": 52123,
-   "mean_diff": 3.990671626432514e-06,
-   "ci95_lo": -2.51200714801733e-06,
-   "ci95_hi": 1.0481510593138074e-05,
+   "mean_diff": 3.978126383512579e-06,
+   "ci95_lo": -2.5694115278859858e-06,
+   "ci95_hi": 1.059460236624689e-05,
    "excludes_zero": false,
-   "p1e5": 0.23130768692313078,
+   "p1e5": 0.24061759382406175,
    "p1e6": null
   }
  },
@@ -599,14 +599,14 @@
    {
     "dataset": "amazon-book",
     "group": "near_cold",
-    "p": 0.04310956890431096,
+    "p": 0.037179628203717965,
     "sig": false,
     "sig_threshold": 0.0071428571428571435
    },
    {
     "dataset": "amazon-book",
     "group": "long_tail",
-    "p": 0.002039979600203998,
+    "p": 6.999930000699993e-05,
     "sig": true,
     "sig_threshold": 0.00625
    },
@@ -622,14 +622,14 @@
     "group": "long_tail",
     "p": 0.4925650743492565,
     "sig": false,
-    "sig_threshold": 0.0125
+    "sig_threshold": 0.016666666666666666
    },
    {
     "dataset": "musical-instruments",
     "group": "near_cold",
     "p": 0.45103548964510354,
     "sig": false,
-    "sig_threshold": 0.01
+    "sig_threshold": 0.0125
    },
    {
     "dataset": "musical-instruments",
@@ -648,23 +648,23 @@
    {
     "dataset": "arts-crafts-and-sewing",
     "group": "long_tail",
-    "p": 0.5203947960520395,
+    "p": 0.3869261307386926,
     "sig": false,
-    "sig_threshold": 0.016666666666666666
+    "sig_threshold": 0.01
    }
   ],
   "direction|ndcg|p1e6": [
    {
     "dataset": "amazon-book",
     "group": "near_cold",
-    "p": 0.04240895759104241,
+    "p": 0.036725963274036724,
     "sig": false,
     "sig_threshold": 0.0071428571428571435
    },
    {
     "dataset": "amazon-book",
     "group": "long_tail",
-    "p": 0.001835998164001836,
+    "p": 8.4999915000085e-05,
     "sig": true,
     "sig_threshold": 0.00625
    },
@@ -680,14 +680,14 @@
     "group": "long_tail",
     "p": 0.49445950554049445,
     "sig": false,
-    "sig_threshold": 0.0125
+    "sig_threshold": 0.016666666666666666
    },
    {
     "dataset": "musical-instruments",
     "group": "near_cold",
     "p": 0.45176554823445175,
     "sig": false,
-    "sig_threshold": 0.01
+    "sig_threshold": 0.0125
    },
    {
     "dataset": "musical-instruments",
@@ -706,9 +706,9 @@
    {
     "dataset": "arts-crafts-and-sewing",
     "group": "long_tail",
-    "p": 0.522986477013523,
+    "p": 0.38744361255638743,
     "sig": false,
-    "sig_threshold": 0.016666666666666666
+    "sig_threshold": 0.01
    }
   ],
   "epsilon|ndcg|p1e5": [
@@ -722,9 +722,9 @@
    {
     "dataset": "amazon-book",
     "group": "long_tail",
-    "p": 0.7171928280717192,
+    "p": 0.6088539114608854,
     "sig": false,
-    "sig_threshold": 0.008333333333333333
+    "sig_threshold": 0.00625
    },
    {
     "dataset": "yelp2018",
@@ -745,14 +745,14 @@
     "group": "near_cold",
     "p": 0.6147738522614774,
     "sig": false,
-    "sig_threshold": 0.00625
+    "sig_threshold": 0.0071428571428571435
    },
    {
     "dataset": "musical-instruments",
     "group": "long_tail",
     "p": 0.6376236237637624,
     "sig": false,
-    "sig_threshold": 0.0071428571428571435
+    "sig_threshold": 0.008333333333333333
    },
    {
     "dataset": "arts-crafts-and-sewing",
@@ -780,9 +780,9 @@
    {
     "dataset": "amazon-book",
     "group": "long_tail",
-    "p": 0.7178882821117178,
+    "p": 0.6086813913186087,
     "sig": false,
-    "sig_threshold": 0.008333333333333333
+    "sig_threshold": 0.00625
    },
    {
     "dataset": "yelp2018",
@@ -803,14 +803,14 @@
     "group": "near_cold",
     "p": 0.6141273858726142,
     "sig": false,
-    "sig_threshold": 0.00625
+    "sig_threshold": 0.0071428571428571435
    },
    {
     "dataset": "musical-instruments",
     "group": "long_tail",
     "p": 0.6355983644016356,
     "sig": false,
-    "sig_threshold": 0.0071428571428571435
+    "sig_threshold": 0.008333333333333333
    },
    {
     "dataset": "arts-crafts-and-sewing",

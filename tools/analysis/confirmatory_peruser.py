@@ -43,6 +43,7 @@ def main(argv=None):
                 for group in ("near_cold", "long_tail"):
                     rec, ndcg = scores[variant][seed]["recall"][group], scores[variant][seed]["ndcg"][group]
                     assert abs(statistics.fmean(rec.values()) - float(ref[group]["recall"]["20"])) < 1e-9, (variant, seed, group)
+                    assert abs(statistics.fmean(ndcg.values()) - float(ref[group]["ndcg"]["20"])) < 1e-9, (variant, seed, group)
                     for user in sorted(rec):
                         w.writerow([variant, rel, seed, group, user, repr(rec[user]), repr(ndcg[user])])
                         n += 1

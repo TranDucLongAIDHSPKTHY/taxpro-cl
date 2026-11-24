@@ -457,6 +457,7 @@ entry points are:
 | Strict-Cold audit (Table S34)                                                                                                             | `strict_cold_audit`                                                                                                                                                                                                                                                                                                           |
 | CDs-and-Vinyl comparison (Tables S30b, S30c)                                                                                              | `cds_and_vinyl_summary`, `update_manifest_cds_and_vinyl`                                                                                                                                                                                                                                                                    |
 | Full p-value vector of the factorial (Table S13e)                                                                                         | `export_factorial_pvalues`                                                                                                                                                                                                                                                                                                    |
+| Factorial, A5, prototype variants, Office analysis and S41 controls with a deterministic order of tied scores (S13e)                      | `tie_order_sensitivity`                                                                                                                                                                                                                                                                                                       |
 | Yelp2018 per-user hit decomposition (Tables S13g, S13h)                                                                                   | `yelp_factorial_hits`                                                                                                                                                                                                                                                                                                         |
 | A7 comparable-budget grid (Table 4; Tables S24-S24g)                                                                                      | `a7_tuned_comparison`                                                                                                                                                                                                                                                                                                         |
 | Validation-only re-selection of the configuration (Tables S35-S35c)                                                                       | `validation_reselection_audit`, then `s35_export`                                                                                                                                                                                                                                                                           |
@@ -613,11 +614,15 @@ All three Amazon-based datasets (`amazon-book`, `musical-instruments`,
 metadata scheme and the same ID-matching/merge logic
 (`tools/data/prepare_metadata.py`); only the category name and, for
 `musical-instruments`/`arts-crafts-and-sewing`, the local file paths differ.
-SHA256 checksums of every original source file, and of every derived
+SHA256 checksums of the original interaction files, and of every derived
 train/validation/test file, are recorded in each dataset's
 `dataset_verify/<dataset>/split_manifest.json` (`source`/`source_hashes` and
 `output_hashes` fields respectively); the paper's Online Resource 1, Section
-S28 reports the same checksums alongside dataset-provenance narrative.
+S28 reports the same interaction-file checksums alongside dataset-provenance
+narrative. Checksums of the downloaded metadata files were not recorded; each
+taxonomy variant's `metadata/taxonomy_variants/<dataset>/<policy>/manifest.json`
+records the SHA256 of the merged-metadata and item-to-category files it was
+built from (`source_hashes`).
 
 ### `musical-instruments` And `arts-crafts-and-sewing`: Additional Manual Step
 
