@@ -50,7 +50,7 @@ from tools.experiments.run_extended import (  # noqa: E402
     log,
     planned,
     selection_file,
-    read_manifest,
+    reference_configuration,
     require_clean_code,
     require_frozen_protocol,
     run_status,
@@ -181,7 +181,7 @@ def upstream_command(item):
 
 def evaluation_config():
     """Evaluation settings of the LightGCN family on this dataset."""
-    config = dict(read_manifest(f"{FAMILIES[OFFICE]['LightGCN']}/seed42")["configuration"])
+    config = reference_configuration(FAMILIES[OFFICE]["LightGCN"])
     config.pop("resume_checkpoint", None)
     return config
 

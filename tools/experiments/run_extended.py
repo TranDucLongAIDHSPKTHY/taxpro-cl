@@ -1,7 +1,10 @@
 """Sequential runner for docs/extended_evaluation_protocol.md.
 
 Every run inherits the configuration recorded in the manifest of its reference family and
-may differ only in the overrides of its package; anything else stops the runner. Runs set
+may differ only in the overrides of its package; anything else stops the runner. The run logs
+are not in the repository, so these configurations are read from a tracked copy of the seed42
+manifests, tools/experiments/reference_configurations.json (written by
+--reference-configurations); the plans and --dry-run therefore need no local log. Runs set
 TAXPRO_DEFER_TEST=1, so no test metric is computed here. Test splits are opened by
 --open-test, once per run; a search needs its committed selection file first.
 
@@ -12,11 +15,13 @@ Usage:
     python -m tools.experiments.run_extended --open-test controls-amazon-book
     python -m tools.experiments.run_extended --registry
     python -m tools.experiments.run_extended --snapshot after
+    python -m tools.experiments.run_extended --reference-configurations
 """
 from __future__ import annotations
 
 import argparse
 import csv
+import functools
 import hashlib
 import json
 import os
@@ -41,6 +46,7 @@ from tools.experiments.run_confirmatory import (  # noqa: E402
 from utility.utility_data.taxonomy import REDRAWN_SPLIT_BASES, REDRAWN_SPLIT_SEEDS  # noqa: E402
 from utility.utility_function import tools as config_tools  # noqa: E402
 
+REFERENCE_CONFIGURATIONS = Path(__file__).with_name("reference_configurations.json")
 OUTPUT = Path("log/p0/extended")
 SMOKE_OUTPUT = OUTPUT / "smoke"
 RESULTS = Path("results/extended")
@@ -179,9 +185,39 @@ def read_manifest(run_dir):
     return json.loads((ROOT / run_dir / "run_manifest.json").read_text(encoding="utf-8"))
 
 
+def reference_families():
+    return sorted({family for families in FAMILIES.values() for family in families.values()})
+
+
+def reference_configurations_document():
+    """The configuration of every reference family, as its seed42 run manifest records it."""
+    return {"source": "configuration of <family>/seed42/run_manifest.json; written by --reference-configurations",
+            "families": {family: read_manifest(f"{family}/seed42")["configuration"]
+                         for family in reference_families()}}
+
+
+@functools.lru_cache(maxsize=1)
+def tracked_reference_configurations():
+    return json.loads(REFERENCE_CONFIGURATIONS.read_text(encoding="utf-8"))["families"]
+
+
+def reference_configuration(family):
+    """Configuration of a reference family. The run logs are not in the repository, so it is read from
+    the tracked copy of the seed42 run manifests, tools/experiments/reference_configurations.json."""
+    return dict(tracked_reference_configurations()[family])
+
+
+def write_reference_configurations():
+    document = reference_configurations_document()
+    REFERENCE_CONFIGURATIONS.write_bytes((json.dumps(document, indent=2) + "\n").encode("utf-8"))
+    tracked_reference_configurations.cache_clear()
+    print(f"wrote {len(document['families'])} reference configurations to {REFERENCE_CONFIGURATIONS.relative_to(ROOT)}")
+    return 0
+
+
 def inherited_config(family, model, overrides):
     """Reference configuration plus overrides, on the keys the parser accepts."""
-    config = {k: str(v) for k, v in read_manifest(f"{family}/seed42")["configuration"].items()}
+    config = {k: str(v) for k, v in reference_configuration(family).items()}
     config.pop("resume_checkpoint", None)
     defaults = config_tools.read_configuration(str(model_config_file(model)), model)
     for key in sorted(set(config) - set(defaults)):
@@ -699,7 +735,7 @@ def snapshot_paths():
              ROOT / "results" / "confirmatory" / "confirmatory_selection.json",
              ROOT / CONF / "confirmatory_selection.json"]
     for dataset in FAMILIES:
-        policy = read_manifest(f"{FAMILIES[dataset]['V3']}/seed42")["configuration"]["taxonomy_policy"]
+        policy = reference_configuration(FAMILIES[dataset]["V3"])["taxonomy_policy"]
         paths += [ROOT / "dataset_verify" / dataset / name
                   for name in ("train.txt", "validation.txt", "test.txt", "split_manifest.json")]
         paths.append(ROOT / "preprocessed" / "evaluation_protocol" / "split_seed_42" / dataset / "manifest.json")
@@ -734,9 +770,12 @@ def main(argv=None):
     action.add_argument("--open-test", choices=sorted(set(PLANS) - CLOSED_PACKAGES | set(SEARCHES)))
     action.add_argument("--registry", action="store_true")
     action.add_argument("--snapshot", choices=("before", "after"))
+    action.add_argument("--reference-configurations", action="store_true")
     parser.add_argument("--device", default="cuda")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args(argv)
+    if args.reference_configurations:
+        return write_reference_configurations()
     if args.package:
         return run_packages(args.package, args.device, args.dry_run)
     if args.select:

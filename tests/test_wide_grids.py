@@ -10,18 +10,12 @@ from tools.analysis.wide_grid_analysis import edges
 from tools.experiments import run_comparators, run_extended, run_wide_grids
 from tools.experiments.run_wide_grids import KGCL_PACKAGE, NCL_PACKAGE, SEARCHES, plan, runs_to_open
 
-# The NCL plans inherit their configuration from the local run manifests under log/p0, which are not tracked.
-LOCAL_RUNS = unittest.skipUnless(all((run_extended.ROOT / "log" / "p0" / d).is_dir()
-                                     for d in ("taxprocl", "confirmatory")), "needs the local run manifests")
-
 
 class WideGridPlanTests(unittest.TestCase):
-    @LOCAL_RUNS
     def test_each_package_matches_the_deviation_run_count(self):
         self.assertEqual(len(plan(KGCL_PACKAGE)), 18)
         self.assertEqual(len(plan(NCL_PACKAGE)), 12)
 
-    @LOCAL_RUNS
     def test_new_runs_do_not_reuse_a_locked_directory_or_identifier(self):
         locked = [item for package in run_extended.EXPECTED_RUNS if package != "smoke"
                   for item in run_extended.planned(package)]
@@ -38,7 +32,6 @@ class WideGridPlanTests(unittest.TestCase):
         self.assertTrue(all(j.run_dir.as_posix().startswith("log/p0/extended/office-products/KGCL/grid-temp0.")
                             for j in jobs))
 
-    @LOCAL_RUNS
     def test_ncl_cells_keep_the_reference_except_temperature_and_clusters(self):
         reference = run_extended.inherited_config(run_extended.FAMILIES["office-products"]["NCL-default"], "NCL", {})
         for item in plan(NCL_PACKAGE):
@@ -80,7 +73,6 @@ class WideGridSelectionTests(unittest.TestCase):
             with self.assertRaises(SystemExit):
                 run_wide_grids.open_test("kgcl", "cpu")
 
-    @LOCAL_RUNS
     def test_selection_refuses_unfinished_runs(self):
         with mock.patch.object(run_wide_grids, "run_status", return_value="running"):
             with self.assertRaises(SystemExit):

@@ -82,9 +82,9 @@ The locked splits (`dataset_verify/`), evaluation-protocol artifacts
 with the repository, so nothing has to be downloaded to run the checks below.
 
 ```powershell
-# 1. Unit tests (CPU). In a fresh clone, the tests that read the local run
-#    manifests of the extended evaluation are skipped, because the run
-#    directories under log/ are not shipped.
+# 1. Unit tests (CPU). In a fresh clone, the four tests that read the run
+#    registry or the opened test splits of the extended evaluation are skipped,
+#    because the run directories under log/ are not shipped.
 python -m pytest -q
 
 # 2. Check that models import and every shipped dataset artifact is present.
@@ -308,7 +308,13 @@ runs; its SHA-256 is in `docs/extended_evaluation_protocol.sha256`, first
 published in commit 324e2be (2026-11-08). `tools/experiments/run_extended.py`
 runs its packages one after another. Every run inherits the configuration
 recorded for its reference family, may differ only in the overrides of its
-package, and is trained with `TAXPRO_DEFER_TEST=1`. A test split is opened once
+package, and is trained with `TAXPRO_DEFER_TEST=1`. The run directories under
+`log/` are not shipped, so the configurations of the 32 reference families are
+read from `tools/experiments/reference_configurations.json`, the
+`configuration` field of each family's `seed42/run_manifest.json`
+(`--reference-configurations` writes it from the local runs). The run plans of
+`run_extended`, `run_comparators` and `run_wide_grids`, including `--dry-run`,
+therefore work in a fresh clone. A test split is opened once
 per run with `--open-test`; a search must have its committed selection file
 (`results/extended/selection_<name>.json` and its `.sha256`) first.
 
@@ -735,7 +741,7 @@ published.
   author = {Tran, Thi Phuong and Tran, Duc Long and Pham, Minh Chuan and
             Nguyen, Van Hau},
   year   = {2026},
-  note   = {Manuscript; code and results: tag v1.9}
+  note   = {Manuscript; code and results: tag v1.10}
 }
 ```
 

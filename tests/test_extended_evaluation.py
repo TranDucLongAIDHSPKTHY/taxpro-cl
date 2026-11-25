@@ -3,6 +3,7 @@ opening and the analyses of docs/extended_evaluation_protocol.md."""
 
 import collections
 import importlib
+import io
 import json
 import tempfile
 import unittest
@@ -46,6 +47,10 @@ from utility.utility_data.taxonomy import (
 from utility.utility_train.trainer import restore_validation_history
 
 ROOT = Path(__file__).resolve().parents[1]
+# The run registry and the test openings read the runs under log/p0, which are not in the repository; the run
+# plans need only tools/experiments/reference_configurations.json.
+LOCAL_RUNS = unittest.skipUnless(
+    all((ROOT / "log" / "p0" / d).is_dir() for d in ("taxprocl", "baseline", "confirmatory")), "needs the local run logs")
 TaxProCLImproved = importlib.import_module("models.TaxPro-CL").TaxProCLImproved
 
 
@@ -231,8 +236,27 @@ class RedrawnSplitTests(unittest.TestCase):
         self.assertEqual(group_shares([0, 1, 5, 6, 11]), {"near_cold_percent": 50.0, "long_tail_percent": 75.0})
 
 
-@unittest.skipUnless((ROOT / "log" / "p0" / "taxprocl").is_dir(), "needs the local run manifests")
 class RunnerPlanTests(unittest.TestCase):
+    def test_tracked_reference_configurations_cover_every_family(self):
+        from tools.experiments.run_extended import reference_families, tracked_reference_configurations
+
+        self.assertEqual(sorted(tracked_reference_configurations()), reference_families())
+        self.assertEqual(len(reference_families()), 32)
+
+    @LOCAL_RUNS
+    def test_tracked_reference_configurations_match_the_run_manifests(self):
+        from tools.experiments.run_extended import reference_configurations_document, tracked_reference_configurations
+
+        self.assertEqual(reference_configurations_document()["families"], tracked_reference_configurations())
+
+    def test_dry_run_plans_without_reading_a_run_manifest(self):
+        from tools.experiments import run_extended
+
+        with mock.patch.object(run_extended, "read_manifest", side_effect=AssertionError("reads a run manifest")), \
+                mock.patch("sys.stdout", new_callable=io.StringIO) as output:
+            self.assertEqual(run_extended.main(["--package", "controls-amazon-book", "--dry-run"]), 0)
+        self.assertIn("controls-amazon-book: 9 runs planned", output.getvalue())
+
     def test_every_package_matches_the_protocol_run_count(self):
         from tools.experiments.run_extended import EXPECTED_RUNS, planned
 
@@ -324,6 +348,7 @@ class RunnerPlanTests(unittest.TestCase):
         self.assertEqual(grid_family("ncl", "temp0.1-k3000"), "log/p0/extended/office-products/NCL/grid-temp0.1-k3000")
         self.assertIn("grid-ncl", CLOSED_PACKAGES)
 
+    @LOCAL_RUNS
     def test_ncl_test_split_opens_only_for_a_new_selected_cell(self):
         from tools.experiments.run_extended import grid_runs_to_open
 
@@ -332,6 +357,7 @@ class RunnerPlanTests(unittest.TestCase):
         self.assertEqual(len(runs), 3)
         self.assertTrue(all("/extended/office-products/NCL/grid-temp0.15-k1000/" in run for run in runs))
 
+    @LOCAL_RUNS
     def test_every_reference_run_is_registered_with_its_environment(self):
         from tools.experiments.run_extended import reference_rows
 
@@ -343,6 +369,7 @@ class RunnerPlanTests(unittest.TestCase):
             for seed in (42, 0, 1):
                 self.assertEqual(book[arm, seed], "A", (arm, seed))
 
+    @LOCAL_RUNS
     def test_grid_test_split_opens_only_for_selected_cells_still_sealed(self):
         from tools.experiments.run_extended import grid_runs_to_open
 
@@ -576,7 +603,6 @@ class ExternalTableTests(unittest.TestCase):
             trainer.train()
 
 
-@unittest.skipUnless((ROOT / "log" / "p0" / "taxprocl").is_dir(), "needs the local run manifests")
 class ComparatorPlanTests(unittest.TestCase):
     def test_each_method_has_twelve_cells_of_three_seeds(self):
         from tools.experiments.run_comparators import PACKAGES, plan
@@ -628,7 +654,6 @@ class ComparatorPlanTests(unittest.TestCase):
                 with self.assertRaises(SystemExit):
                     run_comparators.open_test(name, "cpu")
 
-    @unittest.skipUnless((ROOT / "log" / "p0" / "confirmatory").is_dir(), "needs the local run manifests")
     def test_galore_opens_only_with_its_starting_point_complete(self):
         from tools.experiments import run_comparators
 
